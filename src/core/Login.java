@@ -1,5 +1,4 @@
 package core;
-
 /**
  * Created by louie on 10/03/2017.
  */
@@ -8,11 +7,9 @@ public class Login {
 
     public Login(){
         this.test = "test";
-
     }
 
     public String getName(){
         return test;
     }
-
 }

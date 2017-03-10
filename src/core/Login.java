@@ -5,7 +5,7 @@ package core;
 public class Login {
     private String test = "test";
 
-    public Login(){
+    public Login(String userName, String password){
         this.test = "test";
     }
 

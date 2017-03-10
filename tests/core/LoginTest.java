@@ -1,6 +1,5 @@
 package core;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,10 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by louie on 10/03/2017.
  */
 class LoginTest {
-    @Test
-    void getName() {
-        /*TODO*/
-    }
+
+
+    String vaildUserName = "Louis";
+
+    Login loginCorrect = new Login("louis", "abc123");
+    Login loginInvalid = new Login("not vaild", "fake");
 
     @Test
     void initLoginAttempt(){
@@ -21,12 +22,14 @@ class LoginTest {
 
     @Test
     void vaildateUser(){
-        /*TODO*/
+        assertEquals(true, loginCorrect.checkUserName());
+        assertNotEquals(true, loginInvalid.checkUserName());
     }
 
     @Test
     void vaildatePassword(){
-        /*TODO*/
+        assertEquals(true, loginCorrect.checkPassword());
+        assertNotEquals(true, loginInvalid.checkPassword());
     }
 
     @Test
@@ -35,7 +38,7 @@ class LoginTest {
     }
 
     @Test
-    void voidattemptLoginFailure(){
+    void attemptLoginFailure(){
         /*TODO*/
     }
 }

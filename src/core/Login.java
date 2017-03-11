@@ -7,6 +7,7 @@ import java.util.Scanner;
  */
 public class Login {
 
+    /*TODO make username not case sensitive */
     public Boolean validateAttempt(String inputUsername, String inputPassword){
 
         Scanner scan;
@@ -17,12 +18,12 @@ public class Login {
             scan = new Scanner(new File("customersLogin.txt"));
         }
         catch(Exception e) {
-            System.out.println("customersLogin file not found");
+            System.out.println(e.getMessage());
             return false;
         }
 
-        /**loop through file to check each line for a match
-         *on username and then password */
+        /**loop through file checking each line for a match
+         *on username and password */
         while(scan.hasNext()) {
             fileLine = scan.nextLine();
             loginDetails = fileLine.split(",");
@@ -30,9 +31,11 @@ public class Login {
             password = loginDetails[1];
 
             if (inputUsername.equals(username) && inputPassword.equals(password)) {
+                scan.close();
                 return true;
             }
         }
+        scan.close();
         return false;
     }
 }

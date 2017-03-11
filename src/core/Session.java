@@ -32,6 +32,7 @@ public class Session {
         return null;
     }
 
+    /** find customers details and load into session */
     private Boolean loadUserDetails() {
         /*TODO*/
         Scanner scan;
@@ -48,9 +49,11 @@ public class Session {
         while (scan.hasNext()) {
             customerDetails = scan.nextLine().split(",");
             if (username.equals(customerDetails[thisRecord])) {
+
                 name = customerDetails[1];
                 address = customerDetails[2];
                 contactNumber = customerDetails[3];
+
                 scan.close();
                 return true;
             }

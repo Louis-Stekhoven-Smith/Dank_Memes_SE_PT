@@ -5,10 +5,14 @@ import java.util.Scanner;
 /**
  * Created by louie on 10/03/2017.
  */
+
+/** This class handles authenticating login
+ * attempts and associated tasks */
 public class Login {
 
     /*TODO make username not case sensitive */
-    public Boolean validateAttempt(String inputUsername, String inputPassword){
+    /** check username exists and password matches the associated username*/
+    public static Boolean validateAttempt(String inputUsername, String inputPassword){
 
         Scanner scan;
         String fileLine, username, password;

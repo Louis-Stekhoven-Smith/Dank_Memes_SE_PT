@@ -21,15 +21,15 @@ class LoginTest {
     }
 
     @Test
-    void vaildateUser(){
-        assertEquals(true, loginCorrect.checkUserName());
-        assertNotEquals(true, loginInvalid.checkUserName());
+    void validateUser(){
+        assertEquals(true, loginCorrect.validateUsername());
+        assertNotEquals(true, loginInvalid.validateUsername());
     }
 
     @Test
-    void vaildatePassword(){
-        assertEquals(true, loginCorrect.checkPassword());
-        assertNotEquals(true, loginInvalid.checkPassword());
+    void validatePassword(){
+        assertEquals(true, loginCorrect.validatePassword());
+        assertNotEquals(true, loginInvalid.validatePassword());
     }
 
     @Test

@@ -10,11 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class LoginTest {
 
 
-    String vaildUserName = "Louis";
+    String vaildUserName = "louis";
+    String vaildPassword = "abc123";
+    String invaildUserName ="Fake";
+    String invaildPassword = "not a password";
 
-    Login loginCorrect = new Login("louis", "abc123");
-    Login loginInvalid = new Login("not vaild", "fake");
-
+    Login login = new Login();
     @Test
     void initLoginAttempt(){
         /*TODO*/
@@ -22,23 +23,8 @@ class LoginTest {
 
     @Test
     void validateUser(){
-        assertEquals(true, loginCorrect.validateUsername());
-        assertNotEquals(true, loginInvalid.validateUsername());
+        assertEquals(true, login.validateAttempt(vaildUserName,vaildPassword));
+        assertNotEquals(true, login.validateAttempt(invaildUserName,invaildPassword));
     }
 
-    @Test
-    void validatePassword(){
-        assertEquals(true, loginCorrect.validatePassword());
-        assertNotEquals(true, loginInvalid.validatePassword());
-    }
-
-    @Test
-    void attemptLoginSuccess(){
-        /*TODO*/
-    }
-
-    @Test
-    void attemptLoginFailure(){
-        /*TODO*/
-    }
 }

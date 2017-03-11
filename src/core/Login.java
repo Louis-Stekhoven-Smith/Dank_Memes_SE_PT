@@ -7,59 +7,32 @@ import java.util.Scanner;
  */
 public class Login {
 
-    private String username;
-    private String password;
-
-    public Login(String username, String password){
-        this.username = username;
-        this.password = password;
-    }
-
-    public Boolean validateUsername(){
+    public Boolean validateAttempt(String inputUsername, String inputPassword){
 
         Scanner scan;
-        String existingUsername;
+        String fileLine, username, password;
+        String[] loginDetails;
 
         try {
-            scan = new Scanner(new File("usernames.txt"));
+            scan = new Scanner(new File("customersLogin.txt"));
         }
         catch(Exception e) {
-            System.out.println("usernames file not found");
+            System.out.println("customersLogin file not found");
             return false;
         }
-        while(scan.hasNext()) {
-            existingUsername = scan.nextLine();
 
-            if (username.equals(existingUsername)) {
-                validatePassword();
+        /**loop through file to check each line for a match
+         *on username and then password */
+        while(scan.hasNext()) {
+            fileLine = scan.nextLine();
+            loginDetails = fileLine.split(",");
+            username = loginDetails[0];
+            password = loginDetails[1];
+
+            if (inputUsername.equals(username) && inputPassword.equals(password)) {
                 return true;
             }
         }
         return false;
     }
-
-
-    public Boolean validatePassword(){
-
-        Scanner scan;
-        String existingPassword;
-
-        try {
-            scan = new Scanner(new File("passwords.txt"));
-        }
-        catch(Exception e) {
-            System.out.println("passwords file not found");
-            return false;
-        }
-        while(scan.hasNext()) {
-            existingPassword = scan.nextLine();
-            if (password.equals(existingPassword)) {
-                System.out.println("true");
-                return true;
-            }
-        }
-        return false;
-    }
-
-
 }

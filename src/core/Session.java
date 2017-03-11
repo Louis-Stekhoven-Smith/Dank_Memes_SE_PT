@@ -1,4 +1,6 @@
 package core;
+import java.io.File;
+import java.util.Scanner;
 
 
 /**
@@ -11,6 +13,7 @@ public class Session {
 
     public Session(String username){
         this.username = username;
+        loadUserDetails();
     }
 
 
@@ -29,8 +32,31 @@ public class Session {
         return null;
     }
 
-    private void loadUserDetails(){
+    private Boolean loadUserDetails() {
         /*TODO*/
+        Scanner scan;
+        int thisRecord = 0;
+        String[] customerDetails;
+
+        try {
+            scan = new Scanner(new File("customerDetails.txt"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        while (scan.hasNext()) {
+            customerDetails = scan.nextLine().split(",");
+            if (username.equals(customerDetails[thisRecord])) {
+                name = customerDetails[1];
+                address = customerDetails[2];
+                contactNumber = customerDetails[3];
+                scan.close();
+                return true;
+            }
+        }
+        scan.close();
+        return false;
     }
 
     /** Mutators */
@@ -46,21 +72,17 @@ public class Session {
 
     /** getters **/
     public String getName(){
-        /*TODO*/
-        return null;
+        return name;
     }
     public String getUsername(){
-        /*TODO*/
-        return null;
+        return username;
     }
     public String getAddress(){
-        /*TODO*/
-        return null;
+        return address;
     }
 
     public String getContactNumber (){
-        /*TODO*/
-        return null;
+        return contactNumber;
     }
 
     public Booking[] getBooking(){

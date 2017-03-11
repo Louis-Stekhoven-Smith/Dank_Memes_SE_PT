@@ -12,6 +12,11 @@ public class Main {
 
         if (login.validateAttempt("OldBoiSmokey", "abc123")) {
             System.out.println("You are logged in");
+            Session session = new Session("OldBoiSmokey");
+
+        }
+        else{
+            System.out.println("Login attempt failed");
         }
 
     }

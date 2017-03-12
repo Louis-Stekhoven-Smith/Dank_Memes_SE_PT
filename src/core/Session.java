@@ -34,7 +34,6 @@ public class Session {
 
     /** find customers details and load into session */
     private Boolean loadUserDetails() {
-        /*TODO*/
         Scanner scan;
         int thisRecord = 0;
         String[] customerDetails;
@@ -83,7 +82,6 @@ public class Session {
     public String getAddress(){
         return address;
     }
-
     public String getContactNumber (){
         return contactNumber;
     }

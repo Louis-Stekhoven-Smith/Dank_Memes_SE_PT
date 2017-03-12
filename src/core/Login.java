@@ -26,8 +26,7 @@ public class Login {
             return false;
         }
 
-        /**loop through file checking each line for a match
-         *on username and password */
+        /**loop through file checking each line for a match */
         while(scan.hasNext()) {
             fileLine = scan.nextLine();
             loginDetails = fileLine.split(",");

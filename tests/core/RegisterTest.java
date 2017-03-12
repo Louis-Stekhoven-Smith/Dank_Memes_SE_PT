@@ -1,107 +1,103 @@
 package core;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by harry on 11/03/2017.
  */
 public class RegisterTest {
 
-    private Register testRegister;
 
-    @Before
-    public void setUp() throws Exception {
-        testRegister = new Register();
-    }
+    Register testRegister = new Register();
 
-    @After
-    public void tearDown() throws Exception {
-
-    }
 
     @Test
-    public void isNotEmpty() throws Exception {
+    void isNotEmpty() throws Exception {
         String nameFill = "Harry Parkinson";
         String nameEmpty = "";
-        String uNameFill = "Harry123";
-        String uNameEmpty = "";
-        String pword1Fill = "Pass123";
-        String pword1Empty = "";
-        String pword2Fill = "Pass123";
-        String pword2Empty = "";
+        String userNameFill = "Harry123";
+        String userNameEmpty = "";
+        String password1Fill = "Pass123";
+        String password1Empty = "";
+        String password2Fill = "Pass123";
+        String password2Empty = "";
         String addressFill = "123 Richmond Street";
         String addressEmpty = "";
         String phoneNoFill = "0412882192";
         String phoneNoEmpty = "";
 
         //Testing for false with all set to empty
-        assertFalse(testRegister.isNotEmpty(nameEmpty, uNameEmpty, pword1Empty, pword2Empty, addressEmpty, phoneNoEmpty));
+        assertFalse(testRegister.isNotEmpty(nameEmpty, userNameEmpty, password1Empty, password2Empty, addressEmpty, phoneNoEmpty));
 
         //Testing for false with 3 set to empty and 2 set to filled
-        assertFalse(testRegister.isNotEmpty(nameFill, uNameEmpty, pword1Fill, pword2Empty, addressFill, phoneNoEmpty));
+        assertFalse(testRegister.isNotEmpty(nameFill, userNameEmpty, password1Fill, password2Empty, addressFill, phoneNoEmpty));
 
         //Testing for false with 5 set to empty and 1 set to filled all with all different combinations
-        assertFalse(testRegister.isNotEmpty(nameFill, uNameFill, pword1Fill, pword2Fill, addressFill, phoneNoEmpty));
-        assertFalse(testRegister.isNotEmpty(nameFill, uNameFill, pword1Fill, pword2Fill, addressEmpty, phoneNoFill));
-        assertFalse(testRegister.isNotEmpty(nameFill, uNameFill, pword1Fill, pword2Empty, addressFill, phoneNoFill));
-        assertFalse(testRegister.isNotEmpty(nameFill, uNameFill, pword1Empty, pword2Fill, addressFill, phoneNoFill));
-        assertFalse(testRegister.isNotEmpty(nameFill, uNameEmpty, pword1Fill, pword2Fill, addressFill, phoneNoFill));
-        assertFalse(testRegister.isNotEmpty(nameEmpty, uNameFill, pword1Fill, pword2Fill, addressFill, phoneNoFill));
+        assertFalse(testRegister.isNotEmpty(nameFill, userNameFill, password1Fill, password2Fill, addressFill, phoneNoEmpty));
+        assertFalse(testRegister.isNotEmpty(nameFill, userNameFill, password1Fill, password2Fill, addressEmpty, phoneNoFill));
+        assertFalse(testRegister.isNotEmpty(nameFill, userNameFill, password1Fill, password2Empty, addressFill, phoneNoFill));
+        assertFalse(testRegister.isNotEmpty(nameFill, userNameFill, password1Empty, password2Fill, addressFill, phoneNoFill));
+        assertFalse(testRegister.isNotEmpty(nameFill, userNameEmpty, password1Fill, password2Fill, addressFill, phoneNoFill));
+        assertFalse(testRegister.isNotEmpty(nameEmpty, userNameFill, password1Fill, password2Fill, addressFill, phoneNoFill));
 
         //Testing for true with all set to filled.
-        assertTrue(testRegister.isNotEmpty(nameFill, uNameFill, pword1Fill, pword2Fill, addressFill, phoneNoFill));
+        assertTrue(testRegister.isNotEmpty(nameFill, userNameFill, password1Fill, password2Fill, addressFill, phoneNoFill));
     }
 
     @Test
-    public void pwordCriteria() throws Exception {
-        String shortPword = "harry12";
-        String noNumPword = "wEstcoast";
-        String noCapsPword = "eastlyyyy";
-        String noLowerPword = "EASTLY123";
-        String correctPword = "H123abcZ";
+    void passwordCriteria() throws Exception {
+        String shortpassword = "harry12";
+        String noNumpassword = "wEstcoast";
+        String noCapspassword = "eastlyyyy";
+        String noLowerpassword = "EASTLY123";
+        String correctpassword = "H123abcZ";
 
-        assertFalse(testRegister.pwordCriteria(shortPword));
-        assertFalse(testRegister.pwordCriteria(noNumPword));
-        assertFalse(testRegister.pwordCriteria(noCapsPword));
-        assertFalse(testRegister.pwordCriteria(noLowerPword));
-        assertTrue(testRegister.pwordCriteria(correctPword));
+        assertFalse(testRegister.passwordCriteria(shortpassword));
+        assertFalse(testRegister.passwordCriteria(noNumpassword));
+        assertFalse(testRegister.passwordCriteria(noCapspassword));
+        assertFalse(testRegister.passwordCriteria(noLowerpassword));
+        assertTrue(testRegister.passwordCriteria(correctpassword));
     }
 
     @Test
-    public void pwordMatches() throws Exception {
-        String pword1Correct = "12345";
-        String pword1False = "1234";
-        String pword2Correct = "12345";
-        String pword2False = "1234";
+    void passwordMatches() throws Exception {
+        String password1Correct = "12345";
+        String password1False = "1234";
+        String password2Correct = "12345";
+        String password2False = "1234";
 
         //Testing for false with the second password only wrong and the first password only wrong
-        assertFalse(testRegister.pwordMatches(pword1Correct, pword2False));
-        assertFalse(testRegister.pwordMatches(pword1False, pword2Correct));
+        assertFalse(testRegister.passwordMatches(password1Correct, password2False));
+        assertFalse(testRegister.passwordMatches(password1False, password2Correct));
 
         //Testing for true with both passwords matching
-        assertTrue(testRegister.pwordMatches(pword1Correct, pword2Correct));
+        assertTrue(testRegister.passwordMatches(password1Correct, password2Correct));
     }
 
     @Test
-    public void uNameFree() throws Exception {
-        String uNameExists = "Hazza203";
-        String uNameFree = "JohnP_123";
+     void userNameFree() throws Exception {
+        String userNameExists = "OldBoiSmokey";
+        String userNameFree = "JohnP_123";
 
         //Testing for false with a user name which exists
-        assertFalse(testRegister.uNameFree(uNameExists));
+        assertFalse(testRegister.userNameFree(userNameExists));
 
         //Testing for true with a user name which is free
-        assertTrue(testRegister.uNameFree(uNameFree));
+        assertTrue(testRegister.userNameFree(userNameFree));
 
     }
 
     @Test
-    public void register() throws Exception {
+    void register() throws Exception {
+        String userName = "Hazza203";
+        String name = "Harry Parkinson";
+        String password = "123Password";
+        String address = "123madeup St";
+        String phoneNo = "12345678";
 
+        assertTrue(testRegister.register(userName, name, password, address, phoneNo));
     }
 
 }

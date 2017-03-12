@@ -12,26 +12,26 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
         primaryStage.setTitle("Appointment Booking System");
         primaryStage.setScene(new Scene(root, 384, 600));
         primaryStage.show();
     }
 
     public static void main(String[] args) {
+        launch(args);
         /* to do driver */
 
-        Login login = new Login();
+       /** Login login = new Login();
 
         if (login.validateAttempt("OldBoiSmokey", "abc123")) {
             System.out.println("You are logged in");
             Session session = new Session("OldBoiSmokey");
 
-        }
-        else{
+        } else {
             System.out.println("Login attempt failed");
-        }
+        } */
 
     }
 }

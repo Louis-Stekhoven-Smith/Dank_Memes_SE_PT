@@ -25,11 +25,11 @@
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <Button fx:id="LoginButton" layoutX="240.0" layoutY="429.0" mnemonicParsing="false" onAction="#LoginButton" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="LOGIN" textAlignment="CENTER" textFill="#1565c0">
+            <Button fx:id="LoginButton" layoutX="240.0" layoutY="430.0" mnemonicParsing="false" onAction="#btnLoginClicked" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="LOGIN" textAlignment="CENTER" textFill="#1565c0">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button alignment="CENTER" layoutX="141.0" layoutY="429.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="86.0" style="-fx-background-color: none;" text="SIGN UP" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="btnSignUp" alignment="CENTER" layoutX="141.0" layoutY="430.0" mnemonicParsing="false" onAction="#btnSignUpClicked" prefHeight="40.0" prefWidth="86.0" style="-fx-background-color: none;" text="SIGN UP" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Button>
@@ -46,6 +46,11 @@
                <font>
                   <Font name="Calibri Light" size="18.0" />
                </font></Label>
+            <Label fx:id="lblLoginError" layoutX="64.0" layoutY="253.0" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

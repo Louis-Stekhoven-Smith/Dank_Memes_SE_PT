@@ -1,6 +1,7 @@
 package core;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -9,52 +10,63 @@ import java.util.Scanner;
 
 public class Register {
 
-    //This function is just to make it simpler so that you don't have to call every function from main.
-    public boolean registerAttempt(String name, String userName, String password1, String password2, String address, String phoneNo){
-        if(isNotEmpty(name, userName, password1, password2, address, phoneNo)){
-            if(passwordMatches(password1, password2)){
-                if(passwordCriteria(password1)){
-                    if(userNameFree(userName)){
-                        if(register(name, userName, password1, address, phoneNo)){
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
+    public enum attemptOutcome {
+        SUCCESS(6), WRITE_FAIL(5), USERNAME_TAKEN(4), PHONENO_FAIL(3), PASSWORD_UNSATISFIED(2), PASSWORDS_DIFFERENT(1), EMPTY_FIELDS(1);
+        private int value;
 
-        return false;
+        private attemptOutcome(int value){
+            this.value = value;
+        }
     }
 
-    public boolean isNotEmpty(String name, String userName, String password1, String password2, String address, String phoneNo){
+
+    //This function is just to make it simpler so that you don't have to call every function from main.
+    public attemptOutcome registerAttempt(HashMap customerDetailsHMap){
+
+
+        if(isNotEmpty(customerDetailsHMap)){
+            if(passwordMatches(customerDetailsHMap)){
+                if(passwordCriteria(customerDetailsHMap)){
+                    if(phoneNoIsAus(customerDetailsHMap)){
+                        if(userNameFree(customerDetailsHMap)){
+                            if(writeNewCustomer(customerDetailsHMap)){
+                                return attemptOutcome.SUCCESS;
+                            }
+                            return attemptOutcome.WRITE_FAIL;
+                        }
+                        return attemptOutcome.USERNAME_TAKEN;
+                    }
+                    return attemptOutcome.PHONENO_FAIL;
+                }
+                return attemptOutcome.PASSWORD_UNSATISFIED;
+            }
+            return attemptOutcome.PASSWORDS_DIFFERENT;
+        }
+        return attemptOutcome.EMPTY_FIELDS;
+    }
+
+    protected boolean isNotEmpty(HashMap custDetailsHMap){
 
         //Check none of the fields are empty
-        if(name.equals("") || userName.equals("") || password1.equals("") || password2.equals("") || address.equals("") || phoneNo.equals("")){
-            System.out.println("You have not filled out all of the fields");
-            return false;
+        if(custDetailsHMap.get("name").equals("") ||
+            custDetailsHMap.get("userName").equals("") ||
+            custDetailsHMap.get("password1").equals("") ||
+            custDetailsHMap.get("password2").equals("") ||
+            custDetailsHMap.get("address").equals("") ||
+            custDetailsHMap.get("phoneNo").equals(""))  {
+
+                System.out.println("You have not filled out all of the fields");
+                return false;
         }
 
         return true;
     }
 
-    public boolean passwordCriteria(String password1){
 
-        boolean hasUppercase = !password1.equals(password1.toLowerCase());
-        boolean hasLowercase = !password1.equals(password1.toUpperCase());
-
-        //Check if the password matches the criteria of 8 chars, at least 1 uppercase, 1 lowercase and 1 digit
-        if((password1.length() < 8) || !hasLowercase || !hasUppercase || !password1.matches(".*\\d+.*")) {
-            System.out.println("Your password must have more than 8 characters, at least one uppercase, one lowercase and a number or symbol");
-            return false;
-        }
-
-        return true;
-    }
-
-    public boolean passwordMatches(String password1, String password2){
+    protected boolean passwordMatches(HashMap custDetailsHMap){
 
         //Check if the passwords match each other
-        if(password1.equals(password2)){
+        if(custDetailsHMap.get("password1").equals(custDetailsHMap.get("password2"))){
             return true;
         }
 
@@ -62,7 +74,33 @@ public class Register {
 
     }
 
-    public boolean userNameFree(String userName){
+
+    protected boolean passwordCriteria(HashMap custDetailsHMap){
+
+        String password = (String) custDetailsHMap.get("password1");
+
+        boolean hasUppercase = !password.equals(password.toLowerCase());
+        boolean hasLowercase = !password.equals(password.toUpperCase());
+
+        //Check if the password matches the criteria of 8 chars, at least 1 uppercase, 1 lowercase and 1 digit
+        if((password.length() < 8) || !hasLowercase || !hasUppercase || !password.matches(".*\\d+.*")) {
+            System.out.println("Your password must have more than 8 characters, at least one uppercase, one lowercase and a number or symbol");
+            return false;
+        }
+
+        return true;
+    }
+
+    protected boolean phoneNoIsAus(HashMap custDetailsHMap){
+        String phoneNo = (String) custDetailsHMap.get("phoneNo");
+        if(phoneNo.matches("^\\({0,1}((0|\\+61)(2|4|3|7|8)){0,1}\\){0,1}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{1}(\\ |-){0,1}[0-9]{3}$")){
+            return true;
+        }
+        return false;
+    }
+
+
+    protected boolean userNameFree(HashMap custDetailsHMap){
 
         Scanner scan;
         String fileLine, takenUsername;
@@ -82,7 +120,7 @@ public class Register {
             loginDetails = fileLine.split(",");
             takenUsername = loginDetails[0];
 
-            if (userName.equals(takenUsername)) {
+            if (custDetailsHMap.get("userName").equals(takenUsername)) {
                 System.out.println("This user name is already taken, please choose another");
                 scan.close();
                 return false;
@@ -94,14 +132,14 @@ public class Register {
 
 
 
-    public boolean register(String name, String userName, String password1, String address, String phoneNo){
+    protected boolean writeNewCustomer(HashMap custDetailsHMap){
 
         PrintWriter out = null;
 
         //Write the userName, name, address and phone number to the customerDetails file
         try {
             out = new PrintWriter(new BufferedWriter(new FileWriter("customerDetails.txt", true)));
-            out.println(userName + "," + name + "," + address + "," + phoneNo);
+            out.println(custDetailsHMap.get("userName") + "," + custDetailsHMap.get("name") + "," + custDetailsHMap.get("address") + "," + custDetailsHMap.get("phoneNo"));
         }catch (IOException e) {
             System.out.println(e.getMessage());
             return false;
@@ -114,7 +152,7 @@ public class Register {
         //Write the userName and password to the customersLogin file
         try {
             out = new PrintWriter(new BufferedWriter(new FileWriter("customersLogin.txt", true)));
-            out.println(userName + "," + password1);
+            out.println(custDetailsHMap.get("userName") + "," + custDetailsHMap.get("password1"));
         }catch (IOException e) {
             System.out.println(e.getMessage());
             return false;

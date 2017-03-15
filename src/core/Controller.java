@@ -20,14 +20,14 @@ import java.io.IOException;
  */
 public class Controller {
 
-    //@FXML
-    //private Label lblUserIdentity;
     @FXML
     private TextField txtUsername;
     @FXML
     private TextField txtPassword;
     @FXML
     private Label lblLoginError;
+    @FXML
+    private Label lblLabelUser;
     @FXML
     private TextField txtUsernameReg;
     @FXML
@@ -112,14 +112,15 @@ public class Controller {
         if (log.validateAttempt(inputUsername,inputPassword) == false){
             lblLoginError.setText("Incorrect Login info!");
         } else {
+            System.out.println("Logged in as: " + inputUsername);
             Parent LoginSuccess_parent = FXMLLoader.load(getClass().getResource("LoginSuccess.fxml"));
             Scene LoginSuccess_scene = new Scene (LoginSuccess_parent);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.close();
             primaryStage.setScene(LoginSuccess_scene);
             primaryStage.show();
-           // lblUserIdentity.setText(inputUsername);
         }
     }
+
 
 }

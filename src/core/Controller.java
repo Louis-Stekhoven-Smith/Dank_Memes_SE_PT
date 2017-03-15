@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Created by Konn on 13/03/2017.
@@ -81,23 +82,33 @@ public class Controller {
 
     @FXML
     public void btnRegisterClicked (ActionEvent event) throws IOException {
-        String userName = txtUsernameReg.getText();
-        String password1 = txtPasswordReg.getText();
-        String password2 = txtPassVerifyReg.getText();
-        String name = txtNameReg.getText();
-        String address = txtAddressReg.getText();
-        String phoneNo = txtContactReg.getText();
+        HashMap<String, String> customerDetails = new HashMap<String, String>();
         Register reg = new Register();
-        if (reg.isNotEmpty(name,userName,password1,password2,address,phoneNo) == false){
+        Register.attemptOutcome error;
+
+        customerDetails.put("name", txtNameReg.getText());
+        customerDetails.put("userName", txtUsernameReg.getText());
+        customerDetails.put("password1", txtPasswordReg.getText());
+        customerDetails.put("password2", txtPassVerifyReg.getText());
+        customerDetails.put("address", txtAddressReg.getText());
+        customerDetails.put("phoneNo", txtContactReg.getText());
+
+        error = reg.registerAttempt(customerDetails);
+        System.out.println(error);
+
+        if (error == Register.attemptOutcome.EMPTY_FIELDS){
             lblErrors.setText("Empty fields exist!");
-        } else if (reg.passwordCriteria(password1) == false){
+        } else if (error == Register.attemptOutcome.PASSWORD_UNSATISFIED){
             lblErrors.setText("Password: 8+ chars, 1 upper, 1 lower, 1 digit");
-        } else if (reg.passwordMatches(password1, password2) == false){
+        } else if (error == Register.attemptOutcome.PASSWORDS_DIFFERENT){
             lblErrors.setText("Passwords do not match!");
-        } else if (reg.userNameFree(userName) == false){
+        } else if (error == Register.attemptOutcome.USERNAME_TAKEN){
             lblErrors.setText("Username is taken!");
+        } else if (error == Register.attemptOutcome.PHONENO_FAIL) {
+            lblErrors.setText("Invalid Phone Number!");
+        } else if (error == Register.attemptOutcome.WRITE_FAIL) {
+            lblErrors.setText("Failed to write!");
         } else {
-            reg.register(name,userName,password1,address,phoneNo);
             lblErrors.setText("");
             btnBackClicked(event);
             RegisterPopup(event);

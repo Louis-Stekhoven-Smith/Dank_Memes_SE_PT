@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Register {
 
     public enum attemptOutcome {
-        SUCCESS(6), WRITE_FAIL(5), USERNAME_TAKEN(4), PHONENO_FAIL(3), PASSWORD_UNSATISFIED(2), PASSWORDS_DIFFERENT(1), EMPTY_FIELDS(1);
+        SUCCESS(6), WRITE_FAIL(5), USERNAME_TAKEN(4), PHONENO_FAIL(3), PASSWORD_UNSATISFIED(2), PASSWORDS_DIFFERENT(1), EMPTY_FIELDS(0);
         private int value;
 
         private attemptOutcome(int value){
@@ -23,29 +23,28 @@ public class Register {
     //This function is just to make it simpler so that you don't have to call every function from main.
     public attemptOutcome registerAttempt(HashMap customerDetailsHMap){
 
-
-        if(isNotEmpty(customerDetailsHMap)){
-            if(passwordMatches(customerDetailsHMap)){
-                if(passwordCriteria(customerDetailsHMap)){
-                    if(phoneNoIsAus(customerDetailsHMap)){
-                        if(userNameFree(customerDetailsHMap)){
-                            if(writeNewCustomer(customerDetailsHMap)){
-                                return attemptOutcome.SUCCESS;
-                            }
-                            return attemptOutcome.WRITE_FAIL;
-                        }
-                        return attemptOutcome.USERNAME_TAKEN;
-                    }
-                    return attemptOutcome.PHONENO_FAIL;
-                }
-                return attemptOutcome.PASSWORD_UNSATISFIED;
-            }
+        if(!isNotEmpty(customerDetailsHMap)) {
+            return attemptOutcome.EMPTY_FIELDS;
+        }
+        else if(!passwordMatches(customerDetailsHMap)) {
             return attemptOutcome.PASSWORDS_DIFFERENT;
         }
-        return attemptOutcome.EMPTY_FIELDS;
+        else if(!passwordCriteria(customerDetailsHMap)) {
+            return attemptOutcome.PASSWORD_UNSATISFIED;
+        }
+        else if(!phoneNoIsAus(customerDetailsHMap)) {
+            return attemptOutcome.PHONENO_FAIL;
+        }
+        else if(!userNameFree(customerDetailsHMap)) {
+            return attemptOutcome.USERNAME_TAKEN;
+        }
+        else if(!writeNewCustomer(customerDetailsHMap)) {
+            return attemptOutcome.WRITE_FAIL;
+        }
+        else return attemptOutcome.SUCCESS;
     }
 
-    protected boolean isNotEmpty(HashMap custDetailsHMap){
+    private boolean isNotEmpty(HashMap custDetailsHMap){
 
         //Check none of the fields are empty
         if(custDetailsHMap.get("name").equals("") ||
@@ -63,19 +62,17 @@ public class Register {
     }
 
 
-    protected boolean passwordMatches(HashMap custDetailsHMap){
+    private boolean passwordMatches(HashMap custDetailsHMap){
 
         //Check if the passwords match each other
         if(custDetailsHMap.get("password1").equals(custDetailsHMap.get("password2"))){
             return true;
-        }
-
-        else return false;
+        } else return false;
 
     }
 
 
-    protected boolean passwordCriteria(HashMap custDetailsHMap){
+    private boolean passwordCriteria(HashMap custDetailsHMap){
 
         String password = (String) custDetailsHMap.get("password1");
 
@@ -91,7 +88,7 @@ public class Register {
         return true;
     }
 
-    protected boolean phoneNoIsAus(HashMap custDetailsHMap){
+    private boolean phoneNoIsAus(HashMap custDetailsHMap){
         String phoneNo = (String) custDetailsHMap.get("phoneNo");
         if(phoneNo.matches("^\\({0,1}((0|\\+61)(2|4|3|7|8)){0,1}\\){0,1}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{1}(\\ |-){0,1}[0-9]{3}$")){
             return true;
@@ -100,7 +97,7 @@ public class Register {
     }
 
 
-    protected boolean userNameFree(HashMap custDetailsHMap){
+    private boolean userNameFree(HashMap custDetailsHMap){
 
         Scanner scan;
         String fileLine, takenUsername;
@@ -114,7 +111,7 @@ public class Register {
             return false;
         }
 
-        /**loop through file checking each line for a matching username */
+        //loop through file checking each line for a matching username
         while(scan.hasNext()) {
             fileLine = scan.nextLine();
             loginDetails = fileLine.split(",");
@@ -132,7 +129,7 @@ public class Register {
 
 
 
-    protected boolean writeNewCustomer(HashMap custDetailsHMap){
+    private boolean writeNewCustomer(HashMap custDetailsHMap){
 
         PrintWriter out = null;
 
@@ -157,9 +154,7 @@ public class Register {
             System.out.println(e.getMessage());
             return false;
         }finally{
-            if(out != null){
                 out.close();
-            }
         }
 
         return true;

@@ -29,6 +29,8 @@ public class Main extends Application{
             System.out.println("You are logged in");
             Session session = new Session("OldBoiSmokey");
 
+            System.out.println(session.getName());
+
         }
         else{
             System.out.println("Login attempt failed");

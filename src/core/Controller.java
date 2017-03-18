@@ -82,7 +82,7 @@ public class Controller {
 
     @FXML
     public void btnRegisterClicked (ActionEvent event) throws IOException {
-        HashMap<String, String> customerDetails = new HashMap<String, String>();
+        HashMap<String, String> customerDetails = new HashMap<>();
         Register reg = new Register();
         Register.attemptOutcome error;
 

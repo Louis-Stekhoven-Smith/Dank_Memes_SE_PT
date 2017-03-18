@@ -21,11 +21,14 @@ public class Main extends Application{
 
     public static void main(String[] args) {
         /* to do driver */
+        Database db = new Database();
+        db.setupDataBase();
         launch(args);
+
 
         Login login = new Login();
 
-        if (login.validateAttempt("OldBoiSmokey", "abc123")) {
+        if (login.validateAttempt("OldBoiSmokey", "Pass1234")) {
             System.out.println("You are logged in");
             Session session = new Session("OldBoiSmokey");
 

@@ -1,8 +1,8 @@
 package core;
 
-import java.io.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Scanner;
 
 /**
  * Created by harry on 11/03/2017.
@@ -98,7 +98,25 @@ public class Register {
 
 
     private boolean userNameFree(HashMap custDetailsHMap){
+        //Setup with datebase
+        Database db = new Database();
+        ResultSet rs;
+        //Create SQL Query
+        String sqlQuery = "SELECT userName FROM customerLogin WHERE userName =" + "'" + custDetailsHMap.get("userName") + "'";
+        //Pass through SQL Query to database class which returns the result set
+        rs = db.queryDatabase(sqlQuery);
+        try{
+            //If there is something in the result set then there was a matching username, return false.
+            if(rs.next()){
+                return false;
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
 
+        return true;
+
+        /**
         Scanner scan;
         String fileLine, takenUsername;
         String[] loginDetails;
@@ -125,12 +143,30 @@ public class Register {
         }
         scan.close();
         return true;
+         */
     }
 
 
 
     private boolean writeNewCustomer(HashMap custDetailsHMap){
+        Database db = new Database();
+        //The SQLite statements for inserting a new customers details
+        String custDetailsSQL = "INSERT INTO customerDetails (custID, name, userName, address, phoneNo) values(?," +
+                                    "'" + custDetailsHMap.get("name") + "'" + "," +
+                                    "'" + custDetailsHMap.get("userName")+ "'" + "," +
+                                    "'" + custDetailsHMap.get("address") + "'" + "," +
+                                    "'" + custDetailsHMap.get("phoneNo") + "'" + ")";
+        String custLoginSQL = "INSERT INTO customerLogin (custID, userName, password) values(?," +
+                                "'" + custDetailsHMap.get("userName") + "'" + "," +
+                                "'" + custDetailsHMap.get("password1") + "'" + ")";
 
+        //Calling the function which will insert the data into the appropriate tables
+        db.insertIntoDatabase(custDetailsSQL);
+        db.insertIntoDatabase(custLoginSQL);
+
+        return true;
+
+        /**
         PrintWriter out = null;
 
         //Write the userName, name, address and phone number to the customerDetails file
@@ -159,6 +195,7 @@ public class Register {
 
         
         return true;
+         */
     }
 
 }

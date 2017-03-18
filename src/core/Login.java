@@ -1,7 +1,7 @@
 package core;
 
-import java.io.File;
-import java.util.Scanner;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  * Created by louie on 10/03/2017.
  */
@@ -14,7 +14,23 @@ public class Login {
     /** check username exists and password matches the associated username*/
     public static Boolean validateAttempt(String inputUsername, String inputPassword){
 
-        Scanner scan;
+        Database db = new Database();
+        ResultSet rs;
+        String loginSQL = "SELECT userName, password FROM customerLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
+        rs = db.queryDatabase(loginSQL);
+        try{
+            if(rs.next()){
+                if(rs.getString("userName").equals(inputUsername) && rs.getString("password").equals(inputPassword)){
+                    return true;
+                }
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+
+        /** Scanner scan;
         String fileLine, username, password;
         String[] loginDetails;
 
@@ -26,7 +42,7 @@ public class Login {
             return false;
         }
 
-        /**loop through file checking each line for a match */
+        //loop through file checking each line for a match
         while(scan.hasNext()) {
             fileLine = scan.nextLine();
             loginDetails = fileLine.split(",");
@@ -40,5 +56,6 @@ public class Login {
         }
         scan.close();
         return false;
+        */
     }
 }

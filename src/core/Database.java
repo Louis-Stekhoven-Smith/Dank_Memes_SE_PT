@@ -70,8 +70,8 @@ public class Database {
                     Statement empDetails = con.createStatement();
                     String sqlEmpDetails = "CREATE TABLE employeeDetails " +
                                             "(empID INTEGER not NULL, " +
+                                            " businessID INTEGER, " +
                                             " name VARCHAR(40), " +
-                                            " business VARCHAR(40), " +
                                             " employeeRole VARCHR(40), ";
                     empDetails.execute(sqlEmpDetails);
                 }
@@ -96,12 +96,12 @@ public class Database {
         return res;
     }
 
-    public void insertIntoDatabase(String sqlString){
+    public void updateDatabase(String sqlString){
         try{
             Statement state = con.createStatement();
             //Execute insert statment
             state.executeUpdate(sqlString);
-            System.out.println("Record added to the database");
+            System.out.println("The database has been modified successfully");
 
 
         } catch (SQLException e){
@@ -109,13 +109,4 @@ public class Database {
         }
     }
 
-    public void updateDatabaseEntry(String sqlString) {
-        try{
-            Statement state = con.createStatement();
-            state.executeUpdate(sqlString);
-            System.out.println("Record updated in the database");
-        } catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-    }
 }

@@ -161,8 +161,8 @@ public class Register {
                                 "'" + custDetailsHMap.get("password1") + "'" + ")";
 
         //Calling the function which will insert the data into the appropriate tables
-        db.insertIntoDatabase(custDetailsSQL);
-        db.insertIntoDatabase(custLoginSQL);
+        db.updateDatabase(custDetailsSQL);
+        db.updateDatabase(custLoginSQL);
 
         return true;
 

@@ -43,12 +43,12 @@ public class Database {
                     System.out.println("customerDetails table does not exist. Creating now...");
                     Statement custDetails = con.createStatement();
                     String sqlCustDetails = "CREATE TABLE customerDetails " +
-                            "(custID INTEGER not NULL, " +
-                            " name VARCHAR(40), " +
-                            " userName VARCHAR(20), " +
-                            " address VARCHAR(50), " +
-                            " phoneNo VARCHAR(20), " +
-                            " PRIMARY KEY (custID))";
+                                            "(custID INTEGER not NULL, " +
+                                            " name VARCHAR(40), " +
+                                            " userName VARCHAR(20), " +
+                                            " address VARCHAR(50), " +
+                                            " phoneNo VARCHAR(20), " +
+                                            " PRIMARY KEY (custID))";
                     custDetails.execute(sqlCustDetails);
                 }
 
@@ -57,11 +57,25 @@ public class Database {
                     System.out.println("customerLogin table does not exist. Creating now...");
                     Statement custLogin = con.createStatement();
                     String sqlCustLogin = "CREATE TABLE customerLogin " +
-                            "(custID INTEGER not NULL, " +
-                            " userName VARCHAR(20), " +
-                            " password VARCHAR(40), " +
-                            " PRIMARY KEY(custID))";
+                                            "(custID INTEGER not NULL, " +
+                                            " userName VARCHAR(20), " +
+                                            " password VARCHAR(40), " +
+                                            " PRIMARY KEY(custID))";
                     custLogin.execute(sqlCustLogin);
+                }
+
+                rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessDetails'");
+                if(!rs.next()){
+                    System.out.println("businessDetails table does not exist. Creating now...");
+                    Statement businessDetails = con.createStatement();
+                    String sqlbusinessDetails = "CREATE TABLE businessDetails " +
+                                                "(businessID INTEGER not NULL, " +
+                                                " businessName VARCHAR(50), " +
+                                                " ownerName VARCHAR(40), " +
+                                                " userName VARCHAR(40), " +
+                                                " email VARCHAR(40), " +
+                                                " PRIMARY KEY(businessID))";
+                    businessDetails.execute(sqlbusinessDetails);
                 }
 
                 rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='employeeDetails'");
@@ -70,9 +84,11 @@ public class Database {
                     Statement empDetails = con.createStatement();
                     String sqlEmpDetails = "CREATE TABLE employeeDetails " +
                                             "(empID INTEGER not NULL, " +
-                                            " businessID INTEGER, " +
+                                            " businessID INTEGER not NULL, " +
                                             " name VARCHAR(40), " +
-                                            " employeeRole VARCHR(40), ";
+                                            " employeeRole VARCHAR(40), " +
+                                            " PRIMARY KEY (empID), " +
+                                            " FOREIGN KEY (businessID) REFERENCES businessDetails (businessID))";
                     empDetails.execute(sqlEmpDetails);
                 }
 
@@ -99,7 +115,7 @@ public class Database {
     public void updateDatabase(String sqlString){
         try{
             Statement state = con.createStatement();
-            //Execute insert statment
+            //Execute insert statement
             state.executeUpdate(sqlString);
             System.out.println("The database has been modified successfully");
 
@@ -108,5 +124,4 @@ public class Database {
             System.out.println(e.getMessage());
         }
     }
-
 }

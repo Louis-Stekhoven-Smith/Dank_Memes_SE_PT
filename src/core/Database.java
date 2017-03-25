@@ -78,6 +78,18 @@ public class Database {
                     businessDetails.execute(sqlbusinessDetails);
                 }
 
+                rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessLogin'");
+                if(!rs.next()){
+                    System.out.println("businessLogin table does not exist. Creating now...");
+                    Statement businessLogin = con.createStatement();
+                    String sqlbusinessLogin = "CREATE TABLE businessLogin " +
+                                                "(businessID INTEGER not NULL, " +
+                                                " userName VARCHAR(40), " +
+                                                " password VARCHAR(40), " +
+                                                " PRIMARY KEY(businessID))";
+                    businessLogin.execute(sqlbusinessLogin);
+                }
+
                 rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='employeeDetails'");
                 if(!rs.next()){
                     System.out.println("employeeDetails table does not exist. Creating now...");

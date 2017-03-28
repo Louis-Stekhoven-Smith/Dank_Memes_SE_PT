@@ -20,7 +20,7 @@ class LoginTest {
     Login login = new Login();
 
     @BeforeAll
-    public static void setupdataBase(){
+    public static void setupDataBase(){
         Database db = new Database();
         db.setupDataBase();
     }

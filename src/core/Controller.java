@@ -10,11 +10,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -61,11 +61,13 @@ public class Controller {
     private TextField txtAddPhone;
 
 
-    //Register Employee Fields
+    //Remove Employee Fields
     @FXML
     private TextField txtEmpID;
     @FXML
     private TextField txtEmpName;
+    @FXML
+    private Label lblFindEmp;
     @FXML
     private Label lblRemoveError;
 
@@ -190,28 +192,26 @@ public class Controller {
     }
 
     @FXML
-    public void btnFindEmp(ActionEvent event) throws IOException {
-        Database db = new Database();
-        ResultSet rs;
-        String empName;
-        int empID = Integer.parseInt(txtEmpID.getText());
-        String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE empID = " + empID;
-        rs = db.queryDatabase(findEmpNameSQL);
-        try{
-            if(rs.next()){
-                empName = rs.getString("name");
-                txtEmpName.setText(empName);
-            }
-            else{
-                lblRemoveError.setText("Failed to find employee");
-            }
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
+    public void btnFindEmp() throws IOException, SQLException{
+
+        Employee employee = new Employee();
+        String empName = txtEmpName.getText();
+        int empID;
+
+        empID = employee.findEmployee(empName);
+
+        if(empID == -1){
+            lblFindEmp.setTextFill(Color.web("#ff0000"));
+            lblFindEmp.setText("Failed to find employee");
+        }
+        else{
+            lblFindEmp.setText("We found this employee");
+            txtEmpID.setText(Integer.toString(empID));
         }
     }
 
     @FXML
-    public void btnRemoveEmp(ActionEvent event) throws IOException {
+    public void btnRemoveEmp() throws IOException {
         int empID = Integer.parseInt(txtEmpID.getText());
         String empName = txtEmpName.getText();
         if (empName.equals("")) {
@@ -219,10 +219,12 @@ public class Controller {
             return;
         }
         Employee.removeEmployee(empID, empName);
+        lblRemoveError.setTextFill(Color.web("#ffffff"));
+        lblRemoveError.setText("Employee Removed!");
     }
 
     @FXML
-    public void btnAddEmp(ActionEvent event) throws IOException {
+    public void btnAddEmp() throws IOException {
         String empName = txtAddName.getText();
         String empRole = txtAddRole.getText();
         String empEmail = txtAddEmail.getText();

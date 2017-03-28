@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class EmployeeTest {
 
     Employee testEmployee = new Employee();
-    
+
 
     @Test
     void add_then_removeEmployee() throws SQLException {
@@ -28,7 +28,7 @@ class EmployeeTest {
 
         testEmployee.addEmployee(name, role);
 
-        //add employee
+        //add employee tests
         String sqlAddTest = "SELECT name FROM employeeDetails WHERE name = " + "'" + name + "'";
         rs = db.queryDatabase(sqlAddTest);
 
@@ -39,7 +39,7 @@ class EmployeeTest {
             assertEquals(rs.getString("name"), name);
         }
 
-        //Remove employee
+        //Remove employee and find employee tests
         String sqlRemoveTest = "SELECT name FROM employeeDetails WHERE name = " + "'" + name + "'";
         int empID;
 

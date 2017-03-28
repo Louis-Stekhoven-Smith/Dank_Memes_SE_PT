@@ -1,5 +1,4 @@
 package core.model;
-import com.sun.org.apache.regexp.internal.RE;
 
 import java.sql.*;
 
@@ -8,10 +7,10 @@ import java.sql.*;
  */
 
 /** This class handles all Database functionality including the
-setting up of the database if it does not exist. Checking if the
-database does exist and setting up the tables for insertion.
-It also has a method for querying the database, inserting into
-the data base and updating entries in the database. */
+ setting up of the database if it does not exist. Checking if the
+ database does exist and setting up the tables for insertion.
+ It also has a method for querying the database, inserting into
+ the data base and updating entries in the database. */
 public class Database {
 
     private static Connection con;
@@ -19,7 +18,7 @@ public class Database {
     private static String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
     private static String DB_DRIVER = "org.sqlite.JDBC";
 
-    /* this isnt working as expected??? always runs setupConnection */
+    /* this isnt working as expected??? always runs setupConnection - louis*/
     public static void setupDataBase(){
         if(con == null){
             setupConnection();
@@ -31,92 +30,123 @@ public class Database {
     private static void setupConnection(){
         try{
             Class.forName(DB_DRIVER);
-        } catch (ClassNotFoundException e){
+        }
+        catch (ClassNotFoundException e){
             System.out.println(e.getMessage());
         }
-
         try{
-
             con = DriverManager.getConnection(DB_CONNECTION);
 
             if(!hasData){
                 hasData = true;
                 Statement state = con.createStatement();
-                ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='customerDetails'");
-                if(!rs.next()) {
-                    System.out.println("customerDetails table does not exist. Creating now...");
-                    Statement custDetails = con.createStatement();
-                    String sqlCustDetails = "CREATE TABLE customerDetails " +
-                                            "(custID INTEGER not NULL, " +
-                                            " name VARCHAR(40), " +
-                                            " userName VARCHAR(20), " +
-                                            " address VARCHAR(50), " +
-                                            " phoneNo VARCHAR(20), " +
-                                            " PRIMARY KEY (custID))";
-                    custDetails.execute(sqlCustDetails);
-                }
 
-                rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='customerLogin'");
-                if(!rs.next()){
-                    System.out.println("customerLogin table does not exist. Creating now...");
-                    Statement custLogin = con.createStatement();
-                    String sqlCustLogin = "CREATE TABLE customerLogin " +
-                                            "(custID INTEGER not NULL, " +
-                                            " userName VARCHAR(20), " +
-                                            " password VARCHAR(40), " +
-                                            " type VARCHAR(40)," +
-                                            " PRIMARY KEY(custID))";
-                    custLogin.execute(sqlCustLogin);
-                }
+                createCustomerDetTable(state);
+                createLoginTable(state);
+                createBusinessDetailsTable(state);
+                createOwnerTable(state);
+                createEmployeeDetTable(state);
 
-                rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessDetails'");
-                if(!rs.next()){
-                    System.out.println("businessDetails table does not exist. Creating now...");
-                    Statement businessDetails = con.createStatement();
-                    String sqlbusinessDetails = "CREATE TABLE businessDetails " +
-                                                "(businessID INTEGER not NULL, " +
-                                                " businessName VARCHAR(50), " +
-                                                " ownerName VARCHAR(40), " +
-                                                " userName VARCHAR(40), " +
-                                                " email VARCHAR(40), " +
-                                                " PRIMARY KEY(businessID))";
-                    businessDetails.execute(sqlbusinessDetails);
-                }
 
-                rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessLogin'");
-                if(!rs.next()){
-                    System.out.println("businessLogin table does not exist. Creating now...");
-                    Statement businessLogin = con.createStatement();
-                    String sqlbusinessLogin = "CREATE TABLE businessLogin " +
-                                                "(businessID INTEGER not NULL, " +
-                                                " userName VARCHAR(40), " +
-                                                " password VARCHAR(40), " +
-                                                " PRIMARY KEY(businessID))";
-                    businessLogin.execute(sqlbusinessLogin);
-                }
-
-                rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='employeeDetails'");
-                if(!rs.next()){
-                    System.out.println("employeeDetails table does not exist. Creating now...");
-                    Statement empDetails = con.createStatement();
-                    String sqlEmpDetails = "CREATE TABLE employeeDetails " +
-                                            "(empID INTEGER not NULL, " +
-                                            " businessID INTEGER not NULL, " +
-                                            " name VARCHAR(40), " +
-                                            " employeeRole VARCHAR(40), " +
-                                            " PRIMARY KEY (empID), " +
-                                            " FOREIGN KEY (businessID) REFERENCES businessDetails (businessID))";
-                    empDetails.execute(sqlEmpDetails);
-
-                    /* Just for testing remove for production !!!!!!!!!!!!!!*/
-                    resetDatabase();
-                }
-
-                }
-        } catch (SQLException e){
+            }
+        }
+        catch (SQLException e){
             System.out.println(e.getMessage());
         }
 
+    }
+
+    /** this should return boolean */
+    private static void createEmployeeDetTable(Statement state) throws SQLException {
+        ResultSet rs;
+        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='employeeDetails'");
+        if(!rs.next()){
+            System.out.println("employeeDetails table does not exist. Creating now...");
+            Statement empDetails = con.createStatement();
+            String sqlEmpDetails = "CREATE TABLE employeeDetails " +
+                    "(empID INTEGER not NULL, " +
+                    " businessID INTEGER not NULL, " +
+                    " name VARCHAR(40), " +
+                    " employeeRole VARCHAR(40), " +
+                    " PRIMARY KEY (empID), " +
+                    " FOREIGN KEY (businessID) REFERENCES businessDetails (businessID))";
+            empDetails.execute(sqlEmpDetails);
+
+            /*TODO*/
+             /* Just for testing remove for production !!!!!!!!!!!!!!
+             need to move this somewhere better
+             Add drop tables to the reset and move back into setup connection
+              */
+            resetDatabase();
+        }
+    }
+
+    /** this should return boolean */
+    private static void createOwnerTable(Statement state) throws SQLException {
+        ResultSet rs;
+        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessLogin'");
+        if(!rs.next()){
+            System.out.println("businessLogin table does not exist. Creating now...");
+            Statement businessLogin = con.createStatement();
+            String sqlbusinessLogin = "CREATE TABLE businessLogin " +
+                    "(businessID INTEGER not NULL, " +
+                    " userName VARCHAR(40), " +
+                    " password VARCHAR(40), " +
+                    " PRIMARY KEY(businessID))";
+            businessLogin.execute(sqlbusinessLogin);
+        }
+    }
+
+    /** this should return boolean */
+    private static void createBusinessDetailsTable(Statement state) throws SQLException {
+        ResultSet rs;
+        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessDetails'");
+        if(!rs.next()){
+            System.out.println("businessDetails table does not exist. Creating now...");
+            Statement businessDetails = con.createStatement();
+            String sqlbusinessDetails = "CREATE TABLE businessDetails " +
+                    "(businessID INTEGER not NULL, " +
+                    " businessName VARCHAR(50), " +
+                    " ownerName VARCHAR(40), " +
+                    " userName VARCHAR(40), " +
+                    " email VARCHAR(40), " +
+                    " PRIMARY KEY(businessID))";
+            businessDetails.execute(sqlbusinessDetails);
+        }
+    }
+
+    /** this should return boolean */
+    private static void createLoginTable(Statement state) throws SQLException {
+        ResultSet rs;
+        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='customerLogin'");
+        if(!rs.next()){
+            System.out.println("customerLogin table does not exist. Creating now...");
+            Statement custLogin = con.createStatement();
+            String sqlCustLogin = "CREATE TABLE customerLogin " +
+                    "(custID INTEGER not NULL, " +
+                    " userName VARCHAR(20), " +
+                    " password VARCHAR(40), " +
+                    " type VARCHAR(40)," +
+                    " PRIMARY KEY(custID))";
+            custLogin.execute(sqlCustLogin);
+        }
+    }
+
+    /** this should return boolean */
+    private static void createCustomerDetTable(Statement state) throws SQLException {
+        ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='customerDetails'");
+        if(!rs.next()) {
+            System.out.println("customerDetails table does not exist. Creating now...");
+            Statement custDetails = con.createStatement();
+            String sqlCustDetails = "CREATE TABLE customerDetails " +
+                    "(custID INTEGER not NULL, " +
+                    " name VARCHAR(40), " +
+                    " userName VARCHAR(20), " +
+                    " address VARCHAR(50), " +
+                    " phoneNo VARCHAR(20), " +
+                    " PRIMARY KEY (custID))";
+            custDetails.execute(sqlCustDetails);
+        }
     }
 
     public static ResultSet queryDatabase(String sqlString){
@@ -132,16 +162,19 @@ public class Database {
         return res;
     }
 
-    public static void updateDatabase(String sqlString){
+    /** this should return boolean */
+    public static Boolean updateDatabase(String sqlString){
         try{
             Statement state = con.createStatement();
             //Execute insert statement
             state.executeUpdate(sqlString);
             System.out.println("The database has been modified successfully");
+            return true;
 
 
         } catch (SQLException e){
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
@@ -151,12 +184,12 @@ public class Database {
 
         String cust1DetailsSQL = "INSERT INTO customerDetails (custID, name, userName, address, phoneNo) values(?," +
                 "'" + "Louis" + "'" + "," +
-                "'" + "OldBoiSmokey" + "'" + "," +
+                "'" + "oldboismokey" + "'" + "," +
                 "'" + "123 Fake Street" + "'" + "," +
                 "'" + "0423456789" + "'" + ")";
 
         String cust1LoginSQL = "INSERT INTO customerLogin (custID, userName, password, type) values(?," +
-                "'" + "OldBoiSmokey" + "'" + "," +
+                "'" + "oldboismokey" + "'" + "," +
                 "'" + "Pass1234" + "'" + "," +
                 "'" + 1 + "'" + ")";
 

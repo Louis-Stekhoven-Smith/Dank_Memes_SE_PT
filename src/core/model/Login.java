@@ -16,19 +16,28 @@ public class Login {
      * Returns 1 if users is a business owner
      * Returns 2 if user is a customer */
     public static int validateAttempt(String inputUsername, String inputPassword){
-
+        String loginSQL, userName,password;
         ResultSet rs;
-        String loginSQL = "SELECT userName, password, type FROM customerLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
+
+        inputUsername = inputUsername.toLowerCase();
+
+        loginSQL = "SELECT userName, password, type FROM customerLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
         rs = Database.queryDatabase(loginSQL);
+
+
         try{
             if(rs.next()){
-                if(rs.getString("userName").equals(inputUsername) && rs.getString("password").equals(inputPassword)){
+                userName =  rs.getString("userName").toLowerCase();
+                password  = rs.getString("password");
+
+        System.out.println(userName+" "+inputUsername);
+
+                /* do we need to do this if statment, can we not just check if rs is empty? - Louis */
+                if(userName.equals(inputUsername) && password.equals(inputPassword)){
                     if(rs.getString("type").equals("1")){
-                        System.out.println("vaildateAttempt returning 1");
                         return 1;
                     }
                     if(rs.getString("type").equals("2")){
-                        System.out.println("vaildateAttempt returning 2");
                         return 2;
                     }
                     return -1;
@@ -40,33 +49,5 @@ public class Login {
 
         return -1;
 
-
-        /** Scanner scan;
-        String fileLine, username, password;
-        String[] loginDetails;
-
-        try {
-            scan = new Scanner(new File("customersLogin.txt"));
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-        //loop through file checking each line for a match
-        while(scan.hasNext()) {
-            fileLine = scan.nextLine();
-            loginDetails = fileLine.split(",");
-            username = loginDetails[0];
-            password = loginDetails[1];
-
-            if (inputUsername.equals(username) && inputPassword.equals(password)) {
-                scan.close();
-                return true;
-            }
-        }
-        scan.close();
-        return false;
-        */
     }
 }

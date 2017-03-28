@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
@@ -18,6 +19,8 @@ class LoginTest {
     private String vaildPassword = "Pass1234";
     private String invaildUserName ="Fake";
     private String invaildPassword = "not a password";
+    private int result,failedAttempt = -1;
+
 
     Login login = new Login();
 
@@ -28,25 +31,29 @@ class LoginTest {
     }
 
     @Test
-    void validLoginAtempt(){assertEquals(true, login.validateAttempt(vaildUserName,vaildPassword));}
+    void invalidLoginAttempt(){assertEquals(failedAttempt, login.validateAttempt(invaildUserName,invaildPassword));}
 
     @Test
-    void invalidLoginAtempt(){assertNotEquals(true, login.validateAttempt(invaildUserName,invaildPassword));}
+    void validUsernameOnly(){assertEquals(failedAttempt,login.validateAttempt(vaildUserName,invaildPassword));}
 
     @Test
-    void validUsernameOnly(){assertNotEquals(true, login.validateAttempt(vaildUserName,invaildPassword));}
-
-    @Test
-    void validPasswordOnly(){assertNotEquals(true, login.validateAttempt(invaildUserName,vaildPassword));}
+    void validPasswordOnly(){assertEquals(failedAttempt,  login.validateAttempt(invaildUserName,vaildPassword));}
 
     @Test
     void customerLoggedIn(){
+        result = login.validateAttempt("OldBoiSmokey","Pass1234");
+        assertEquals(1,result);
+    }
+    @Test
+    void ownerLoggedIn(){
+        result = login.validateAttempt("homy","Homy1234");
+        assertEquals(result,2);
 
     }
-
     @Test
-    void bossinessOwnerLoggedIn(){
-
+    void usernameNotCaseSensitive(){
+        result = login.validateAttempt("HOMY","Homy1234");
+        assertEquals(result,2);
     }
 
 }

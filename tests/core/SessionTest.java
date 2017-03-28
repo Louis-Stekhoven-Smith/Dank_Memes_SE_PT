@@ -26,19 +26,22 @@ class SessionTest {
 
     }
 
+    /*
     @Test
     void getName() {
         assertEquals("Louis",session.getName());
         assertNotEquals("",session.getName());
     }
 
+
+*/
     @Test
     void getUsername() {
         assertEquals("OldBoiSmokey",session.getUsername());
         assertNotEquals("asd",session.getUsername());
 
     }
-
+/*
     @Test
     void getAddress() {
         assertEquals("123 Fake st",session.getAddress());
@@ -51,7 +54,7 @@ class SessionTest {
         assertNotEquals("asdflkjh342",session.getContactNumber());
 
     }
-
+*/
     @Test
     void getBooking() {
 

@@ -200,7 +200,7 @@ public class RegisterTest {
         HashMap<String, String> userNameFree = new HashMap<String, String>();
 
         userNameExists.put("name", "test");
-        userNameExists.put("userName", "OldBoiSmokey");
+        userNameExists.put("userName", "oldboismokey");
         userNameExists.put("password1", "H123abcZ");
         userNameExists.put("password2", "H123abcZ");
         userNameExists.put("address", "test");

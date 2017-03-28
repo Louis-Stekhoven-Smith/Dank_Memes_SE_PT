@@ -71,7 +71,6 @@ public class Register {
 
     }
 
-
     private boolean passwordCriteria(HashMap custDetailsHMap){
 
         String password = (String) custDetailsHMap.get("password1");
@@ -114,35 +113,6 @@ public class Register {
         }
 
         return true;
-
-        /**
-        Scanner scan;
-        String fileLine, takenUsername;
-        String[] loginDetails;
-
-        try {
-            scan = new Scanner(new File("customersLogin.txt"));
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-        //loop through file checking each line for a matching username
-        while(scan.hasNext()) {
-            fileLine = scan.nextLine();
-            loginDetails = fileLine.split(",");
-            takenUsername = loginDetails[0];
-
-            if (custDetailsHMap.get("userName").equals(takenUsername)) {
-                System.out.println("This user name is already taken, please choose another");
-                scan.close();
-                return false;
-            }
-        }
-        scan.close();
-        return true;
-         */
     }
 
 
@@ -163,37 +133,6 @@ public class Register {
         Database.updateDatabase(custLoginSQL);
 
         return true;
-
-        /**
-        PrintWriter out = null;
-
-        //Write the userName, name, address and phone number to the customerDetails file
-        try {
-            out = new PrintWriter(new BufferedWriter(new FileWriter("customerDetails.txt", true)));
-            out.println(custDetailsHMap.get("userName") + "," + custDetailsHMap.get("name") + "," + custDetailsHMap.get("address") + "," + custDetailsHMap.get("phoneNo"));
-        }catch (IOException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }finally{
-            if(out != null){
-                out.close();
-            }
-        }
-
-        //Write the userName and password to the customersLogin file
-        try {
-            out = new PrintWriter(new BufferedWriter(new FileWriter("customersLogin.txt", true)));
-            out.println(custDetailsHMap.get("userName") + "," + custDetailsHMap.get("password1"));
-        }catch (IOException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }finally{
-                out.close();
-        }
-
-        
-        return true;
-         */
     }
 
 

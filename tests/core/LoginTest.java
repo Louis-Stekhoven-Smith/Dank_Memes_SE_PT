@@ -1,5 +1,7 @@
 package core;
 
+import core.model.Database;
+import core.model.Login;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -32,9 +34,19 @@ class LoginTest {
     void invalidLoginAtempt(){assertNotEquals(true, login.validateAttempt(invaildUserName,invaildPassword));}
 
     @Test
-    void vaildUsernameOnly(){assertNotEquals(true, login.validateAttempt(vaildUserName,invaildPassword));}
+    void validUsernameOnly(){assertNotEquals(true, login.validateAttempt(vaildUserName,invaildPassword));}
 
     @Test
-    void vaildPasswordOnly(){assertNotEquals(true, login.validateAttempt(invaildUserName,vaildPassword));}
+    void validPasswordOnly(){assertNotEquals(true, login.validateAttempt(invaildUserName,vaildPassword));}
+
+    @Test
+    void customerLoggedIn(){
+
+    }
+
+    @Test
+    void bossinessOwnerLoggedIn(){
+
+    }
 
 }

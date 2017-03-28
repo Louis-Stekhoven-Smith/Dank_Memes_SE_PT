@@ -1,4 +1,4 @@
-package core;
+package core.model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,7 @@ public class Main extends Application{
 
     @Override
     public void start (Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/LoginPage.fxml"));
         primaryStage.setTitle("Appointment Booking System");
         primaryStage.setScene(new Scene(root, 384, 600));
         primaryStage.show();
@@ -24,14 +24,13 @@ public class Main extends Application{
 
     public static void main(String[] args) {
         /* to do driver */
-        Database db = new Database();
-        db.setupDataBase();
+       Database.setupDataBase();
         launch(args);
 
         ResultSet rs;
 
         String sql = "SELECT name FROM customerDetails";
-        rs = db.queryDatabase(sql);
+        rs = Database.queryDatabase(sql);
 
         try {
             while(rs.next()){
@@ -42,7 +41,7 @@ public class Main extends Application{
         }
         Login login = new Login();
 
-        if (login.validateAttempt("OldBoiSmokey", "Pass1234")) {
+        if (login.validateAttempt("OldBoiSmokey", "Pass1234") == 2) {
             System.out.println("You are logged in");
             Session session = new Session("OldBoiSmokey");
 

@@ -1,5 +1,7 @@
 package core;
 
+import core.model.Database;
+import core.model.Register;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

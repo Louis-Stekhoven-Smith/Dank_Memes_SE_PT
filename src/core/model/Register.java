@@ -1,4 +1,4 @@
-package core;
+package core.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -99,12 +99,11 @@ public class Register {
 
     private boolean userNameFree(HashMap custDetailsHMap){
         //Setup with datebase
-        Database db = new Database();
         ResultSet rs;
         //Create SQL Query
         String sqlQuery = "SELECT userName FROM customerLogin WHERE userName =" + "'" + custDetailsHMap.get("userName") + "'";
         //Pass through SQL Query to database class which returns the result set
-        rs = db.queryDatabase(sqlQuery);
+        rs = Database.queryDatabase(sqlQuery);
         try{
             //If there is something in the result set then there was a matching username, return false.
             if(rs.next()){
@@ -149,7 +148,6 @@ public class Register {
 
 
     private boolean writeNewCustomer(HashMap custDetailsHMap){
-        Database db = new Database();
         //The SQLite statements for inserting a new customers details
         String custDetailsSQL = "INSERT INTO customerDetails (custID, name, userName, address, phoneNo) values(?," +
                                     "'" + custDetailsHMap.get("name") + "'" + "," +
@@ -161,8 +159,8 @@ public class Register {
                                 "'" + custDetailsHMap.get("password1") + "'" + ")";
 
         //Calling the function which will insert the data into the appropriate tables
-        db.updateDatabase(custDetailsSQL);
-        db.updateDatabase(custLoginSQL);
+        Database.updateDatabase(custDetailsSQL);
+        Database.updateDatabase(custLoginSQL);
 
         return true;
 
@@ -197,5 +195,6 @@ public class Register {
         return true;
          */
     }
+
 
 }

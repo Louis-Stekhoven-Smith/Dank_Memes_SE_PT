@@ -1,5 +1,7 @@
 package core;
 
+import core.model.Database;
+import core.model.Employee;
 import org.junit.jupiter.api.Test;
 
 import java.sql.ResultSet;

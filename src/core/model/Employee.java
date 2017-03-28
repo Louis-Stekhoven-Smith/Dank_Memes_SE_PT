@@ -1,4 +1,4 @@
-package core;
+package core.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +9,6 @@ import java.sql.SQLException;
 public class Employee {
 
     public static void addEmployee(String name, String employeeRole){
-        Database db = new Database();
-
         int businessID = 1;
         /* Maybe call a method here to retrieve what business is
         logged in to add the business ID to the employee table
@@ -23,26 +21,23 @@ public class Employee {
                                     "'" + name + "'," +
                                     "'" + employeeRole + "')";
 
-        db.updateDatabase(employeeDetailsSQL);
+        Database.updateDatabase(employeeDetailsSQL);
 
     }
 
     public static void removeEmployee(int empID, String name){
-        Database db = new Database();
-
         String deleteSQL = "DELETE FROM employeeDetails where empID = " + empID + " AND name = " + "'" + name + "'";
 
-        db.updateDatabase(deleteSQL);
+        Database.updateDatabase(deleteSQL);
 
     }
 
     public static int findEmployee(String name) throws SQLException {
-        Database db = new Database();
         ResultSet rs;
         int empID;
         String findEmpSQL = "SELECT empID FROM employeeDetails WHERE name = " + "'" + name + "'";
 
-        rs = db.queryDatabase(findEmpSQL);
+        rs = Database.queryDatabase(findEmpSQL);
 
         if(rs.next()){
             empID = rs.getInt("empID");

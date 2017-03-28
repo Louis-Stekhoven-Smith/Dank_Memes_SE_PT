@@ -1,5 +1,9 @@
-package core;
+package core.controller;
 
+import core.model.Database;
+import core.model.Employee;
+import core.model.Login;
+import core.model.Register;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,7 +78,7 @@ public class Controller {
 
     @FXML
     public void btnSignUpClicked(ActionEvent event) throws IOException {
-        Parent Register_parent = FXMLLoader.load(getClass().getResource("RegisterPage.fxml"));
+        Parent Register_parent = FXMLLoader.load(getClass().getResource("../view/RegisterPage.fxml"));
         Scene Register_scene = new Scene (Register_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
@@ -84,7 +88,7 @@ public class Controller {
 
     @FXML
     public void btnBackClicked(ActionEvent event) throws IOException {
-        Parent Login_parent = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+        Parent Login_parent = FXMLLoader.load(getClass().getResource("../view/LoginPage.fxml"));
         Scene Login_scene = new Scene (Login_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
@@ -94,7 +98,7 @@ public class Controller {
 
     @FXML
     public void RegisterPopup(ActionEvent event) throws IOException{
-        Parent RegisterSuccess_parent = FXMLLoader.load(getClass().getResource("RegisterSuccess.fxml"));
+        Parent RegisterSuccess_parent = FXMLLoader.load(getClass().getResource("../view/RegisterSuccess.fxml"));
         Scene RegisterSuccess_scene = new Scene (RegisterSuccess_parent);
         Stage PopUpStage = new Stage();
         PopUpStage.setScene(RegisterSuccess_scene);
@@ -142,14 +146,32 @@ public class Controller {
 
     @FXML
     public void btnLoginClicked (ActionEvent event) throws IOException{
-        String inputUsername = txtUsername.getText();
-        String inputPassword = txtPassword.getText();
         Login log = new Login();
-        if (log.validateAttempt(inputUsername,inputPassword) == false){
+        String inputUsername, inputPassword, resourcePath;
+        int result, owner = 2, customer = 1;
+
+        inputUsername = txtUsername.getText();
+        inputPassword = txtPassword.getText();
+        result = log.validateAttempt(inputUsername,inputPassword);
+        if (result == -1){
             lblLoginError.setText("Incorrect Login info!");
-        } else {
+
+        }
+        else {
+            if(result == owner) {
+                resourcePath = "../view/BusinessHome.fxml";
+            }
+            else if (result == customer){
+            /* log in customer */
+                resourcePath = "../view/LoginSuccess.fxml";
+            }
+            else{
+                /* error unknown value reload login page */
+                resourcePath = "../view/LoginPage.fxml";
+            }
+
             System.out.println("Logged in as: " + inputUsername);
-            Parent LoginSuccess_parent = FXMLLoader.load(getClass().getResource("LoginSuccess.fxml"));
+            Parent LoginSuccess_parent = FXMLLoader.load(getClass().getResource(resourcePath));
             Scene LoginSuccess_scene = new Scene (LoginSuccess_parent);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.close();
@@ -163,7 +185,7 @@ public class Controller {
 
     @FXML
     public void btnGotoAddEmp(ActionEvent event) throws IOException {
-        Parent addEmployee_parent = FXMLLoader.load(getClass().getResource("AddEmployeePage.fxml"));
+        Parent addEmployee_parent = FXMLLoader.load(getClass().getResource("../view/AddEmployeePage.fxml"));
         Scene addEmployee_scene = new Scene(addEmployee_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
@@ -173,7 +195,7 @@ public class Controller {
 
     @FXML
     public void btnGotoRemoveEmp(ActionEvent event) throws IOException {
-        Parent removeEmp_parent = FXMLLoader.load(getClass().getResource("RemoveEmployeePage.fxml"));
+        Parent removeEmp_parent = FXMLLoader.load(getClass().getResource("../view/RemoveEmployeePage.fxml"));
         Scene removeEmp_scene = new Scene((removeEmp_parent));
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
@@ -183,7 +205,7 @@ public class Controller {
 
     @FXML
     public void btnBackToBusinessHome(ActionEvent event) throws IOException {
-        Parent business_parent = FXMLLoader.load(getClass().getResource("BusinessHome.fxml"));
+        Parent business_parent = FXMLLoader.load(getClass().getResource("../view/BusinessHome.fxml"));
         Scene business_scene = new Scene (business_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();

@@ -1,4 +1,4 @@
-package core;
+package core.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,24 +11,35 @@ import java.sql.SQLException;
 public class Login {
 
     /*TODO make username not case sensitive */
-    /** check username exists and password matches the associated username*/
-    public static Boolean validateAttempt(String inputUsername, String inputPassword){
+    /** Check username exists and password matches the associated username
+     * Returns -1 if authentication failed
+     * Returns 1 if users is a business owner
+     * Returns 2 if user is a customer */
+    public static int validateAttempt(String inputUsername, String inputPassword){
 
-        Database db = new Database();
         ResultSet rs;
-        String loginSQL = "SELECT userName, password FROM customerLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
-        rs = db.queryDatabase(loginSQL);
+        String loginSQL = "SELECT userName, password, type FROM customerLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
+        rs = Database.queryDatabase(loginSQL);
         try{
             if(rs.next()){
                 if(rs.getString("userName").equals(inputUsername) && rs.getString("password").equals(inputPassword)){
-                    return true;
+                    if(rs.getString("type").equals("1")){
+                        System.out.println("vaildateAttempt returning 1");
+                        return 1;
+                    }
+                    if(rs.getString("type").equals("2")){
+                        System.out.println("vaildateAttempt returning 2");
+                        return 2;
+                    }
+                    return -1;
                 }
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
 
-        return false;
+        return -1;
+
 
         /** Scanner scan;
         String fileLine, username, password;

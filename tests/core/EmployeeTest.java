@@ -20,15 +20,31 @@ class EmployeeTest {
 
 
     @Test
+    void invalidPhone(){
+        String name = "Harry Potter";
+        String role = "Apprentice Barber";
+        String email = "potter@wizard.com";
+        String phone = "1234567891";
+        int result;
+
+        result = testEmployee.addEmployee(name, role, email, phone);
+        assertEquals(result, -1);
+    }
+    @Test
     void add_then_removeEmployee() throws SQLException {
         Database db = new Database();
         db.setupDataBase();
 
         String name = "Harry Potter";
         String role = "Apprentice Barber";
+        String email = "potter@wizard.com";
+        String phone = "0466666666";
+        int result;
         ResultSet rs;
 
-        testEmployee.addEmployee(name, role);
+        result = testEmployee.addEmployee(name, role, email, phone);
+
+        assertEquals(result, 1);
 
         //add employee tests
         String sqlAddTest = "SELECT name FROM employeeDetails WHERE name = " + "'" + name + "'";
@@ -45,11 +61,17 @@ class EmployeeTest {
         String sqlRemoveTest = "SELECT name FROM employeeDetails WHERE name = " + "'" + name + "'";
         int empID;
 
+        //Find employee
         empID = testEmployee.findEmployee(name);
-        testEmployee.removeEmployee(empID, name);
-        rs = db.queryDatabase(sqlRemoveTest);
 
         assertTrue(empID >= 0);
+
+        //Remove employee
+        testEmployee.removeEmployee(empID, name);
+
+        //Check if employee is in db
+        rs = db.queryDatabase(sqlRemoveTest);
+
         assertFalse(rs.next());
     }
 }

@@ -68,6 +68,8 @@ public class Database {
                     " businessID INTEGER not NULL, " +
                     " name VARCHAR(40), " +
                     " employeeRole VARCHAR(40), " +
+                    " email VARCHAR(40), " +
+                    " phone VARCHAR(40), " +
                     " PRIMARY KEY (empID), " +
                     " FOREIGN KEY (businessID) REFERENCES businessDetails (businessID))";
             empDetails.execute(sqlEmpDetails);

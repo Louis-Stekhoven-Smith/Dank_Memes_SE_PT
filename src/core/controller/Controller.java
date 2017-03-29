@@ -1,6 +1,4 @@
 package core.controller;
-
-import core.model.Database;
 import core.model.Employee;
 import core.model.Login;
 import core.model.Register;
@@ -74,6 +72,8 @@ public class Controller {
     private Label lblFindEmp;
     @FXML
     private Label lblRemoveError;
+    @FXML
+    private Label lblEmpAdded;
 
 
     @FXML
@@ -146,32 +146,25 @@ public class Controller {
 
     @FXML
     public void btnLoginClicked (ActionEvent event) throws IOException{
+        String inputUsername = txtUsername.getText();
+        String inputPassword = txtPassword.getText();
         Login log = new Login();
-        String inputUsername, inputPassword, resourcePath;
-        int result, owner = 2, customer = 1;
-
-        inputUsername = txtUsername.getText();
-        inputPassword = txtPassword.getText();
-        result = log.validateAttempt(inputUsername,inputPassword);
+        int result = log.validateAttempt(inputUsername,inputPassword);
         if (result == -1){
             lblLoginError.setText("Incorrect Login info!");
-
         }
-        else {
-            if(result == owner) {
-                resourcePath = "../view/BusinessHome.fxml";
-            }
-            else if (result == customer){
-            /* log in customer */
-                resourcePath = "../view/LoginSuccess.fxml";
-            }
-            else{
-                /* error unknown value reload login page */
-                resourcePath = "../view/LoginPage.fxml";
-            }
-
+        else if (result == 1){
             System.out.println("Logged in as: " + inputUsername);
-            Parent LoginSuccess_parent = FXMLLoader.load(getClass().getResource(resourcePath));
+            Parent LoginSuccess_parent = FXMLLoader.load(getClass().getResource("../view/LoginSuccess.fxml"));
+            Scene LoginSuccess_scene = new Scene (LoginSuccess_parent);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.close();
+            primaryStage.setScene(LoginSuccess_scene);
+            primaryStage.show();
+        }
+        else if (result == 2){
+            System.out.println("Logged in as: " + inputUsername);
+            Parent LoginSuccess_parent = FXMLLoader.load(getClass().getResource("../view/BusinessHome.fxml"));
             Scene LoginSuccess_scene = new Scene (LoginSuccess_parent);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.close();
@@ -232,27 +225,69 @@ public class Controller {
         }
     }
 
+
     @FXML
     public void btnRemoveEmp() throws IOException {
-        int empID = Integer.parseInt(txtEmpID.getText());
         String empName = txtEmpName.getText();
-        if (empName.equals("")) {
+        if (empName.equals("") && txtEmpID.getText().equals("")) {
             lblRemoveError.setText("Please find employee!");
             return;
         }
+        if (txtEmpID.getText().equals("")){
+            lblRemoveError.setText("Please enter an employee ID!");
+            return;
+        }
+        int empID = Integer.parseInt(txtEmpID.getText());
         Employee.removeEmployee(empID, empName);
         lblRemoveError.setTextFill(Color.web("#ffffff"));
         lblRemoveError.setText("Employee Removed!");
+        lblRemoveError.setText("");
+        txtEmpName.setText("");
+        txtEmpID.setText("");
     }
+
 
     @FXML
     public void btnAddEmp() throws IOException {
         String empName = txtAddName.getText();
         String empRole = txtAddRole.getText();
-        String empEmail = txtAddEmail.getText();
-        String empPhone = txtAddPhone.getText();
+        String email = txtAddEmail.getText();
+        String phone = txtAddPhone.getText();
+        int result;
+
+        result = Employee.addEmployee(empName, empRole, email, phone);
+
+        if(empName.equals("") || empRole.equals("") || email.equals("") || phone.equals("")){
+            lblEmpAdded.setTextFill(Color.web("#ff0000"));
+            lblEmpAdded.setText("Please enter all of the fields");
+        }
+        else if(result == -1){
+            lblEmpAdded.setTextFill(Color.web("#ff0000"));
+            lblEmpAdded.setText("Invalid phone number!");
+            txtAddPhone.setText("");
+        }
+        else if(result == 0){
+            lblEmpAdded.setTextFill(Color.web("#ff0000"));
+            lblEmpAdded.setText("Failed to add employee!");
+        }
+        else if(result == 1){
+            lblEmpAdded.setText("Employee has been added!");
+            txtAddName.setText("");
+            txtAddEmail.setText("");
+            txtAddPhone.setText("");
+            txtAddRole.setText("");
+        }
 
         /* TODO Get business ID function and validation */
+    }
+
+    public void btnAddAvailability(ActionEvent event) throws IOException {
+        Parent addAvailability_parent = FXMLLoader.load(getClass().getResource("../view/Availability.fxml"));
+        Scene addAvailability_scene = new Scene(addAvailability_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(addAvailability_scene);
+        primaryStage.show();
     }
 
 

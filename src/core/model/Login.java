@@ -13,8 +13,8 @@ public class Login {
     /*TODO make username not case sensitive */
     /** Check username exists and password matches the associated username
      * Returns -1 if authentication failed
-     * Returns 1 if users is a business owner
-     * Returns 2 if user is a customer */
+     * Returns 2 if users is a business owner
+     * Returns 1 if user is a customer */
     public static int validateAttempt(String inputUsername, String inputPassword){
         String loginSQL, userName,password;
         ResultSet rs;

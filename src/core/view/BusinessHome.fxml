@@ -51,7 +51,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="LoginButton13" alignment="CENTER" layoutX="230.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnLoginClicked" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add availability" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+            <Button fx:id="btnAddAvailability" alignment="CENTER" layoutX="230.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnAddAvailability" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add availability" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>

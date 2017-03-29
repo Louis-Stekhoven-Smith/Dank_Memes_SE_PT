@@ -1,10 +1,16 @@
-package core;
+package core.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -20,6 +26,8 @@ public class availabilityController {
     private Button btnUpdateDay;
     @FXML
     private Button btnDate1;
+    @FXML
+    private Button btnBackToBusinessHome;
     @FXML
     private Button btnDate2;
     @FXML
@@ -99,10 +107,10 @@ public class availabilityController {
     @FXML
     private TextField txtEmployeeName;
 
-    int loopVal;
-    String currentDay;
+    public int loopVal;
+    public String currentDay;
     String newDay;
-    String finalDay;
+    public String finalDay;
 
     Date today = new Date();
     Calendar cal = new GregorianCalendar();
@@ -378,5 +386,15 @@ public class availabilityController {
             System.out.println("No such file exists.");
         }
 
+    }
+
+    @FXML
+    public void btnBackToBusinessScreen(ActionEvent event) throws IOException {
+        Parent business_parent = FXMLLoader.load(getClass().getResource("../view/BusinessHome.fxml"));
+        Scene business_scene = new Scene (business_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(business_scene);
+        primaryStage.show();
     }
 }

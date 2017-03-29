@@ -1,8 +1,7 @@
 package core;
 
+import core.controller.availabilityController;
 import org.junit.Test;
-
-import java.io.IOException;
 
 import static org.testng.Assert.*;
 

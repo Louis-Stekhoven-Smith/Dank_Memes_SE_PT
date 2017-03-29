@@ -241,7 +241,7 @@ public class Controller {
         Employee.removeEmployee(empID, empName);
         lblRemoveError.setTextFill(Color.web("#ffffff"));
         lblRemoveError.setText("Employee Removed!");
-        lblRemoveError.setText("");
+        lblFindEmp.setText("");
         txtEmpName.setText("");
         txtEmpID.setText("");
     }
@@ -281,6 +281,7 @@ public class Controller {
         /* TODO Get business ID function and validation */
     }
 
+    @FXML
     public void btnAddAvailability(ActionEvent event) throws IOException {
         Parent addAvailability_parent = FXMLLoader.load(getClass().getResource("../view/Availability.fxml"));
         Scene addAvailability_scene = new Scene(addAvailability_parent);

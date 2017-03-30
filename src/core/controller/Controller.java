@@ -229,6 +229,7 @@ public class Controller {
     @FXML
     public void btnRemoveEmp() throws IOException {
         String empName = txtEmpName.getText();
+        int result;
         if (empName.equals("") && txtEmpID.getText().equals("")) {
             lblRemoveError.setText("Please find employee!");
             return;
@@ -238,12 +239,17 @@ public class Controller {
             return;
         }
         int empID = Integer.parseInt(txtEmpID.getText());
-        Employee.removeEmployee(empID, empName);
-        lblRemoveError.setTextFill(Color.web("#ffffff"));
-        lblRemoveError.setText("Employee Removed!");
-        lblFindEmp.setText("");
-        txtEmpName.setText("");
-        txtEmpID.setText("");
+        result = Employee.removeEmployee(empID, empName);
+        if(result == 1){
+            lblRemoveError.setTextFill(Color.web("#ffffff"));
+            lblRemoveError.setText("Employee Removed!");
+            lblFindEmp.setText("");
+            txtEmpName.setText("");
+            txtEmpID.setText("");
+        } else {
+            lblRemoveError.setText("Failed to remove employee!");
+        }
+
     }
 
 

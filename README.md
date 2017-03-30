@@ -3,7 +3,7 @@
 An RMIT Software Engineering Assignment
 
 
-##Pull request approval process
+## Pull request approval process
 Has the code been reviewed by at least one other team member?
 
 Has the reviewer pulled the branch to there local and run successfully?
@@ -12,7 +12,7 @@ If a reviewer has completed this they should smile the request to indicate they
 feel its good to go.
 
 ## Code review check List
-###General
+### General
 Does the code work? 
 
 Does it perform its intended function, the logic is correct etc.
@@ -34,7 +34,7 @@ Do loops have a set length and correct termination conditions?
 Can any logging or debugging code be removed?
 
 
-###Security
+### Security
 Are all data inputs checked (for the correct type, length, format, and range) and encoded?
 
 Where third-party utilities are used, are returning errors being caught?
@@ -43,7 +43,7 @@ Are output values checked and encoded?
 
 Are invalid parameter values handled?
 
-###Documentation
+### Documentation
 Do comments exist and describe the intent of the code?
 
 Are all functions commented?
@@ -56,7 +56,7 @@ Are data structures and units of measurement explained?
 
 Is there any incomplete code? If so, should it be removed or flagged with a suitable marker like ‘TODO’?
 
-###Testing
+### Testing
 Is the code testable? i.e. don’t add too many or hide dependencies, unable to initialize objects, test frameworks can use methods etc.
 
 Do tests exist and are they comprehensive? i.e. has at least your agreed on code coverage.

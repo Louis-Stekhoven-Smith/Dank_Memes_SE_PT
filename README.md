@@ -12,7 +12,7 @@ If a reviewer has completed this they should smile the request to indicate they
 feel its good to go.
 
 ## Code review check List
-###General
+### General
 Does the code work? 
 
 Does it perform its intended function, the logic is correct etc.

@@ -1,4 +1,4 @@
-package core;
+package core.model;
 
 import core.controller.availabilityController;
 import org.junit.Test;

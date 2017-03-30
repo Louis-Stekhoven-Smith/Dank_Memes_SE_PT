@@ -1,4 +1,4 @@
-package core;
+package core.model;
 
 import core.model.Session;
 import org.junit.jupiter.api.Test;

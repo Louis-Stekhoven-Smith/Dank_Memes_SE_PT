@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -104,13 +105,79 @@ public class availabilityController {
     private CheckBox cb3pm;
     @FXML
     private CheckBox cb4pm;
+
+    /**
+     * Created by louie on 31/03/2017.
+     */
+
+    @FXML
+    private Button btnBackToBusinessScreen;
     @FXML
     private TextField txtEmployeeName;
+    @FXML
+    private Label dates;
+
+    @FXML
+    private CheckBox monMorning;
+    @FXML
+    private CheckBox tueMorning;
+    @FXML
+    private CheckBox wedMorning;
+    @FXML
+    private CheckBox thurMorning;
+    @FXML
+    private CheckBox friMorning;
+
+    @FXML
+    private CheckBox monAfternoon;
+    @FXML
+    private CheckBox tueAfternoon;
+    @FXML
+    private CheckBox wedAfternoon;
+    @FXML
+    private CheckBox thurAfternoon;
+    @FXML
+    private CheckBox friAfternoon;
+
+    @FXML
+    private CheckBox monEvening;
+    @FXML
+    private CheckBox tueEvening;
+    @FXML
+    private CheckBox wedEvening;
+    @FXML
+    private CheckBox thurEvening;
+    @FXML
+    private CheckBox friEvening;
+
+    @FXML
+    private CheckBox satMorning;
+    @FXML
+    private CheckBox sunMorning;
+    @FXML
+    private CheckBox satAfternoon;
+    @FXML
+    private CheckBox sunAfternoon;
+    @FXML
+    private CheckBox satEvening;
+    @FXML
+    private CheckBox sunEvening;
+
+
+    @FXML
+    public void initialize() {
+        dates.setText("test");
+    }
+
+
+
+
+
 
     public int loopVal;
     public String currentDay;
-    String newDay;
-    public String finalDay;
+        String newDay;
+        public String finalDay;
 
     Date today = new Date();
     Calendar cal = new GregorianCalendar();
@@ -361,9 +428,7 @@ public class availabilityController {
         if (cb1pm.isSelected()) {
             dayArray[4] = 1;
         }
-        if (cb2pm.isSelected()) {
-            dayArray[5] = 1;
-        }
+
         if (cb3pm.isSelected()) {
             dayArray[6] = 1;
         }

@@ -283,7 +283,7 @@ public class Controller {
 
     @FXML
     public void btnAddAvailability(ActionEvent event) throws IOException {
-        Parent addAvailability_parent = FXMLLoader.load(getClass().getResource("../view/Availability.fxml"));
+        Parent addAvailability_parent = FXMLLoader.load(getClass().getResource("../view/NewAvailability.fxml"));
         Scene addAvailability_scene = new Scene(addAvailability_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();

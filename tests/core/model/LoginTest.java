@@ -1,4 +1,4 @@
-package core;
+package core.model;
 
 import core.model.Database;
 import core.model.Login;

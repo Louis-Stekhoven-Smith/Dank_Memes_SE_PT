@@ -41,9 +41,9 @@ public class Main extends Application{
         }
         Login login = new Login();
 
-        if (login.validateAttempt("Oldboismokey", "Pass1234") == 2) {
+        if (login.validateAttempt("oldboismokey", "Pass1234") == 2) {
             System.out.println("You are logged in");
-            Session session = new Session("Oldboismokey");
+            Session session = new Session("oldboismokey");
 
         }
         else{

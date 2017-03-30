@@ -6,9 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 /**
  * Created by louie on 10/03/2017.
  */
@@ -27,21 +24,9 @@ public class Main extends Application{
         Database.setupDataBase();
         launch(args);
 
-        ResultSet rs;
-
-        String sql = "SELECT name FROM customerDetails";
-        rs = Database.queryDatabase(sql);
-
-        try {
-            while(rs.next()){
-                System.out.println(rs.getString("name"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         Login login = new Login();
 
-        if (login.validateAttempt("oldboismokey", "Pass1234") == 2) {
+        if (login.validateAttempt("oldboismokey", "Pass1234") == 1) {
             System.out.println("You are logged in");
             Session session = new Session("oldboismokey");
 

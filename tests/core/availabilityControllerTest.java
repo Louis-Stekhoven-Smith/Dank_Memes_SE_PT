@@ -3,7 +3,7 @@ package core;
 import core.controller.availabilityController;
 import org.junit.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by Konn on 29/03/2017.

@@ -24,7 +24,7 @@ public class Main extends Application{
 
     public static void main(String[] args) {
         /* to do driver */
-       Database.setupDataBase();
+        Database.setupDataBase();
         launch(args);
 
         ResultSet rs;

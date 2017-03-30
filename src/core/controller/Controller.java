@@ -48,6 +48,8 @@ public class Controller {
     @FXML
     private Label lblErrors;
     @FXML
+    private Button btnLoginClicked;
+    @FXML
     private Button btnRegister;
     @FXML
     private Label lblRegisterTest;
@@ -74,7 +76,6 @@ public class Controller {
     private Label lblRemoveError;
     @FXML
     private Label lblEmpAdded;
-
 
     @FXML
     public void btnSignUpClicked(ActionEvent event) throws IOException {
@@ -288,7 +289,7 @@ public class Controller {
     }
 
     @FXML
-    public void btnAddAvailability(ActionEvent event) throws IOException {
+    public void gotoAddAvailability(ActionEvent event) throws IOException {
         Parent addAvailability_parent = FXMLLoader.load(getClass().getResource("../view/Availability.fxml"));
         Scene addAvailability_scene = new Scene(addAvailability_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

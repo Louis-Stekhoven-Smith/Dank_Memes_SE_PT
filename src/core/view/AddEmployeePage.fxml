@@ -59,7 +59,7 @@
             <TextField fx:id="txtAddName" layoutX="126.0" layoutY="170.0" prefHeight="25.0" prefWidth="195.0" />
             <TextField fx:id="txtAddRole" layoutX="126.0" layoutY="230.0" prefHeight="25.0" prefWidth="195.0" />
             <TextField fx:id="txtAddEmail" layoutX="126.0" layoutY="290.0" prefHeight="25.0" prefWidth="195.0" />
-            <TextField fx:id="txtAddPhone" layoutX="126.0" layoutY="350.0" prefHeight="25.0" prefWidth="195.0" />
+            <TextField fx:id="txtAddPhone" layoutX="126.0" layoutY="350.0" onAction="#btnAddEmp" prefHeight="25.0" prefWidth="195.0" />
             <Label fx:id="lblEmpAdded" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="403.0" prefHeight="20.0" prefWidth="195.0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />

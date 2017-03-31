@@ -1,5 +1,7 @@
 package core;
 
+import core.model.Database;
+import core.model.Register;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -17,6 +19,8 @@ public class RegisterTest {
 
     @Test
     void isNotEmpty() throws Exception {
+        Database db = new Database();
+        db.setupDataBase();
 
         HashMap<String, String> allEmptyHMap = new HashMap<String, String>();
         HashMap<String, String> oneEmptyHMap = new HashMap<String, String>();
@@ -59,6 +63,9 @@ public class RegisterTest {
 
     @Test
     void passwordMatches() throws Exception {
+        Database db = new Database();
+        db.setupDataBase();
+
         HashMap<String, String> unmatchingPasswords = new HashMap<String, String>();
         HashMap<String, String> matchingPasswords = new HashMap<String, String>();
 
@@ -91,6 +98,9 @@ public class RegisterTest {
 
     @Test
     void passwordCriteria() throws Exception {
+
+        Database db = new Database();
+        db.setupDataBase();
 
         HashMap<String, String> shortPassword = new HashMap<String, String>();
         HashMap<String, String> noNumPassword = new HashMap<String, String>();
@@ -146,6 +156,10 @@ public class RegisterTest {
 
     @Test
     void phoneNoCriteria() throws Exception {
+
+        Database db = new Database();
+        db.setupDataBase();
+
         HashMap<String, String> correctPhoneNo1 = new HashMap<String, String>();
         HashMap<String, String> correctPhoneNo2 = new HashMap<String, String>();
         HashMap<String, String> incorrectPhoneNo = new HashMap<String, String>();
@@ -179,18 +193,21 @@ public class RegisterTest {
     @Test
      void userNameFree() throws Exception {
 
+        Database db = new Database();
+        db.setupDataBase();
+
         HashMap<String, String> userNameExists = new HashMap<String, String>();
         HashMap<String, String> userNameFree = new HashMap<String, String>();
 
         userNameExists.put("name", "test");
-        userNameExists.put("userName", "OldBoiSmokey");
+        userNameExists.put("userName", "oldboismokey");
         userNameExists.put("password1", "H123abcZ");
         userNameExists.put("password2", "H123abcZ");
         userNameExists.put("address", "test");
         userNameExists.put("phoneNo", "0400123456");
 
         userNameFree.put("name", "test");
-        userNameFree.put("userName", "YoungLassGrilled");
+        userNameFree.put("userName", "YoungLasGrilled");
         userNameFree.put("password1", "H123abcZ");
         userNameFree.put("password2", "H123abcZ");
         userNameFree.put("address", "test");
@@ -201,12 +218,19 @@ public class RegisterTest {
 
         //Testing for a return of 5 meaning the username is free
         assertEquals(Register.attemptOutcome.SUCCESS, testRegister.registerAttempt(userNameFree));
+        String deleteSQL = "DELETE FROM customerDetails WHERE userName = 'YoungLasGrilled'";
+        String deleteSQL1 = "DELETE FROM customerLogin WHERE userName = 'YoungLasGrilled'";
+
+        db.updateDatabase(deleteSQL);
+        db.updateDatabase(deleteSQL1);
 
     }
 
     @Test
     void register() throws Exception {
 
+        Database db = new Database();
+        db.setupDataBase();
         HashMap<String, String> registerCustomer = new HashMap<String, String>();
 
         registerCustomer.put("name", "Lady Sovreign");
@@ -216,13 +240,13 @@ public class RegisterTest {
         registerCustomer.put("address", "123madeup St");
         registerCustomer.put("phoneNo", "+61488777666");
 
-        String userName = "Hazza203";
-        String name = "Harry Parkinson";
-        String password = "123Password";
-        String address = "123madeup St";
-        String phoneNo = "0400123456";
-
         assertEquals(Register.attemptOutcome.SUCCESS, testRegister.registerAttempt(registerCustomer));
+
+        String deleteSQL3 = "DELETE FROM customerDetails WHERE userName = " + "'YoungLasGrilled'";
+        String deleteSQL4 = "DELETE FROM customerLogin WHERE userName = " + "'YoungLasGrilled'";
+        db.updateDatabase(deleteSQL3);
+        db.updateDatabase(deleteSQL4);
+
     }
 
 }

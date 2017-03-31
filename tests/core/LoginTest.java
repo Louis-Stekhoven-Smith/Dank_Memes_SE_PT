@@ -1,8 +1,13 @@
 package core;
 
+import core.model.Database;
+import core.model.Login;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * Created by louie on 10/03/2017.
@@ -11,30 +16,44 @@ class LoginTest {
 
 
     private String vaildUserName = "OldBoiSmokey";
-    private String vaildPassword = "abc123";
+    private String vaildPassword = "Pass1234";
     private String invaildUserName ="Fake";
     private String invaildPassword = "not a password";
+    private int result,failedAttempt = -1;
+
 
     Login login = new Login();
 
-    @Test
-    void validLoginAtempt(){
-        assertEquals(true, login.validateAttempt(vaildUserName,vaildPassword));
+    @BeforeAll
+    public static void setupDataBase(){
+        Database db = new Database();
+        db.setupDataBase();
     }
 
     @Test
-    void invalidLoginAtempt(){
-        assertNotEquals(true, login.validateAttempt(invaildUserName,invaildPassword));
-    }
+    void invalidLoginAttempt(){assertEquals(failedAttempt, login.validateAttempt(invaildUserName,invaildPassword));}
 
     @Test
-    void vaildUsernameOnly(){
-        assertNotEquals(true, login.validateAttempt(vaildUserName,invaildPassword));
-    }
+    void validUsernameOnly(){assertEquals(failedAttempt,login.validateAttempt(vaildUserName,invaildPassword));}
 
     @Test
-    void vaildPasswordOnly(){
-        assertNotEquals(true, login.validateAttempt(invaildUserName,vaildPassword));
+    void validPasswordOnly(){assertEquals(failedAttempt,  login.validateAttempt(invaildUserName,vaildPassword));}
+
+    @Test
+    void customerLoggedIn(){
+        result = login.validateAttempt("OldBoiSmokey","Pass1234");
+        assertEquals(1,result);
+    }
+    @Test
+    void ownerLoggedIn(){
+        result = login.validateAttempt("homy","Homy1234");
+        assertEquals(result,2);
+
+    }
+    @Test
+    void usernameNotCaseSensitive(){
+        result = login.validateAttempt("HOMY","Homy1234");
+        assertEquals(result,2);
     }
 
 }

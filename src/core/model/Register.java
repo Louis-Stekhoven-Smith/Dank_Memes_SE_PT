@@ -1,8 +1,8 @@
-package core;
+package core.model;
 
-import java.io.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Scanner;
 
 /**
  * Created by harry on 11/03/2017.
@@ -71,7 +71,6 @@ public class Register {
 
     }
 
-
     private boolean passwordCriteria(HashMap custDetailsHMap){
 
         String password = (String) custDetailsHMap.get("password1");
@@ -98,67 +97,43 @@ public class Register {
 
 
     private boolean userNameFree(HashMap custDetailsHMap){
-
-        Scanner scan;
-        String fileLine, takenUsername;
-        String[] loginDetails;
-
-        try {
-            scan = new Scanner(new File("customersLogin.txt"));
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-        //loop through file checking each line for a matching username
-        while(scan.hasNext()) {
-            fileLine = scan.nextLine();
-            loginDetails = fileLine.split(",");
-            takenUsername = loginDetails[0];
-
-            if (custDetailsHMap.get("userName").equals(takenUsername)) {
-                System.out.println("This user name is already taken, please choose another");
-                scan.close();
+        //Setup with datebase
+        ResultSet rs;
+        //Create SQL Query
+        String sqlQuery = "SELECT userName FROM customerLogin WHERE userName =" + "'" + custDetailsHMap.get("userName") + "'";
+        //Pass through SQL Query to database class which returns the result set
+        rs = Database.queryDatabase(sqlQuery);
+        try{
+            //If there is something in the result set then there was a matching username, return false.
+            if(rs.next()){
                 return false;
             }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
         }
-        scan.close();
+
         return true;
     }
 
 
 
     private boolean writeNewCustomer(HashMap custDetailsHMap){
+        //The SQLite statements for inserting a new customers details
+        String custDetailsSQL = "INSERT INTO customerDetails (custID, name, userName, address, phoneNo) values(?," +
+                                    "'" + custDetailsHMap.get("name") + "'" + "," +
+                                    "'" + custDetailsHMap.get("userName")+ "'" + "," +
+                                    "'" + custDetailsHMap.get("address") + "'" + "," +
+                                    "'" + custDetailsHMap.get("phoneNo") + "'" + ")";
+        String custLoginSQL = "INSERT INTO customerLogin (custID, userName, password) values(?," +
+                                "'" + custDetailsHMap.get("userName") + "'" + "," +
+                                "'" + custDetailsHMap.get("password1") + "'" + ")";
 
-        PrintWriter out = null;
+        //Calling the function which will insert the data into the appropriate tables
+        Database.updateDatabase(custDetailsSQL);
+        Database.updateDatabase(custLoginSQL);
 
-        //Write the userName, name, address and phone number to the customerDetails file
-        try {
-            out = new PrintWriter(new BufferedWriter(new FileWriter("customerDetails.txt", true)));
-            out.println(custDetailsHMap.get("userName") + "," + custDetailsHMap.get("name") + "," + custDetailsHMap.get("address") + "," + custDetailsHMap.get("phoneNo"));
-        }catch (IOException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }finally{
-            if(out != null){
-                out.close();
-            }
-        }
-
-        //Write the userName and password to the customersLogin file
-        try {
-            out = new PrintWriter(new BufferedWriter(new FileWriter("customersLogin.txt", true)));
-            out.println(custDetailsHMap.get("userName") + "," + custDetailsHMap.get("password1"));
-        }catch (IOException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }finally{
-                out.close();
-        }
-
-        
         return true;
     }
+
 
 }

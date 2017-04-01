@@ -48,6 +48,8 @@ public class Controller {
     @FXML
     private Label lblErrors;
     @FXML
+    private Button btnLoginClicked;
+    @FXML
     private Button btnRegister;
     @FXML
     private Label lblRegisterTest;
@@ -74,7 +76,6 @@ public class Controller {
     private Label lblRemoveError;
     @FXML
     private Label lblEmpAdded;
-
 
     @FXML
     public void btnSignUpClicked(ActionEvent event) throws IOException {
@@ -229,6 +230,7 @@ public class Controller {
     @FXML
     public void btnRemoveEmp() throws IOException {
         String empName = txtEmpName.getText();
+        int result;
         if (empName.equals("") && txtEmpID.getText().equals("")) {
             lblRemoveError.setText("Please find employee!");
             return;
@@ -238,12 +240,17 @@ public class Controller {
             return;
         }
         int empID = Integer.parseInt(txtEmpID.getText());
-        Employee.removeEmployee(empID, empName);
-        lblRemoveError.setTextFill(Color.web("#ffffff"));
-        lblRemoveError.setText("Employee Removed!");
-        lblFindEmp.setText("");
-        txtEmpName.setText("");
-        txtEmpID.setText("");
+        result = Employee.removeEmployee(empID, empName);
+        if(result == 1){
+            lblRemoveError.setTextFill(Color.web("#ffffff"));
+            lblRemoveError.setText("Employee Removed!");
+            lblFindEmp.setText("");
+            txtEmpName.setText("");
+            txtEmpID.setText("");
+        } else {
+            lblRemoveError.setText("Failed to remove employee!");
+        }
+
     }
 
 
@@ -282,7 +289,7 @@ public class Controller {
     }
 
     @FXML
-    public void btnAddAvailability(ActionEvent event) throws IOException {
+    public void gotoAddAvailability(ActionEvent event) throws IOException {
         Parent addAvailability_parent = FXMLLoader.load(getClass().getResource("../view/Availability.fxml"));
         Scene addAvailability_scene = new Scene(addAvailability_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

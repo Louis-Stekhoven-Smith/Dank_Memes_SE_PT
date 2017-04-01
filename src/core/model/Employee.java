@@ -35,7 +35,7 @@ public class Employee {
 
     }
 
-    public static void removeEmployee(int empID, String name){
+    public static int removeEmployee(int empID, String name){
         String deleteSQL;
 
         if(name.equals("")){
@@ -45,7 +45,11 @@ public class Employee {
             deleteSQL = "DELETE FROM employeeDetails where empID = " + empID + " AND name = " + "'" + name + "'";
         }
 
-        Database.updateDatabase(deleteSQL);
+        if(Database.updateDatabase(deleteSQL)){
+            return 1;
+        }
+        return 0;
+
 
     }
 

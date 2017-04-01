@@ -100,7 +100,7 @@ public class Register {
         //Setup with datebase
         ResultSet rs;
         //Create SQL Query
-        String sqlQuery = "SELECT userName FROM customerLogin WHERE userName =" + "'" + custDetailsHMap.get("userName") + "'";
+        String sqlQuery = "SELECT userName FROM userLogin WHERE userName =" + "'" + custDetailsHMap.get("userName") + "'";
         //Pass through SQL Query to database class which returns the result set
         rs = Database.queryDatabase(sqlQuery);
         try{
@@ -119,19 +119,34 @@ public class Register {
 
     private boolean writeNewCustomer(HashMap custDetailsHMap){
         //The SQLite statements for inserting a new customers details
-        String custDetailsSQL = "INSERT INTO customerDetails (custID, name, userName, address, phoneNo) values(?," +
-                                    "'" + custDetailsHMap.get("name") + "'" + "," +
-                                    "'" + custDetailsHMap.get("userName")+ "'" + "," +
-                                    "'" + custDetailsHMap.get("address") + "'" + "," +
-                                    "'" + custDetailsHMap.get("phoneNo") + "'" + ")";
-        String custLoginSQL = "INSERT INTO customerLogin (custID, userName, password) values(?," +
+        String custLoginSQL = "INSERT INTO userLogin(loginID, userName, password, type) values(?," +
                                 "'" + custDetailsHMap.get("userName") + "'" + "," +
-                                "'" + custDetailsHMap.get("password1") + "'" + ")";
+                                "'" + custDetailsHMap.get("password1") + "'" + "," +
+                                "'" + 1 + "')";
 
         //Calling the function which will insert the data into the appropriate tables
-        Database.updateDatabase(custDetailsSQL);
         Database.updateDatabase(custLoginSQL);
+        //Finding the auto allocated loginID to use as a foreign key in the customer details entry
+        String loginQuery = "SELECT loginID FROM userLogin WHERE userName = " + "'" + custDetailsHMap.get("userName") + "'";
+        ResultSet rs = Database.queryDatabase(loginQuery);
+        int loginID = 0;
+        try {
+            if(rs.next()){
+                System.out.println("get here");
+                loginID = rs.getInt("loginID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        String custDetailsSQL = "INSERT INTO customerDetails (custID, loginID, name, userName, address, phoneNo) values(?," +
+                "'" + loginID + "'" + "," +
+                "'" + custDetailsHMap.get("name") + "'" + "," +
+                "'" + custDetailsHMap.get("userName")+ "'" + "," +
+                "'" + custDetailsHMap.get("address") + "'" + "," +
+                "'" + custDetailsHMap.get("phoneNo") + "'" + ")";
+
+        Database.updateDatabase(custDetailsSQL);
         return true;
     }
 

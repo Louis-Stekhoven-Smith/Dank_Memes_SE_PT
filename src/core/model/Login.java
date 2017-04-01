@@ -21,7 +21,7 @@ public class Login {
 
         inputUsername = inputUsername.toLowerCase();
 
-        loginSQL = "SELECT userName, password, type FROM customerLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
+        loginSQL = "SELECT userName, password, type FROM userLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
         rs = Database.queryDatabase(loginSQL);
 
 

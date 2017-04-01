@@ -1,5 +1,6 @@
 package core.model;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,11 +11,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class AvailabilityTest {
 
     private Availability availability = new Availability();
-/*
-    @Test
-    void addDayAvail(){
-        Boolean[] dayAvil = new Boolean[2];
-        assertTrue(availability.addDay(dayAvil));
+
+    @BeforeAll
+    public static void setupDataBase(){
+        Database db = new Database();
+        db.setupDataBase();
     }
-*/
+
+    @Test
+    void addAvailabilitySuccess(){
+        assertTrue(availability.addAvailability("000,000,000,000,000,000,000"));
+    }
+
+    @Test
+    void addAvailabilityFail_Length(){
+        assertFalse(availability.addAvailability("000,000,000,000,000,000,00"));
+    }
+
+    @Test
+    void addAvailabilityFail_ContainsLetters(){
+        assertFalse(availability.addAvailability("000,000,0A0,000,000,000"));
+    }
+
 }

@@ -14,11 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Created by louie on 31/03/2017.
@@ -85,10 +80,8 @@ public class NewAvailabilityController {
     @FXML
     private CheckBox sunEvening;
 
-    public NewAvailabilityController(){
 
-}
-
+    /*
     @FXML
     public void initialize() {
         Date today = new Date();
@@ -105,141 +98,88 @@ public class NewAvailabilityController {
 
         SundayDate.setText(new SimpleDateFormat("dd/MM").format(today));
     }
+*/
+
+    private static final char AVAILABLE = '1';
+    private static final char UNAVAILABLE = '0';
+    private String dayAvailability = "";
 
     public void btnSaveTimes(ActionEvent event) throws IOException {
 
-        Date today = new Date();
-        Calendar cal = new GregorianCalendar();
-
-        cal.setTime(today);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        today = cal.getTime();
-        System.out.println(new SimpleDateFormat("dd/MM").format(today));
-
-        Boolean[] dayAvailablity = new Boolean[2];
         Availability availability = new Availability();
-        Date date = new Date();
 
-        resetDayAvailablity(dayAvailablity);
-        setMonday(dayAvailablity);
-        availability.addDay(dayAvailablity,date);
+        setMonday();
+        setTuesday();
+        setWednesday();
+        setThursday();
+        setFriday();
+        setSatuerday();
+        setSunday();
 
-        resetDayAvailablity(dayAvailablity);
-        setTuesday(dayAvailablity);
-        availability.addDay(dayAvailablity,date);
-
-        resetDayAvailablity(dayAvailablity);
-        setWednesday(dayAvailablity);
-        availability.addDay(dayAvailablity,date);
-
-        resetDayAvailablity(dayAvailablity);
-        setThursday(dayAvailablity);
-        availability.addDay(dayAvailablity,date);
-
-        resetDayAvailablity(dayAvailablity);
-        setFriday(dayAvailablity);
-        availability.addDay(dayAvailablity,date);
-
-        resetDayAvailablity(dayAvailablity);
-        setSatuerday(dayAvailablity);
-        availability.addDay(dayAvailablity,date);
-
-        resetDayAvailablity(dayAvailablity);
-        setSunday(dayAvailablity);
-        availability.addDay(dayAvailablity,date);
-
-    }
-
-    private void setSunday(Boolean[] dayAvailablity) {
-        if(sunMorning.isSelected()){
-            dayAvailablity[0] = true;
-        }
-        if(sunAfternoon.isSelected()){
-            dayAvailablity[1] = true;
-        }
-        if(sunEvening.isSelected()){
-            dayAvailablity[2] = true;
+        if(!availability.addAvailability(dayAvailability)){
+            /*TODO out put error */
         }
     }
 
-    private void setSatuerday(Boolean[] dayAvailablity) {
-        if(satMorning.isSelected()){
-            dayAvailablity[0] = true;
-        }
-        if(satAfternoon.isSelected()){
-            dayAvailablity[1] = true;
-        }
-        if(satEvening.isSelected()){
-            dayAvailablity[2] = true;
-        }
+    /** Helpers */
+    /** sets data for sunday */
+    private void setSunday() {
+
+        set(sunMorning.isSelected());
+        set(sunAfternoon.isSelected());
+        set(sunEvening.isSelected());
+    }
+    /** sets data for saturday */
+    private void setSatuerday() {
+        set(satMorning.isSelected());
+        set(satAfternoon.isSelected());
+        set(satEvening.isSelected());
+        dayAvailability += ',';
+    }
+    /** sets data for friday */
+    private void setFriday() {
+        set(friMorning.isSelected());
+        set(friAfternoon.isSelected());
+        set(friEvening.isSelected());
+        dayAvailability += ',';
+    }
+    /** sets data for thursday */
+    private void setThursday() {
+        set(thurMorning.isSelected());
+        set(thurAfternoon.isSelected());
+        set(thurEvening.isSelected());
+        dayAvailability += ',';
+    }
+    /** sets data for wednesday */
+    private void setWednesday() {
+        set(wedMorning.isSelected());
+        set(wedAfternoon.isSelected());
+        set(wedEvening.isSelected());
+        dayAvailability += ',';
+    }
+    /** sets data for tuesday */
+    private void setTuesday() {
+        set(tueMorning.isSelected());
+        set(tueAfternoon.isSelected());
+        set(tueEvening.isSelected());
+        dayAvailability += ',';
+    }
+    /** sets data for monday */
+    private void setMonday() {
+        set(monMorning.isSelected());
+        set(monAfternoon.isSelected());
+        set(monEvening.isSelected());
+        dayAvailability += ',';
     }
 
-    private void setFriday(Boolean[] dayAvailablity) {
-        if(friMorning.isSelected()){
-            dayAvailablity[0] = true;
-        }
-        if(friAfternoon.isSelected()){
-            dayAvailablity[1] = true;
-        }
-        if(friEvening.isSelected()){
-            dayAvailablity[2] = true;
+    /** Sets a shifts availability e.g 8am - 12pm */
+    private void set(Boolean available){
+        if(available) {
+            dayAvailability += AVAILABLE;
+        }else{
+            dayAvailability += UNAVAILABLE;
         }
     }
-
-    private void setThursday(Boolean[] dayAvailablity) {
-        if(thurMorning.isSelected()){
-            dayAvailablity[0] = true;
-        }
-        if(thurAfternoon.isSelected()){
-            dayAvailablity[1] = true;
-        }
-        if(thurEvening.isSelected()){
-            dayAvailablity[2] = true;
-        }
-    }
-
-    private void setWednesday(Boolean[] dayAvailablity) {
-        if(wedMorning.isSelected()){
-            dayAvailablity[0] = true;
-        }
-        if(wedAfternoon.isSelected()){
-            dayAvailablity[1] = true;
-        }
-        if(wedEvening.isSelected()){
-            dayAvailablity[2] = true;
-        }
-    }
-
-    private void setTuesday(Boolean[] dayAvailablity) {
-        if(tueMorning.isSelected()){
-            dayAvailablity[0] = true;
-        }
-        if(tueAfternoon.isSelected()){
-            dayAvailablity[1] = true;
-        }
-        if(tueEvening.isSelected()){
-            dayAvailablity[2] = true;
-        }
-    }
-
-    private void setMonday(Boolean[] dayAvailablity) {
-        if(monMorning.isSelected()){
-            dayAvailablity[0] = true;
-        }
-        if(monAfternoon.isSelected()){
-            dayAvailablity[1] = true;
-        }
-        if(monEvening.isSelected()){
-            dayAvailablity[2] = true;
-        }
-    }
-
-    private void resetDayAvailablity(Boolean[] dayAvailablity) {
-        for(int i = 0; i < dayAvailablity.length; i++ ){
-            dayAvailablity[i] = false;
-        }
-    }
-
 
     @FXML
     public void btnBackToBusinessScreen(ActionEvent event) throws IOException {

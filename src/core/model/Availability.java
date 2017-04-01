@@ -7,6 +7,11 @@ public class Availability {
 
     private String empAvailabilitySQL;
 
+    /** Adds availability to database as a string
+     *
+     * @param weeklyAvailability
+     * @return returns true is successful
+     */
     public Boolean addAvailability(String weeklyAvailability) {
 
         if(!createSQLString(weeklyAvailability)){
@@ -15,8 +20,10 @@ public class Availability {
         /* turn into a log statment */
         System.out.println("error with update "+ empAvailabilitySQL);
         if(!Database.updateDatabase(empAvailabilitySQL)){
+            empAvailabilitySQL = "";
             return false;
         }
+        empAvailabilitySQL = "";
         return true;
     }
 
@@ -42,7 +49,5 @@ public class Availability {
         /*System.out.println(empAvailSQL);*/
 
         return true;
-
-
     }
 }

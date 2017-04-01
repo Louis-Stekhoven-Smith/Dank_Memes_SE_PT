@@ -119,6 +119,7 @@ public class NewAvailabilityController {
         if(!availability.addAvailability(dayAvailability)){
             /*TODO out put error */
         }
+        dayAvailability = "";
     }
 
     /** Helpers */

@@ -250,9 +250,7 @@ public class Controller {
         } else {
             lblRemoveError.setText("Failed to remove employee!");
         }
-
     }
-
 
     @FXML
     public void btnAddEmp() throws IOException {

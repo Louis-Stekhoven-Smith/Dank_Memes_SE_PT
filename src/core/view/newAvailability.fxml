@@ -19,24 +19,13 @@
          <font>
             <Font name="Century Gothic" size="20.0" />
          </font></Button>
-      <TextField fx:id="txtEmployeeName" layoutX="412.0" layoutY="332.0" prefHeight="25.0" prefWidth="100.0" promptText="Employee Name">
+      <TextField fx:id="txtEmployeeName" layoutX="412.0" layoutY="331.0" prefHeight="25.0" prefWidth="100.0" promptText="Employee Name">
          <font>
             <Font size="11.0" />
          </font></TextField>
-      <Label alignment="CENTER" layoutX="424.0" layoutY="36.0" prefHeight="17.0" prefWidth="75.0" text="Date" textAlignment="CENTER">
+      <Label fx:id="MondayDate" alignment="CENTER" layoutX="385.0" layoutY="55.0" prefHeight="58.0" prefWidth="151.0" text="Emp" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <ToggleButton layoutX="428.0" layoutY="288.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Indefinite" />
-      <Label fx:id="MondayDate" alignment="CENTER" layoutX="398.0" layoutY="89.0" prefHeight="25.0" prefWidth="67.0" text="Label" textAlignment="CENTER">
-         <font>
-            <Font name="Arial" size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="SundayDate" layoutX="469.0" layoutY="87.0" prefHeight="19.0" prefWidth="60.0" text="Label">
-         <font>
-            <Font size="20.0" />
+            <Font name="Arial Bold" size="29.0" />
          </font>
       </Label>
       <Button fx:id="btnBackToBusinessScreen" layoutX="412.0" layoutY="423.0" mnemonicParsing="false" onAction="#btnBackToBusinessScreen" prefHeight="33.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="BACK" textFill="#1565f3">
@@ -44,15 +33,12 @@
             <Font name="Century Gothic" size="12.0" />
          </font>
       </Button>
-      <Pagination layoutY="417.0" prefHeight="44.0" prefWidth="382.0" />
       <GridPane layoutX="2.0" layoutY="59.0" prefHeight="368.0" prefWidth="382.0" AnchorPane.bottomAnchor="77.0">
         <columnConstraints>
             <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="66.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="0.0" prefWidth="57.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="60.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="76.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="75.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="10.0" prefWidth="48.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -69,23 +55,23 @@
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="tueMorning" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <CheckBox fx:id="tueMorning" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="wedMorning" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <CheckBox fx:id="wedMorning" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="thurMorning" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <CheckBox fx:id="thurMorning" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="friMorning" mnemonicParsing="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <CheckBox fx:id="friMorning" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="monAfternoon" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <CheckBox fx:id="monAfternoon" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
@@ -93,23 +79,23 @@
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="wedAfternoon" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <CheckBox fx:id="wedAfternoon" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="thurAfternoon" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <CheckBox fx:id="thurAfternoon" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="monEvening" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <CheckBox fx:id="monEvening" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="friAfternoon" mnemonicParsing="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <CheckBox fx:id="friAfternoon" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="tueEvening" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <CheckBox fx:id="tueEvening" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
@@ -117,72 +103,69 @@
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="thurEvening" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <CheckBox fx:id="thurEvening" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="friEvening" mnemonicParsing="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <CheckBox fx:id="friEvening" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <Label text="Monday" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label text="Monday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label text="Tuesday" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label text="Tuesday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label text="Wednesday" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label text="Wednesday" textFill="#fcfcfc" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label prefHeight="19.0" prefWidth="60.0" text="Thursday" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label prefHeight="19.0" prefWidth="60.0" text="Thursday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label text="Friday" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label text="Friday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label text="Saterday" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Label text="Saterday" textFill="#fffefe" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label text="Sunday" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Label text="Sunday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <CheckBox fx:id="satMorning" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <CheckBox fx:id="satMorning" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="satEvening" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <CheckBox fx:id="satEvening" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="sunMorning" mnemonicParsing="false" prefHeight="24.0" prefWidth="21.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <CheckBox fx:id="sunMorning" mnemonicParsing="false" prefHeight="24.0" prefWidth="21.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="sunEvening" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <CheckBox fx:id="sunEvening" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="satAfternoon" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <CheckBox fx:id="satAfternoon" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <CheckBox fx:id="sunAfternoon" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <CheckBox fx:id="sunAfternoon" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <Label text="8am - 12pm" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Label text="12pm - 5pm" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label text="5pm - 12pm" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Label text="8am - 12pm" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-            <Label text="12pm - 5pm" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-            <Label text="5pm - 12pm" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <Label text="8am - 12pm" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Label text="12pm - 5pm" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label text="5pm - 12pm" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>

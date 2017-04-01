@@ -44,7 +44,6 @@ public class Database {
                 createCustomerDetTable(state);
                 createLoginTable(state);
                 createBusinessDetailsTable(state);
-                createOwnerTable(state);
                 createEmpAvailability(state);
                 createEmployeeDetTable(state);
 
@@ -165,8 +164,6 @@ public class Database {
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
-
-
         return res;
     }
 
@@ -178,8 +175,6 @@ public class Database {
             state.executeUpdate(sqlString);
             System.out.println("The database has been modified successfully");
             return true;
-
-
         } catch (SQLException e){
             System.out.println(e.getMessage());
             return false;

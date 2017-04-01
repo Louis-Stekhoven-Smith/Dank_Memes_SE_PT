@@ -33,4 +33,12 @@ class AvailabilityTest {
         assertFalse(availability.addAvailability("000,000,0A0,000,000,000"));
     }
 
+    @Test
+    void addAvailabilitySuccessSucessiveWrites(){
+        assertTrue(availability.addAvailability("000,000,000,000,000,000,000"));
+        assertTrue(availability.addAvailability("000,000,000,000,000,000,000"));
+    }
+
+
+
 }

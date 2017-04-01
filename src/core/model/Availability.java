@@ -7,7 +7,6 @@ public class Availability {
 
     private String empAvailabilitySQL;
 
-
     public Boolean addAvailability(String weeklyAvailability) {
 
         if(!createSQLString(weeklyAvailability)){
@@ -21,9 +20,13 @@ public class Availability {
         return true;
     }
 
+    /** Injects string input into an SQL statement
+     *
+     * @param weeklyAvailability
+     * @return false if invalid string
+     */
     private Boolean createSQLString(String weeklyAvailability){
 
-        /*Checking intput vaild */
         if(!(weeklyAvailability.length() == 27)){
             System.out.println("Invalid input " + weeklyAvailability);
             return false;

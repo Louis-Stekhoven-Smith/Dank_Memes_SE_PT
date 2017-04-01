@@ -2,14 +2,13 @@ package core.model;
 
 import core.model.Database;
 import core.model.Employee;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by harry on 25/03/2017.
@@ -18,9 +17,14 @@ class EmployeeTest {
 
     Employee testEmployee = new Employee();
 
+    @BeforeAll
+    public static void setUpDB(){
+        Database db = new Database();
+        db.setupDataBase();
+    }
 
     @Test
-    void invalidPhone(){
+    void invalidPhoneTest(){
         String name = "Harry Potter";
         String role = "Apprentice Barber";
         String email = "potter@wizard.com";
@@ -30,47 +34,63 @@ class EmployeeTest {
         result = testEmployee.addEmployee(name, role, email, phone);
         assertEquals(result, -1);
     }
-    @Test
-    void add_then_removeEmployee() throws SQLException {
-        Database db = new Database();
-        db.setupDataBase();
 
+
+    @Test
+    void addEmployee() throws SQLException {
+        ResultSet rs;
         String name = "Harry Potter";
         String role = "Apprentice Barber";
         String email = "potter@wizard.com";
         String phone = "0466666666";
-        int result;
-        ResultSet rs;
-
-        result = testEmployee.addEmployee(name, role, email, phone);
-
-        assertEquals(result, 1);
-
-        //add employee tests
+        testEmployee.addEmployee(name, role, email, phone);
         String sqlAddTest = "SELECT name FROM employeeDetails WHERE name = " + "'" + name + "'";
-        rs = db.queryDatabase(sqlAddTest);
+        rs = Database.queryDatabase(sqlAddTest);
+        rs.next();
 
-        if(rs.next()){
-            assertEquals(rs.getString("name"), name);
-        }
-        else{
-            assertEquals(rs.getString("name"), name);
-        }
+        assertEquals(rs.getString("name"), name);
 
-        //Remove employee and find employee tests
-        String sqlRemoveTest = "SELECT name FROM employeeDetails WHERE name = " + "'" + name + "'";
-        int empID;
+        int empID = testEmployee.findEmployee(name);
+        testEmployee.removeEmployee(empID, name);
+    }
 
-        //Find employee
-        empID = testEmployee.findEmployee(name);
+    @Test
+    void findValidEmployeeTest() throws SQLException {
+        String name = "Harry Potter";
+        String role = "Apprentice Barber";
+        String email = "potter@wizard.com";
+        String phone = "0466666666";
+        testEmployee.addEmployee(name, role, email, phone);
+        int empID = testEmployee.findEmployee(name);
 
         assertTrue(empID >= 0);
+        testEmployee.removeEmployee(empID, name);
 
-        //Remove employee
+    }
+
+    @Test
+    void findInvalidEmployee() throws SQLException {
+        String name = "Wrong employee";
+        int empID = testEmployee.findEmployee(name);
+
+        assertTrue(empID == -1);
+    }
+
+    @Test
+    void removeEmployeeTest() throws SQLException {
+        String name = "Harry Potter";
+        String role = "Apprentice Barber";
+        String email = "potter@wizard.com";
+        String phone = "0466666666";
+        testEmployee.addEmployee(name, role, email, phone);
+        ResultSet rs;
+        String sqlRemoveTest = "SELECT name FROM employeeDetails WHERE name = " + "'" + name + "'";
+        int empID = testEmployee.findEmployee(name);
+
         testEmployee.removeEmployee(empID, name);
 
         //Check if employee is in db
-        rs = db.queryDatabase(sqlRemoveTest);
+        rs = Database.queryDatabase(sqlRemoveTest);
 
         assertFalse(rs.next());
     }

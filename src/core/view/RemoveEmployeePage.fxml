@@ -51,8 +51,8 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtEmpID" layoutX="115.0" layoutY="349.0" prefHeight="25.0" prefWidth="195.0" />
-                <TextField fx:id="txtEmpName" layoutX="118.0" layoutY="159.0" prefHeight="25.0" prefWidth="195.0" />
+                <TextField fx:id="txtEmpID" layoutX="115.0" layoutY="349.0" onAction="#btnRemoveEmp" prefHeight="25.0" prefWidth="195.0" />
+                <TextField fx:id="txtEmpName" layoutX="118.0" layoutY="159.0" onAction="#btnFindEmp" prefHeight="25.0" prefWidth="195.0" />
             <Label fx:id="txtLabel1" alignment="CENTER" layoutX="25.0" layoutY="78.0" prefHeight="94.0" prefWidth="333.0" text="Find employee by name" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />

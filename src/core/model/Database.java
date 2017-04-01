@@ -85,22 +85,6 @@ public class Database {
     }
 
     /** this should return boolean */
-    private static void createOwnerTable(Statement state) throws SQLException {
-        ResultSet rs;
-        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessLogin'");
-        if(!rs.next()){
-            System.out.println("businessLogin table does not exist. Creating now...");
-            Statement businessLogin = con.createStatement();
-            String sqlbusinessLogin = "CREATE TABLE businessLogin " +
-                    "(businessID INTEGER not NULL, " +
-                    " userName VARCHAR(40), " +
-                    " password VARCHAR(40), " +
-                    " PRIMARY KEY(businessID))";
-            businessLogin.execute(sqlbusinessLogin);
-        }
-    }
-
-    /** this should return boolean */
     private static void createBusinessDetailsTable(Statement state) throws SQLException {
         ResultSet rs;
         rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessDetails'");
@@ -109,11 +93,12 @@ public class Database {
             Statement businessDetails = con.createStatement();
             String sqlbusinessDetails = "CREATE TABLE businessDetails " +
                     "(businessID INTEGER not NULL, " +
+                    " loginID INTEGER not NULL, " +
                     " businessName VARCHAR(50), " +
                     " ownerName VARCHAR(40), " +
-                    " userName VARCHAR(40), " +
                     " email VARCHAR(40), " +
-                    " PRIMARY KEY(businessID))";
+                    " PRIMARY KEY(businessID), " +
+                    " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             businessDetails.execute(sqlbusinessDetails);
         }
     }
@@ -121,16 +106,16 @@ public class Database {
     /** this should return boolean */
     private static void createLoginTable(Statement state) throws SQLException {
         ResultSet rs;
-        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='customerLogin'");
+        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='userLogin'");
         if(!rs.next()){
-            System.out.println("customerLogin table does not exist. Creating now...");
+            System.out.println("userLogin table does not exist. Creating now...");
             Statement custLogin = con.createStatement();
-            String sqlCustLogin = "CREATE TABLE customerLogin " +
-                    "(custID INTEGER not NULL, " +
+            String sqlCustLogin = "CREATE TABLE userLogin " +
+                    "(loginID INTEGER not NULL, " +
                     " userName VARCHAR(20), " +
                     " password VARCHAR(40), " +
                     " type VARCHAR(40)," +
-                    " PRIMARY KEY(custID))";
+                    " PRIMARY KEY(loginID))";
             custLogin.execute(sqlCustLogin);
         }
     }
@@ -143,11 +128,13 @@ public class Database {
             Statement custDetails = con.createStatement();
             String sqlCustDetails = "CREATE TABLE customerDetails " +
                     "(custID INTEGER not NULL, " +
+                    " loginID INTEGER not NULL, " +
                     " name VARCHAR(40), " +
                     " userName VARCHAR(20), " +
                     " address VARCHAR(50), " +
                     " phoneNo VARCHAR(20), " +
-                    " PRIMARY KEY (custID))";
+                    " PRIMARY KEY (custID), " +
+                    " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             custDetails.execute(sqlCustDetails);
         }
     }
@@ -203,34 +190,73 @@ public class Database {
     /** automate adding a few records to database if needed - just for testing */
     private static void resetDatabase() {
 
-        String cust1DetailsSQL = "INSERT INTO customerDetails (custID, name, userName, address, phoneNo) values(?," +
+        String cust1DetailsSQL = "INSERT INTO customerDetails (custID, loginID, name, userName, address, phoneNo) values(?," +
+                "'" + 1 + "'" + "," +
                 "'" + "Louis" + "'" + "," +
                 "'" + "oldboismokey" + "'" + "," +
                 "'" + "123 Fake Street" + "'" + "," +
                 "'" + "0423456789" + "'" + ")";
 
-        String cust1LoginSQL = "INSERT INTO customerLogin (custID, userName, password, type) values(?," +
+        String cust1LoginSQL = "INSERT INTO userLogin (loginID, userName, password, type) values(?," +
                 "'" + "oldboismokey" + "'" + "," +
                 "'" + "Pass1234" + "'" + "," +
                 "'" + 1 + "'" + ")";
 
         //Calling the function which will insert the data into the appropriate tables
-        Database.updateDatabase(cust1DetailsSQL);
         Database.updateDatabase(cust1LoginSQL);
+        Database.updateDatabase(cust1DetailsSQL);
 
-        String cust2DetailsSQL = "INSERT INTO customerDetails (custID, name, userName, address, phoneNo) values(?," +
-                "'" + "homy" + "'" + "," +
-                "'" + "homy" + "'" + "," +
-                "'" + "any" + "'" + "," +
-                "'" + "0478812798" + "'" + ")";
 
-        String cust2LoginSQL = "INSERT INTO customerLogin (custID, userName, password, type) values(?," +
+        String cust2LoginSQL = "INSERT INTO userLogin(loginID, userName, password, type) values(?," +
                 "'" + "homy" + "'" + "," +
                 "'" + "Homy1234" + "'" + "," +
                 "'" + 2 + "'" + ")";
 
+        String bussinessOwnerSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email) values(?," +
+                "'" + 2 + "'," +
+                "'" + "Dank Memes" + "'," +
+                "'" + "Jeff Goodman" + "'," +
+                "'" + "dankmemes@saloons.com" + "')";
 
-        Database.updateDatabase(cust2DetailsSQL);
         Database.updateDatabase(cust2LoginSQL);
+        Database.updateDatabase(bussinessOwnerSQL);
+
+        String emp1SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Sally" + "'," +
+                            "'" + "Female cut" + "'," +
+                            "'" + "sally@saloon.com" + "'," +
+                            "'" + "0412345929" + "')";
+        String emp2SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Bob" + "'," +
+                            "'" + "Male cut" + "'," +
+                            "'" + "bob@saloon.com" + "'," +
+                            "'" + "0499283771" + "')";
+        String emp3SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Katrina" + "'," +
+                            "'" + "Blow" + "'," +
+                            "'" + "katrina@saloon.com" + "'," +
+                            "'" + "0438223141" + "')";
+        String emp4SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Nick" + "'," +
+                            "'" + "Massage wash" + "'," +
+                            "'" + "nick@saloon.com" + "'," +
+                            "'" + "0462116661" + "')";
+        String emp5SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Rachel" + "'," +
+                            "'" + "Female cut" + "'," +
+                            "'" + "rachel@saloon.com" + "'," +
+                            "'" + "0429883772" + "')";
+
+        Database.updateDatabase(emp1SQL);
+        Database.updateDatabase(emp2SQL);
+        Database.updateDatabase(emp3SQL);
+        Database.updateDatabase(emp4SQL);
+        Database.updateDatabase(emp5SQL);
+
     }
 }

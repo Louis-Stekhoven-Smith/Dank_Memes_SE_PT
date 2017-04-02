@@ -5,20 +5,20 @@ package core.model;
  */
 public class Availability {
 
-    private String empAvailabilitySQL;
+    private static String empAvailabilitySQL;
 
     /** Adds availability to database as a string
      *
      * @param weeklyAvailability
      * @return returns true is successful
      */
-    public Boolean addAvailability(String weeklyAvailability) {
+    public static Boolean addAvailability(String weeklyAvailability, int empID) {
 
-        if(!createSQLString(weeklyAvailability)){
+        if(!createSQLString(weeklyAvailability, empID)){
             return false;
         }
-        /* turn into a log statment */
-        System.out.println("error with update "+ empAvailabilitySQL);
+        /* turn into a log statement */
+        System.out.println("updating with "+ empAvailabilitySQL);
         if(!Database.updateDatabase(empAvailabilitySQL)){
             empAvailabilitySQL = "";
             return false;
@@ -32,22 +32,24 @@ public class Availability {
      * @param weeklyAvailability
      * @return false if invalid string
      */
-    private Boolean createSQLString(String weeklyAvailability){
+    private static Boolean createSQLString(String weeklyAvailability, int empID){
 
         if(!(weeklyAvailability.length() == 27)){
-            System.out.println("Invalid input " + weeklyAvailability);
+            System.out.println("Invalid input length" + weeklyAvailability);
             return false;
         }
         if(!(weeklyAvailability.matches("[0-9, /,]+"))){
-            System.out.println("Invalid input test " + weeklyAvailability);
+            System.out.println("Invalid input non numeric" + weeklyAvailability);
             return false;
         }
-        empAvailabilitySQL = "INSERT INTO empAvailability (empID, availability) values(?," +
-                "'" + weeklyAvailability + "'" + ")";
+        empAvailabilitySQL = "UPDATE empAvailability " +
+                "SET availability =" + "'" + weeklyAvailability + "'" +
+                "WHERE empID =" + "'" + empID + "'" + ";";
 
-        /*TODO turn this into a log statment */
+
+        /*TODO turn this into a log statement */
         /*System.out.println(empAvailSQL);*/
-
         return true;
+
     }
 }

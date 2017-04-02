@@ -13,17 +13,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="NewAvailability" prefHeight="470.0" prefWidth="540.0" style="-fx-background-image: url(http://i.imgur.com/K1EEmd0.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.NewAvailabilityController">
+<AnchorPane prefHeight="470.0" prefWidth="540.0" style="-fx-background-image: url(http://i.imgur.com/K1EEmd0.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AvailabilityController">
    <children>
       <Button fx:id="btnSaveTimes" layoutX="412.0" layoutY="377.0" mnemonicParsing="false" onAction="#btnSaveTimes" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="SAVE" textFill="#1565f3">
          <font>
             <Font name="Century Gothic" size="20.0" />
          </font></Button>
-      <TextField fx:id="txtEmployeeName" layoutX="412.0" layoutY="331.0" prefHeight="25.0" prefWidth="100.0" promptText="Employee Name">
+      <TextField fx:id="txtEmployeeName" layoutX="412.0" layoutY="331.0" onAction="#loadEmp" prefHeight="25.0" prefWidth="100.0" promptText="Employee Name">
          <font>
             <Font size="11.0" />
          </font></TextField>
-      <Label fx:id="MondayDate" alignment="CENTER" layoutX="385.0" layoutY="55.0" prefHeight="58.0" prefWidth="151.0" text="Emp" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="empNameDisplay" alignment="CENTER" layoutX="385.0" layoutY="55.0" prefHeight="58.0" prefWidth="151.0" text="Emp" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="29.0" />
          </font>
@@ -168,5 +168,10 @@
             <Label text="5pm - 12pm" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
+      <Label fx:id="lblLoginError" alignment="CENTER" contentDisplay="CENTER" layoutX="404.0" layoutY="294.0" prefHeight="25.0" prefWidth="116.0" textFill="#9a1111">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package core.controller;
 
 import core.model.Availability;
+import core.model.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,24 +15,25 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by louie on 31/03/2017.
  */
-public class NewAvailabilityController {
+public class AvailabilityController {
 
     @FXML
     private Button btnSaveTimes;
+
+    @FXML
+    private Label lblLoginError;
 
     @FXML
     private Button btnBackToBusinessScreen;
     @FXML
     private TextField txtEmployeeName;
     @FXML
-    private Label MondayDate;
-
-    @FXML
-    private Label SundayDate;
+    private Label empNameDisplay;
 
     @FXML
     private CheckBox monMorning;
@@ -102,25 +104,70 @@ public class NewAvailabilityController {
 
     private static final char AVAILABLE = '1';
     private static final char UNAVAILABLE = '0';
+    private static final int EXISTS = 1;
     private String dayAvailability = "";
+    private int empID = -1;
 
-    public void btnSaveTimes(ActionEvent event) throws IOException {
+    /** Saves availability to the currently selected employee */
+    public Boolean btnSaveTimes(ActionEvent event) throws IOException {
 
-        Availability availability = new Availability();
-
-        setMonday();
-        setTuesday();
-        setWednesday();
-        setThursday();
-        setFriday();
-        setSatuerday();
-        setSunday();
-
-        if(!availability.addAvailability(dayAvailability)){
-            /*TODO out put error */
+        if(empID < 1){
+            lblLoginError.setText("No Employee selected");
+            return false;
+            /* no emp loaded */
         }
-        dayAvailability = "";
+        else {
+            Availability availability = new Availability();
+
+            setMonday();
+            setTuesday();
+            setWednesday();
+            setThursday();
+            setFriday();
+            setSatuerday();
+            setSunday();
+
+            if (!availability.addAvailability(dayAvailability,empID)) {
+                return false;
+            }
+            lblLoginError.setText("Success!!");
+            dayAvailability = "";
+            return true;
+        }
     }
+
+
+    /** loads in an employee to alter there availability  */
+    public void loadEmp(ActionEvent event) throws IOException {
+        String empName;
+        char first;
+
+        empName = txtEmployeeName.getCharacters().toString();
+
+        if(empName.isEmpty()){
+            System.out.println("No input given");
+            lblLoginError.setText("Employee does not exist");
+        }
+        else {
+
+        /* Chaptalize first char */
+            first = Character.toUpperCase(empName.charAt(0));
+            empName = first + empName.substring(1);
+
+            try {
+                if ((empID = Employee.findEmployee(empName)) >= EXISTS) {
+                    empNameDisplay.setText(empName);
+                    System.out.println("loaded empId: " + empID);
+                    lblLoginError.setText("");
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /*TODO if emp already has availability load in to checkboxes */
 
     /** Helpers */
     /** sets data for sunday */
@@ -172,7 +219,6 @@ public class NewAvailabilityController {
         set(monEvening.isSelected());
         dayAvailability += ',';
     }
-
     /** Sets a shifts availability e.g 8am - 12pm */
     private void set(Boolean available){
         if(available) {

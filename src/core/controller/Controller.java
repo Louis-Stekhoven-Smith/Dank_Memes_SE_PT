@@ -175,7 +175,7 @@ public class Controller {
     }
 
 
-    //Business home, add and remove employee controls
+    //Employee home, add and remove employee controls
 
     @FXML
     public void btnGotoAddEmp(ActionEvent event) throws IOException {
@@ -250,9 +250,7 @@ public class Controller {
         } else {
             lblRemoveError.setText("Failed to remove employee!");
         }
-
     }
-
 
     @FXML
     public void btnAddEmp() throws IOException {
@@ -289,8 +287,8 @@ public class Controller {
     }
 
     @FXML
-    public void gotoAddAvailability(ActionEvent event) throws IOException {
-        Parent addAvailability_parent = FXMLLoader.load(getClass().getResource("../view/Availability.fxml"));
+    public void btnAddAvailability(ActionEvent event) throws IOException {
+        Parent addAvailability_parent = FXMLLoader.load(getClass().getResource("../view/AddAvailability.fxml"));
         Scene addAvailability_scene = new Scene(addAvailability_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();

@@ -1,7 +1,5 @@
-package core;
+package core.model;
 
-import core.model.Database;
-import core.model.Employee;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

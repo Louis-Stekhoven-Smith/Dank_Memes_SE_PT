@@ -44,6 +44,7 @@ public class Database {
                 createCustomerDetTable(state);
                 createLoginTable(state);
                 createBusinessDetailsTable(state);
+                createEmpAvailability(state);
                 createEmployeeDetTable(state);
 
 
@@ -137,6 +138,24 @@ public class Database {
         }
     }
 
+
+    private static void createEmpAvailability(Statement state)throws SQLException{
+        ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='empAvailability'");
+        if(!rs.next()) {
+            System.out.println("empAvailability table does not exist. Creating now...");
+            Statement empAvailability = con.createStatement();
+            String sqlempAvailability = "CREATE TABLE empAvailability " +
+                    "(empID INTEGER not NULL, " +
+                    " availability VARCHAR(30), " +
+                    " PRIMARY KEY (empID)" +
+                    " FOREIGN KEY (empID) References employeeDetails(empID))";
+            empAvailability.execute(sqlempAvailability);
+        }
+
+    }
+
+
+    /** Takes in sqlString and returns the result as a ResultSet object */
     public static ResultSet queryDatabase(String sqlString){
         ResultSet res = null;
         try{
@@ -145,8 +164,6 @@ public class Database {
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
-
-
         return res;
     }
 
@@ -158,8 +175,6 @@ public class Database {
             state.executeUpdate(sqlString);
             System.out.println("The database has been modified successfully");
             return true;
-
-
         } catch (SQLException e){
             System.out.println(e.getMessage());
             return false;

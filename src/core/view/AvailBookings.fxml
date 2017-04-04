@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.view.AvailBookingsController">
+   <children>
+      <DatePicker fx:id="calBookingDate" layoutX="287.0" layoutY="79.0" />
+      <Label fx:id="lblName1" layoutX="104.0" layoutY="197.0" text="Name1" />
+      <Label fx:id="lblName2" layoutX="104.0" layoutY="237.0" text="Name2" />
+      <Label layoutX="249.0" layoutY="159.0" text="Morning" />
+      <Label layoutX="374.0" layoutY="159.0" text="Midday" />
+      <Label layoutX="509.0" layoutY="159.0" text="Evening" />
+      <Label fx:id="lblMorning1" layoutX="242.0" layoutY="197.0" text="Morning1" />
+      <Label fx:id="lblMorning2" layoutX="242.0" layoutY="237.0" text="Morning2" />
+      <Label fx:id="lblMidday1" layoutX="367.0" layoutY="197.0" text="Midday1" />
+      <Label fx:id="lblMidday2" layoutX="360.0" layoutY="237.0" text="Midday2" />
+      <Label fx:id="lblEvening1" layoutX="506.0" layoutY="197.0" text="Evening1" />
+      <Label fx:id="lblEvening2" layoutX="506.0" layoutY="237.0" text="Evening2" />
+   </children>
+</AnchorPane>

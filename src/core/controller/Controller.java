@@ -156,7 +156,7 @@ public class Controller {
         }
         else if (result == 1){
             System.out.println("Logged in as: " + inputUsername);
-            Parent LoginSuccess_parent = FXMLLoader.load(getClass().getResource("../view/LoginSuccess.fxml"));
+            Parent LoginSuccess_parent = FXMLLoader.load(getClass().getResource("../view/ChooseBusiness.fxml"));
             Scene LoginSuccess_scene = new Scene (LoginSuccess_parent);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.close();

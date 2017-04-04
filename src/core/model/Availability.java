@@ -3,12 +3,16 @@ package core.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Created by louie on 31/03/2017.
  */
 public class Availability {
 
     private static String empAvailabilitySQL;
+    private static final Logger log = LogManager.getLogger(Availability.class.getName());
 
     /** Adds availability to database as a string
      *
@@ -16,17 +20,21 @@ public class Availability {
      * @return returns true is successful
      */
     public static Boolean addAvailability(String weeklyAvailability, int empID) {
+        log.debug("Inside addAvailability Method.");
 
         if(!createSQLString(weeklyAvailability, empID)){
+            log.debug("Failed to add availability, returning to controller.");
             return false;
         }
         /* turn into a log statement */
-        System.out.println("updating with "+ empAvailabilitySQL);
+        log.debug("Attempting to update availability in the database");
         if(!Database.updateDatabase(empAvailabilitySQL)){
+            log.debug("Failed to add availability, returning to controller");
             empAvailabilitySQL = "";
             return false;
         }
         empAvailabilitySQL = "";
+        log.debug("Successfully added availability, returning to controller");
         return true;
     }
 
@@ -58,21 +66,23 @@ public class Availability {
      */
     private static Boolean createSQLString(String weeklyAvailability, int empID){
 
+        log.debug("Inside createSQLString Method");
+
         if(!(weeklyAvailability.length() == 27)){
-            System.out.println("Invalid input length" + weeklyAvailability);
+            log.info("Invalid input length" + weeklyAvailability);
+            log.debug("Returning false");
             return false;
         }
         if(!(weeklyAvailability.matches("[0-9, /,]+"))){
-            System.out.println("Invalid input non numeric" + weeklyAvailability);
+            log.info("Invalid input non numeric" + weeklyAvailability);
+            log.debug("Returning false");
             return false;
         }
         empAvailabilitySQL = "UPDATE EmpAvailability " +
                 "SET availability =" + "'" + weeklyAvailability + "'" +
                 "WHERE empID =" + "'" + empID + "'" + ";";
 
-
-        /*TODO turn this into a log statement */
-        /*System.out.println(empAvailSQL);*/
+        log.debug("Returning true, SQLString set to: " + empAvailabilitySQL);
         return true;
 
     }

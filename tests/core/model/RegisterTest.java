@@ -1,7 +1,5 @@
 package core.model;
 
-import core.model.Database;
-import core.model.Register;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -20,7 +18,7 @@ public class RegisterTest {
     @Test
     void isNotEmpty() throws Exception {
         Database db = new Database();
-        db.setupDataBase();
+        db.setupDatabase();
 
         HashMap<String, String> allEmptyHMap = new HashMap<String, String>();
         HashMap<String, String> oneEmptyHMap = new HashMap<String, String>();
@@ -64,7 +62,7 @@ public class RegisterTest {
     @Test
     void passwordMatches() throws Exception {
         Database db = new Database();
-        db.setupDataBase();
+        db.setupDatabase();
 
         HashMap<String, String> unmatchingPasswords = new HashMap<String, String>();
         HashMap<String, String> matchingPasswords = new HashMap<String, String>();
@@ -100,7 +98,7 @@ public class RegisterTest {
     void passwordCriteria() throws Exception {
 
         Database db = new Database();
-        db.setupDataBase();
+        db.setupDatabase();
 
         HashMap<String, String> shortPassword = new HashMap<String, String>();
         HashMap<String, String> noNumPassword = new HashMap<String, String>();
@@ -158,7 +156,7 @@ public class RegisterTest {
     void phoneNoCriteria() throws Exception {
 
         Database db = new Database();
-        db.setupDataBase();
+        db.setupDatabase();
 
         HashMap<String, String> correctPhoneNo1 = new HashMap<String, String>();
         HashMap<String, String> correctPhoneNo2 = new HashMap<String, String>();
@@ -194,7 +192,7 @@ public class RegisterTest {
      void userNameFree() throws Exception {
 
         Database db = new Database();
-        db.setupDataBase();
+        db.setupDatabase();
 
         HashMap<String, String> userNameExists = new HashMap<String, String>();
         HashMap<String, String> userNameFree = new HashMap<String, String>();
@@ -230,7 +228,7 @@ public class RegisterTest {
     void register() throws Exception {
 
         Database db = new Database();
-        db.setupDataBase();
+        db.setupDatabase();
         HashMap<String, String> registerCustomer = new HashMap<String, String>();
 
         registerCustomer.put("name", "Lady Sovreign");

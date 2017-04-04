@@ -15,7 +15,7 @@ class AvailabilityTest {
     @BeforeAll
     public static void setupDataBase(){
         Database db = new Database();
-        db.setupDataBase();
+        db.setupDatabase();
     }
 
     @Test

@@ -6,10 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.view.AvailBookingsController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AvailBookingsController">
    <children>
-      <DatePicker fx:id="calBookingDate" layoutX="287.0" layoutY="79.0" />
+      <DatePicker fx:id="dpBookingDate" layoutX="287.0" layoutY="79.0" onAction="#showDate" />
       <Label fx:id="lblName1" layoutX="104.0" layoutY="197.0" text="Name1" />
       <Label fx:id="lblName2" layoutX="104.0" layoutY="237.0" text="Name2" />
       <Label layoutX="249.0" layoutY="159.0" text="Morning" />

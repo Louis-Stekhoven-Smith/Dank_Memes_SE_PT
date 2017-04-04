@@ -3,8 +3,12 @@ package core.controller;
 import core.model.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
+import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +27,7 @@ public class serviceTypeController {
     @FXML
     private Button btnService4;
 
+    public static String type;
 
     @FXML
     public void initialize() throws SQLException, IOException {
@@ -53,29 +58,38 @@ public class serviceTypeController {
 
     @FXML
     public String btnService1Clicked(javafx.event.ActionEvent event) throws IOException{
-        String type = btnService1.getText();
+        type = btnService1.getText();
         System.out.println(type);
+        System.out.println("Service " + type + " chosen");
+        Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/AvailBookings.fxml"));
+        Scene viewBookings_scene = new Scene(viewBookings_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(viewBookings_scene);
+        primaryStage.show();
         return type;
     }
 
     @FXML
-    public String btnService2Clicked(javafx.event.ActionEvent event) throws IOException{
+    public void btnService2Clicked(javafx.event.ActionEvent event) throws IOException{
+        type = btnService2.getText();
         String type = btnService2.getText();
         System.out.println(type);
-        return type;
     }
 
     @FXML
-    public String btnService3Clicked(javafx.event.ActionEvent event) throws IOException{
+    public void btnService3Clicked(javafx.event.ActionEvent event) throws IOException{
+        type = btnService3.getText();
         String type = btnService3.getText();
         System.out.println(type);
-        return type;
     }
 
     @FXML
-    public String btnService4Clicked(javafx.event.ActionEvent event) throws IOException{
+    public void btnService4Clicked(javafx.event.ActionEvent event) throws IOException{
+        type = btnService4.getText();
         String type = btnService4.getText();
         System.out.println(type);
-        return type;
     }
+
+
 }

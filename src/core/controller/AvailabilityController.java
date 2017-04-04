@@ -13,6 +13,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,6 +23,8 @@ import java.sql.SQLException;
  * Created by louie on 31/03/2017.
  */
 public class AvailabilityController {
+
+    private static final Logger log = LogManager.getLogger(AvailabilityController.class.getName());
 
     @FXML
     private Button btnSaveTimes;
@@ -108,29 +112,34 @@ public class AvailabilityController {
     private String dayAvailability = "";
     private int empID = -1;
 
-    /**
-     * Saves availability to the currently selected employee
-     */
+    /** Saves availability to the currently selected employee */
     public Boolean btnSaveTimes(ActionEvent event) throws IOException {
+
+        log.debug("Save times button clicked");
 
         if (empID < 1) {
             lblLoginError.setText("No Employee selected");
+            log.debug("Save times clicked with no employee loaded");
             return false;
             /* no emp loaded */
         } else {
+
+            log.debug("Calling the method to set availability for each day");
 
             setMonday();
             setTuesday();
             setWednesday();
             setThursday();
             setFriday();
-            setSatuerday();
+            setSaturday();
             setSunday();
 
-            if (!Availability.addAvailability(dayAvailability, empID)) {
+            if (!availability.addAvailability(dayAvailability,empID)) {
                 lblLoginError.setText("Failure - Database maybe locked!!");
+                log.debug("Returned to controller, add availability failed.");
                 return false;
             }else{
+                log.debug("Returned to controller, availability added.");
                 lblLoginError.setText("Success!!");
                 dayAvailability = "";
                 return true;
@@ -143,13 +152,14 @@ public class AvailabilityController {
      * loads in an employee to alter there availability
      */
     public void loadEmp(ActionEvent event) throws IOException {
+        log.debug("Load employee button clicked");
         String empName;
         char first;
 
         empName = txtEmployeeName.getCharacters().toString();
 
         if (empName.isEmpty()) {
-            System.out.println("No input given");
+            log.debug("No employee entered");
             lblLoginError.setText("Employee does not exist");
         } else {
 
@@ -158,16 +168,18 @@ public class AvailabilityController {
             empName = first + empName.substring(1);
 
             try {
+                log.debug("Calling findEmployee method, leaving controller...");
                 if ((empID = Employee.findEmployee(empName)) >= EXISTS) {
+                    log.debug("Returned to controller, employee found and loaded: " + empID);
                     empNameDisplay.setText(empName);
-                    System.out.println("loaded empId: " + empID);
                     lblLoginError.setText("");
 
                     removeDisplayedAvailablity();
                     loadCurrentAvailability();
                 }
+                log.debug("Returned to controller, failed to find and load employee");
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                log.error("SQL ERROR: " + e.getMessage());
                 e.printStackTrace();
             }
             /*TODO if emp already has availability load in to checkboxes */
@@ -336,13 +348,16 @@ public class AvailabilityController {
     /** Helpers */
     /** sets data for sunday */
     private void setSunday() {
+        log.debug("Inside setSunday method");
 
         set(sunMorning.isSelected());
         set(sunAfternoon.isSelected());
         set(sunEvening.isSelected());
     }
     /** sets data for saturday */
-    private void setSatuerday() {
+    private void setSaturday() {
+        log.debug("Inside setSaturday method");
+
         set(satMorning.isSelected());
         set(satAfternoon.isSelected());
         set(satEvening.isSelected());
@@ -350,6 +365,8 @@ public class AvailabilityController {
     }
     /** sets data for friday */
     private void setFriday() {
+        log.debug("Inside setFriday method");
+
         set(friMorning.isSelected());
         set(friAfternoon.isSelected());
         set(friEvening.isSelected());
@@ -357,6 +374,7 @@ public class AvailabilityController {
     }
     /** sets data for thursday */
     private void setThursday() {
+        log.debug("Inside setThursday method");
         set(thurMorning.isSelected());
         set(thurAfternoon.isSelected());
         set(thurEvening.isSelected());
@@ -364,6 +382,7 @@ public class AvailabilityController {
     }
     /** sets data for wednesday */
     private void setWednesday() {
+        log.debug("Inside setWednesday method");
         set(wedMorning.isSelected());
         set(wedAfternoon.isSelected());
         set(wedEvening.isSelected());
@@ -371,6 +390,7 @@ public class AvailabilityController {
     }
     /** sets data for tuesday */
     private void setTuesday() {
+        log.debug("Inside setTuesday method");
         set(tueMorning.isSelected());
         set(tueAfternoon.isSelected());
         set(tueEvening.isSelected());
@@ -378,6 +398,7 @@ public class AvailabilityController {
     }
     /** sets data for monday */
     private void setMonday() {
+        log.debug("Inside setMonday method");
         set(monMorning.isSelected());
         set(monAfternoon.isSelected());
         set(monEvening.isSelected());
@@ -394,6 +415,8 @@ public class AvailabilityController {
 
     @FXML
     public void btnBackToBusinessScreen(ActionEvent event) throws IOException {
+        log.debug("Back (to business home screen) button clicked");
+        log.debug("Loading business home screen, switching controller to Main controller...");
         Parent business_parent = FXMLLoader.load(getClass().getResource("../view/BusinessHome.fxml"));
         Scene business_scene = new Scene (business_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

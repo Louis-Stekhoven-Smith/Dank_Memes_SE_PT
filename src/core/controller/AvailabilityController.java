@@ -86,7 +86,8 @@ public class AvailabilityController {
     private CheckBox sunEvening;
 
 
-    /*
+    /*TODO - decided to remove or keep this code */
+    /*   May still use this please leave for now
     @FXML
     public void initialize() {
         Date today = new Date();
@@ -104,7 +105,6 @@ public class AvailabilityController {
         SundayDate.setText(new SimpleDateFormat("dd/MM").format(today));
     }
 */
-
     private static final char AVAILABLE = '1';
     private static final char UNAVAILABLE = '0';
     private static final int EXISTS = 1;
@@ -140,7 +140,6 @@ public class AvailabilityController {
             }
         }
     }
-
 
     /**
      * loads in an employee to alter there availability
@@ -395,6 +394,7 @@ public class AvailabilityController {
         }
     }
 
+    /** Takes the user back to the main menu */
     @FXML
     public void btnBackToBusinessScreen(ActionEvent event) throws IOException {
         Parent business_parent = FXMLLoader.load(getClass().getResource("../view/BusinessHome.fxml"));
@@ -405,13 +405,14 @@ public class AvailabilityController {
         primaryStage.show();
     }
 
+    /** Takes user to Employee Availability sceen */
     @FXML
     public void btnGotoEmployeesAvailability(ActionEvent event) throws IOException {
-        Parent removeEmp_parent = FXMLLoader.load(getClass().getResource("../view/EmployeesAvailability.fxml"));
-        Scene removeEmp_scene = new Scene((removeEmp_parent));
+        Parent empAvailability_parent = FXMLLoader.load(getClass().getResource("../view/EmployeesAvailability.fxml"));
+        Scene empAvailability_scene = new Scene((empAvailability_parent));
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
-        primaryStage.setScene(removeEmp_scene);
+        primaryStage.setScene(empAvailability_scene);
         primaryStage.show();
     }
 

@@ -8,20 +8,52 @@ public class EmpAvailability {
     private String name;
     private String monday, tuesday,wednesday,thursday,friday, saturday,sunday;
 
+    /** Constructor takes employee availability string and converts into
+     * individual days.
+     *
+      * @param name
+     * @param availability
+     */
     public EmpAvailability(String name, String availability){
         String[] days;
 
         this.name = name;
 
         days = availability.split(",");
-        monday = days[0];
-        tuesday = days[1];
-        wednesday = days[2];
-        thursday = days[3];
-        friday = days[4];
-        saturday = days[5];
-        sunday = days[6];
 
+        monday = covertToEnglish(days[0]);
+        tuesday = covertToEnglish(days[1]);
+        wednesday = covertToEnglish(days[2]);
+        thursday = covertToEnglish(days[3]);
+        friday = covertToEnglish(days[4]);
+        saturday = covertToEnglish(days[5]);
+        sunday = covertToEnglish(days[6]);
+    }
+
+    /** Coverts the csv 0's and 1's into an english representations
+     *  e.g. 011  =  ' Afternoon  Evening '
+     * @param day
+     * @return
+     */
+    private String covertToEnglish(String day){
+        char shifts[];
+        String convertedString = "";
+
+        shifts = day.toCharArray();
+            if(shifts[0] == '1'){
+                convertedString += " Morning ";
+            }
+            if(shifts[1] == '1'){
+                convertedString +=" Afternoon ";
+            }
+            if(shifts[2] == '1'){
+                convertedString += " Evening ";
+            }
+            if(convertedString.equals("")){
+                return convertedString = "Unavailable";
+            }
+
+        return convertedString;
     }
 
     public String getName() {

@@ -56,7 +56,10 @@ public class AvailBookingsController {
     private Button btnEvening2;
 
     @FXML
-    private Label lblEvening1;
+    private Label lblCurrentService;
+
+    @FXML
+    private Button btnBack;
 
     String test;
 

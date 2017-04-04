@@ -69,26 +69,47 @@ public class serviceTypeController {
         primaryStage.show();
         return type;
     }
-
+        //latest: choosing service type and showing corresponding employee+times
     @FXML
-    public void btnService2Clicked(javafx.event.ActionEvent event) throws IOException{
+    public String btnService2Clicked(javafx.event.ActionEvent event) throws IOException{
         type = btnService2.getText();
-        String type = btnService2.getText();
         System.out.println(type);
+        System.out.println("Service " + type + " chosen");
+        Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/AvailBookings.fxml"));
+        Scene viewBookings_scene = new Scene(viewBookings_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(viewBookings_scene);
+        primaryStage.show();
+        return type;
     }
 
     @FXML
-    public void btnService3Clicked(javafx.event.ActionEvent event) throws IOException{
+    public String btnService3Clicked(javafx.event.ActionEvent event) throws IOException{
         type = btnService3.getText();
-        String type = btnService3.getText();
         System.out.println(type);
+        System.out.println("Service " + type + " chosen");
+        Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/AvailBookings.fxml"));
+        Scene viewBookings_scene = new Scene(viewBookings_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(viewBookings_scene);
+        primaryStage.show();
+        return type;
     }
 
     @FXML
-    public void btnService4Clicked(javafx.event.ActionEvent event) throws IOException{
+    public String btnService4Clicked(javafx.event.ActionEvent event) throws IOException{
         type = btnService4.getText();
-        String type = btnService4.getText();
         System.out.println(type);
+        System.out.println("Service " + type + " chosen");
+        Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/AvailBookings.fxml"));
+        Scene viewBookings_scene = new Scene(viewBookings_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(viewBookings_scene);
+        primaryStage.show();
+        return type;
     }
 
 

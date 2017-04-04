@@ -1,5 +1,8 @@
 package core.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 
 /**
@@ -18,21 +21,15 @@ public class Database {
     private static String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
     private static String DB_DRIVER = "org.sqlite.JDBC";
 
-    /* this isnt working as expected??? always runs setupConnection - louis*/
-    public static void setupDataBase(){
-        if(con == null){
-            setupConnection();
+    private static final Logger log = LogManager.getLogger(Database.class.getName());
 
-        }
-
-    }
-
-    private static void setupConnection(){
+    public static void setupDatabase(){
+        log.debug("Inside setupDatabase Method.");
         try{
             Class.forName(DB_DRIVER);
         }
         catch (ClassNotFoundException e){
-            System.out.println(e.getMessage());
+            log.error("Database Driver not found.");
         }
         try{
             con = DriverManager.getConnection(DB_CONNECTION);
@@ -41,6 +38,7 @@ public class Database {
                 hasData = true;
                 Statement state = con.createStatement();
 
+                log.debug("Creating tables if they do not exist");
                 createCustomerDetTable(state);
                 createLoginTable(state);
                 createBusinessDetailsTable(state);
@@ -51,17 +49,18 @@ public class Database {
             }
         }
         catch (SQLException e){
-            System.out.println(e.getMessage());
+            log.error("Failed to create tables: " + e.getMessage());
         }
 
     }
 
     /** this should return boolean */
     private static void createEmployeeDetTable(Statement state) throws SQLException {
+        log.debug("Inside createEmployeeDetTable");
         ResultSet rs;
         rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='employeeDetails'");
         if(!rs.next()){
-            System.out.println("employeeDetails table does not exist. Creating now...");
+            log.debug("employeeDetails table does not exist. Creating now...");
             Statement empDetails = con.createStatement();
             String sqlEmpDetails = "CREATE TABLE employeeDetails " +
                     "(empID INTEGER not NULL, " +
@@ -85,10 +84,11 @@ public class Database {
 
     /** this should return boolean */
     private static void createBusinessDetailsTable(Statement state) throws SQLException {
+        log.debug("Inside createBusinessDetailsTable");
         ResultSet rs;
         rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessDetails'");
         if(!rs.next()){
-            System.out.println("businessDetails table does not exist. Creating now...");
+            log.debug("businessDetails table does not exist. Creating now...");
             Statement businessDetails = con.createStatement();
             String sqlbusinessDetails = "CREATE TABLE businessDetails " +
                     "(businessID INTEGER not NULL, " +
@@ -104,10 +104,11 @@ public class Database {
 
     /** this should return boolean */
     private static void createLoginTable(Statement state) throws SQLException {
+        log.debug("Inside createLoginTable");
         ResultSet rs;
         rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='userLogin'");
         if(!rs.next()){
-            System.out.println("userLogin table does not exist. Creating now...");
+            log.debug("userLogin table does not exist. Creating now...");
             Statement custLogin = con.createStatement();
             String sqlCustLogin = "CREATE TABLE userLogin " +
                     "(loginID INTEGER not NULL, " +
@@ -121,9 +122,10 @@ public class Database {
 
     /** this should return boolean */
     private static void createCustomerDetTable(Statement state) throws SQLException {
+        log.debug("Inside createCustomerDetTable");
         ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='customerDetails'");
         if(!rs.next()) {
-            System.out.println("customerDetails table does not exist. Creating now...");
+            log.debug("customerDetails table does not exist. Creating now...");
             Statement custDetails = con.createStatement();
             String sqlCustDetails = "CREATE TABLE customerDetails " +
                     "(custID INTEGER not NULL, " +
@@ -140,9 +142,10 @@ public class Database {
 
 
     private static void createEmpAvailability(Statement state)throws SQLException{
+        log.debug("Inside createEmpAvailability");
         ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='empAvailability'");
         if(!rs.next()) {
-            System.out.println("empAvailability table does not exist. Creating now...");
+            log.debug("empAvailability table does not exist. Creating now...");
             Statement empAvailability = con.createStatement();
             String sqlempAvailability = "CREATE TABLE empAvailability " +
                     "(empID INTEGER not NULL, " +
@@ -157,26 +160,33 @@ public class Database {
 
     /** Takes in sqlString and returns the result as a ResultSet object */
     public static ResultSet queryDatabase(String sqlString){
+        log.debug("Inside queryDatabase");
         ResultSet res = null;
         try{
+            log.debug("Querying the database with input string: " + sqlString);
             Statement state = con.createStatement();
             res = state.executeQuery(sqlString);
         } catch (SQLException e){
-            System.out.println(e.getMessage());
+            log.error("Error querying the database: " + e.getMessage());
         }
+        log.debug("Returning to calling Method");
         return res;
     }
 
     /** this should return boolean */
     public static Boolean updateDatabase(String sqlString){
+        log.debug("Inside updateDatabase Method");
         try{
             Statement state = con.createStatement();
             //Execute insert statement
+            log.debug("Updating the database with input string: " + sqlString);
             state.executeUpdate(sqlString);
-            System.out.println("The database has been modified successfully");
+            log.info("The database has been modified successfully");
+            log.debug("Returning to calling Method with true");
             return true;
         } catch (SQLException e){
-            System.out.println(e.getMessage());
+            log.error("Error updating the database: " + e.getMessage());
+            log.debug("Returning to calling Method with false");
             return false;
         }
     }
@@ -184,6 +194,8 @@ public class Database {
 
     /** automate adding a few records to database if needed - just for testing */
     private static void resetDatabase() {
+
+        log.debug("Inside resetDatabase, inserting default values...");
 
         String cust1DetailsSQL = "INSERT INTO customerDetails (custID, loginID, name, userName, address, phoneNo) values(?," +
                 "'" + 1 + "'" + "," +
@@ -198,8 +210,8 @@ public class Database {
                 "'" + 1 + "'" + ")";
 
         //Calling the function which will insert the data into the appropriate tables
-        Database.updateDatabase(cust1LoginSQL);
-        Database.updateDatabase(cust1DetailsSQL);
+        updateDatabase(cust1LoginSQL);
+        updateDatabase(cust1DetailsSQL);
 
 
         String cust2LoginSQL = "INSERT INTO userLogin(loginID, userName, password, type) values(?," +
@@ -213,8 +225,8 @@ public class Database {
                 "'" + "Jeff Goodman" + "'," +
                 "'" + "dankmemes@saloons.com" + "')";
 
-        Database.updateDatabase(cust2LoginSQL);
-        Database.updateDatabase(bussinessOwnerSQL);
+        updateDatabase(cust2LoginSQL);
+        updateDatabase(bussinessOwnerSQL);
 
         String emp1SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
                             "'" + 1 + "'," +
@@ -247,11 +259,11 @@ public class Database {
                             "'" + "rachel@saloon.com" + "'," +
                             "'" + "0429883772" + "')";
 
-        Database.updateDatabase(emp1SQL);
-        Database.updateDatabase(emp2SQL);
-        Database.updateDatabase(emp3SQL);
-        Database.updateDatabase(emp4SQL);
-        Database.updateDatabase(emp5SQL);
+        updateDatabase(emp1SQL);
+        updateDatabase(emp2SQL);
+        updateDatabase(emp3SQL);
+        updateDatabase(emp4SQL);
+        updateDatabase(emp5SQL);
 
     }
 }

@@ -1,4 +1,7 @@
 package core.model;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
 import java.util.Scanner;
 
@@ -10,8 +13,10 @@ public class Session {
 
     private String name, username, address, contactNumber;
     private Booking bookings[];
+    private static final Logger log = LogManager.getLogger(Session.class.getName());
 
     public Session(String username){
+        log.debug("Inside Session class, creating new session with user: " + username);
         this.username = username;
         loadUserDetails();
     }
@@ -34,6 +39,8 @@ public class Session {
 
     /** find customers details and load into session */
     private Boolean loadUserDetails() {
+        log.debug("Inside loadUserDetails Method.");
+
         Scanner scan;
         int thisRecord = 0;
         String[] customerDetails;

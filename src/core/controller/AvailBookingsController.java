@@ -38,7 +38,25 @@ public class AvailBookingsController {
     private Label lblName2;
 
     @FXML
-            private Label lblEvening1;
+    private Button btnMorning1;
+
+    @FXML
+    private Button btnMorning2;
+
+    @FXML
+    private Button btnMidday1;
+
+    @FXML
+    private Button btnMidday2;
+
+    @FXML
+    private Button btnEvening1;
+
+    @FXML
+    private Button btnEvening2;
+
+    @FXML
+    private Label lblEvening1;
 
     String test;
 
@@ -111,31 +129,125 @@ public class AvailBookingsController {
         String[] values = times1.split(",");
         System.out.println(Arrays.toString(values));
 
+        String[] values2 = times2.split(",");
+        System.out.println(Arrays.toString(values2));
+
         if (finalDate.equals("Mon")){
-            System.out.println("Monday");
-        } else if (finalDate.equals("Tue")){
-            System.out.println("Tuesday");
-        } else if (finalDate.equals("Fri")){
+            String availabilityTimes = values[0];
+            String availabilityTimes2 = values2[0];
+            setTimeLabels1(availabilityTimes);
+            setTimeLabels2(availabilityTimes2);
+        } else if (finalDate.equals("Tue")) {
+            String availabilityTimes = values[1];
+            String availabilityTimes2 = values2[1];
+            setTimeLabels1(availabilityTimes);
+            setTimeLabels2(availabilityTimes2);
+        } else if (finalDate.equals("Wed")) {
+            String availabilityTimes = values[2];
+            String availabilityTimes2 = values2[2];
+            setTimeLabels1(availabilityTimes);
+            setTimeLabels2(availabilityTimes2);
+        } else if (finalDate.equals("Thu")) {
+            String availabilityTimes = values[3];
+            String availabilityTimes2 = values2[3];
+            setTimeLabels1(availabilityTimes);
+            setTimeLabels2(availabilityTimes2);
+        } else if (finalDate.equals("Fri")) {
+            String availabilityTimes = values[4];
+            String availabilityTimes2 = values2[4];
+            setTimeLabels1(availabilityTimes);
+            setTimeLabels2(availabilityTimes2);
+        } else if (finalDate.equals("Sat")) {
+            String availabilityTimes = values[5];
+            String availabilityTimes2 = values2[5];
+            setTimeLabels1(availabilityTimes);
+            setTimeLabels2(availabilityTimes2);
+        } else if (finalDate.equals("Sun")) {
             String availabilityTimes = values[6];
-            System.out.println(availabilityTimes);
-            setTimeLabels(availabilityTimes);
+            String availabilityTimes2 = values2[6];
+            setTimeLabels1(availabilityTimes);
+            setTimeLabels2(availabilityTimes2);
         } else {
-            System.out.println("test-"+finalDate+"-test");
             System.out.println("fail1");
         }
 
     }
 
-    public void setTimeLabels(String availabilityTimes){
+    //000,001,011,111,110,100
+
+    public void setTimeLabels1(String availabilityTimes){
         if (availabilityTimes.equals("000")){
-            System.out.println("000");
-        } else if (availabilityTimes.equals("100")){
-            System.out.println("100");
+            btnMorning1.setText("N/A");
+            btnMidday1.setText("N/A");
+            btnEvening1.setText("N/A");
         } else if (availabilityTimes.equals("001")){
-            System.out.println("001 Success");
-            lblEvening1.setText("Available");
+            btnMorning1.setText("N/A");
+            btnMidday1.setText("N/A");
+            btnEvening1.setText("Available");
+        } else if (availabilityTimes.equals("011")){
+            btnMorning1.setText("N/A");
+            btnMidday1.setText("Available");
+            btnEvening1.setText("Available");
+        } else if (availabilityTimes.equals("111")){
+            btnMorning1.setText("Available");
+            btnMidday1.setText("Available");
+            btnEvening1.setText("Available");
+        } else if (availabilityTimes.equals("110")){
+            btnMorning1.setText("Available");
+            btnMidday1.setText("Available");
+            btnEvening1.setText("N/A");
+        } else if (availabilityTimes.equals("100")){
+            btnMorning1.setText("Available");
+            btnMidday1.setText("N/A");
+            btnEvening1.setText("N/A");
+        } else if (availabilityTimes.equals("101")){
+            btnMorning1.setText("Available");
+            btnMidday1.setText("N/A");
+            btnEvening1.setText("Available");
+        } else if (availabilityTimes.equals("010")){
+            btnMorning1.setText("N/A");
+            btnMidday1.setText("Available");
+            btnEvening1.setText("N/A");
         } else {
             System.out.println("fail2");
+        }
+    }
+
+    public void setTimeLabels2(String availabilityTimes){
+        if (availabilityTimes.equals("000")){
+            btnMorning2.setText("N/A");
+            btnMidday2.setText("N/A");
+            btnEvening2.setText("N/A");
+        } else if (availabilityTimes.equals("001")){
+            btnMorning2.setText("N/A");
+            btnMidday2.setText("N/A");
+            btnEvening2.setText("Available");
+        } else if (availabilityTimes.equals("011")){
+            btnMorning2.setText("N/A");
+            btnMidday2.setText("Available");
+            btnEvening2.setText("Available");
+        } else if (availabilityTimes.equals("111")){
+            btnMorning2.setText("Available");
+            btnMidday2.setText("Available");
+            btnEvening2.setText("Available");
+        } else if (availabilityTimes.equals("110")){
+            btnMorning2.setText("Available");
+            btnMidday2.setText("Available");
+            btnEvening2.setText("N/A");
+        } else if (availabilityTimes.equals("100")){
+            btnMorning2.setText("Available");
+            btnMidday2.setText("N/A");
+            btnEvening2.setText("N/A");
+        } else if (availabilityTimes.equals("101")){
+            btnMorning2.setText("Available");
+            btnMidday2.setText("N/A");
+            btnEvening2.setText("Available");
+        } else if (availabilityTimes.equals("010")){
+            btnMorning2.setText("N/A");
+            btnMidday2.setText("Available");
+            btnEvening2.setText("N/A");
+        } else {
+            System.out.println("fail3");
         }
     }
 }

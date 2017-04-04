@@ -1,24 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AvailBookingsController">
+<AnchorPane prefHeight="380.0" prefWidth="600.0" style="-fx-background-image: url('http://i.imgur.com/ijde5mN.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AvailBookingsController">
    <children>
-      <DatePicker fx:id="dpBookingDate" layoutX="287.0" layoutY="79.0" onAction="#showDate" />
-      <Label fx:id="lblName1" layoutX="104.0" layoutY="197.0" text="Name1" />
-      <Label fx:id="lblName2" layoutX="104.0" layoutY="237.0" text="Name2" />
-      <Label layoutX="249.0" layoutY="159.0" text="Morning" />
-      <Label layoutX="374.0" layoutY="159.0" text="Midday" />
-      <Label layoutX="509.0" layoutY="159.0" text="Evening" />
-      <Label fx:id="lblMorning1" layoutX="242.0" layoutY="197.0" text="Morning1" />
-      <Label fx:id="lblMorning2" layoutX="242.0" layoutY="237.0" text="Morning2" />
-      <Label fx:id="lblMidday1" layoutX="367.0" layoutY="197.0" text="Midday1" />
-      <Label fx:id="lblMidday2" layoutX="360.0" layoutY="237.0" text="Midday2" />
-      <Label fx:id="lblEvening1" layoutX="506.0" layoutY="197.0" text="Evening1" />
-      <Label fx:id="lblEvening2" layoutX="506.0" layoutY="237.0" text="Evening2" />
+      <DatePicker fx:id="dpBookingDate" layoutX="286.0" layoutY="51.0" onAction="#showDate" prefHeight="33.0" prefWidth="179.0" />
+      <Label fx:id="lblName1" layoutX="57.0" layoutY="207.0" text="Name1" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label fx:id="lblName2" layoutX="57.0" layoutY="276.0" text="Name2" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="173.0" layoutY="144.0" text="Morning" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="317.0" layoutY="144.0" text="Midday" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="456.0" layoutY="144.0" text="Evening" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="169.0" layoutY="54.0" text="Choose Date" textFill="#2196f3">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnMorning1" layoutX="157.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="Morning1" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMidday1" layoutX="297.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="Midday1" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEvening1" layoutX="437.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="Evening1" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMorning2" layoutX="157.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="Morning2" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMidday2" layoutX="297.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="Midday2" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEvening2" layoutX="437.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="Evening2" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

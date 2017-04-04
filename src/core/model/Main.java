@@ -5,11 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.*;
+
 
 /**
  * Created by louie on 10/03/2017.
  */
 public class Main extends Application{
+
+    private static final Logger log = LogManager.getLogger(Main.class.getName());
 
     @Override
     public void start (Stage primaryStage) throws Exception{
@@ -20,20 +24,13 @@ public class Main extends Application{
     }
 
     public static void main(String[] args) {
+
+        log.debug("Beginning Program");
+
         /* to do driver */
-        Database.setupDataBase();
+        Database.setupDatabase();
         launch(args);
 
-        Login login = new Login();
-
-        if (login.validateAttempt("oldboismokey", "Pass1234") == 1) {
-            System.out.println("You are logged in");
-            Session session = new Session("oldboismokey");
-
-        }
-        else{
-            System.out.println("Login attempt failed");
-        }
 
     }
 }

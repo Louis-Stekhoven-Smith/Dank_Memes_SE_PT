@@ -18,7 +18,7 @@ class EmployeeTest {
     @BeforeAll
     public static void setUpDB(){
         Database db = new Database();
-        db.setupDataBase();
+        db.setupDatabase();
     }
 
     @Test

@@ -142,7 +142,7 @@ public class Database {
     private static void createEmpAvailability(Statement state)throws SQLException{
         ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='empAvailability'");
         if(!rs.next()) {
-            System.out.println("empAvailability table does not exist. Creating now...");
+            System.out.println("EmpAvailability table does not exist. Creating now...");
             Statement empAvailability = con.createStatement();
             String sqlempAvailability = "CREATE TABLE empAvailability " +
                     "(empID INTEGER not NULL, " +

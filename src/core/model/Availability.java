@@ -39,7 +39,7 @@ public class Availability {
     public static String getAvailability( int empID){
         ResultSet rs;
 
-        String findEmpSQL = "SELECT availability FROM empAvailability WHERE empID = " + "'" + empID + "'";
+        String findEmpSQL = "SELECT availability FROM EmpAvailability WHERE empID = " + "'" + empID + "'";
 
         rs = Database.queryDatabase(findEmpSQL);
 
@@ -66,7 +66,7 @@ public class Availability {
             System.out.println("Invalid input non numeric" + weeklyAvailability);
             return false;
         }
-        empAvailabilitySQL = "UPDATE empAvailability " +
+        empAvailabilitySQL = "UPDATE EmpAvailability " +
                 "SET availability =" + "'" + weeklyAvailability + "'" +
                 "WHERE empID =" + "'" + empID + "'" + ";";
 

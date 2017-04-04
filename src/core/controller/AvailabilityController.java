@@ -26,6 +26,9 @@ public class AvailabilityController {
     private Button btnSaveTimes;
 
     @FXML
+    private Button btnGotoEmployeesAvailability;
+
+    @FXML
     private Label lblLoginError;
 
     @FXML
@@ -399,6 +402,16 @@ public class AvailabilityController {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
         primaryStage.setScene(business_scene);
+        primaryStage.show();
+    }
+
+    @FXML
+    public void btnGotoEmployeesAvailability(ActionEvent event) throws IOException {
+        Parent removeEmp_parent = FXMLLoader.load(getClass().getResource("../view/EmployeesAvailability.fxml"));
+        Scene removeEmp_scene = new Scene((removeEmp_parent));
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(removeEmp_scene);
         primaryStage.show();
     }
 

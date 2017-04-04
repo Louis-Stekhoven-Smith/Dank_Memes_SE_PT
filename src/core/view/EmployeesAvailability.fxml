@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.EmployeesAvailabilityController">
+  <columns>
+    <TableColumn prefWidth="93.0" text="Name" />
+    <TableColumn prefWidth="67.0" text="Monday" />
+      <TableColumn prefWidth="74.0" text="Tuesday" />
+      <TableColumn prefWidth="79.0" text="Wednesday" />
+      <TableColumn prefWidth="73.0" text="Thursday" />
+      <TableColumn prefWidth="77.0" text="Friday" />
+      <TableColumn prefWidth="73.0" text="Saturday" />
+      <TableColumn prefWidth="64.0" text="Sunday" />
+  </columns>
+</TableView>

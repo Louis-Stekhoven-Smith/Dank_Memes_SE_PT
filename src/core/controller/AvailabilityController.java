@@ -108,16 +108,16 @@ public class AvailabilityController {
     private String dayAvailability = "";
     private int empID = -1;
 
-    /** Saves availability to the currently selected employee */
+    /**
+     * Saves availability to the currently selected employee
+     */
     public Boolean btnSaveTimes(ActionEvent event) throws IOException {
 
-        if(empID < 1){
+        if (empID < 1) {
             lblLoginError.setText("No Employee selected");
             return false;
             /* no emp loaded */
-        }
-        else {
-            Availability availability = new Availability();
+        } else {
 
             setMonday();
             setTuesday();
@@ -127,28 +127,31 @@ public class AvailabilityController {
             setSatuerday();
             setSunday();
 
-            if (!availability.addAvailability(dayAvailability,empID)) {
+            if (!Availability.addAvailability(dayAvailability, empID)) {
+                lblLoginError.setText("Failure - Database maybe locked!!");
                 return false;
+            }else{
+                lblLoginError.setText("Success!!");
+                dayAvailability = "";
+                return true;
             }
-            lblLoginError.setText("Success!!");
-            dayAvailability = "";
-            return true;
         }
     }
 
 
-    /** loads in an employee to alter there availability  */
+    /**
+     * loads in an employee to alter there availability
+     */
     public void loadEmp(ActionEvent event) throws IOException {
         String empName;
         char first;
 
         empName = txtEmployeeName.getCharacters().toString();
 
-        if(empName.isEmpty()){
+        if (empName.isEmpty()) {
             System.out.println("No input given");
             lblLoginError.setText("Employee does not exist");
-        }
-        else {
+        } else {
 
         /* Chaptalize first char */
             first = Character.toUpperCase(empName.charAt(0));
@@ -159,15 +162,176 @@ public class AvailabilityController {
                     empNameDisplay.setText(empName);
                     System.out.println("loaded empId: " + empID);
                     lblLoginError.setText("");
+
+                    removeDisplayedAvailablity();
+                    loadCurrentAvailability();
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
             }
+            /*TODO if emp already has availability load in to checkboxes */
+
         }
     }
 
-    /*TODO if emp already has availability load in to checkboxes */
+    /**
+     * Loads the current availability set for the given
+     * employee
+     */
+    private void loadCurrentAvailability() {
+        String currentAvailability;
+        String[] days;
+        int type, dayOfTheWeek = 0;
+        final char AVAILABLE = '1';
+        final int MORNING = 1, AFTERNOON = 2, EVENING = 3;
+        currentAvailability = Availability.getAvailability(empID);
+
+        days = currentAvailability.split(",");
+
+        for (String day : days) {
+
+            dayOfTheWeek++;
+            day.toCharArray();
+
+            type = 0;
+            for (char shift : day.toCharArray()) {
+                type++;
+                if (shift == AVAILABLE && type == MORNING) {
+                    loadShiftMorning(dayOfTheWeek);
+                }
+                if (shift == AVAILABLE && type == AFTERNOON) {
+                    loadShiftAfternoon(dayOfTheWeek);
+                }
+                if (shift == AVAILABLE && type == EVENING) {
+                    loadShiftEvening(dayOfTheWeek);
+                }
+            }
+        }
+    }
+
+    /**
+     * sets a morning shift
+     */
+    private void loadShiftMorning(int dayOfTheWeek) {
+
+        switch (dayOfTheWeek) {
+            case 1:
+                monMorning.setSelected(true);
+                break;
+            case 2:
+                tueMorning.setSelected(true);
+                break;
+            case 3:
+                wedMorning.setSelected(true);
+                break;
+            case 4:
+                thurMorning.setSelected(true);
+                break;
+            case 5:
+                friMorning.setSelected(true);
+                break;
+            case 6:
+                satMorning.setSelected(true);
+                break;
+            case 7:
+                sunMorning.setSelected(true);
+                break;
+            default:
+                System.out.println("trying to load shift for unknown day");
+        }
+    }
+
+    /**
+     * sets a afternoon shift
+     */
+    private void loadShiftAfternoon(int dayOfTheWeek) {
+
+        switch (dayOfTheWeek) {
+            case 1:
+                monAfternoon.setSelected(true);
+                break;
+            case 2:
+                tueAfternoon.setSelected(true);
+                break;
+            case 3:
+                wedAfternoon.setSelected(true);
+                break;
+            case 4:
+                thurAfternoon.setSelected(true);
+                break;
+            case 5:
+                friAfternoon.setSelected(true);
+                break;
+            case 6:
+                satAfternoon.setSelected(true);
+                break;
+            case 7:
+                sunAfternoon.setSelected(true);
+                break;
+            default:
+                System.out.println("trying to load shift for unknown day");
+        }
+    }
+
+    /**
+     * sets a evening shift
+     */
+    private void loadShiftEvening(int dayOfTheWeek) {
+        switch (dayOfTheWeek) {
+            case 1:
+                monEvening.setSelected(true);
+                break;
+            case 2:
+                tueEvening.setSelected(true);
+                break;
+            case 3:
+                wedEvening.setSelected(true);
+                break;
+            case 4:
+                thurEvening.setSelected(true);
+                break;
+            case 5:
+                friEvening.setSelected(true);
+                break;
+            case 6:
+                satEvening.setSelected(true);
+                break;
+            case 7:
+                sunEvening.setSelected(true);
+                break;
+            default:
+                System.out.println("trying to load shift for unknown day");
+        }
+    }
+
+    /**
+     * removes currently loaded availablity
+     */
+    private void removeDisplayedAvailablity() {
+
+        monMorning.setSelected(false);
+        tueMorning.setSelected(false);
+        wedMorning.setSelected(false);
+        thurMorning.setSelected(false);
+        friMorning.setSelected(false);
+        satMorning.setSelected(false);
+        sunMorning.setSelected(false);
+        monAfternoon.setSelected(false);
+        tueAfternoon.setSelected(false);
+        wedAfternoon.setSelected(false);
+        thurAfternoon.setSelected(false);
+        friAfternoon.setSelected(false);
+        satAfternoon.setSelected(false);
+        sunAfternoon.setSelected(false);
+        monEvening.setSelected(false);
+        tueEvening.setSelected(false);
+        wedEvening.setSelected(false);
+        thurEvening.setSelected(false);
+        friEvening.setSelected(false);
+        satEvening.setSelected(false);
+        sunEvening.setSelected(false);
+    }
 
     /** Helpers */
     /** sets data for sunday */

@@ -1,5 +1,8 @@
 package core.model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by louie on 31/03/2017.
  */
@@ -25,6 +28,27 @@ public class Availability {
         }
         empAvailabilitySQL = "";
         return true;
+    }
+
+    /** Gets an employees current availability. If emp doesn't exist return null
+     *
+     * @param SQLString
+     * @param empID
+     * @return String containing weekly availability
+     */
+    public static String getAvailability( int empID){
+        ResultSet rs;
+
+        String findEmpSQL = "SELECT availability FROM empAvailability WHERE empID = " + "'" + empID + "'";
+
+        rs = Database.queryDatabase(findEmpSQL);
+
+        try {
+            return rs.getString("availability");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /** Injects string input into an SQL statement

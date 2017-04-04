@@ -115,7 +115,9 @@ public class AvailabilityController {
     private String dayAvailability = "";
     private int empID = -1;
 
-    /** Saves availability to the currently selected employee */
+    /**
+     * Saves availability to the currently selected employee
+     */
     public Boolean btnSaveTimes(ActionEvent event) throws IOException {
 
         log.debug("Save times button clicked");
@@ -137,8 +139,8 @@ public class AvailabilityController {
             setSaturday();
             setSunday();
 
-            if (!availability.addAvailability(dayAvailability,empID)) {
-                lblLoginError.setText("Failure - Database maybe locked!!");
+            if (!Availability.addAvailability(dayAvailability,empID)) {
+                lblLoginError.setText("Failure");
                 log.debug("Returned to controller, add availability failed.");
                 return false;
             }else{
@@ -201,24 +203,26 @@ public class AvailabilityController {
         final int MORNING = 1, AFTERNOON = 2, EVENING = 3;
         currentAvailability = Availability.getAvailability(empID);
 
-        days = currentAvailability.split(",");
+        if(!currentAvailability.isEmpty()){
+            days = currentAvailability.split(",");
 
-        for (String day : days) {
+            for (String day : days) {
 
-            dayOfTheWeek++;
-            day.toCharArray();
+                dayOfTheWeek++;
+                day.toCharArray();
 
-            type = 0;
-            for (char shift : day.toCharArray()) {
-                type++;
-                if (shift == AVAILABLE && type == MORNING) {
-                    loadShiftMorning(dayOfTheWeek);
-                }
-                if (shift == AVAILABLE && type == AFTERNOON) {
-                    loadShiftAfternoon(dayOfTheWeek);
-                }
-                if (shift == AVAILABLE && type == EVENING) {
-                    loadShiftEvening(dayOfTheWeek);
+                type = 0;
+                for (char shift : day.toCharArray()) {
+                    type++;
+                    if (shift == AVAILABLE && type == MORNING) {
+                        loadShiftMorning(dayOfTheWeek);
+                    }
+                    if (shift == AVAILABLE && type == AFTERNOON) {
+                        loadShiftAfternoon(dayOfTheWeek);
+                    }
+                    if (shift == AVAILABLE && type == EVENING) {
+                        loadShiftEvening(dayOfTheWeek);
+                    }
                 }
             }
         }

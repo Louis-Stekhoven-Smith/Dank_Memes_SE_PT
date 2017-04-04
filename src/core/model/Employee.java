@@ -17,6 +17,13 @@ public class Employee {
 
     public static int addEmployee(String name, String employeeRole, String email, String phone){
 
+        char first;
+
+        /* Chaptalize first char */
+        first = Character.toUpperCase(name.charAt(0));
+        name = first + name.substring(1);
+
+
         log.debug("Inside addEmployee Method.");
         log.info("Adding employee details: " + name + " " + employeeRole + " " + email + " " + phone);
 
@@ -33,20 +40,50 @@ public class Employee {
             return -1;
         }
 
-        String employeeDetailsSQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?,"
-                                     + businessID + "," +
-                                    "'" + name + "'," +
-                                    "'" + employeeRole + "'," +
-                                    "'" + email + "'," +
-                                    "'" + phone  +"')";
+        String employeeDetailsSQL = "INSERT INTO employeeDetails(empID, businessID, name, " +
+                "employeeRole, email, phone) values(?,"
+                + businessID + "," +
+                "'" + name + "'," +
+                "'" + employeeRole + "'," +
+                "'" + email + "'," +
+                "'" + phone  +"')";
 
         if(Database.updateDatabase(employeeDetailsSQL)){
-            log.debug("Successfully added employee, returning to controller");
-            return 1;
+            log.debug("Successfully added employee");
+            if(createEmployeeAvailability(name)){
+                return 1;
+            }
+            return 0;
         }
-        log.debug("Failed to added employee, returning to controller");
+        log.debug("Failed to added employee");
         return 0;
 
+    }
+
+
+    /** Add employee to the availability table */
+    private static boolean createEmployeeAvailability(String name) {
+
+        int empID;
+
+        try {
+            empID = findEmployee(name);
+
+            String employeeAvailablitySQL = "INSERT INTO empAvailability(empID, availability) values(" +
+                    "'" + empID + "'" + "," +
+                    "'000,000,000,000,000,000,000')";
+
+            if (Database.updateDatabase(employeeAvailablitySQL)) {
+                log.debug("Successfully added employee availability, returning to controller");
+                return true;
+            }
+            log.debug("Failed to added availability employee, returning to controller");
+            return false;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
 
     }
 

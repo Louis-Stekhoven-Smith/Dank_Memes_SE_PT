@@ -78,7 +78,7 @@ public class Availability {
             log.debug("Returning false");
             return false;
         }
-        empAvailabilitySQL = "UPDATE EmpAvailability " +
+        empAvailabilitySQL = "UPDATE empAvailability " +
                 "SET availability =" + "'" + weeklyAvailability + "'" +
                 "WHERE empID =" + "'" + empID + "'" + ";";
 

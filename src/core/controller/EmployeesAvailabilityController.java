@@ -103,8 +103,6 @@ public class EmployeesAvailabilityController {
         });
 
         table.setItems(getEmpAvailability());
-
-
     }
 
     /** Format's table cells */
@@ -151,8 +149,6 @@ public class EmployeesAvailabilityController {
             return null;
         }
         return empAvailabilities;
-
-
     }
 
     /** Takes user back to AddAvailability screen */

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="380.0" prefWidth="600.0" style="-fx-background-image: url('http://i.imgur.com/ijde5mN.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AvailBookingsController">
+   <children>
+      <DatePicker fx:id="dpBookingDate" layoutX="286.0" layoutY="51.0" onAction="#showDate" prefHeight="33.0" prefWidth="179.0" />
+      <Label fx:id="lblName1" layoutX="57.0" layoutY="207.0" text="-" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label fx:id="lblName2" layoutX="57.0" layoutY="276.0" text="-" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="173.0" layoutY="144.0" text="Morning" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="317.0" layoutY="144.0" text="Midday" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="456.0" layoutY="144.0" text="Evening" textFill="#1565c0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="169.0" layoutY="54.0" text="Choose Date" textFill="#2196f3">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnMorning1" layoutX="157.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="-" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMidday1" layoutX="297.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="-" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEvening1" layoutX="437.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="-" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMorning2" layoutX="157.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="-" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMidday2" layoutX="297.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="-" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEvening2" layoutX="437.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f1f1f1;" text="-" textFill="#1565c0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblCurrentService" layoutX="73.0" layoutY="7.0" text="Current Service">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBack" layoutX="537.0" layoutY="12.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: #f1f1f1;" text="BACK">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label layoutX="14.0" layoutY="7.0" text="Service:">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

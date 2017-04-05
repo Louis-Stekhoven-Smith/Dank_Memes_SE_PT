@@ -180,8 +180,10 @@ public class AvailabilityController {
 
                     removeDisplayedAvailablity();
                     loadCurrentAvailability();
+                } else {
+                    log.debug("Returned to controller, failed to find and load employee");
                 }
-                log.debug("Returned to controller, failed to find and load employee");
+
             } catch (SQLException e) {
                 log.error("SQL ERROR: " + e.getMessage());
                 e.printStackTrace();

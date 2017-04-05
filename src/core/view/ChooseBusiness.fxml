@@ -18,5 +18,10 @@
       <Button fx:id="btnBusiness2" layoutX="52.0" layoutY="220.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(&quot;http://i.imgur.com/R7Q7J72.png&quot;);" />
       <Button fx:id="btnBusiness3" layoutX="52.0" layoutY="330.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(&quot;http://i.imgur.com/bKUKnPX.png&quot;);" />
       <Button fx:id="btnBusiness4" layoutX="52.0" layoutY="440.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(&quot;http://i.imgur.com/zjjxqag.png&quot;);" />
+      <Button fx:id="btnBack" layoutX="322.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: #f1f1f1;" text="BACK">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

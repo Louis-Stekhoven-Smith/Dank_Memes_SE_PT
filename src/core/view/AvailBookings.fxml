@@ -65,14 +65,19 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Label fx:id="lblCurrentService" layoutX="17.0" layoutY="14.0" text="Current Service">
+      <Label fx:id="lblCurrentService" layoutX="73.0" layoutY="7.0" text="Current Service">
          <font>
-            <Font size="14.0" />
+            <Font name="System Italic" size="14.0" />
          </font>
       </Label>
       <Button fx:id="btnBack" layoutX="537.0" layoutY="12.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: #f1f1f1;" text="BACK">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
+      <Label layoutX="14.0" layoutY="7.0" text="Service:">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

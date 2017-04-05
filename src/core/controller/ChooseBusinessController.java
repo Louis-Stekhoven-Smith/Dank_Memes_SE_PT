@@ -16,6 +16,8 @@ import java.io.IOException;
 public class ChooseBusinessController {
     @FXML
     private Button btnBusiness1;
+    @FXML
+    private Button btnBack;
 
     int businessChoice = 0;
 
@@ -30,6 +32,14 @@ public class ChooseBusinessController {
         primaryStage.setScene(viewBookings_scene);
         primaryStage.show();
         return businessChoice;
+    }
 
+    public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{
+        Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/LoginPage.fxml"));
+        Scene viewBookings_scene = new Scene(viewBookings_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(viewBookings_scene);
+        primaryStage.show();
     }
 }

@@ -112,5 +112,14 @@ public class serviceTypeController {
         return type;
     }
 
+    public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{
+        Parent LoginSuccess_parent = FXMLLoader.load(getClass().getResource("../view/ChooseBusiness.fxml"));
+        Scene LoginSuccess_scene = new Scene (LoginSuccess_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(LoginSuccess_scene);
+        primaryStage.show();
+    }
+
 
 }

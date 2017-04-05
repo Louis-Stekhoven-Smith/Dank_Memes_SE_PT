@@ -70,7 +70,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnBack" layoutX="537.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: #f1f1f1;" text="BACK">
+      <Button fx:id="btnBack" layoutX="537.0" layoutY="12.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: #f1f1f1;" text="BACK">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,6 +68,7 @@ public class AvailBookingsController {
     @FXML
     public void initialize(){
         System.out.println("AvailBookingsController PAGE SHOW SHOWING!");
+        lblCurrentService.setText(serviceTypeController.type);
     }
 
     public void showDate(ActionEvent event) throws SQLException{
@@ -82,41 +85,97 @@ public class AvailBookingsController {
         displayTimes(chosenType, finalDate);
     }
 
-    public void displayTimes(String chosenType, String finalDate) throws SQLException{
-        System.out.println("Load "+chosenType+" employee & times...");
+    public void displayTimes(String chosenType, String finalDate) throws SQLException {
+        System.out.println("Load " + chosenType + " employee & times...");
+
+        ResultSet count;
+        String counter;
+        String findRoleTypeCount = "SELECT count(*) AS total FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
+        count = Database.queryDatabase(findRoleTypeCount);
+        counter = count.getString("total");
+        System.out.println("TOTAL COUNT OF THIS ROLE " + counter);
+        if (counter.equals("1")) {
+            singleCountDisplayTimes(chosenType,finalDate);
+
+        } else {
+
+            ResultSet rs;
+            String name;
+            String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
+            rs = Database.queryDatabase(findEmpNameSQL);
+            String[] myArray = new String[2];
+            for (int i = 0; i < myArray.length; i++) {
+                rs.next();
+                name = rs.getString("name");
+                myArray[i] = name;
+            }
+
+            ResultSet rs1;
+            String empID;
+            String findempIDSQL = "SELECT empID from employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
+            rs1 = Database.queryDatabase(findempIDSQL);
+            String[] myArray2 = new String[2];
+            ;
+            for (int i = 0; i < myArray2.length; i++) {
+                rs1.next();
+                empID = rs1.getString("empID");
+                myArray2[i] = empID;
+            }
+
+            String firstID = myArray2[0];
+            String secondID = myArray2[1];
+            ResultSet rs2;
+            String availability;
+            String[] myArray3 = new String[2];
+            ;
+            for (int i = 0; i < myArray3.length; i++) {
+                String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID=" + "'" + myArray2[i] + "'";
+                rs2 = Database.queryDatabase(findAvailabilitySQL);
+                rs2.next();
+                availability = rs2.getString("availability");
+                myArray3[i] = availability;
+            }
+            setNameLabels(myArray, myArray3, finalDate);
+        }
+    }
+
+    public void singleCountDisplayTimes(String chosenType, String finalDate) throws SQLException {
         ResultSet rs;
         String name;
-        String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole="+"'"+chosenType+"'";
+        String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
         rs = Database.queryDatabase(findEmpNameSQL);
-        String[] myArray = new String[2];
-        for (int i=0; i<myArray.length;i++) {
+        String[] myArray = new String[1];
+        for (int i = 0; i < myArray.length; i++) {
             rs.next();
             name = rs.getString("name");
-            myArray[i]=name;
+            myArray[i] = name;
         }
         ResultSet rs1;
         String empID;
-        String findempIDSQL = "SELECT empID from employeeDetails WHERE employeeRole="+"'"+chosenType+"'";
+        String findempIDSQL = "SELECT empID from employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
         rs1 = Database.queryDatabase(findempIDSQL);
-        String[] myArray2 = new String[2];;
-        for (int i=0; i<myArray2.length;i++) {
+        String[] myArray2 = new String[1];
+        ;
+        for (int i = 0; i < myArray2.length; i++) {
             rs1.next();
             empID = rs1.getString("empID");
             myArray2[i] = empID;
         }
+
         String firstID = myArray2[0];
-        String secondID = myArray2[1];
         ResultSet rs2;
         String availability;
-        String[] myArray3 = new String[2];;
-        for (int i=0; i<myArray3.length;i++) {
-            String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID="+"'"+myArray2[i]+"'";
+        String[] myArray3 = new String[1];
+        ;
+        for (int i = 0; i < myArray3.length; i++) {
+            String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID=" + "'" + myArray2[i] + "'";
             rs2 = Database.queryDatabase(findAvailabilitySQL);
             rs2.next();
             availability = rs2.getString("availability");
             myArray3[i] = availability;
         }
-        setNameLabels(myArray, myArray3, finalDate);
+        setNameLabelsSingleCount(myArray,myArray3,finalDate);
+
     }
 
     public void setNameLabels(String[] myArray, String[] myArray3, String finalDate){
@@ -170,6 +229,45 @@ public class AvailBookingsController {
             String availabilityTimes2 = values2[6];
             setTimeLabels1(availabilityTimes);
             setTimeLabels2(availabilityTimes2);
+        } else {
+            System.out.println("fail1");
+        }
+
+    }
+
+    public void setNameLabelsSingleCount(String[] myArray, String[] myArray3, String finalDate){
+        System.out.println(Arrays.toString(myArray));
+        System.out.println(Arrays.toString(myArray3));
+        System.out.println(myArray3.length);
+        lblName1.setText(myArray[0]);
+
+        String times1 = myArray3[0];
+
+        String[] values = times1.split(",");
+        System.out.println(Arrays.toString(values));
+
+
+        if (finalDate.equals("Mon")){
+            String availabilityTimes = values[0];
+            setTimeLabels1(availabilityTimes);
+        } else if (finalDate.equals("Tue")) {
+            String availabilityTimes = values[1];
+            setTimeLabels1(availabilityTimes);
+        } else if (finalDate.equals("Wed")) {
+            String availabilityTimes = values[2];
+            setTimeLabels1(availabilityTimes);
+        } else if (finalDate.equals("Thu")) {
+            String availabilityTimes = values[3];
+            setTimeLabels1(availabilityTimes);
+        } else if (finalDate.equals("Fri")) {
+            String availabilityTimes = values[4];
+            setTimeLabels1(availabilityTimes);
+        } else if (finalDate.equals("Sat")) {
+            String availabilityTimes = values[5];
+            setTimeLabels1(availabilityTimes);
+        } else if (finalDate.equals("Sun")) {
+            String availabilityTimes = values[6];
+            setTimeLabels1(availabilityTimes);
         } else {
             System.out.println("fail1");
         }
@@ -252,5 +350,14 @@ public class AvailBookingsController {
         } else {
             System.out.println("fail3");
         }
+    }
+
+    public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{
+        Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/ServiceType.fxml"));
+        Scene viewBookings_scene = new Scene(viewBookings_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(viewBookings_scene);
+        primaryStage.show();
     }
 }

@@ -28,8 +28,10 @@ public class Main extends Application{
         log.debug("Beginning Program");
 
         /* to do driver */
-        Database.setupDatabase();
-        launch(args);
+        if(Database.setupDatabase()){
+            launch(args);
+        }
+
 
 
     }

@@ -259,10 +259,18 @@ public class Database {
                             "'" + "rachel@saloon.com" + "'," +
                             "'" + "0429883772" + "')";
 
+
+        String employeeAvailablitySQL = "INSERT INTO empAvailability(empID, availability) values(?," +
+                "'000,000,000,000,000,000,000')";
+
         updateDatabase(emp1SQL);
+        updateDatabase(employeeAvailablitySQL);
         updateDatabase(emp2SQL);
+        updateDatabase(employeeAvailablitySQL);
         updateDatabase(emp3SQL);
+        updateDatabase(employeeAvailablitySQL);
         updateDatabase(emp4SQL);
+        updateDatabase(employeeAvailablitySQL);
         updateDatabase(emp5SQL);
 
     }

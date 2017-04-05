@@ -23,13 +23,14 @@ public class Database {
 
     private static final Logger log = LogManager.getLogger(Database.class.getName());
 
-    public static void setupDatabase(){
+    public static boolean setupDatabase(){
         log.debug("Inside setupDatabase Method.");
         try{
             Class.forName(DB_DRIVER);
         }
         catch (ClassNotFoundException e){
             log.error("Database Driver not found.");
+            return false;
         }
         try{
             con = DriverManager.getConnection(DB_CONNECTION);
@@ -50,7 +51,10 @@ public class Database {
         }
         catch (SQLException e){
             log.error("Failed to create tables: " + e.getMessage());
+            return false;
         }
+
+        return true;
 
     }
 

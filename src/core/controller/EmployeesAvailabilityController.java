@@ -5,7 +5,6 @@ import core.model.dataClasses.EmpAvailability;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
 
@@ -60,6 +58,7 @@ public class EmployeesAvailabilityController {
 
     @FXML
     private TableColumn SatCol;
+
     @FXML
     private TableColumn SunCol;
 
@@ -127,10 +126,11 @@ public class EmployeesAvailabilityController {
      * @return ObservableList<EmpAvailability>
      */
     public ObservableList<EmpAvailability> getEmpAvailability() {
+
         ObservableList<EmpAvailability>  empAvailabilities = FXCollections.observableArrayList();
 
         ResultSet rs;
-        String empsAvailability,name, getEmpAvailability;
+        String empsAvailability, name, getEmpAvailability;
 
         getEmpAvailability = "SELECT employeeDetails.name, empAvailability.availability FROM employeeDetails, empAvailability" +
                 " WHERE employeeDetails.empID = empAvailability.empID ";

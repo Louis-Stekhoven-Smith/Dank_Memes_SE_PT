@@ -44,6 +44,7 @@ public class Database {
                 createLoginTable(state);
                 createBusinessDetailsTable(state);
                 createEmpAvailability(state);
+                createBookingsTable(state);
                 createEmployeeDetTable(state);
 
 
@@ -141,6 +142,28 @@ public class Database {
                     " PRIMARY KEY (custID), " +
                     " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             custDetails.execute(sqlCustDetails);
+        }
+    }
+
+    private static void createBookingsTable(Statement state) throws SQLException {
+        log.debug("Inside createBookingsTable");
+        ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='bookingDetails'");
+        if(!rs.next()) {
+            log.debug("bookings table does not exist. Creating now...");
+            Statement bookingTable = con.createStatement();
+            String bookingSQL = "CREATE TABLE bookingDetails " +
+                    "(bookingID INTEGER not NULL, " +
+                    " custID INTEGER not NULL, " +
+                    " businessID INTEGER not NULL, " +
+                    " empID INTEGER not NULL, " +
+                    " bookingTime VARCHAR(5), " +
+                    " bookingDate VARCHAR(8), " +
+                    " bookingType VARCHAR(20), " +
+                    " PRIMARY KEY (bookingID), " +
+                    " FOREIGN KEY (custID) REFERENCES customerDetails (custID), " +
+                    " FOREIGN KEY (businessID) REFERENCES businessDetails (BusinessID), " +
+                    " FOREIGN KEY (empID) REFERENCES employeeDetails (empID))";
+            bookingTable.execute(bookingSQL);
         }
     }
 
@@ -276,6 +299,52 @@ public class Database {
         updateDatabase(emp4SQL);
         updateDatabase(employeeAvailablitySQL);
         updateDatabase(emp5SQL);
+
+        String booking1SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + "12:50" + "'," +
+                            "'" + "29/04/17" + "'," +
+                            "'" + "Female cut" + "')";
+
+        String booking2SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 2 + "'," +
+                            "'" + "15:30" + "'," +
+                            "'" + "01/05/17" + "'," +
+                            "'" + "Male Cut" + "')";
+
+        String booking3SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 3 + "'," +
+                            "'" + "09:00" + "'," +
+                            "'" + "10/05/17" + "'," +
+                            "'" + "Blow" + "')";
+
+        String booking4SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 4 + "'," +
+                            "'" + "19:10" + "'," +
+                            "'" + "12/05/17" + "'," +
+                            "'" + "Massage Wash" + "')";
+
+        String booking5SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 5 + "'," +
+                            "'" + "10:00" + "'," +
+                            "'" + "20/05/17" + "'," +
+                            "'" + "Female cut" + "')";
+
+        updateDatabase(booking1SQL);
+        updateDatabase(booking2SQL);
+        updateDatabase(booking3SQL);
+        updateDatabase(booking4SQL);
+        updateDatabase(booking5SQL);
 
     }
 }

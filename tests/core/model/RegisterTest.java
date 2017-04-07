@@ -163,21 +163,21 @@ public class RegisterTest {
         HashMap<String, String> incorrectPhoneNo = new HashMap<String, String>();
 
         correctPhoneNo1.put("name", "test");
-        correctPhoneNo1.put("userName", "OldBoiSmokey");
+        correctPhoneNo1.put("userName", "oldboismokey");
         correctPhoneNo1.put("password1", "H123abcZ");
         correctPhoneNo1.put("password2", "H123abcZ");
         correctPhoneNo1.put("address", "test");
         correctPhoneNo1.put("phoneNo", "0400123456");
 
         correctPhoneNo2.put("name", "test");
-        correctPhoneNo2.put("userName", "OldBoiSmokey");
+        correctPhoneNo2.put("userName", "oldboismokey");
         correctPhoneNo2.put("password1", "H123abcZ");
         correctPhoneNo2.put("password2", "H123abcZ");
         correctPhoneNo2.put("address", "test");
         correctPhoneNo2.put("phoneNo", "+61400123456");
 
         incorrectPhoneNo.put("name", "test");
-        incorrectPhoneNo.put("userName", "OldBoiSmokey");
+        incorrectPhoneNo.put("userName", "oldboismokey");
         incorrectPhoneNo.put("password1", "H123abcZ");
         incorrectPhoneNo.put("password2", "H123abcZ");
         incorrectPhoneNo.put("address", "test");
@@ -205,7 +205,7 @@ public class RegisterTest {
         userNameExists.put("phoneNo", "0400123456");
 
         userNameFree.put("name", "test");
-        userNameFree.put("userName", "YoungLasGrilled");
+        userNameFree.put("userName", "nottaken");
         userNameFree.put("password1", "H123abcZ");
         userNameFree.put("password2", "H123abcZ");
         userNameFree.put("address", "test");
@@ -216,8 +216,8 @@ public class RegisterTest {
 
         //Testing for a return of 5 meaning the username is free
         assertEquals(Register.attemptOutcome.SUCCESS, testRegister.registerAttempt(userNameFree));
-        String deleteSQL = "DELETE FROM customerDetails WHERE userName = 'YoungLasGrilled'";
-        String deleteSQL1 = "DELETE FROM customerLogin WHERE userName = 'YoungLasGrilled'";
+        String deleteSQL = "DELETE FROM customerDetails WHERE userName = 'nottaken'";
+        String deleteSQL1 = "DELETE FROM userLogin WHERE userName = 'nottaken'";
 
         db.updateDatabase(deleteSQL);
         db.updateDatabase(deleteSQL1);
@@ -241,7 +241,7 @@ public class RegisterTest {
         assertEquals(Register.attemptOutcome.SUCCESS, testRegister.registerAttempt(registerCustomer));
 
         String deleteSQL3 = "DELETE FROM customerDetails WHERE userName = " + "'YoungLasGrilled'";
-        String deleteSQL4 = "DELETE FROM customerLogin WHERE userName = " + "'YoungLasGrilled'";
+        String deleteSQL4 = "DELETE FROM userLogin WHERE userName = " + "'YoungLasGrilled'";
         db.updateDatabase(deleteSQL3);
         db.updateDatabase(deleteSQL4);
 

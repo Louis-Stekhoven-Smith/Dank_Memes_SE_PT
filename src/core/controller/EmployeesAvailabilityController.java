@@ -47,6 +47,9 @@ public class EmployeesAvailabilityController {
     private TableColumn ShiftCol;
 
     @FXML
+    private Button btnBackToHomePage;
+
+    @FXML
     private TableColumn MonCol;
     @FXML
     private TableColumn TueCol;
@@ -155,6 +158,17 @@ public class EmployeesAvailabilityController {
     @FXML
     public void btnBackToAddAvailability(ActionEvent event) throws IOException {
         Parent removeEmp_parent = FXMLLoader.load(getClass().getResource("../view/AddAvailability.fxml"));
+        Scene removeEmp_scene = new Scene((removeEmp_parent));
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(removeEmp_scene);
+        primaryStage.show();
+    }
+
+    /** Takes user back to main menu screen */
+    @FXML
+    public void btnBackToHomePage(ActionEvent event) throws IOException {
+        Parent removeEmp_parent = FXMLLoader.load(getClass().getResource("../view/BusinessHome.fxml"));
         Scene removeEmp_scene = new Scene((removeEmp_parent));
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();

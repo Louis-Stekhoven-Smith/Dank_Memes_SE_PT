@@ -15,6 +15,7 @@ public class ViewBookings {
         this.bookingID = Integer.toString(bookingID);
         String eName, cName;
         custName = getCustName(custID);
+        System.out.println(custName);
         empName = getEmpName(empID);
         this.type = type;
         this.time = time;

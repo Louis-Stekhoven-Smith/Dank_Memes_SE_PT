@@ -61,9 +61,9 @@ public class ViewBookingsController {
      * availability */
     public void initialize(){
 
-        BookingCol.setCellValueFactory(new PropertyValueFactory<>("Booking No."));
-        CustCol.setCellValueFactory(new PropertyValueFactory<>("Customer name"));
-        EmpCol.setCellValueFactory(new PropertyValueFactory<>("Employee name"));
+        BookingCol.setCellValueFactory(new PropertyValueFactory<>("bookingID"));
+        CustCol.setCellValueFactory(new PropertyValueFactory<>("custName"));
+        EmpCol.setCellValueFactory(new PropertyValueFactory<>("empName"));
         TypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
         DateCol.setCellValueFactory(new PropertyValueFactory<>("Date"));
         TimeCol.setCellValueFactory(new PropertyValueFactory<>("Time"));

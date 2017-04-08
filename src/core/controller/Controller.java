@@ -337,6 +337,18 @@ public class Controller {
         primaryStage.show();
     }
 
+    @FXML
+    public void btnGotoViewBookings(ActionEvent event) throws IOException {
+        log.debug("Go to view bookings button clicked");
+        log.debug("Loading view bookings page...");
+        Parent bookings_parent = FXMLLoader.load(getClass().getResource("../view/ViewBookings.fxml"));
+        Scene bookings_scene = new Scene(bookings_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(bookings_scene);
+        primaryStage.show();
+    }
+
 
 
 }

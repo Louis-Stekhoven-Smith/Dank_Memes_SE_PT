@@ -299,6 +299,7 @@ public class Database {
         updateDatabase(emp4SQL);
         updateDatabase(employeeAvailablitySQL);
         updateDatabase(emp5SQL);
+        updateDatabase(employeeAvailablitySQL);
 
         String booking1SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
                             "'" + 1 + "'," +

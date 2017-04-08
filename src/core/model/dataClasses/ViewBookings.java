@@ -13,7 +13,6 @@ public class ViewBookings {
 
     public ViewBookings(int bookingID, int custID, int empID, String type, String time, String date){
         this.bookingID = Integer.toString(bookingID);
-        String eName, cName;
         custName = getCustName(custID);
         empName = getEmpName(empID);
         this.type = type;
@@ -54,5 +53,17 @@ public class ViewBookings {
         return empName;
     }
 
+    public String getBookingID(){return bookingID;}
+    public void setBookingID(String bookingID){this.bookingID = bookingID;}
+    public String getCustName(){return custName;}
+    public void setCustName(String custName){this.custName = custName;}
+    public String getEmpName(){return empName;}
+    public void setEmpName(String empName){this.empName = empName;}
+    public String getType(){return type;}
+    public void setType(String type){this.type = type;}
+    public String getTime(){return time;}
+    public void setTime(String time){this.time = time;}
+    public String getDate(){return date;}
+    public void setDate(String date){this.date = date;}
 
 }

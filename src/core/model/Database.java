@@ -59,7 +59,7 @@ public class Database {
 
     }
 
-    /** this should return boolean */
+    // this should return boolean
     private static void createEmployeeDetTable(Statement state) throws SQLException {
         log.debug("Inside createEmployeeDetTable");
         ResultSet rs;
@@ -87,7 +87,7 @@ public class Database {
         }
     }
 
-    /** this should return boolean */
+    // this should return boolean
     private static void createBusinessDetailsTable(Statement state) throws SQLException {
         log.debug("Inside createBusinessDetailsTable");
         ResultSet rs;
@@ -107,7 +107,7 @@ public class Database {
         }
     }
 
-    /** this should return boolean */
+    // this should return boolean
     private static void createLoginTable(Statement state) throws SQLException {
         log.debug("Inside createLoginTable");
         ResultSet rs;
@@ -200,7 +200,7 @@ public class Database {
         return res;
     }
 
-    /** this should return boolean */
+    /** Takes in an sqlstring updates, removes or inserts into the database depending on string type */
     public static Boolean updateDatabase(String sqlString){
         log.debug("Inside updateDatabase Method");
         try{

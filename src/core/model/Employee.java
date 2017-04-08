@@ -9,12 +9,25 @@ import java.sql.SQLException;
 /**
  * Created by harry on 18/03/2017.
  */
+
+/**
+ * This class handles the addition and removal of employees
+ */
 public class Employee {
 
     private static final Logger log = LogManager.getLogger(Employee.class.getName());
 
 
-
+    /**
+     * Takes in employees details as parameters,
+     * validates them and creates an sqlstring to
+     * add a new row to empDetails table in the database
+     * @param name
+     * @param employeeRole
+     * @param email
+     * @param phone
+     * @return
+     */
     public static int addEmployee(String name, String employeeRole, String email, String phone){
 
         char first;
@@ -87,6 +100,12 @@ public class Employee {
 
     }
 
+    /**
+     * Creates an sqlstring with the parameters and removes employee from the empDetails table
+     * @param empID
+     * @param name
+     * @return
+     */
     public static int removeEmployee(int empID, String name){
         log.debug("Inside removeEmployee Method.");
         String deleteSQL;
@@ -110,6 +129,13 @@ public class Employee {
 
     }
 
+    /**
+     * Returns the employeeID for removal from the name passed in.
+     * Also serves as validation to ensure that the employee exists.
+     * @param name
+     * @return
+     * @throws SQLException
+     */
     public static int findEmployee(String name) throws SQLException {
         log.debug("Inside findEmployee Method.");
         ResultSet rs;
@@ -129,6 +155,11 @@ public class Employee {
         return -1;
     }
 
+    /**
+     * Validates phone number
+     * @param phone
+     * @return
+     */
     private static boolean phoneValidation(String phone){
         log.debug("Inside phoneValidation Method. Validating phone number: " + phone);
 

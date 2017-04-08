@@ -26,6 +26,12 @@ import java.sql.ResultSet;
 /**
  * Created by harry on 7/04/2017.
  */
+
+/**
+ * Controller for ViewBookings. This controller handles the javaFX used to
+ * create a table and set data in the table which displays the booking information.
+ * works in conjunction with viewBookings class and viewBookings.fxml
+ */
 public class ViewBookingsController {
 
     private static final Logger log = LogManager.getLogger(ViewBookingsController.class.getName());

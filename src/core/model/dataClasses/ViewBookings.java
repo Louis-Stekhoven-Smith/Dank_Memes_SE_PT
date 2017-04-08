@@ -10,10 +10,24 @@ import java.sql.SQLException;
 /**
  * Created by harry on 7/04/2017.
  */
+
+/**
+ * This class is used for creating an instance of a booking used in conjunction
+ * with the viewBookingController to display bookings made to the owner of the business.
+ */
 public class ViewBookings {
     private static final Logger log = LogManager.getLogger(ViewBookings.class.getName());
     private String bookingID, custName, empName, type, time, date;
 
+    /**
+     * Constructor for a booking
+     * @param bookingID
+     * @param custID
+     * @param empID
+     * @param type
+     * @param time
+     * @param date
+     */
     public ViewBookings(int bookingID, int custID, int empID, String type, String time, String date){
         log.debug("Creating a new booking instance to view");
         this.bookingID = Integer.toString(bookingID);
@@ -25,6 +39,12 @@ public class ViewBookings {
 
     }
 
+
+    /**
+     * Method used to get a customers name from a given customerID(int)
+     * @param id
+     * @return
+     */
     public String getCustName(int id){
         log.debug("Inside getCustName method");
         String getCustNameSQL = "SELECT name FROM customerDetails WHERE custID = " + id;
@@ -42,6 +62,11 @@ public class ViewBookings {
         return custName;
     }
 
+    /**
+     * Method used to find the employees name from a given empID (int)
+     * @param id
+     * @return
+     */
     public String getEmpName(int id){
         log.debug("Inside getEmpName method");
         String getEmpNameSQL = "SELECT name FROM employeeDetails WHERE empID = " + id;

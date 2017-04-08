@@ -23,6 +23,10 @@ public class Database {
 
     private static final Logger log = LogManager.getLogger(Database.class.getName());
 
+    /**
+     * Connects to the database and creates tables if they do not exist
+     * @return
+     */
     public static boolean setupDatabase(){
         log.debug("Inside setupDatabase Method.");
         try{

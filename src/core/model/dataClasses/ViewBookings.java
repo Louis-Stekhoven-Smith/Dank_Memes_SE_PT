@@ -1,6 +1,8 @@
 package core.model.dataClasses;
 
 import core.model.Database;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,9 +11,11 @@ import java.sql.SQLException;
  * Created by harry on 7/04/2017.
  */
 public class ViewBookings {
+    private static final Logger log = LogManager.getLogger(ViewBookings.class.getName());
     private String bookingID, custName, empName, type, time, date;
 
     public ViewBookings(int bookingID, int custID, int empID, String type, String time, String date){
+        log.debug("Creating a new booking instance to view");
         this.bookingID = Integer.toString(bookingID);
         custName = getCustName(custID);
         empName = getEmpName(empID);
@@ -22,6 +26,7 @@ public class ViewBookings {
     }
 
     public String getCustName(int id){
+        log.debug("Inside getCustName method");
         String getCustNameSQL = "SELECT name FROM customerDetails WHERE custID = " + id;
         String custName;
 
@@ -38,6 +43,7 @@ public class ViewBookings {
     }
 
     public String getEmpName(int id){
+        log.debug("Inside getEmpName method");
         String getEmpNameSQL = "SELECT name FROM employeeDetails WHERE empID = " + id;
         String empName;
         ResultSet rs = Database.queryDatabase(getEmpNameSQL);

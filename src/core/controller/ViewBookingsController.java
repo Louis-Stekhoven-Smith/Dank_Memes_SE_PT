@@ -60,6 +60,7 @@ public class ViewBookingsController {
     /** Sets up TableView and populates with all employee's names and
      * availability */
     public void initialize(){
+        log.debug("Initializing the table to show bookings");
 
         BookingCol.setCellValueFactory(new PropertyValueFactory<>("bookingID"));
         CustCol.setCellValueFactory(new PropertyValueFactory<>("custName"));
@@ -101,6 +102,7 @@ public class ViewBookingsController {
      * @return ObservableList<ViewBookings>
      */
     public ObservableList<ViewBookings> getBookings() {
+        log.debug("Finding all of the bookings");
 
         ObservableList<ViewBookings> bookings = FXCollections.observableArrayList();
 
@@ -127,7 +129,7 @@ public class ViewBookingsController {
             }
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
             return null;
         }
 

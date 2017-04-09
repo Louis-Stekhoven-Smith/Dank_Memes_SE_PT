@@ -28,8 +28,6 @@ public class Controller {
     private TextField txtPassword;
     @FXML
     private Label lblLoginError;
-    @FXML
-    private Label lblLabelUser;
 
     //Loads sign up page
     @FXML

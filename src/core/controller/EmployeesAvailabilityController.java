@@ -27,25 +27,10 @@ import java.sql.ResultSet;
 public class EmployeesAvailabilityController {
 
     @FXML
-    private Parent empAvailability_parent;
-
-    @FXML
-    private VBox vbox;
-
-    @FXML
-    private Button btnBackToEmployeesAvailability;
-
-    @FXML
     private javafx.scene.control.TableView<EmpAvailability> table;
 
     @FXML
     private TableColumn NameCol;
-
-    @FXML
-    private TableColumn ShiftCol;
-
-    @FXML
-    private Button btnBackToHomePage;
 
     @FXML
     private TableColumn MonCol;

@@ -67,7 +67,7 @@ public class AvailBookingsController {
         lblCurrentService.setText(serviceTypeController.type);
     }
 
-    //formats date chosen in easier to read format
+    /**formats date chosen in easier to read format */
     public void showDate(ActionEvent event) throws SQLException{
         LocalDate ld = dpBookingDate.getValue();
         System.out.println(ld.toString());
@@ -82,7 +82,7 @@ public class AvailBookingsController {
         displayTimes(chosenType, finalDate);
     }
 
-    //shoes available employee times based on the date and the service chosen by retrieving data from the database
+    /** shows available employee times based on the date and the service chosen by retrieving data from the database */
     public void displayTimes(String chosenType, String finalDate) throws SQLException {
         System.out.println("Load " + chosenType + " employee & times...");
 
@@ -137,7 +137,7 @@ public class AvailBookingsController {
         }
     }
 
-    //display times depending if there is one employee assigned to the job
+    /**display times depending if there is one employee assigned to the job */
     public void singleCountDisplayTimes(String chosenType, String finalDate) throws SQLException {
         ResultSet rs;
         String name;
@@ -177,8 +177,9 @@ public class AvailBookingsController {
 
     }
 
-    //sets labels to the name of employee working that service
+    /** Sets labels to the name of employee working that service*/
     public void setNameLabels(String[] myArray, String[] myArray3, String finalDate){
+        String availabilityTimes,availabilityTimes2;
         System.out.println(Arrays.toString(myArray));
         System.out.println(Arrays.toString(myArray3));
         System.out.println(myArray3.length);
@@ -195,38 +196,38 @@ public class AvailBookingsController {
         System.out.println(Arrays.toString(values2));
 
         if (finalDate.equals("Mon")){
-            String availabilityTimes = values[0];
-            String availabilityTimes2 = values2[0];
+            availabilityTimes = values[0];
+            availabilityTimes2 = values2[0];
             setTimeLabels1(availabilityTimes);
             setTimeLabels2(availabilityTimes2);
         } else if (finalDate.equals("Tue")) {
-            String availabilityTimes = values[1];
-            String availabilityTimes2 = values2[1];
+            availabilityTimes = values[1];
+            availabilityTimes2 = values2[1];
             setTimeLabels1(availabilityTimes);
             setTimeLabels2(availabilityTimes2);
         } else if (finalDate.equals("Wed")) {
-            String availabilityTimes = values[2];
-            String availabilityTimes2 = values2[2];
+            availabilityTimes = values[2];
+            availabilityTimes2 = values2[2];
             setTimeLabels1(availabilityTimes);
             setTimeLabels2(availabilityTimes2);
         } else if (finalDate.equals("Thu")) {
-            String availabilityTimes = values[3];
-            String availabilityTimes2 = values2[3];
+            availabilityTimes = values[3];
+            availabilityTimes2 = values2[3];
             setTimeLabels1(availabilityTimes);
             setTimeLabels2(availabilityTimes2);
         } else if (finalDate.equals("Fri")) {
-            String availabilityTimes = values[4];
-            String availabilityTimes2 = values2[4];
+            availabilityTimes = values[4];
+            availabilityTimes2 = values2[4];
             setTimeLabels1(availabilityTimes);
             setTimeLabels2(availabilityTimes2);
         } else if (finalDate.equals("Sat")) {
-            String availabilityTimes = values[5];
-            String availabilityTimes2 = values2[5];
+            availabilityTimes = values[5];
+            availabilityTimes2 = values2[5];
             setTimeLabels1(availabilityTimes);
             setTimeLabels2(availabilityTimes2);
         } else if (finalDate.equals("Sun")) {
-            String availabilityTimes = values[6];
-            String availabilityTimes2 = values2[6];
+            availabilityTimes = values[6];
+            availabilityTimes2 = values2[6];
             setTimeLabels1(availabilityTimes);
             setTimeLabels2(availabilityTimes2);
         } else {
@@ -275,9 +276,8 @@ public class AvailBookingsController {
 
     }
 
-    //000,001,011,111,110,100
 
-    //sets the time buttons to available or N/A depending on availability
+    /**sets the time buttons to available or N/A depending on availability*/
     public void setTimeLabels1(String availabilityTimes){
         if (availabilityTimes.equals("000")){
             btnMorning1.setText("N/A");
@@ -316,7 +316,7 @@ public class AvailBookingsController {
         }
     }
 
-    //sets the time buttons to available or N/A depending on availability
+    /**sets the time buttons to available or N/A depending on availability*/
     public void setTimeLabels2(String availabilityTimes){
         if (availabilityTimes.equals("000")){
             btnMorning2.setText("N/A");
@@ -355,7 +355,7 @@ public class AvailBookingsController {
         }
     }
 
-    //goes back to services page
+    /**goes back to services page */
     public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{
         Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/ServiceType.fxml"));
         Scene viewBookings_scene = new Scene(viewBookings_parent);

@@ -14,10 +14,6 @@ import java.io.IOException;
  * Created by Konn on 31/03/2017.
  */
 public class ChooseBusinessController {
-    @FXML
-    private Button btnBusiness1;
-    @FXML
-    private Button btnBack;
 
     int businessChoice = 0;
 

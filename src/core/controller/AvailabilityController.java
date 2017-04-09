@@ -147,7 +147,7 @@ public class AvailabilityController {
             lblLoginError.setText("Employee does not exist");
         } else {
 
-        /* Chaptalize first char */
+            /* Capitalize first char */
             first = Character.toUpperCase(empName.charAt(0));
             empName = first + empName.substring(1);
 

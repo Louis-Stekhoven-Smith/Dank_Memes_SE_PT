@@ -1,10 +1,10 @@
 package core.model;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Created by louie on 31/03/2017.
@@ -40,11 +40,10 @@ public class Availability {
 
     /** Gets an employees current availability. If emp doesn't exist return null
      *
-     * @param SQLString
      * @param empID
      * @return String containing weekly availability
      */
-    public static String getAvailability( int empID){
+    public static String getAvailability(int empID){
         ResultSet rs;
 
         String findEmpSQL = "SELECT availability FROM EmpAvailability WHERE empID = " + "'" + empID + "'";

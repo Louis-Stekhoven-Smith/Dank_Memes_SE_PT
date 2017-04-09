@@ -9,12 +9,25 @@ import java.sql.SQLException;
 /**
  * Created by harry on 18/03/2017.
  */
+
+/**
+ * This class handles the addition and removal of employees
+ */
 public class Employee {
 
     private static final Logger log = LogManager.getLogger(Employee.class.getName());
 
 
-
+    /**
+     * Takes in employees details as parameters,
+     * validates them and creates an sqlstring to
+     * add a new row to empDetails table in the database
+     * @param name
+     * @param employeeRole
+     * @param email
+     * @param phone
+     * @return
+     */
     public static int addEmployee(String name, String employeeRole, String email, String phone){
 
         char first;
@@ -23,17 +36,10 @@ public class Employee {
         first = Character.toUpperCase(name.charAt(0));
         name = first + name.substring(1);
 
-
         log.debug("Inside addEmployee Method.");
         log.info("Adding employee details: " + name + " " + employeeRole + " " + email + " " + phone);
 
-
         int businessID = 1;
-        /* Maybe call a method here to retrieve what business is
-        logged in to add the business ID to the employee table
-        this will be necessary for future queries of the database where we
-        will want to retrieve the tuples of employees for specific businesses
-         */
 
         if(!phoneValidation(phone)){
             log.debug("Failed to add employee by phone validation, returning to controller");
@@ -60,7 +66,6 @@ public class Employee {
 
     }
 
-
     /** Add employee to the availability table */
     private static boolean createEmployeeAvailability(String name) {
 
@@ -84,9 +89,14 @@ public class Employee {
             e.printStackTrace();
             return false;
         }
-
     }
 
+    /**
+     * Creates an sqlstring with the parameters and removes employee from the empDetails table
+     * @param empID
+     * @param name
+     * @return
+     */
     public static int removeEmployee(int empID, String name){
         log.debug("Inside removeEmployee Method.");
         String deleteSQL;
@@ -106,10 +116,15 @@ public class Employee {
         }
         log.debug("Failed to removed employee, returning to controller.");
         return 0;
-
-
     }
 
+    /**
+     * Returns the employeeID for removal from the name passed in.
+     * Also serves as validation to ensure that the employee exists.
+     * @param name
+     * @return
+     * @throws SQLException
+     */
     public static int findEmployee(String name) throws SQLException {
         log.debug("Inside findEmployee Method.");
         ResultSet rs;
@@ -129,6 +144,11 @@ public class Employee {
         return -1;
     }
 
+    /**
+     * Validates phone number
+     * @param phone
+     * @return
+     */
     private static boolean phoneValidation(String phone){
         log.debug("Inside phoneValidation Method. Validating phone number: " + phone);
 

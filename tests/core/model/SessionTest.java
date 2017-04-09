@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SessionTest {
 
+    /*
+
     Session session = new Session("OldBoiSmokey");
     @Test
     void saveBookings() {
@@ -26,7 +28,6 @@ class SessionTest {
 
     }
 
-    /*
     @Test
     void getName() {
         assertEquals("Louis",session.getName());
@@ -34,14 +35,12 @@ class SessionTest {
     }
 
 
-*/
     @Test
     void getUsername() {
         assertEquals("OldBoiSmokey",session.getUsername());
         assertNotEquals("asd",session.getUsername());
 
     }
-/*
     @Test
     void getAddress() {
         assertEquals("123 Fake st",session.getAddress());
@@ -54,10 +53,9 @@ class SessionTest {
         assertNotEquals("asdflkjh342",session.getContactNumber());
 
     }
-*/
     @Test
     void getBooking() {
 
     }
-
+*/
 }

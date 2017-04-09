@@ -15,7 +15,6 @@ class DatabaseTest {
 
     private ResultSet rs;
 
-    /*problems with testing this code needs redesign */
     @BeforeAll
     public static void setUp() {
         Database.setupDatabase();

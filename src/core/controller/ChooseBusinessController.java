@@ -21,6 +21,7 @@ public class ChooseBusinessController {
 
     int businessChoice = 0;
 
+    //loads services page once business is selected
     @FXML
     public int btnBusinessClicked(javafx.event.ActionEvent event) throws IOException {
         businessChoice = 1;
@@ -34,6 +35,7 @@ public class ChooseBusinessController {
         return businessChoice;
     }
 
+    //goes back to main menu
     public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{
         Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/LoginPage.fxml"));
         Scene viewBookings_scene = new Scene(viewBookings_parent);

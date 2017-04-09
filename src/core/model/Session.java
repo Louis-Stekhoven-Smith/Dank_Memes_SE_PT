@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Created by louie on 11/03/2017.
  */
 public class Session {
-
+/*
     private String name, username, address, contactNumber;
     private Booking bookings[];
     private static final Logger log = LogManager.getLogger(Session.class.getName());
@@ -23,21 +23,21 @@ public class Session {
 
 
     public Boolean saveBookings(){
-        /*TODO*/
+
         return null;
     }
-
+/*
     /** Helpers */
+/*
     private void loadBookings(){
-        /*TODO*/
     }
 
     private Booking loadBooking(){
-        /*TODO*/
         return null;
     }
-
+*/
     /** find customers details and load into session */
+    /*
     private Boolean loadUserDetails() {
         log.debug("Inside loadUserDetails Method.");
 
@@ -67,19 +67,19 @@ public class Session {
         scan.close();
         return false;
     }
-
+*/
     /** Mutators */
+    /*
     public Boolean addBooking(){
-        /*TODO*/
         return null;
     }
 
     public Boolean removeBooking(){
-        /*TODO*/
         return null;
     }
-
+*/
     /** getters **/
+    /*
     public String getName(){
         return name;
     }
@@ -94,8 +94,7 @@ public class Session {
     }
 
     public Booking[] getBooking(){
-        /*TODO*/
         return null;
     }
-
+    */
 }

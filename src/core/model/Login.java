@@ -15,7 +15,7 @@ public class Login {
 
     /*TODO make username not case sensitive */
     /** Check username exists and password matches the associated username
-     * Returns -1 if authentication failed
+     * Returns -1    if authentication failed
      * Returns 2 if users is a business owner
      * Returns 1 if user is a customer */
 

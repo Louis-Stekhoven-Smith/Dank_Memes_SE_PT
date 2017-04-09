@@ -71,6 +71,7 @@ public class AvailBookingsController {
         lblCurrentService.setText(serviceTypeController.type);
     }
 
+    //formats date chosen in easier to read format
     public void showDate(ActionEvent event) throws SQLException{
         LocalDate ld = dpBookingDate.getValue();
         System.out.println(ld.toString());
@@ -85,6 +86,7 @@ public class AvailBookingsController {
         displayTimes(chosenType, finalDate);
     }
 
+    //shoes available employee times based on the date and the service chosen by retrieving data from the database
     public void displayTimes(String chosenType, String finalDate) throws SQLException {
         System.out.println("Load " + chosenType + " employee & times...");
 
@@ -139,6 +141,7 @@ public class AvailBookingsController {
         }
     }
 
+    //display times depending if there is one employee assigned to the job
     public void singleCountDisplayTimes(String chosenType, String finalDate) throws SQLException {
         ResultSet rs;
         String name;
@@ -178,6 +181,7 @@ public class AvailBookingsController {
 
     }
 
+    //sets labels to the name of employee working that service
     public void setNameLabels(String[] myArray, String[] myArray3, String finalDate){
         System.out.println(Arrays.toString(myArray));
         System.out.println(Arrays.toString(myArray3));
@@ -235,6 +239,7 @@ public class AvailBookingsController {
 
     }
 
+    //sets label to single employee name
     public void setNameLabelsSingleCount(String[] myArray, String[] myArray3, String finalDate){
         System.out.println(Arrays.toString(myArray));
         System.out.println(Arrays.toString(myArray3));
@@ -276,6 +281,7 @@ public class AvailBookingsController {
 
     //000,001,011,111,110,100
 
+    //sets the time buttons to available or N/A depending on availability
     public void setTimeLabels1(String availabilityTimes){
         if (availabilityTimes.equals("000")){
             btnMorning1.setText("N/A");
@@ -314,6 +320,7 @@ public class AvailBookingsController {
         }
     }
 
+    //sets the time buttons to available or N/A depending on availability
     public void setTimeLabels2(String availabilityTimes){
         if (availabilityTimes.equals("000")){
             btnMorning2.setText("N/A");
@@ -352,6 +359,7 @@ public class AvailBookingsController {
         }
     }
 
+    //goes back to services page
     public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{
         Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/ServiceType.fxml"));
         Scene viewBookings_scene = new Scene(viewBookings_parent);

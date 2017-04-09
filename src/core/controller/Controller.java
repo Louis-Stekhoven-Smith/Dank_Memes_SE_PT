@@ -31,7 +31,7 @@ public class Controller {
     @FXML
     private Label lblLabelUser;
 
-
+    //Loads sign up page
     @FXML
     public void btnSignUpClicked(ActionEvent event) throws IOException {
         log.debug("Sign up button clicked");
@@ -44,6 +44,7 @@ public class Controller {
         primaryStage.show();
     }
 
+    //Logs user in if the login information is correct
     @FXML
     public void btnLoginClicked (ActionEvent event) throws IOException{
         log.debug("Login button clicked, attempting to login");

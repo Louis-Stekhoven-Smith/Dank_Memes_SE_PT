@@ -13,16 +13,13 @@ import java.sql.SQLException;
  * attempts and associated tasks */
 public class Login {
 
-    /*TODO make username not case sensitive */
     /** Check username exists and password matches the associated username
      * Returns -1    if authentication failed
      * Returns 2 if users is a business owner
      * Returns 1 if user is a customer */
-
     private static final Logger log = LogManager.getLogger(Login.class.getName());
 
     public static int validateAttempt(String inputUsername, String inputPassword){
-        String loginSQL;
         ResultSet rs;
         final String CUSTOMER = "1", OWNER = "2";
         log.debug("Inside validateAttempt Method");
@@ -30,9 +27,7 @@ public class Login {
 
         inputUsername = inputUsername.toLowerCase();
 
-        loginSQL = "SELECT userName, password, type FROM userLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
-        log.debug("Querying database for username and password tuple");
-        rs = Database.queryDatabase(loginSQL);
+        rs = getResultSet(inputUsername, inputPassword);
 
         try{
             /* incorrect login details */
@@ -55,6 +50,15 @@ public class Login {
 
         log.debug("Failed login attempt, returning to controller");
         return -1;
+    }
+
+    private static ResultSet getResultSet(String inputUsername, String inputPassword) {
+        String loginSQL;
+        ResultSet rs;
+        loginSQL = "SELECT userName, password, type FROM userLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
+        log.debug("Querying database for username and password tuple");
+        rs = Database.queryDatabase(loginSQL);
+        return rs;
     }
 
     private static boolean isType(ResultSet rs, String customer) throws SQLException {

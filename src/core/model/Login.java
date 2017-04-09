@@ -22,9 +22,9 @@ public class Login {
     private static final Logger log = LogManager.getLogger(Login.class.getName());
 
     public static int validateAttempt(String inputUsername, String inputPassword){
-        String loginSQL, userName,password;
+        String loginSQL;
         ResultSet rs;
-
+        final String CUSTOMER = "1", OWNER = "2";
         log.debug("Inside validateAttempt Method");
         log.info("Validating login attempt for userName: " + inputUsername + " with password: " + inputPassword);
 
@@ -35,32 +35,29 @@ public class Login {
         rs = Database.queryDatabase(loginSQL);
 
         try{
-            if(rs.next()){
-                userName =  rs.getString("userName").toLowerCase();
-                password  = rs.getString("password");
-
-                /* do we need to do this if statment, can we not just check if rs is empty? - Louis */
-                if(userName.equals(inputUsername) && password.equals(inputPassword)){
-                    if(rs.getString("type").equals("1")){
-                        log.debug("Successful customer login, logged in as: " + inputUsername);
-                        log.debug("Returning to Controller");
-                        return 1;
-                    }
-                    if(rs.getString("type").equals("2")){
-                        log.debug("Successful owner login, logged in as: " + inputUsername);
-                        log.debug("Returning to Controller");
-                        return 2;
-                    }
-                    return -1;
-                }
+            /* incorrect login details */
+            if(!(rs.next())) {
+                return -1;
             }
+            if(isType(rs, CUSTOMER)){
+                log.debug("Successful customer login, logged in as: " + inputUsername);
+                log.debug("Returning to Controller");
+                return 1;
+            }
+            if(isType(rs, OWNER)){
+                log.debug("Successful owner login, logged in as: " + inputUsername);
+                log.debug("Returning to Controller");
+                return 2;
+                }
         }catch (SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }
 
         log.debug("Failed login attempt, returning to controller");
-
         return -1;
+    }
 
+    private static boolean isType(ResultSet rs, String customer) throws SQLException {
+        return rs.getString("type").equals(customer);
     }
 }

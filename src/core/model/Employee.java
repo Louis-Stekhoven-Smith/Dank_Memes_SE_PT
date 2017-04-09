@@ -36,17 +36,10 @@ public class Employee {
         first = Character.toUpperCase(name.charAt(0));
         name = first + name.substring(1);
 
-
         log.debug("Inside addEmployee Method.");
         log.info("Adding employee details: " + name + " " + employeeRole + " " + email + " " + phone);
 
-
         int businessID = 1;
-        /* Maybe call a method here to retrieve what business is
-        logged in to add the business ID to the employee table
-        this will be necessary for future queries of the database where we
-        will want to retrieve the tuples of employees for specific businesses
-         */
 
         if(!phoneValidation(phone)){
             log.debug("Failed to add employee by phone validation, returning to controller");
@@ -73,7 +66,6 @@ public class Employee {
 
     }
 
-
     /** Add employee to the availability table */
     private static boolean createEmployeeAvailability(String name) {
 
@@ -97,7 +89,6 @@ public class Employee {
             e.printStackTrace();
             return false;
         }
-
     }
 
     /**
@@ -125,8 +116,6 @@ public class Employee {
         }
         log.debug("Failed to removed employee, returning to controller.");
         return 0;
-
-
     }
 
     /**

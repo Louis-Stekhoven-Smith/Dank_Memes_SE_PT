@@ -50,20 +50,16 @@ public class Database {
                 createEmpAvailability(state);
                 createBookingsTable(state);
                 createEmployeeDetTable(state);
-
-
             }
         }
         catch (SQLException e){
             log.error("Failed to create tables: " + e.getMessage());
             return false;
         }
-
         return true;
-
     }
 
-    // this should return boolean
+    /** Creates employee details table in the database if none currently exist */
     private static void createEmployeeDetTable(Statement state) throws SQLException {
         log.debug("Inside createEmployeeDetTable");
         ResultSet rs;
@@ -83,15 +79,16 @@ public class Database {
             empDetails.execute(sqlEmpDetails);
 
             /*TODO*/
-             /* Just for testing remove for production !!!!!!!!!!!!!!
-             need to move this somewhere better
-             Add drop tables to the reset and move back into setup connection
-              */
+             /*Just for testing remove for production !
+             * need to move this somewhere better
+             * Add drop tables to the reset and move back into setup connection if you want database reset each
+             * time application is run
+             */
             resetDatabase();
         }
     }
 
-    // this should return boolean
+    /** Creates business details table in the database if none currently exist */
     private static void createBusinessDetailsTable(Statement state) throws SQLException {
         log.debug("Inside createBusinessDetailsTable");
         ResultSet rs;
@@ -111,7 +108,7 @@ public class Database {
         }
     }
 
-    // this should return boolean
+    /** Creates login table in the database if none currently exist */
     private static void createLoginTable(Statement state) throws SQLException {
         log.debug("Inside createLoginTable");
         ResultSet rs;

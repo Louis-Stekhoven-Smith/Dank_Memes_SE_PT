@@ -88,27 +88,7 @@ public class AvailabilityController {
     private CheckBox satEvening;
     @FXML
     private CheckBox sunEvening;
-
-
-    /*TODO - decided to remove or keep this code */
-    /*   May still use this please leave for now
-    @FXML
-    public void initialize() {
-        Date today = new Date();
-        Calendar cal = new GregorianCalendar();
-
-        cal.setTime(today);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        today = cal.getTime();
-
-        MondayDate.setText(new SimpleDateFormat("dd/MM").format(today));
-
-        cal.add(Calendar.DAY_OF_WEEK, 6 );
-        today = cal.getTime();
-
-        SundayDate.setText(new SimpleDateFormat("dd/MM").format(today));
-    }
-*/
+    
     private static final char AVAILABLE = '1';
     private static final char UNAVAILABLE = '0';
     private static final int EXISTS = 1;
@@ -167,7 +147,7 @@ public class AvailabilityController {
             lblLoginError.setText("Employee does not exist");
         } else {
 
-        /* Chaptalize first char */
+            /* Capitalize first char */
             first = Character.toUpperCase(empName.charAt(0));
             empName = first + empName.substring(1);
 
@@ -326,7 +306,7 @@ public class AvailabilityController {
     }
 
     /**
-     * removes currently loaded availablity
+     * Removes currently loaded availability
      */
     private void removeDisplayedAvailablity() {
 
@@ -358,62 +338,62 @@ public class AvailabilityController {
     private void setSunday() {
         log.debug("Inside setSunday method");
 
-        set(sunMorning.isSelected());
-        set(sunAfternoon.isSelected());
-        set(sunEvening.isSelected());
+        setDataFor(sunMorning.isSelected());
+        setDataFor(sunAfternoon.isSelected());
+        setDataFor(sunEvening.isSelected());
     }
     /** sets data for saturday */
     private void setSaturday() {
         log.debug("Inside setSaturday method");
 
-        set(satMorning.isSelected());
-        set(satAfternoon.isSelected());
-        set(satEvening.isSelected());
+        setDataFor(satMorning.isSelected());
+        setDataFor(satAfternoon.isSelected());
+        setDataFor(satEvening.isSelected());
         dayAvailability += ',';
     }
     /** sets data for friday */
     private void setFriday() {
         log.debug("Inside setFriday method");
 
-        set(friMorning.isSelected());
-        set(friAfternoon.isSelected());
-        set(friEvening.isSelected());
+        setDataFor(friMorning.isSelected());
+        setDataFor(friAfternoon.isSelected());
+        setDataFor(friEvening.isSelected());
         dayAvailability += ',';
     }
     /** sets data for thursday */
     private void setThursday() {
         log.debug("Inside setThursday method");
-        set(thurMorning.isSelected());
-        set(thurAfternoon.isSelected());
-        set(thurEvening.isSelected());
+        setDataFor(thurMorning.isSelected());
+        setDataFor(thurAfternoon.isSelected());
+        setDataFor(thurEvening.isSelected());
         dayAvailability += ',';
     }
     /** sets data for wednesday */
     private void setWednesday() {
         log.debug("Inside setWednesday method");
-        set(wedMorning.isSelected());
-        set(wedAfternoon.isSelected());
-        set(wedEvening.isSelected());
+        setDataFor(wedMorning.isSelected());
+        setDataFor(wedAfternoon.isSelected());
+        setDataFor(wedEvening.isSelected());
         dayAvailability += ',';
     }
     /** sets data for tuesday */
     private void setTuesday() {
         log.debug("Inside setTuesday method");
-        set(tueMorning.isSelected());
-        set(tueAfternoon.isSelected());
-        set(tueEvening.isSelected());
+        setDataFor(tueMorning.isSelected());
+        setDataFor(tueAfternoon.isSelected());
+        setDataFor(tueEvening.isSelected());
         dayAvailability += ',';
     }
     /** sets data for monday */
     private void setMonday() {
         log.debug("Inside setMonday method");
-        set(monMorning.isSelected());
-        set(monAfternoon.isSelected());
-        set(monEvening.isSelected());
+        setDataFor(monMorning.isSelected());
+        setDataFor(monAfternoon.isSelected());
+        setDataFor(monEvening.isSelected());
         dayAvailability += ',';
     }
     /** Sets a shifts availability e.g 8am - 12pm */
-    private void set(Boolean available){
+    private void setDataFor(Boolean available){
         if(available) {
             dayAvailability += AVAILABLE;
         }else{

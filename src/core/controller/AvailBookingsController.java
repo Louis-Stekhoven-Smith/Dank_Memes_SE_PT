@@ -236,7 +236,7 @@ public class AvailBookingsController {
 
     }
 
-    //sets label to single employee name
+    /** sets label to single employee name */
     public void setNameLabelsSingleCount(String[] myArray, String[] myArray3, String finalDate){
         System.out.println(Arrays.toString(myArray));
         System.out.println(Arrays.toString(myArray3));
@@ -276,6 +276,7 @@ public class AvailBookingsController {
 
     }
 
+    //000,001,011,111,110,100
 
     /**sets the time buttons to available or N/A depending on availability*/
     public void setTimeLabels1(String availabilityTimes){

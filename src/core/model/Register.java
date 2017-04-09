@@ -11,10 +11,17 @@ import java.util.HashMap;
  * Created by harry on 11/03/2017.
  */
 
+/**
+ * This class registers a new customer with the system and validates the data input
+ */
+
 public class Register {
 
     private static final Logger log = LogManager.getLogger(Register.class.getName());
 
+    /**
+     * An enum to return the outcome of a register attempt
+     */
     public enum attemptOutcome {
         SUCCESS(6), WRITE_FAIL(5), USERNAME_TAKEN(4), PHONENO_FAIL(3), PASSWORD_UNSATISFIED(2), PASSWORDS_DIFFERENT(1), EMPTY_FIELDS(0);
         private int value;
@@ -25,7 +32,12 @@ public class Register {
     }
 
 
-    //This function is just to make it simpler so that you don't have to call every function from main.
+    /**
+     * Calls separate methods to validate all of the data and
+     * returns an enum AttemptOutcome based on the success or failure
+     * @param customerDetailsHMap
+     * @return
+     */
     public attemptOutcome registerAttempt(HashMap customerDetailsHMap){
         log.debug("Inside registerAttempt Method.");
 
@@ -50,6 +62,11 @@ public class Register {
         else return attemptOutcome.SUCCESS;
     }
 
+    /**
+     * Validates that all of the fields have input
+     * @param custDetailsHMap
+     * @return
+     */
     private boolean isNotEmpty(HashMap custDetailsHMap){
         log.debug("Inside isNotEmpty Method.");
 
@@ -69,6 +86,11 @@ public class Register {
     }
 
 
+    /**
+     * Validates that the two passwords enter match
+     * @param custDetailsHMap
+     * @return
+     */
     private boolean passwordMatches(HashMap custDetailsHMap){
         log.debug("Inside passwordMatches Method.");
 
@@ -82,6 +104,12 @@ public class Register {
 
     }
 
+    /**
+     * Validates that the password satisfies the password criteria of
+     * at lease one uppercase, lowercase and number and be at least 8 characters long
+     * @param custDetailsHMap
+     * @return
+     */
     private boolean passwordCriteria(HashMap custDetailsHMap){
         log.debug("Inside passwordCriteria Method.");
 
@@ -100,6 +128,11 @@ public class Register {
         return true;
     }
 
+    /**
+     * Validates that the phone number entered is Australian
+     * @param custDetailsHMap
+     * @return
+     */
     private boolean phoneNoIsAus(HashMap custDetailsHMap){
         log.debug("Inside phoneNoIsAud Method.");
         String phoneNo = (String) custDetailsHMap.get("phoneNo");
@@ -112,6 +145,11 @@ public class Register {
     }
 
 
+    /**
+     * Validates that the username entered it not already taken
+     * @param custDetailsHMap
+     * @return
+     */
     private boolean userNameFree(HashMap custDetailsHMap){
         log.debug("Inside userNameFree Method.");
         //Setup with datebase
@@ -136,7 +174,11 @@ public class Register {
     }
 
 
-
+    /**
+     * Creates an sqlString with the new customers input and inserts into the database
+     * @param custDetailsHMap
+     * @return
+     */
     private boolean writeNewCustomer(HashMap custDetailsHMap){
         log.debug("Inside writeNewCustomer Method.");
         //The SQLite statements for inserting a new customers details

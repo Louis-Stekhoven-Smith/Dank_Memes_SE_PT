@@ -60,10 +60,15 @@
                   <String fx:value="btnStyle1RegularState" />
                   <String fx:value="btnStyle1Hover" />
                </styleClass></Button>
-            <Button fx:id="btnBack" alignment="CENTER" layoutX="141.0" layoutY="580.0" mnemonicParsing="false" onAction="#btnBackClicked" prefHeight="40.0" prefWidth="86.0" style="-fx-background-color: none;" styleClass="btnStyle2Pressed" text="BACK" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="btnBack" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackClicked" prefHeight="40.0" prefWidth="40.0" style="-fx-background-image: url(http://i63.tinypic.com/2dirdci.png); -fx-background-color: none;" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
-               </font></Button>
+               </font>
+               <styleClass>
+                  <String fx:value="btnStyle1Pressed" />
+                  <String fx:value="btnStyle1RegularState" />
+                  <String fx:value="btnStyle1Hover" />
+               </styleClass></Button>
             <Label fx:id="lblRegisterTest" alignment="CENTER" layoutX="27.0" layoutY="14.0" prefHeight="94.0" prefWidth="333.0" text="Register" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="28.0" />

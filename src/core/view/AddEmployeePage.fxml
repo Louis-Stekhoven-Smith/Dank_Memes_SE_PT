@@ -35,7 +35,7 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnBackToBusinessHome" alignment="CENTER" layoutX="40.0" layoutY="442.0" mnemonicParsing="false" onAction="#btnBackToBusinessHome" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Back" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+                <Button fx:id="btnBackToBusinessHome" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackToBusinessHome" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: None; -fx-background-image: url(http://i63.tinypic.com/2dirdci.png);" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -45,7 +45,7 @@
                   <String fx:value="btnStyle1Hover" />
                </styleClass>
                 </Button>
-                <Button fx:id="btnAddEmp" alignment="CENTER" layoutX="229.0" layoutY="442.0" mnemonicParsing="false" onAction="#btnAddEmp" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add Employee" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+                <Button fx:id="btnAddEmp" alignment="CENTER" layoutX="135.0" layoutY="423.0" mnemonicParsing="false" onAction="#btnAddEmp" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add Employee" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>

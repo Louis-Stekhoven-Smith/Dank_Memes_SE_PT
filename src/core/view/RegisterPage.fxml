@@ -69,7 +69,7 @@
                   <String fx:value="btnStyle1RegularState" />
                   <String fx:value="btnStyle1Hover" />
                </styleClass></Button>
-            <Label fx:id="lblRegisterTest" alignment="CENTER" layoutX="27.0" layoutY="14.0" prefHeight="94.0" prefWidth="333.0" text="Register" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Label fx:id="lblRegisterTest" alignment="CENTER" layoutX="67.0" layoutY="14.0" prefHeight="94.0" prefWidth="250.0" text="Register" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="28.0" />
                </font></Label>

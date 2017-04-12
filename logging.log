@@ -1,0 +1,53 @@
+2017-04-12 18:47:40.337 [main] DEBUG core.model.Main - Beginning Program
+2017-04-12 18:47:40.341 [main] DEBUG core.model.Database - Inside setupDatabase Method.
+2017-04-12 18:47:40.606 [main] DEBUG core.model.Database - Creating tables if they do not exist
+2017-04-12 18:47:40.606 [main] DEBUG core.model.Database - Inside createCustomerDetTable
+2017-04-12 18:47:40.608 [main] DEBUG core.model.Database - Inside createLoginTable
+2017-04-12 18:47:40.609 [main] DEBUG core.model.Database - Inside createBusinessDetailsTable
+2017-04-12 18:47:40.609 [main] DEBUG core.model.Database - Inside createEmpAvailability
+2017-04-12 18:47:40.609 [main] DEBUG core.model.Database - Inside createBookingsTable
+2017-04-12 18:47:40.610 [main] DEBUG core.model.Database - Inside createEmployeeDetTable
+2017-04-12 18:47:47.629 [JavaFX Application Thread] DEBUG core.controller.Controller - Login button clicked, attempting to login
+2017-04-12 18:47:47.630 [JavaFX Application Thread] DEBUG core.controller.Controller - Calling method validateAttempt, leaving controller...
+2017-04-12 18:47:47.630 [JavaFX Application Thread] DEBUG core.model.Login - Inside validateAttempt Method
+2017-04-12 18:47:47.631 [JavaFX Application Thread] INFO  core.model.Login - Validating login attempt for userName: oldboismokey with password: Pass1234
+2017-04-12 18:47:47.631 [JavaFX Application Thread] DEBUG core.model.Login - Querying database for username and password tuple
+2017-04-12 18:47:47.631 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-12 18:47:47.631 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT userName, password, type FROM userLogin WHERE userName ='oldboismokey' AND password ='Pass1234'
+2017-04-12 18:47:47.631 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-12 18:47:47.632 [JavaFX Application Thread] DEBUG core.model.Login - Successful customer login, logged in as: oldboismokey
+2017-04-12 18:47:47.632 [JavaFX Application Thread] DEBUG core.model.Login - Returning to Controller
+2017-04-12 18:47:47.632 [JavaFX Application Thread] DEBUG core.controller.Controller - Returned to controller
+2017-04-12 18:47:47.632 [JavaFX Application Thread] DEBUG core.controller.Controller - Customer Logged in as: oldboismokey
+2017-04-12 18:47:47.632 [JavaFX Application Thread] DEBUG core.controller.Controller - Loading customer page...
+2017-04-12 18:47:49.106 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-12 18:47:49.106 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT DISTINCT employeeRole FROM employeeDetails
+2017-04-12 18:47:49.107 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-12 18:47:51.638 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-12 18:47:51.638 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT DISTINCT employeeRole FROM employeeDetails
+2017-04-12 18:47:51.638 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-12 18:47:58.561 [JavaFX Application Thread] DEBUG core.controller.Controller - Login button clicked, attempting to login
+2017-04-12 18:47:58.561 [JavaFX Application Thread] DEBUG core.controller.Controller - Calling method validateAttempt, leaving controller...
+2017-04-12 18:47:58.561 [JavaFX Application Thread] DEBUG core.model.Login - Inside validateAttempt Method
+2017-04-12 18:47:58.561 [JavaFX Application Thread] INFO  core.model.Login - Validating login attempt for userName: homy with password: Homy1234
+2017-04-12 18:47:58.561 [JavaFX Application Thread] DEBUG core.model.Login - Querying database for username and password tuple
+2017-04-12 18:47:58.561 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-12 18:47:58.561 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT userName, password, type FROM userLogin WHERE userName ='homy' AND password ='Homy1234'
+2017-04-12 18:47:58.562 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-12 18:47:58.562 [JavaFX Application Thread] DEBUG core.model.Login - Successful owner login, logged in as: homy
+2017-04-12 18:47:58.562 [JavaFX Application Thread] DEBUG core.model.Login - Returning to Controller
+2017-04-12 18:47:58.562 [JavaFX Application Thread] DEBUG core.controller.Controller - Returned to controller
+2017-04-12 18:47:58.562 [JavaFX Application Thread] DEBUG core.controller.Controller - Owner Logged in as: homy
+2017-04-12 18:47:58.562 [JavaFX Application Thread] DEBUG core.controller.Controller - Loading owner page...
+2017-04-12 18:48:00.069 [JavaFX Application Thread] DEBUG core.controller.BusinessHomeController - Go to add employee button clicked
+2017-04-12 18:48:00.069 [JavaFX Application Thread] DEBUG core.controller.BusinessHomeController - Loading add employee page...
+2017-04-12 18:48:01.373 [JavaFX Application Thread] DEBUG core.controller.AddEmpController - Back (to business home) button clicked, loading business home page
+2017-04-12 18:48:02.575 [JavaFX Application Thread] DEBUG core.controller.BusinessHomeController - Go to remove employee button clicked
+2017-04-12 18:48:02.576 [JavaFX Application Thread] DEBUG core.controller.BusinessHomeController - Loading remove employee page...
+2017-04-12 18:48:03.712 [JavaFX Application Thread] DEBUG core.controller.RemoveEmpController - Back (to business home) button clicked, loading business home page
+2017-04-12 18:48:05.106 [JavaFX Application Thread] DEBUG core.controller.BusinessHomeController - Back to login page button clicked
+2017-04-12 18:48:05.107 [JavaFX Application Thread] DEBUG core.controller.BusinessHomeController - Loading login page...
+2017-04-12 18:48:06.496 [JavaFX Application Thread] DEBUG core.controller.Controller - Sign up button clicked
+2017-04-12 18:48:06.496 [JavaFX Application Thread] DEBUG core.controller.Controller - Loading sign up page...
+2017-04-12 18:48:09.603 [JavaFX Application Thread] DEBUG core.controller.AddEmpController - Back to login page button clicked
+2017-04-12 18:48:09.603 [JavaFX Application Thread] DEBUG core.controller.AddEmpController - Loading login page...

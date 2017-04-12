@@ -1,4 +1,7 @@
 package core.model;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
 import java.util.Scanner;
 
@@ -7,33 +10,37 @@ import java.util.Scanner;
  * Created by louie on 11/03/2017.
  */
 public class Session {
-
+/*
     private String name, username, address, contactNumber;
     private Booking bookings[];
+    private static final Logger log = LogManager.getLogger(Session.class.getName());
 
     public Session(String username){
+        log.debug("Inside Session class, creating new session with user: " + username);
         this.username = username;
         loadUserDetails();
     }
 
 
     public Boolean saveBookings(){
-        /*TODO*/
+
         return null;
     }
-
+/*
     /** Helpers */
+/*
     private void loadBookings(){
-        /*TODO*/
     }
 
     private Booking loadBooking(){
-        /*TODO*/
         return null;
     }
-
+*/
     /** find customers details and load into session */
+    /*
     private Boolean loadUserDetails() {
+        log.debug("Inside loadUserDetails Method.");
+
         Scanner scan;
         int thisRecord = 0;
         String[] customerDetails;
@@ -60,19 +67,19 @@ public class Session {
         scan.close();
         return false;
     }
-
+*/
     /** Mutators */
+    /*
     public Boolean addBooking(){
-        /*TODO*/
         return null;
     }
 
     public Boolean removeBooking(){
-        /*TODO*/
         return null;
     }
-
+*/
     /** getters **/
+    /*
     public String getName(){
         return name;
     }
@@ -87,8 +94,7 @@ public class Session {
     }
 
     public Booking[] getBooking(){
-        /*TODO*/
         return null;
     }
-
+    */
 }

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -8,8 +13,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.RemoveEmpController">
+    <stylesheets>
+        <URL value="@../css/navigationButtons.css" />
+    </stylesheets>
     <children>
         <Pane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');">
             <children>
@@ -26,15 +35,25 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnRemoveBack" alignment="CENTER" layoutX="40.0" layoutY="442.0" mnemonicParsing="false" onAction="#btnBackToBusinessHome" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Back" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+                <Button fx:id="btnRemoveBack" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackToBusinessHome" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: none; -fx-background-image: url(http://i63.tinypic.com/2dirdci.png);" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
+               <styleClass>
+                  <String fx:value="btnStyle1Pressed" />
+                  <String fx:value="btnStyle1RegularState" />
+                  <String fx:value="btnStyle1Hover" />
+               </styleClass>
                 </Button>
-                <Button fx:id="btnRemoveEmp" alignment="CENTER" layoutX="229.0" layoutY="442.0" mnemonicParsing="false" onAction="#btnRemoveEmp" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Remove Employee" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+                <Button fx:id="btnRemoveEmp" alignment="CENTER" layoutX="135.0" layoutY="423.0" mnemonicParsing="false" onAction="#btnRemoveEmp" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Remove Employee" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
+               <styleClass>
+                  <String fx:value="btnStyle1Pressed" />
+                  <String fx:value="btnStyle1RegularState" />
+                  <String fx:value="btnStyle1Hover" />
+               </styleClass>
                 </Button>
             <Label fx:id="lblFindEmp" alignment="CENTER" layoutX="25.0" layoutY="267.0" prefHeight="94.0" prefWidth="333.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
@@ -51,8 +70,8 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtEmpID" layoutX="115.0" layoutY="349.0" prefHeight="25.0" prefWidth="195.0" />
-                <TextField fx:id="txtEmpName" layoutX="118.0" layoutY="159.0" prefHeight="25.0" prefWidth="195.0" />
+                <TextField fx:id="txtEmpID" layoutX="115.0" layoutY="349.0" onAction="#btnRemoveEmp" prefHeight="25.0" prefWidth="195.0" />
+                <TextField fx:id="txtEmpName" layoutX="118.0" layoutY="159.0" onAction="#btnFindEmp" prefHeight="25.0" prefWidth="195.0" />
             <Label fx:id="txtLabel1" alignment="CENTER" layoutX="25.0" layoutY="78.0" prefHeight="94.0" prefWidth="333.0" text="Find employee by name" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
@@ -62,6 +81,11 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <styleClass>
+                  <String fx:value="btnStyle1Pressed" />
+                  <String fx:value="btnStyle1RegularState" />
+                  <String fx:value="btnStyle1Hover" />
+               </styleClass>
             </Button>
             <Label fx:id="lblRemoveError" layoutX="129.0" layoutY="399.0" textFill="RED">
                <font>

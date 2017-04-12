@@ -1,13 +1,9 @@
-package core;
+package core.model;
 
-import core.model.Database;
-import core.model.Login;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * Created by louie on 10/03/2017.
@@ -27,7 +23,7 @@ class LoginTest {
     @BeforeAll
     public static void setupDataBase(){
         Database db = new Database();
-        db.setupDataBase();
+        db.setupDatabase();
     }
 
     @Test

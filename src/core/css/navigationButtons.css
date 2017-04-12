@@ -1,0 +1,19 @@
+/* btnStyle1: Regular white button with box border */
+
+.btnStyle1RegularState{
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 2);
+}
+
+.btnStyle1Hover:hover{
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0), 0, 0, 0, 0);
+}
+
+.btnStyle1Pressed:pressed{
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.3) , 5,0,0,2);
+}
+
+/* btnStyle2: Buttons any without box border */
+.btnStyle2Pressed:pressed{
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.3) , 3,0,0,2);
+}

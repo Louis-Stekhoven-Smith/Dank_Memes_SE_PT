@@ -1,4 +1,4 @@
-package core;
+package core.model;
 
 import core.model.Session;
 import org.junit.jupiter.api.Test;
@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by louie on 11/03/2017.
  */
 class SessionTest {
+
+    /*
 
     Session session = new Session("OldBoiSmokey");
     @Test
@@ -26,7 +28,6 @@ class SessionTest {
 
     }
 
-    /*
     @Test
     void getName() {
         assertEquals("Louis",session.getName());
@@ -34,14 +35,12 @@ class SessionTest {
     }
 
 
-*/
     @Test
     void getUsername() {
         assertEquals("OldBoiSmokey",session.getUsername());
         assertNotEquals("asd",session.getUsername());
 
     }
-/*
     @Test
     void getAddress() {
         assertEquals("123 Fake st",session.getAddress());
@@ -54,10 +53,9 @@ class SessionTest {
         assertNotEquals("asdflkjh342",session.getContactNumber());
 
     }
-*/
     @Test
     void getBooking() {
 
     }
-
+*/
 }

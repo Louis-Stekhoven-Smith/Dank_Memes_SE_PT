@@ -1,5 +1,8 @@
 package core.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 
 /**
@@ -18,21 +21,20 @@ public class Database {
     private static String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
     private static String DB_DRIVER = "org.sqlite.JDBC";
 
-    /* this isnt working as expected??? always runs setupConnection - louis*/
-    public static void setupDataBase(){
-        if(con == null){
-            setupConnection();
+    private static final Logger log = LogManager.getLogger(Database.class.getName());
 
-        }
-
-    }
-
-    private static void setupConnection(){
+    /**
+     * Connects to the database and creates tables if they do not exist
+     * @return
+     */
+    public static boolean setupDatabase(){
+        log.debug("Inside setupDatabase Method.");
         try{
             Class.forName(DB_DRIVER);
         }
         catch (ClassNotFoundException e){
-            System.out.println(e.getMessage());
+            log.error("Database Driver not found.");
+            return false;
         }
         try{
             con = DriverManager.getConnection(DB_CONNECTION);
@@ -41,27 +43,29 @@ public class Database {
                 hasData = true;
                 Statement state = con.createStatement();
 
+                log.debug("Creating tables if they do not exist");
                 createCustomerDetTable(state);
                 createLoginTable(state);
                 createBusinessDetailsTable(state);
-                createOwnerTable(state);
+                createEmpAvailability(state);
+                createBookingsTable(state);
                 createEmployeeDetTable(state);
-
-
             }
         }
         catch (SQLException e){
-            System.out.println(e.getMessage());
+            log.error("Failed to create tables: " + e.getMessage());
+            return false;
         }
-
+        return true;
     }
 
-    /** this should return boolean */
+    /** Creates employee details table in the database if none currently exist */
     private static void createEmployeeDetTable(Statement state) throws SQLException {
+        log.debug("Inside createEmployeeDetTable");
         ResultSet rs;
         rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='employeeDetails'");
         if(!rs.next()){
-            System.out.println("employeeDetails table does not exist. Creating now...");
+            log.debug("employeeDetails table does not exist. Creating now...");
             Statement empDetails = con.createStatement();
             String sqlEmpDetails = "CREATE TABLE employeeDetails " +
                     "(empID INTEGER not NULL, " +
@@ -75,107 +79,142 @@ public class Database {
             empDetails.execute(sqlEmpDetails);
 
             /*TODO*/
-             /* Just for testing remove for production !!!!!!!!!!!!!!
-             need to move this somewhere better
-             Add drop tables to the reset and move back into setup connection
-              */
+             /*Just for testing remove for production !
+             * need to move this somewhere better
+             * Add drop tables to the reset and move back into setup connection if you want database reset each
+             * time application is run
+             */
             resetDatabase();
         }
     }
 
-    /** this should return boolean */
-    private static void createOwnerTable(Statement state) throws SQLException {
-        ResultSet rs;
-        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessLogin'");
-        if(!rs.next()){
-            System.out.println("businessLogin table does not exist. Creating now...");
-            Statement businessLogin = con.createStatement();
-            String sqlbusinessLogin = "CREATE TABLE businessLogin " +
-                    "(businessID INTEGER not NULL, " +
-                    " userName VARCHAR(40), " +
-                    " password VARCHAR(40), " +
-                    " PRIMARY KEY(businessID))";
-            businessLogin.execute(sqlbusinessLogin);
-        }
-    }
-
-    /** this should return boolean */
+    /** Creates business details table in the database if none currently exist */
     private static void createBusinessDetailsTable(Statement state) throws SQLException {
+        log.debug("Inside createBusinessDetailsTable");
         ResultSet rs;
         rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessDetails'");
         if(!rs.next()){
-            System.out.println("businessDetails table does not exist. Creating now...");
+            log.debug("businessDetails table does not exist. Creating now...");
             Statement businessDetails = con.createStatement();
             String sqlbusinessDetails = "CREATE TABLE businessDetails " +
                     "(businessID INTEGER not NULL, " +
+                    " loginID INTEGER not NULL, " +
                     " businessName VARCHAR(50), " +
                     " ownerName VARCHAR(40), " +
-                    " userName VARCHAR(40), " +
                     " email VARCHAR(40), " +
-                    " PRIMARY KEY(businessID))";
+                    " PRIMARY KEY(businessID), " +
+                    " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             businessDetails.execute(sqlbusinessDetails);
         }
     }
 
-    /** this should return boolean */
+    /** Creates login table in the database if none currently exist */
     private static void createLoginTable(Statement state) throws SQLException {
+        log.debug("Inside createLoginTable");
         ResultSet rs;
-        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='customerLogin'");
+        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='userLogin'");
         if(!rs.next()){
-            System.out.println("customerLogin table does not exist. Creating now...");
+            log.debug("userLogin table does not exist. Creating now...");
             Statement custLogin = con.createStatement();
-            String sqlCustLogin = "CREATE TABLE customerLogin " +
-                    "(custID INTEGER not NULL, " +
+            String sqlCustLogin = "CREATE TABLE userLogin " +
+                    "(loginID INTEGER not NULL, " +
                     " userName VARCHAR(20), " +
                     " password VARCHAR(40), " +
                     " type VARCHAR(40)," +
-                    " PRIMARY KEY(custID))";
+                    " PRIMARY KEY(loginID))";
             custLogin.execute(sqlCustLogin);
         }
     }
 
     /** this should return boolean */
     private static void createCustomerDetTable(Statement state) throws SQLException {
+        log.debug("Inside createCustomerDetTable");
         ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='customerDetails'");
         if(!rs.next()) {
-            System.out.println("customerDetails table does not exist. Creating now...");
+            log.debug("customerDetails table does not exist. Creating now...");
             Statement custDetails = con.createStatement();
             String sqlCustDetails = "CREATE TABLE customerDetails " +
                     "(custID INTEGER not NULL, " +
+                    " loginID INTEGER not NULL, " +
                     " name VARCHAR(40), " +
                     " userName VARCHAR(20), " +
                     " address VARCHAR(50), " +
                     " phoneNo VARCHAR(20), " +
-                    " PRIMARY KEY (custID))";
+                    " PRIMARY KEY (custID), " +
+                    " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             custDetails.execute(sqlCustDetails);
         }
     }
 
+    private static void createBookingsTable(Statement state) throws SQLException {
+        log.debug("Inside createBookingsTable");
+        ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='bookingDetails'");
+        if(!rs.next()) {
+            log.debug("bookings table does not exist. Creating now...");
+            Statement bookingTable = con.createStatement();
+            String bookingSQL = "CREATE TABLE bookingDetails " +
+                    "(bookingID INTEGER not NULL, " +
+                    " custID INTEGER not NULL, " +
+                    " businessID INTEGER not NULL, " +
+                    " empID INTEGER not NULL, " +
+                    " bookingTime VARCHAR(5), " +
+                    " bookingDate VARCHAR(8), " +
+                    " bookingType VARCHAR(20), " +
+                    " PRIMARY KEY (bookingID), " +
+                    " FOREIGN KEY (custID) REFERENCES customerDetails (custID), " +
+                    " FOREIGN KEY (businessID) REFERENCES businessDetails (BusinessID), " +
+                    " FOREIGN KEY (empID) REFERENCES employeeDetails (empID))";
+            bookingTable.execute(bookingSQL);
+        }
+    }
+
+
+    private static void createEmpAvailability(Statement state)throws SQLException{
+        log.debug("Inside createEmpAvailability");
+        ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='empAvailability'");
+        if(!rs.next()) {
+            log.debug("empAvailability table does not exist. Creating now...");
+            Statement empAvailability = con.createStatement();
+            String sqlempAvailability = "CREATE TABLE empAvailability " +
+                    "(empID INTEGER not NULL, " +
+                    " availability VARCHAR(30), " +
+                    " PRIMARY KEY (empID)" +
+                    " FOREIGN KEY (empID) References employeeDetails(empID))";
+            empAvailability.execute(sqlempAvailability);
+        }
+
+    }
+
+
+    /** Takes in sqlString and returns the result as a ResultSet object */
     public static ResultSet queryDatabase(String sqlString){
+        log.debug("Inside queryDatabase");
         ResultSet res = null;
         try{
+            log.debug("Querying the database with input string: " + sqlString);
             Statement state = con.createStatement();
             res = state.executeQuery(sqlString);
         } catch (SQLException e){
-            System.out.println(e.getMessage());
+            log.error("Error querying the database: " + e.getMessage());
         }
-
-
+        log.debug("Returning to calling Method");
         return res;
     }
 
-    /** this should return boolean */
+    /** Takes in an sqlstring updates, removes or inserts into the database depending on string type */
     public static Boolean updateDatabase(String sqlString){
+        log.debug("Inside updateDatabase Method");
         try{
             Statement state = con.createStatement();
             //Execute insert statement
+            log.debug("Updating the database with input string: " + sqlString);
             state.executeUpdate(sqlString);
-            System.out.println("The database has been modified successfully");
+            log.info("The database has been modified successfully");
+            log.debug("Returning to calling Method with true");
             return true;
-
-
         } catch (SQLException e){
-            System.out.println(e.getMessage());
+            log.error("Error updating the database: " + e.getMessage());
+            log.debug("Returning to calling Method with false");
             return false;
         }
     }
@@ -184,34 +223,130 @@ public class Database {
     /** automate adding a few records to database if needed - just for testing */
     private static void resetDatabase() {
 
-        String cust1DetailsSQL = "INSERT INTO customerDetails (custID, name, userName, address, phoneNo) values(?," +
+        log.debug("Inside resetDatabase, inserting default values...");
+
+        String cust1DetailsSQL = "INSERT INTO customerDetails (custID, loginID, name, userName, address, phoneNo) values(?," +
+                "'" + 1 + "'" + "," +
                 "'" + "Louis" + "'" + "," +
                 "'" + "oldboismokey" + "'" + "," +
                 "'" + "123 Fake Street" + "'" + "," +
                 "'" + "0423456789" + "'" + ")";
 
-        String cust1LoginSQL = "INSERT INTO customerLogin (custID, userName, password, type) values(?," +
+        String cust1LoginSQL = "INSERT INTO userLogin (loginID, userName, password, type) values(?," +
                 "'" + "oldboismokey" + "'" + "," +
                 "'" + "Pass1234" + "'" + "," +
                 "'" + 1 + "'" + ")";
 
         //Calling the function which will insert the data into the appropriate tables
-        Database.updateDatabase(cust1DetailsSQL);
-        Database.updateDatabase(cust1LoginSQL);
+        updateDatabase(cust1LoginSQL);
+        updateDatabase(cust1DetailsSQL);
 
-        String cust2DetailsSQL = "INSERT INTO customerDetails (custID, name, userName, address, phoneNo) values(?," +
-                "'" + "homy" + "'" + "," +
-                "'" + "homy" + "'" + "," +
-                "'" + "any" + "'" + "," +
-                "'" + "0478812798" + "'" + ")";
 
-        String cust2LoginSQL = "INSERT INTO customerLogin (custID, userName, password, type) values(?," +
+        String cust2LoginSQL = "INSERT INTO userLogin(loginID, userName, password, type) values(?," +
                 "'" + "homy" + "'" + "," +
                 "'" + "Homy1234" + "'" + "," +
                 "'" + 2 + "'" + ")";
 
+        String bussinessOwnerSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email) values(?," +
+                "'" + 2 + "'," +
+                "'" + "Dank Memes" + "'," +
+                "'" + "Jeff Goodman" + "'," +
+                "'" + "dankmemes@saloons.com" + "')";
 
-        Database.updateDatabase(cust2DetailsSQL);
-        Database.updateDatabase(cust2LoginSQL);
+        updateDatabase(cust2LoginSQL);
+        updateDatabase(bussinessOwnerSQL);
+
+        String emp1SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Sally" + "'," +
+                            "'" + "Female cut" + "'," +
+                            "'" + "sally@saloon.com" + "'," +
+                            "'" + "0412345929" + "')";
+        String emp2SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Bob" + "'," +
+                            "'" + "Male cut" + "'," +
+                            "'" + "bob@saloon.com" + "'," +
+                            "'" + "0499283771" + "')";
+        String emp3SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Katrina" + "'," +
+                            "'" + "Blow" + "'," +
+                            "'" + "katrina@saloon.com" + "'," +
+                            "'" + "0438223141" + "')";
+        String emp4SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Nick" + "'," +
+                            "'" + "Massage wash" + "'," +
+                            "'" + "nick@saloon.com" + "'," +
+                            "'" + "0462116661" + "')";
+        String emp5SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+                            "'" + 1 + "'," +
+                            "'" + "Rachel" + "'," +
+                            "'" + "Female cut" + "'," +
+                            "'" + "rachel@saloon.com" + "'," +
+                            "'" + "0429883772" + "')";
+
+
+        String employeeAvailablitySQL = "INSERT INTO empAvailability(empID, availability) values(?," +
+                "'000,000,000,000,000,000,000')";
+
+        updateDatabase(emp1SQL);
+        updateDatabase(employeeAvailablitySQL);
+        updateDatabase(emp2SQL);
+        updateDatabase(employeeAvailablitySQL);
+        updateDatabase(emp3SQL);
+        updateDatabase(employeeAvailablitySQL);
+        updateDatabase(emp4SQL);
+        updateDatabase(employeeAvailablitySQL);
+        updateDatabase(emp5SQL);
+        updateDatabase(employeeAvailablitySQL);
+
+        String booking1SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + "12:50" + "'," +
+                            "'" + "29/04/17" + "'," +
+                            "'" + "Female cut" + "')";
+
+        String booking2SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 2 + "'," +
+                            "'" + "15:30" + "'," +
+                            "'" + "01/05/17" + "'," +
+                            "'" + "Male Cut" + "')";
+
+        String booking3SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 3 + "'," +
+                            "'" + "09:00" + "'," +
+                            "'" + "10/05/17" + "'," +
+                            "'" + "Blow" + "')";
+
+        String booking4SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 4 + "'," +
+                            "'" + "19:10" + "'," +
+                            "'" + "12/05/17" + "'," +
+                            "'" + "Massage Wash" + "')";
+
+        String booking5SQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values (?," +
+                            "'" + 1 + "'," +
+                            "'" + 1 + "'," +
+                            "'" + 5 + "'," +
+                            "'" + "10:00" + "'," +
+                            "'" + "20/05/17" + "'," +
+                            "'" + "Female cut" + "')";
+
+        updateDatabase(booking1SQL);
+        updateDatabase(booking2SQL);
+        updateDatabase(booking3SQL);
+        updateDatabase(booking4SQL);
+        updateDatabase(booking5SQL);
+
     }
 }

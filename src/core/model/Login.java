@@ -1,5 +1,8 @@
 package core.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
@@ -10,44 +13,55 @@ import java.sql.SQLException;
  * attempts and associated tasks */
 public class Login {
 
-    /*TODO make username not case sensitive */
     /** Check username exists and password matches the associated username
-     * Returns -1 if authentication failed
+     * Returns -1    if authentication failed
      * Returns 2 if users is a business owner
      * Returns 1 if user is a customer */
+    private static final Logger log = LogManager.getLogger(Login.class.getName());
+
     public static int validateAttempt(String inputUsername, String inputPassword){
-        String loginSQL, userName,password;
         ResultSet rs;
+        final String CUSTOMER = "1", OWNER = "2";
+        log.debug("Inside validateAttempt Method");
+        log.info("Validating login attempt for userName: " + inputUsername + " with password: " + inputPassword);
 
         inputUsername = inputUsername.toLowerCase();
 
-        loginSQL = "SELECT userName, password, type FROM customerLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
-        rs = Database.queryDatabase(loginSQL);
-
+        rs = getResultSet(inputUsername, inputPassword);
 
         try{
-            if(rs.next()){
-                userName =  rs.getString("userName").toLowerCase();
-                password  = rs.getString("password");
-
-        System.out.println(userName+" "+inputUsername);
-
-                /* do we need to do this if statment, can we not just check if rs is empty? - Louis */
-                if(userName.equals(inputUsername) && password.equals(inputPassword)){
-                    if(rs.getString("type").equals("1")){
-                        return 1;
-                    }
-                    if(rs.getString("type").equals("2")){
-                        return 2;
-                    }
-                    return -1;
-                }
+            /* incorrect login details */
+            if(!(rs.next())) {
+                return -1;
             }
+            if(isType(rs, CUSTOMER)){
+                log.debug("Successful customer login, logged in as: " + inputUsername);
+                log.debug("Returning to Controller");
+                return 1;
+            }
+            if(isType(rs, OWNER)){
+                log.debug("Successful owner login, logged in as: " + inputUsername);
+                log.debug("Returning to Controller");
+                return 2;
+                }
         }catch (SQLException e){
-            System.out.println(e.getMessage());
+            log.error("SQL ERROR: " + e.getMessage());
         }
 
+        log.debug("Failed login attempt, returning to controller");
         return -1;
+    }
 
+    private static ResultSet getResultSet(String inputUsername, String inputPassword) {
+        String loginSQL;
+        ResultSet rs;
+        loginSQL = "SELECT userName, password, type FROM userLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
+        log.debug("Querying database for username and password tuple");
+        rs = Database.queryDatabase(loginSQL);
+        return rs;
+    }
+
+    private static boolean isType(ResultSet rs, String customer) throws SQLException {
+        return rs.getString("type").equals(customer);
     }
 }

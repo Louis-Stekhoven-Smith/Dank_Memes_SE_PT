@@ -1,35 +1,9 @@
-2017-04-12 17:02:00.571 [main] DEBUG core.model.Main - Beginning Program
-2017-04-12 17:02:00.573 [main] DEBUG core.model.Database - Inside setupDatabase Method.
-2017-04-12 17:02:00.857 [main] DEBUG core.model.Database - Creating tables if they do not exist
-2017-04-12 17:02:00.857 [main] DEBUG core.model.Database - Inside createCustomerDetTable
-2017-04-12 17:02:00.858 [main] DEBUG core.model.Database - Inside createLoginTable
-2017-04-12 17:02:00.859 [main] DEBUG core.model.Database - Inside createBusinessDetailsTable
-2017-04-12 17:02:00.859 [main] DEBUG core.model.Database - Inside createEmpAvailability
-2017-04-12 17:02:00.859 [main] DEBUG core.model.Database - Inside createBookingsTable
-2017-04-12 17:02:00.860 [main] DEBUG core.model.Database - Inside createEmployeeDetTable
-2017-04-12 17:02:05.927 [JavaFX Application Thread] DEBUG core.controller.Controller - Login button clicked, attempting to login
-2017-04-12 17:02:05.928 [JavaFX Application Thread] DEBUG core.controller.Controller - Calling method validateAttempt, leaving controller...
-2017-04-12 17:02:05.928 [JavaFX Application Thread] DEBUG core.model.Login - Inside validateAttempt Method
-2017-04-12 17:02:05.929 [JavaFX Application Thread] INFO  core.model.Login - Validating login attempt for userName: oldboismokey with password: 
-2017-04-12 17:02:05.929 [JavaFX Application Thread] DEBUG core.model.Login - Querying database for username and password tuple
-2017-04-12 17:02:05.930 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-12 17:02:05.930 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT userName, password, type FROM userLogin WHERE userName ='oldboismokey' AND password =''
-2017-04-12 17:02:05.930 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-12 17:02:05.930 [JavaFX Application Thread] DEBUG core.controller.Controller - Returned to controller
-2017-04-12 17:02:05.930 [JavaFX Application Thread] DEBUG core.controller.Controller - Failed login attempt
-2017-04-12 17:02:09.787 [JavaFX Application Thread] DEBUG core.controller.Controller - Login button clicked, attempting to login
-2017-04-12 17:02:09.787 [JavaFX Application Thread] DEBUG core.controller.Controller - Calling method validateAttempt, leaving controller...
-2017-04-12 17:02:09.788 [JavaFX Application Thread] DEBUG core.model.Login - Inside validateAttempt Method
-2017-04-12 17:02:09.788 [JavaFX Application Thread] INFO  core.model.Login - Validating login attempt for userName: oldboismokey with password: Pass1234
-2017-04-12 17:02:09.788 [JavaFX Application Thread] DEBUG core.model.Login - Querying database for username and password tuple
-2017-04-12 17:02:09.788 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-12 17:02:09.788 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT userName, password, type FROM userLogin WHERE userName ='oldboismokey' AND password ='Pass1234'
-2017-04-12 17:02:09.788 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-12 17:02:09.788 [JavaFX Application Thread] DEBUG core.model.Login - Successful customer login, logged in as: oldboismokey
-2017-04-12 17:02:09.789 [JavaFX Application Thread] DEBUG core.model.Login - Returning to Controller
-2017-04-12 17:02:09.789 [JavaFX Application Thread] DEBUG core.controller.Controller - Returned to controller
-2017-04-12 17:02:09.789 [JavaFX Application Thread] DEBUG core.controller.Controller - Customer Logged in as: oldboismokey
-2017-04-12 17:02:09.789 [JavaFX Application Thread] DEBUG core.controller.Controller - Loading customer page...
-2017-04-12 17:02:10.906 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-12 17:02:10.906 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT DISTINCT employeeRole FROM employeeDetails
-2017-04-12 17:02:10.906 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-12 17:44:50.328 [main] DEBUG core.model.Main - Beginning Program
+2017-04-12 17:44:50.331 [main] DEBUG core.model.Database - Inside setupDatabase Method.
+2017-04-12 17:44:50.583 [main] DEBUG core.model.Database - Creating tables if they do not exist
+2017-04-12 17:44:50.584 [main] DEBUG core.model.Database - Inside createCustomerDetTable
+2017-04-12 17:44:50.585 [main] DEBUG core.model.Database - Inside createLoginTable
+2017-04-12 17:44:50.585 [main] DEBUG core.model.Database - Inside createBusinessDetailsTable
+2017-04-12 17:44:50.586 [main] DEBUG core.model.Database - Inside createEmpAvailability
+2017-04-12 17:44:50.586 [main] DEBUG core.model.Database - Inside createBookingsTable
+2017-04-12 17:44:50.586 [main] DEBUG core.model.Database - Inside createEmployeeDetTable

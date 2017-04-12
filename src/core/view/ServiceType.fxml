@@ -1,35 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 
-<AnchorPane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');" stylesheets="core.css.serviceType.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.serviceTypeController">
+<AnchorPane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.serviceTypeController">
+   <stylesheets>
+      <URL value="@../css/navigationButtons.css" />
+   </stylesheets>
    <children>
       <Label layoutX="123.0" layoutY="37.0" text="Service Type:" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnService1" layoutX="92.0" layoutY="128.0" mnemonicParsing="false" onAction="#btnService1Clicked" prefHeight="50.0" prefWidth="200.0" text="service 1" textFill="#1565c0">
+      <Button fx:id="btnService1" layoutX="92.0" layoutY="128.0" mnemonicParsing="false" onAction="#btnService1Clicked" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="service 1" textFill="#1565c0">
          <font>
             <Font size="18.0" />
-         </font></Button>
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass></Button>
       <Button fx:id="btnService2" layoutX="92.0" layoutY="208.0" mnemonicParsing="false" onAction="#btnService2Clicked" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="service 2" textFill="#1565c0">
          <font>
             <Font size="18.0" />
-         </font></Button>
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass></Button>
       <Button fx:id="btnService3" layoutX="92.0" layoutY="288.0" mnemonicParsing="false" onAction="#btnService3Clicked" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="service 3" textFill="#1565c0">
          <font>
             <Font size="18.0" />
-         </font></Button>
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass></Button>
       <Button fx:id="btnService4" layoutX="92.0" layoutY="368.0" mnemonicParsing="false" onAction="#btnService4Clicked" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="service 4" textFill="#1565c0">
          <font>
             <Font size="18.0" />
-         </font></Button>
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass></Button>
       <Button fx:id="btnBack" layoutX="322.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: #f1f1f1;" text="BACK">
          <font>
             <Font name="System Bold" size="12.0" />

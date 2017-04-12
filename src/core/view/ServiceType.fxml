@@ -7,14 +7,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.serviceTypeController">
+<AnchorPane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');" stylesheets="core.css.serviceType.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.serviceTypeController">
    <children>
       <Label layoutX="123.0" layoutY="37.0" text="Service Type:" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnService1" layoutX="92.0" layoutY="128.0" mnemonicParsing="false" onAction="#btnService1Clicked" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="service 1" textFill="#1565c0">
+      <Button fx:id="btnService1" layoutX="92.0" layoutY="128.0" mnemonicParsing="false" onAction="#btnService1Clicked" prefHeight="50.0" prefWidth="200.0" text="service 1" textFill="#1565c0">
          <font>
             <Font size="18.0" />
          </font></Button>

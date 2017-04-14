@@ -79,22 +79,63 @@ public class AvailBookingsController {
         System.out.println(finalDate);
 
         String chosenType = serviceTypeController.type;
-        displayTimes(chosenType, finalDate);
+        employeeCount(chosenType, finalDate);
     }
 
     /** shows available employee times based on the date and the service chosen by retrieving data from the database */
-    public void displayTimes(String chosenType, String finalDate) throws SQLException {
+    public void employeeCount(String chosenType, String finalDate) throws SQLException {
         System.out.println("Load " + chosenType + " employee & times...");
-
         ResultSet count;
-        String counter;
+        int counter;
         String findRoleTypeCount = "SELECT count(*) AS total FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
         count = Database.queryDatabase(findRoleTypeCount);
-        counter = count.getString("total");
+        counter = count.getInt("total");
         System.out.println("TOTAL COUNT OF THIS ROLE " + counter);
-        if (counter.equals("1")) {
-            singleCountDisplayTimes(chosenType,finalDate);
+        retrieveAvailabilityData(chosenType, finalDate, counter);
+    }
 
+
+    /**display times depending if there is one employee assigned to the job */
+    public void retrieveAvailabilityData(String chosenType, String finalDate, int counter) throws SQLException {
+        System.out.println("COUNTER INT VALUE IS = "+counter);
+        ResultSet rs;
+        String name;
+        String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
+        rs = Database.queryDatabase(findEmpNameSQL);
+        String[] myArray = new String[counter];
+        for (int i = 0; i < myArray.length; i++) {
+            rs.next();
+            name = rs.getString("name");
+            myArray[i] = name;
+        }
+        ResultSet rs1;
+        String empID;
+        String findempIDSQL = "SELECT empID from employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
+        rs1 = Database.queryDatabase(findempIDSQL);
+        String[] myArray2 = new String[counter];
+        ;
+        for (int i = 0; i < myArray2.length; i++) {
+            rs1.next();
+            empID = rs1.getString("empID");
+            myArray2[i] = empID;
+        }
+
+        String firstID = myArray2[0];
+        ResultSet rs2;
+        String availability;
+        String[] myArray3 = new String[counter];
+        ;
+        for (int i = 0; i < myArray3.length; i++) {
+            String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID=" + "'" + myArray2[i] + "'";
+            rs2 = Database.queryDatabase(findAvailabilitySQL);
+            rs2.next();
+            availability = rs2.getString("availability");
+            myArray3[i] = availability;
+        } setNameLabels(myArray, myArray3, finalDate, counter);
+    }
+
+
+    /* doubleCountDisplayTimes
         } else {
 
             ResultSet rs;
@@ -135,54 +176,19 @@ public class AvailBookingsController {
             }
             setNameLabels(myArray, myArray3, finalDate);
         }
-    }
+    }*/
 
-    /**display times depending if there is one employee assigned to the job */
-    public void singleCountDisplayTimes(String chosenType, String finalDate) throws SQLException {
-        ResultSet rs;
-        String name;
-        String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-        rs = Database.queryDatabase(findEmpNameSQL);
-        String[] myArray = new String[1];
-        for (int i = 0; i < myArray.length; i++) {
-            rs.next();
-            name = rs.getString("name");
-            myArray[i] = name;
-        }
-        ResultSet rs1;
-        String empID;
-        String findempIDSQL = "SELECT empID from employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-        rs1 = Database.queryDatabase(findempIDSQL);
-        String[] myArray2 = new String[1];
-        ;
-        for (int i = 0; i < myArray2.length; i++) {
-            rs1.next();
-            empID = rs1.getString("empID");
-            myArray2[i] = empID;
-        }
+    /** sets label to single employee name */
 
-        String firstID = myArray2[0];
-        ResultSet rs2;
-        String availability;
-        String[] myArray3 = new String[1];
-        ;
-        for (int i = 0; i < myArray3.length; i++) {
-            String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID=" + "'" + myArray2[i] + "'";
-            rs2 = Database.queryDatabase(findAvailabilitySQL);
-            rs2.next();
-            availability = rs2.getString("availability");
-            myArray3[i] = availability;
-        }
-        setNameLabelsSingleCount(myArray,myArray3,finalDate);
-
-    }
 
     /** Sets labels to the name of employee working that service*/
-    public void setNameLabels(String[] myArray, String[] myArray3, String finalDate){
+    public void setNameLabels(String[] myArray, String[] myArray3, String finalDate, int counter){
         String availabilityTimes,availabilityTimes2;
+
         System.out.println(Arrays.toString(myArray));
         System.out.println(Arrays.toString(myArray3));
         System.out.println(myArray3.length);
+
         lblName1.setText(myArray[0]);
         lblName2.setText(myArray[1]);
 
@@ -236,45 +242,7 @@ public class AvailBookingsController {
 
     }
 
-    /** sets label to single employee name */
-    public void setNameLabelsSingleCount(String[] myArray, String[] myArray3, String finalDate){
-        System.out.println(Arrays.toString(myArray));
-        System.out.println(Arrays.toString(myArray3));
-        System.out.println(myArray3.length);
-        lblName1.setText(myArray[0]);
 
-        String times1 = myArray3[0];
-
-        String[] values = times1.split(",");
-        System.out.println(Arrays.toString(values));
-
-
-        if (finalDate.equals("Mon")){
-            String availabilityTimes = values[0];
-            setTimeLabels1(availabilityTimes);
-        } else if (finalDate.equals("Tue")) {
-            String availabilityTimes = values[1];
-            setTimeLabels1(availabilityTimes);
-        } else if (finalDate.equals("Wed")) {
-            String availabilityTimes = values[2];
-            setTimeLabels1(availabilityTimes);
-        } else if (finalDate.equals("Thu")) {
-            String availabilityTimes = values[3];
-            setTimeLabels1(availabilityTimes);
-        } else if (finalDate.equals("Fri")) {
-            String availabilityTimes = values[4];
-            setTimeLabels1(availabilityTimes);
-        } else if (finalDate.equals("Sat")) {
-            String availabilityTimes = values[5];
-            setTimeLabels1(availabilityTimes);
-        } else if (finalDate.equals("Sun")) {
-            String availabilityTimes = values[6];
-            setTimeLabels1(availabilityTimes);
-        } else {
-            System.out.println("fail1");
-        }
-
-    }
 
     //000,001,011,111,110,100
 

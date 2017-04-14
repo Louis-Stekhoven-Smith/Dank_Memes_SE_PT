@@ -16,18 +16,58 @@
    <children>
       <ScrollPane hbarPolicy="NEVER" layoutY="180.0" prefHeight="200.0" prefWidth="602.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="599.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="411.0" prefWidth="599.0">
+               <children>
+                  <Label fx:id="lblName21" layoutX="58.0" layoutY="333.0" text="Name 2" textFill="#1565c0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblName1" layoutX="58.0" layoutY="41.0" text="Name 1" textFill="#1565c0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblName2" layoutX="58.0" layoutY="91.0" text="Name 2" textFill="#1565c0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnMorning1" layoutX="177.0" layoutY="20.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor1" textFill="#1565c0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnMidday1" layoutX="300.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid1" textFill="#1565c0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnEvening1" layoutX="431.0" layoutY="20.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve1" textFill="#1565c0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnMorning2" layoutX="154.0" layoutY="84.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor2" textFill="#1565c0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnMidday2" layoutX="289.0" layoutY="77.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid2" textFill="#1565c0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnEvening2" layoutX="415.0" layoutY="77.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve2" textFill="#1565c0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
         </content>
       </ScrollPane>
       <DatePicker fx:id="dpBookingDate" layoutX="286.0" layoutY="51.0" onAction="#showDate" prefHeight="33.0" prefWidth="179.0" />
-      <Label fx:id="lblName1" layoutX="57.0" layoutY="207.0" text="Name 1" textFill="#1565c0">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font></Label>
-      <Label fx:id="lblName2" layoutX="57.0" layoutY="276.0" text="Name 2" textFill="#1565c0">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font></Label>
       <Label layoutX="173.0" layoutY="144.0" text="Morning" textFill="#1565c0">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -46,36 +86,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnMorning1" layoutX="157.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor1" textFill="#1565c0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnMidday1" layoutX="297.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid1" textFill="#1565c0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnEvening1" layoutX="437.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve1" textFill="#1565c0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnMorning2" layoutX="157.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor2" textFill="#1565c0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnMidday2" layoutX="297.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid2" textFill="#1565c0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnEvening2" layoutX="437.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve2" textFill="#1565c0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
       <Label fx:id="lblCurrentService" layoutX="359.0" layoutY="16.0" text="Current Service">
          <font>
             <Font name="System Italic" size="14.0" />

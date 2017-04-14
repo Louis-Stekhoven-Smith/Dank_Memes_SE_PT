@@ -40,10 +40,58 @@ public class AvailBookingsController {
     private Label lblName2;
 
     @FXML
+    private Label lblName3;
+
+    @FXML
+    private Label lblName4;
+
+    @FXML
+    private Label lblName5;
+
+    @FXML
+    private Label lblName6;
+
+    @FXML
+    private Label lblName7;
+
+    @FXML
+    private Label lblName8;
+
+    @FXML
+    private Label lblName9;
+
+    @FXML
+    private Label lblName10;
+
+    @FXML
     private Button btnMorning1;
 
     @FXML
     private Button btnMorning2;
+
+    @FXML
+    private Button btnMorning3;
+
+    @FXML
+    private Button btnMorning4;
+
+    @FXML
+    private Button btnMorning5;
+
+    @FXML
+    private Button btnMorning6;
+
+    @FXML
+    private Button btnMorning7;
+
+    @FXML
+    private Button btnMorning8;
+
+    @FXML
+    private Button btnMorning9;
+
+    @FXML
+    private Button btnMorning10;
 
     @FXML
     private Button btnMidday1;
@@ -52,14 +100,61 @@ public class AvailBookingsController {
     private Button btnMidday2;
 
     @FXML
+    private Button btnMidday3;
+
+    @FXML
+    private Button btnMidday4;
+
+    @FXML
+    private Button btnMidday5;
+
+    @FXML
+    private Button btnMidday6;
+
+    @FXML
+    private Button btnMidday7;
+
+    @FXML
+    private Button btnMidday8;
+
+    @FXML
+    private Button btnMidday9;
+
+    @FXML
+    private Button btnMidday10;
+
+    @FXML
     private Button btnEvening1;
 
     @FXML
     private Button btnEvening2;
 
     @FXML
-    private Label lblCurrentService;
+    private Button btnEvening3;
 
+    @FXML
+    private Button btnEvening4;
+
+    @FXML
+    private Button btnEvening5;
+
+    @FXML
+    private Button btnEvening6;
+
+    @FXML
+    private Button btnEvening7;
+
+    @FXML
+    private Button btnEvening8;
+
+    @FXML
+    private Button btnEvening9;
+
+    @FXML
+    private Button btnEvening10;
+
+    @FXML
+    private Label lblCurrentService;
 
     @FXML
     public void initialize(){
@@ -123,123 +218,48 @@ public class AvailBookingsController {
         String firstID = myArray2[0];
         ResultSet rs2;
         String availability;
-        String[] myArray3 = new String[counter];
+        String[] availabilityArray = new String[counter];
         ;
-        for (int i = 0; i < myArray3.length; i++) {
+        for (int i = 0; i < availabilityArray.length; i++) {
             String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID=" + "'" + myArray2[i] + "'";
             rs2 = Database.queryDatabase(findAvailabilitySQL);
             rs2.next();
             availability = rs2.getString("availability");
-            myArray3[i] = availability;
-        } setNameLabels(myArray, myArray3, finalDate, counter);
+            availabilityArray[i] = availability;
+        } setNameLabels(myArray, availabilityArray, finalDate, counter);
     }
 
-
-    /* doubleCountDisplayTimes
-        } else {
-
-            ResultSet rs;
-            String name;
-            String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-            rs = Database.queryDatabase(findEmpNameSQL);
-            String[] myArray = new String[2];
-            for (int i = 0; i < myArray.length; i++) {
-                rs.next();
-                name = rs.getString("name");
-                myArray[i] = name;
-            }
-
-            ResultSet rs1;
-            String empID;
-            String findempIDSQL = "SELECT empID from employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-            rs1 = Database.queryDatabase(findempIDSQL);
-            String[] myArray2 = new String[2];
-            ;
-            for (int i = 0; i < myArray2.length; i++) {
-                rs1.next();
-                empID = rs1.getString("empID");
-                myArray2[i] = empID;
-            }
-
-            String firstID = myArray2[0];
-            String secondID = myArray2[1];
-            ResultSet rs2;
-            String availability;
-            String[] myArray3 = new String[2];
-            ;
-            for (int i = 0; i < myArray3.length; i++) {
-                String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID=" + "'" + myArray2[i] + "'";
-                rs2 = Database.queryDatabase(findAvailabilitySQL);
-                rs2.next();
-                availability = rs2.getString("availability");
-                myArray3[i] = availability;
-            }
-            setNameLabels(myArray, myArray3, finalDate);
-        }
-    }*/
-
-    /** sets label to single employee name */
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /** Sets labels to the name of employee working that service*/
-    public void setNameLabels(String[] myArray, String[] myArray3, String finalDate, int counter){
+    public void setNameLabels(String[] myArray, String[] availabilityArray, String finalDate, int counter){
         String availabilityTimes,availabilityTimes2;
 
         System.out.println(Arrays.toString(myArray));
-        System.out.println(Arrays.toString(myArray3));
-        System.out.println(myArray3.length);
+        System.out.println(Arrays.toString(availabilityArray));
+        System.out.println(availabilityArray.length);
 
-        lblName1.setText(myArray[0]);
-        lblName2.setText(myArray[1]);
+        String[] days = {"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
 
-        String times1 = myArray3[0];
-        String times2 = myArray3[1];
 
-        String[] values = times1.split(",");
-        System.out.println(Arrays.toString(values));
-
-        String[] values2 = times2.split(",");
-        System.out.println(Arrays.toString(values2));
-
-        if (finalDate.equals("Mon")){
-            availabilityTimes = values[0];
-            availabilityTimes2 = values2[0];
-            setTimeLabels1(availabilityTimes);
-            setTimeLabels2(availabilityTimes2);
-        } else if (finalDate.equals("Tue")) {
-            availabilityTimes = values[1];
-            availabilityTimes2 = values2[1];
-            setTimeLabels1(availabilityTimes);
-            setTimeLabels2(availabilityTimes2);
-        } else if (finalDate.equals("Wed")) {
-            availabilityTimes = values[2];
-            availabilityTimes2 = values2[2];
-            setTimeLabels1(availabilityTimes);
-            setTimeLabels2(availabilityTimes2);
-        } else if (finalDate.equals("Thu")) {
-            availabilityTimes = values[3];
-            availabilityTimes2 = values2[3];
-            setTimeLabels1(availabilityTimes);
-            setTimeLabels2(availabilityTimes2);
-        } else if (finalDate.equals("Fri")) {
-            availabilityTimes = values[4];
-            availabilityTimes2 = values2[4];
-            setTimeLabels1(availabilityTimes);
-            setTimeLabels2(availabilityTimes2);
-        } else if (finalDate.equals("Sat")) {
-            availabilityTimes = values[5];
-            availabilityTimes2 = values2[5];
-            setTimeLabels1(availabilityTimes);
-            setTimeLabels2(availabilityTimes2);
-        } else if (finalDate.equals("Sun")) {
-            availabilityTimes = values[6];
-            availabilityTimes2 = values2[6];
-            setTimeLabels1(availabilityTimes);
-            setTimeLabels2(availabilityTimes2);
-        } else {
-            System.out.println("fail1");
+        if (counter == 1){
+            String[] values = availabilityArray[0].split(",");
+            for (int i=0; i<days.length;i++)
+                if (finalDate.equals(days[i])){
+                    availabilityTimes = values[i];
+                    setTimeLabels1(availabilityTimes, myArray);
+                }
+        } else if (counter == 2){
+            String[] values = availabilityArray[0].split(",");
+            String[] values2 = availabilityArray[1].split(",");
+            for (int i=0; i<days.length;i++)
+                if (finalDate.equals(days[i])){
+                    availabilityTimes = values[i];
+                    availabilityTimes2 = values2[i];
+                    setTimeLabels1(availabilityTimes, myArray);
+                    setTimeLabels2(availabilityTimes2, myArray);
+                }
         }
-
     }
 
 
@@ -247,7 +267,8 @@ public class AvailBookingsController {
     //000,001,011,111,110,100
 
     /**sets the time buttons to available or N/A depending on availability*/
-    public void setTimeLabels1(String availabilityTimes){
+    public void setTimeLabels1(String availabilityTimes, String[] myArray){
+        lblName1.setText(myArray[0]);
         if (availabilityTimes.equals("000")){
             btnMorning1.setText("N/A");
             btnMidday1.setText("N/A");
@@ -286,36 +307,37 @@ public class AvailBookingsController {
     }
 
     /**sets the time buttons to available or N/A depending on availability*/
-    public void setTimeLabels2(String availabilityTimes){
-        if (availabilityTimes.equals("000")){
+    public void setTimeLabels2(String availabilityTimes2, String[]myArray){
+        lblName2.setText(myArray[1]);
+        if (availabilityTimes2.equals("000")){
             btnMorning2.setText("N/A");
             btnMidday2.setText("N/A");
             btnEvening2.setText("N/A");
-        } else if (availabilityTimes.equals("001")){
+        } else if (availabilityTimes2.equals("001")){
             btnMorning2.setText("N/A");
             btnMidday2.setText("N/A");
             btnEvening2.setText("Available");
-        } else if (availabilityTimes.equals("011")){
+        } else if (availabilityTimes2.equals("011")){
             btnMorning2.setText("N/A");
             btnMidday2.setText("Available");
             btnEvening2.setText("Available");
-        } else if (availabilityTimes.equals("111")){
+        } else if (availabilityTimes2.equals("111")){
             btnMorning2.setText("Available");
             btnMidday2.setText("Available");
             btnEvening2.setText("Available");
-        } else if (availabilityTimes.equals("110")){
+        } else if (availabilityTimes2.equals("110")){
             btnMorning2.setText("Available");
             btnMidday2.setText("Available");
             btnEvening2.setText("N/A");
-        } else if (availabilityTimes.equals("100")){
+        } else if (availabilityTimes2.equals("100")){
             btnMorning2.setText("Available");
             btnMidday2.setText("N/A");
             btnEvening2.setText("N/A");
-        } else if (availabilityTimes.equals("101")){
+        } else if (availabilityTimes2.equals("101")){
             btnMorning2.setText("Available");
             btnMidday2.setText("N/A");
             btnEvening2.setText("Available");
-        } else if (availabilityTimes.equals("010")){
+        } else if (availabilityTimes2.equals("010")){
             btnMorning2.setText("N/A");
             btnMidday2.setText("Available");
             btnEvening2.setText("N/A");

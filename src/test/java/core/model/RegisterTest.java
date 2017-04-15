@@ -17,8 +17,7 @@ public class RegisterTest {
 
     @Test
     void isNotEmpty() throws Exception {
-        Database db = new Database();
-        db.setupDatabase();
+        Database.setupDatabase();
 
         HashMap<String, String> allEmptyHMap = new HashMap<String, String>();
         HashMap<String, String> oneEmptyHMap = new HashMap<String, String>();
@@ -61,8 +60,7 @@ public class RegisterTest {
 
     @Test
     void passwordMatches() throws Exception {
-        Database db = new Database();
-        db.setupDatabase();
+        Database.setupDatabase();
 
         HashMap<String, String> unmatchingPasswords = new HashMap<String, String>();
         HashMap<String, String> matchingPasswords = new HashMap<String, String>();
@@ -97,8 +95,7 @@ public class RegisterTest {
     @Test
     void passwordCriteria() throws Exception {
 
-        Database db = new Database();
-        db.setupDatabase();
+        Database.setupDatabase();
 
         HashMap<String, String> shortPassword = new HashMap<String, String>();
         HashMap<String, String> noNumPassword = new HashMap<String, String>();
@@ -155,8 +152,7 @@ public class RegisterTest {
     @Test
     void phoneNoCriteria() throws Exception {
 
-        Database db = new Database();
-        db.setupDatabase();
+        Database.setupDatabase();
 
         HashMap<String, String> correctPhoneNo1 = new HashMap<String, String>();
         HashMap<String, String> correctPhoneNo2 = new HashMap<String, String>();
@@ -191,8 +187,7 @@ public class RegisterTest {
     @Test
      void userNameFree() throws Exception {
 
-        Database db = new Database();
-        db.setupDatabase();
+        Database.setupDatabase();
 
         HashMap<String, String> userNameExists = new HashMap<String, String>();
         HashMap<String, String> userNameFree = new HashMap<String, String>();
@@ -219,16 +214,16 @@ public class RegisterTest {
         String deleteSQL = "DELETE FROM customerDetails WHERE userName = 'nottaken'";
         String deleteSQL1 = "DELETE FROM userLogin WHERE userName = 'nottaken'";
 
-        db.updateDatabase(deleteSQL);
-        db.updateDatabase(deleteSQL1);
+
+        Database.updateDatabase(deleteSQL);
+        Database.updateDatabase(deleteSQL1);
 
     }
 
     @Test
     void register() throws Exception {
 
-        Database db = new Database();
-        db.setupDatabase();
+        Database.setupDatabase();
         HashMap<String, String> registerCustomer = new HashMap<String, String>();
 
         registerCustomer.put("name", "Lady Sovreign");
@@ -242,8 +237,8 @@ public class RegisterTest {
 
         String deleteSQL3 = "DELETE FROM customerDetails WHERE userName = " + "'YoungLasGrilled'";
         String deleteSQL4 = "DELETE FROM userLogin WHERE userName = " + "'YoungLasGrilled'";
-        db.updateDatabase(deleteSQL3);
-        db.updateDatabase(deleteSQL4);
+        Database.updateDatabase(deleteSQL3);
+        Database.updateDatabase(deleteSQL4);
 
     }
 

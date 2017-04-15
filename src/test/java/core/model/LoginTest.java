@@ -22,8 +22,7 @@ class LoginTest {
 
     @BeforeAll
     public static void setupDataBase(){
-        Database db = new Database();
-        db.setupDatabase();
+        Database.setupDatabase();
     }
 
     @Test

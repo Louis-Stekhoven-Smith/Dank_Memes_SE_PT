@@ -15,8 +15,7 @@ class ViewBookingsTest {
 
     @BeforeAll
     public static void setUpDB(){
-        Database db = new Database();
-        db.setupDatabase();
+        Database.setupDatabase();
     }
 
     @Test

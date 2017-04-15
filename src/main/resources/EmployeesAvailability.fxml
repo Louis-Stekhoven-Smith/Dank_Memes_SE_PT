@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<VBox fx:id="vbox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.EmployeesAvailabilityController">
+   <children>
+      <TableView fx:id="table" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');">
+         <columns>
+            <TableColumn fx:id="NameCol" prefWidth="75.0" text="Staff" />
+            <TableColumn fx:id="MonCol" prefWidth="75.0" text="Monday" />
+            <TableColumn fx:id="TueCol" prefWidth="75.0" text="Tuesday" />
+            <TableColumn fx:id="WedCol" prefWidth="75.0" text="Wednesday" />
+            <TableColumn fx:id="ThurCol" prefWidth="75.0" text="Thursday" />
+            <TableColumn fx:id="FriCol" prefWidth="75.0" text="Friday" />
+            <TableColumn fx:id="SatCol" prefWidth="75.0" text="Saturday" />
+            <TableColumn fx:id="SunCol" prefWidth="75.0" text="Sunday" />
+         </columns>
+      </TableView>
+      <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="20.0" style="-fx-background-color: #e7e7fb;">
+         <children>
+            <Button fx:id="btnBackToEmployeesAvailability" mnemonicParsing="false" onAction="#btnBackToAddAvailability" style="-fx-background-color: #ffffff;" text="BACK" textFill="#1565c0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Century Gothic" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets bottom="5.0" />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="btnBackToHomePage" mnemonicParsing="false" onAction="#btnBackToHomePage" style="-fx-background-color: #ffffff;" text="HOME" textFill="#1565c0">
+               <font>
+                  <Font name="Century Gothic" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets bottom="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

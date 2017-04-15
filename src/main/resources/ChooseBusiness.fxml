@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.ChooseBusinessController">
+   <children>
+      <Label layoutX="92.0" layoutY="37.0" text="Choose a business:" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBusiness1" layoutX="52.0" layoutY="110.0" mnemonicParsing="false" onAction="#btnBusinessClicked" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/IfoYbHQ.png);" />
+      <Button fx:id="btnBusiness2" layoutX="52.0" layoutY="220.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/R7Q7J72.png);" />
+      <Button fx:id="btnBusiness3" layoutX="52.0" layoutY="330.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/bKUKnPX.png);" />
+      <Button fx:id="btnBusiness4" layoutX="52.0" layoutY="440.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/zjjxqag.png);" />
+      <Button fx:id="btnBack" layoutX="322.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: #f1f1f1;" text="BACK">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

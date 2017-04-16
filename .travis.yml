@@ -1,6 +1,7 @@
 language: java
 
-version: 8.0
-
+jdk:
+  - oraclejdk8
+  
 notifications:
   email: false

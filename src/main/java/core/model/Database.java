@@ -15,7 +15,6 @@ import java.sql.*;
  It also has a method for querying the database, inserting into
  the data base and updating entries in the database. */
 public class Database {
-
     private Connection con;
     private boolean hasData = false;
     private String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
@@ -29,6 +28,7 @@ public class Database {
      */
     public boolean setupDatabase(){
         log.debug("Inside setupDatabase Method.");
+
         try{
             Class.forName(DB_DRIVER);
         }
@@ -189,10 +189,14 @@ public class Database {
     /** Takes in sqlString and returns the result as a ResultSet object */
     public ResultSet queryDatabase(String sqlString){
         log.debug("Inside queryDatabase");
+        Connection connection;
         ResultSet res = null;
         try{
             log.debug("Querying the database with input string: " + sqlString);
-            Statement state = con.createStatement();
+            /*do not use the global connection here can not guarantee it will be initialised */
+            connection = DriverManager.getConnection(DB_CONNECTION);
+            Statement state = connection.createStatement();
+
             res = state.executeQuery(sqlString);
         } catch (SQLException e){
             log.error("Error querying the database: " + e.getMessage());
@@ -204,9 +208,12 @@ public class Database {
     /** Takes in an sqlstring updates, removes or inserts into the database depending on string type */
     public Boolean updateDatabase(String sqlString){
         log.debug("Inside updateDatabase Method");
+        Connection connection;
         try{
-            /*Connection test = DriverManager.getConnection(DB_CONNECTION);*/
-            Statement state = con.createStatement();
+            /*do not use the global connection here can not guarantee it will be initialised */
+            connection = DriverManager.getConnection(DB_CONNECTION);
+            Statement state = connection.createStatement();
+
             //Execute insert statement
             log.debug("Updating the database with input string: " + sqlString);
             state.executeUpdate(sqlString);

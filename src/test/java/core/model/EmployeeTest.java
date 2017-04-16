@@ -17,7 +17,9 @@ class EmployeeTest {
 
     @BeforeAll
     public static void setUpDB(){
-        Database.setupDatabase();
+
+        Database database = new Database();
+        database.setupDatabase();
     }
 
     @Test
@@ -79,6 +81,7 @@ class EmployeeTest {
 
     @Test
     void removeEmployeeTest() throws SQLException {
+        Database database = new Database();
         String name = "Harry Potter";
         String role = "Apprentice Barber";
         String email = "potter@wizard.com";
@@ -91,7 +94,7 @@ class EmployeeTest {
         testEmployee.removeEmployee(empID, name);
 
         //Check if employee is in db
-        rs = Database.queryDatabase(sqlRemoveTest);
+        rs = database.queryDatabase(sqlRemoveTest);
 
         assertFalse(rs.next());
     }

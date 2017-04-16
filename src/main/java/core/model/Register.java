@@ -152,13 +152,14 @@ public class Register {
      */
     private boolean userNameFree(HashMap custDetailsHMap){
         log.debug("Inside userNameFree Method.");
+        Database database = new Database();
         //Setup with datebase
         ResultSet rs;
         //Create SQL Query
         String sqlQuery = "SELECT userName FROM userLogin WHERE userName =" + "'" + custDetailsHMap.get("userName") + "'";
         //Pass through SQL Query to database class which returns the result set
         log.debug("Querying the database for existing userName: " + custDetailsHMap.get("userName"));
-        rs = Database.queryDatabase(sqlQuery);
+        rs = database.queryDatabase(sqlQuery);
         try{
             //If there is something in the result set then there was a matching username, return false.
             if(rs.next()){
@@ -181,6 +182,7 @@ public class Register {
      */
     private boolean writeNewCustomer(HashMap custDetailsHMap){
         log.debug("Inside writeNewCustomer Method.");
+        Database database = new Database();
         //The SQLite statements for inserting a new customers details
         String custLoginSQL = "INSERT INTO userLogin(loginID, userName, password, type) values(?," +
                                 "'" + custDetailsHMap.get("userName") + "'" + "," +
@@ -189,13 +191,13 @@ public class Register {
 
         //Calling the function which will insert the data into the appropriate tables
         log.debug("Inserting new customer to userLogin table.");
-        Database.updateDatabase(custLoginSQL);
+        database.updateDatabase(custLoginSQL);
         //Finding the auto allocated loginID to use as a foreign key in the customer details entry
         String loginQuery = "SELECT loginID FROM userLogin WHERE userName = " + "'" + custDetailsHMap.get("userName") + "'";
 
         log.debug("Querying Database for new users loginID to insert as foreign key to customerDetails.");
 
-        ResultSet rs = Database.queryDatabase(loginQuery);
+        ResultSet rs = database.queryDatabase(loginQuery);
         int loginID = 0;
         try {
             if(rs.next()){
@@ -214,7 +216,7 @@ public class Register {
                 "'" + custDetailsHMap.get("phoneNo") + "'" + ")";
 
         log.debug("Inserting new customer to customerDetails table.");
-        Database.updateDatabase(custDetailsSQL);
+        database.updateDatabase(custDetailsSQL);
         log.debug("Customer inserted successfully, returning true");
         return true;
     }

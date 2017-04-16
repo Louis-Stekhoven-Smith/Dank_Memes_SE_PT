@@ -47,10 +47,11 @@ public class ViewBookings {
      */
     public String getCustName(int id){
         log.debug("Inside getCustName method");
+        Database database = new Database();
         String getCustNameSQL = "SELECT name FROM customerDetails WHERE custID = " + id;
         String custName;
 
-        ResultSet rs = Database.queryDatabase(getCustNameSQL);
+        ResultSet rs = database.queryDatabase(getCustNameSQL);
         try{
             rs.next();
             custName = rs.getString("name");
@@ -68,10 +69,11 @@ public class ViewBookings {
      * @return
      */
     public String getEmpName(int id){
+        Database database = new Database();
         log.debug("Inside getEmpName method");
         String getEmpNameSQL = "SELECT name FROM employeeDetails WHERE empID = " + id;
         String empName;
-        ResultSet rs = Database.queryDatabase(getEmpNameSQL);
+        ResultSet rs = database.queryDatabase(getEmpNameSQL);
         try{
             rs.next();
             empName = rs.getString("name");

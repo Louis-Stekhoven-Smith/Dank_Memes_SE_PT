@@ -1,6 +1,7 @@
 package core.controller;
 
 import core.model.Availability;
+import core.model.Database;
 import core.model.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -94,6 +95,8 @@ public class AvailabilityController {
     private static final int EXISTS = 1;
     private String dayAvailability = "";
     private int empID = -1;
+    private Database database = new Database();
+    private Availability availability = new Availability(database);
 
     /**
      * Saves availability to the currently selected employee
@@ -119,7 +122,7 @@ public class AvailabilityController {
             setSaturday();
             setSunday();
 
-            if (!Availability.addAvailability(dayAvailability,empID)) {
+            if (!availability.addAvailability(dayAvailability,empID)) {
                 lblLoginError.setText("Failure");
                 log.debug("Returned to controller, add availability failed.");
                 return false;
@@ -183,7 +186,7 @@ public class AvailabilityController {
         int type, dayOfTheWeek = 0;
         final char AVAILABLE = '1';
         final int MORNING = 1, AFTERNOON = 2, EVENING = 3;
-        currentAvailability = Availability.getAvailability(empID);
+        currentAvailability = availability.getAvailability(empID);
 
         if(!currentAvailability.isEmpty()){
             days = currentAvailability.split(",");

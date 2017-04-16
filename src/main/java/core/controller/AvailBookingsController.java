@@ -81,12 +81,13 @@ public class AvailBookingsController {
 
     /** shows available employee times based on the date and the service chosen by retrieving data from the database */
     public void displayTimes(String chosenType, String finalDate) throws SQLException {
+        Database database = new Database();
         System.out.println("Load " + chosenType + " employee & times...");
 
         ResultSet count;
         String counter;
         String findRoleTypeCount = "SELECT count(*) AS total FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-        count = Database.queryDatabase(findRoleTypeCount);
+        count = database.queryDatabase(findRoleTypeCount);
         counter = count.getString("total");
         System.out.println("TOTAL COUNT OF THIS ROLE " + counter);
         if (counter.equals("1")) {
@@ -97,7 +98,7 @@ public class AvailBookingsController {
             ResultSet rs;
             String name;
             String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-            rs = Database.queryDatabase(findEmpNameSQL);
+            rs = database.queryDatabase(findEmpNameSQL);
             String[] myArray = new String[2];
             for (int i = 0; i < myArray.length; i++) {
                 rs.next();
@@ -108,7 +109,7 @@ public class AvailBookingsController {
             ResultSet rs1;
             String empID;
             String findempIDSQL = "SELECT empID from employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-            rs1 = Database.queryDatabase(findempIDSQL);
+            rs1 = database.queryDatabase(findempIDSQL);
             String[] myArray2 = new String[2];
             ;
             for (int i = 0; i < myArray2.length; i++) {
@@ -125,7 +126,7 @@ public class AvailBookingsController {
             ;
             for (int i = 0; i < myArray3.length; i++) {
                 String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID=" + "'" + myArray2[i] + "'";
-                rs2 = Database.queryDatabase(findAvailabilitySQL);
+                rs2 = database.queryDatabase(findAvailabilitySQL);
                 rs2.next();
                 availability = rs2.getString("availability");
                 myArray3[i] = availability;
@@ -138,8 +139,9 @@ public class AvailBookingsController {
     public void singleCountDisplayTimes(String chosenType, String finalDate) throws SQLException {
         ResultSet rs;
         String name;
+        Database database = new Database();
         String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-        rs = Database.queryDatabase(findEmpNameSQL);
+        rs = database.queryDatabase(findEmpNameSQL);
         String[] myArray = new String[1];
         for (int i = 0; i < myArray.length; i++) {
             rs.next();
@@ -149,7 +151,7 @@ public class AvailBookingsController {
         ResultSet rs1;
         String empID;
         String findempIDSQL = "SELECT empID from employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-        rs1 = Database.queryDatabase(findempIDSQL);
+        rs1 = database.queryDatabase(findempIDSQL);
         String[] myArray2 = new String[1];
         ;
         for (int i = 0; i < myArray2.length; i++) {
@@ -165,7 +167,7 @@ public class AvailBookingsController {
         ;
         for (int i = 0; i < myArray3.length; i++) {
             String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID=" + "'" + myArray2[i] + "'";
-            rs2 = Database.queryDatabase(findAvailabilitySQL);
+            rs2 = database.queryDatabase(findAvailabilitySQL);
             rs2.next();
             availability = rs2.getString("availability");
             myArray3[i] = availability;

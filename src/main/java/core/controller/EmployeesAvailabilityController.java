@@ -112,6 +112,7 @@ public class EmployeesAvailabilityController {
      * @return ObservableList<EmpAvailability>
      */
     public ObservableList<EmpAvailability> getEmpAvailability() {
+        Database database = new Database();
 
         ObservableList<EmpAvailability>  empAvailabilities = FXCollections.observableArrayList();
 
@@ -121,7 +122,7 @@ public class EmployeesAvailabilityController {
         getEmpAvailability = "SELECT employeeDetails.name, empAvailability.availability FROM employeeDetails, empAvailability" +
                 " WHERE employeeDetails.empID = empAvailability.empID ";
 
-        rs = Database.queryDatabase(getEmpAvailability);
+        rs = database.queryDatabase(getEmpAvailability);
 
         try {
             while (rs.next()) {

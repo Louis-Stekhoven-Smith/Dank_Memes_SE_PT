@@ -16,18 +16,18 @@ import java.sql.*;
  the data base and updating entries in the database. */
 public class Database {
 
-    private static Connection con;
-    private static boolean hasData = false;
-    private static String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
-    private static String DB_DRIVER = "org.sqlite.JDBC";
+    private Connection con;
+    private boolean hasData = false;
+    private String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
+    private String DB_DRIVER = "org.sqlite.JDBC";
 
-    private static final Logger log = LogManager.getLogger(Database.class.getName());
+    private final Logger log = LogManager.getLogger(Database.class.getName());
 
     /**
      * Connects to the database and creates tables if they do not exist
      * @return
      */
-    public static boolean setupDatabase(){
+    public boolean setupDatabase(){
         log.debug("Inside setupDatabase Method.");
         try{
             Class.forName(DB_DRIVER);
@@ -60,7 +60,7 @@ public class Database {
     }
 
     /** Creates employee details table in the database if none currently exist */
-    private static void createEmployeeDetTable(Statement state) throws SQLException {
+    private void createEmployeeDetTable(Statement state) throws SQLException {
         log.debug("Inside createEmployeeDetTable");
         ResultSet rs;
         rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='employeeDetails'");
@@ -89,7 +89,7 @@ public class Database {
     }
 
     /** Creates business details table in the database if none currently exist */
-    private static void createBusinessDetailsTable(Statement state) throws SQLException {
+    private void createBusinessDetailsTable(Statement state) throws SQLException {
         log.debug("Inside createBusinessDetailsTable");
         ResultSet rs;
         rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='businessDetails'");
@@ -109,7 +109,7 @@ public class Database {
     }
 
     /** Creates login table in the database if none currently exist */
-    private static void createLoginTable(Statement state) throws SQLException {
+    private void createLoginTable(Statement state) throws SQLException {
         log.debug("Inside createLoginTable");
         ResultSet rs;
         rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='userLogin'");
@@ -127,7 +127,7 @@ public class Database {
     }
 
     /** this should return boolean */
-    private static void createCustomerDetTable(Statement state) throws SQLException {
+    private void createCustomerDetTable(Statement state) throws SQLException {
         log.debug("Inside createCustomerDetTable");
         ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='customerDetails'");
         if(!rs.next()) {
@@ -146,7 +146,7 @@ public class Database {
         }
     }
 
-    private static void createBookingsTable(Statement state) throws SQLException {
+    private void createBookingsTable(Statement state) throws SQLException {
         log.debug("Inside createBookingsTable");
         ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='bookingDetails'");
         if(!rs.next()) {
@@ -169,7 +169,7 @@ public class Database {
     }
 
 
-    private static void createEmpAvailability(Statement state)throws SQLException{
+    private void createEmpAvailability(Statement state)throws SQLException{
         log.debug("Inside createEmpAvailability");
         ResultSet rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='empAvailability'");
         if(!rs.next()) {
@@ -187,7 +187,7 @@ public class Database {
 
 
     /** Takes in sqlString and returns the result as a ResultSet object */
-    public static ResultSet queryDatabase(String sqlString){
+    public ResultSet queryDatabase(String sqlString){
         log.debug("Inside queryDatabase");
         ResultSet res = null;
         try{
@@ -202,9 +202,10 @@ public class Database {
     }
 
     /** Takes in an sqlstring updates, removes or inserts into the database depending on string type */
-    public static Boolean updateDatabase(String sqlString){
+    public Boolean updateDatabase(String sqlString){
         log.debug("Inside updateDatabase Method");
         try{
+            /*Connection test = DriverManager.getConnection(DB_CONNECTION);*/
             Statement state = con.createStatement();
             //Execute insert statement
             log.debug("Updating the database with input string: " + sqlString);
@@ -221,7 +222,7 @@ public class Database {
 
 
     /** automate adding a few records to database if needed - just for testing */
-    private static void resetDatabase() {
+    private void resetDatabase() {
 
         log.debug("Inside resetDatabase, inserting default values...");
 

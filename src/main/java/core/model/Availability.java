@@ -11,15 +11,20 @@ import java.sql.SQLException;
  */
 public class Availability {
 
-    private static String empAvailabilitySQL;
-    private static final Logger log = LogManager.getLogger(Availability.class.getName());
+    private String empAvailabilitySQL;
+    private final Logger log = LogManager.getLogger(Availability.class.getName());
+    Database database;
+
+    public Availability(Database database){
+        this.database = database;
+    }
 
     /** Adds availability to database as a string
      *
      * @param weeklyAvailability
      * @return returns true is successful
      */
-    public static Boolean addAvailability(String weeklyAvailability, int empID) {
+    public Boolean addAvailability(String weeklyAvailability, int empID) {
         log.debug("Inside addAvailability Method.");
 
         if(!createSQLString(weeklyAvailability, empID)){
@@ -28,7 +33,7 @@ public class Availability {
         }
         /* turn into a log statement */
         log.debug("Attempting to update availability in the database");
-        if(!Database.updateDatabase(empAvailabilitySQL)){
+        if(!database.updateDatabase(empAvailabilitySQL)){
             log.debug("Failed to add availability, returning to controller");
             empAvailabilitySQL = "";
             return false;
@@ -43,12 +48,11 @@ public class Availability {
      * @param empID
      * @return String containing weekly availability
      */
-    public static String getAvailability(int empID){
+    public String getAvailability(int empID){
         ResultSet rs;
-
         String findEmpSQL = "SELECT availability FROM EmpAvailability WHERE empID = " + "'" + empID + "'";
 
-        rs = Database.queryDatabase(findEmpSQL);
+        rs = database.queryDatabase(findEmpSQL);
 
         try {
             return rs.getString("availability");
@@ -63,7 +67,7 @@ public class Availability {
      * @param weeklyAvailability
      * @return false if invalid string
      */
-    private static Boolean createSQLString(String weeklyAvailability, int empID){
+    private Boolean createSQLString(String weeklyAvailability, int empID){
 
         log.debug("Inside createSQLString Method");
 

@@ -29,7 +29,7 @@ public class Employee {
      * @return
      */
     public static int addEmployee(String name, String employeeRole, String email, String phone){
-
+        Database database = new Database();
         char first;
 
         /* Chaptalize first char */
@@ -54,7 +54,7 @@ public class Employee {
                 "'" + email + "'," +
                 "'" + phone  +"')";
 
-        if(Database.updateDatabase(employeeDetailsSQL)){
+        if(database.updateDatabase(employeeDetailsSQL)){
             log.debug("Successfully added employee");
             if(createEmployeeAvailability(name)){
                 return 1;
@@ -68,7 +68,7 @@ public class Employee {
 
     /** Add employee to the availability table */
     private static boolean createEmployeeAvailability(String name) {
-
+        Database database = new Database();
         int empID;
 
         try {
@@ -78,7 +78,7 @@ public class Employee {
                     "'" + empID + "'" + "," +
                     "'000,000,000,000,000,000,000')";
 
-            if (Database.updateDatabase(employeeAvailablitySQL)) {
+            if (database.updateDatabase(employeeAvailablitySQL)) {
                 log.debug("Successfully added employee availability, returning to controller");
                 return true;
             }
@@ -98,6 +98,7 @@ public class Employee {
      * @return
      */
     public static int removeEmployee(int empID, String name){
+        Database database = new Database();
         log.debug("Inside removeEmployee Method.");
         String deleteSQL;
 
@@ -110,7 +111,7 @@ public class Employee {
             deleteSQL = "DELETE FROM employeeDetails where empID = " + empID + " AND name = " + "'" + name + "'";
         }
 
-        if(Database.updateDatabase(deleteSQL)){
+        if(database.updateDatabase(deleteSQL)){
             log.debug("Successfully removed employee, returning to controller.");
             return 1;
         }
@@ -127,12 +128,13 @@ public class Employee {
      */
     public static int findEmployee(String name) throws SQLException {
         log.debug("Inside findEmployee Method.");
+        Database database = new Database();
         ResultSet rs;
         int empID;
         String findEmpSQL = "SELECT empID FROM employeeDetails WHERE name = " + "'" + name + "'";
 
         log.debug("Querying database for emplyeeID with name" + name);
-        rs = Database.queryDatabase(findEmpSQL);
+        rs = database.queryDatabase(findEmpSQL);
 
         if(rs.next()){
             empID = rs.getInt("empID");

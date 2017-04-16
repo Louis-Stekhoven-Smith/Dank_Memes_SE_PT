@@ -109,6 +109,7 @@ public class ViewBookingsController {
      */
     public ObservableList<ViewBookings> getBookings() {
         log.debug("Finding all of the bookings");
+        Database database = new Database();
 
         ObservableList<ViewBookings> bookings = FXCollections.observableArrayList();
 
@@ -118,7 +119,7 @@ public class ViewBookingsController {
 
         getBookingSQL = "SELECT bookingID, custID, empID, bookingType, bookingDate, bookingTime FROM bookingDetails WHERE businessID = " + businessID;
 
-        rs = Database.queryDatabase(getBookingSQL);
+        rs = database.queryDatabase(getBookingSQL);
 
 
         try{

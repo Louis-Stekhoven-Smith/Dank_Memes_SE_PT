@@ -31,9 +31,9 @@ public class Main extends Application{
     public static void main(String[] args) {
 
         log.debug("Beginning Program");
-
+        Database database = new Database();
         /* to do driver */
-        if(Database.setupDatabase()){
+        if(database.setupDatabase()){
             launch(args);
         }
 

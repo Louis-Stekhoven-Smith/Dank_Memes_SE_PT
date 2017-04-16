@@ -55,9 +55,10 @@ public class Login {
     private static ResultSet getResultSet(String inputUsername, String inputPassword) {
         String loginSQL;
         ResultSet rs;
+        Database database = new Database();
         loginSQL = "SELECT userName, password, type FROM userLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
         log.debug("Querying database for username and password tuple");
-        rs = Database.queryDatabase(loginSQL);
+        rs = database.queryDatabase(loginSQL);
         return rs;
     }
 

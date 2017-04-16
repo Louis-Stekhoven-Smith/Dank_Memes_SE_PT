@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Dank_Memes_SE_PT" target="8" />
+      <module name="Dank_Memes_SE_PT" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,5 +1,6 @@
 package core.model;
 
+import core.interfaces.IDatabase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,9 +16,11 @@ public class Availability {
     private final Logger log = LogManager.getLogger(Availability.class.getName());
     Database database;
 
+
     public Availability(Database database){
         this.database = database;
     }
+
 
     /** Adds availability to database as a string
      *
@@ -31,7 +34,7 @@ public class Availability {
             log.debug("Failed to add availability, returning to controller.");
             return false;
         }
-        /* turn into a log statement */
+
         log.debug("Attempting to update availability in the database");
         if(!database.updateDatabase(empAvailabilitySQL)){
             log.debug("Failed to add availability, returning to controller");

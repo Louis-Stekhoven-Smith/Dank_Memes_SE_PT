@@ -18,6 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -26,6 +27,7 @@ import java.sql.SQLException;
 public class AvailabilityController {
 
     private static final Logger log = LogManager.getLogger(AvailabilityController.class.getName());
+    private Employee employee = new Employee(Database.getInstance());
 
     @FXML
     private Button btnSaveTimes;
@@ -95,7 +97,7 @@ public class AvailabilityController {
     private static final int EXISTS = 1;
     private String dayAvailability = "";
     private int empID = -1;
-    private Database database = new Database();
+    private Database database = Database.getInstance();
     private Availability availability = new Availability(database);
 
     /**
@@ -154,25 +156,18 @@ public class AvailabilityController {
             first = Character.toUpperCase(empName.charAt(0));
             empName = first + empName.substring(1);
 
-            try {
-                log.debug("Calling findEmployee method, leaving controller...");
-                if ((empID = Employee.findEmployee(empName)) >= EXISTS) {
-                    log.debug("Returned to controller, employee found and loaded: " + empID);
-                    empNameDisplay.setText(empName);
-                    lblLoginError.setText("");
 
-                    removeDisplayedAvailablity();
-                    loadCurrentAvailability();
-                } else {
-                    log.debug("Returned to controller, failed to find and load employee");
-                }
+            log.debug("Calling findEmployee method, leaving controller...");
+            if ((empID = employee.findEmployee(empName)) >= EXISTS) {
+                log.debug("Returned to controller, employee found and loaded: " + empID);
+                empNameDisplay.setText(empName);
+                lblLoginError.setText("");
 
-            } catch (SQLException e) {
-                log.error("SQL ERROR: " + e.getMessage());
-                e.printStackTrace();
+                removeDisplayedAvailablity();
+                loadCurrentAvailability();
+            } else {
+                log.debug("Returned to controller, failed to find and load employee");
             }
-            /*TODO if emp already has availability load in to checkboxes */
-
         }
     }
 

@@ -17,6 +17,13 @@ public class Employee {
 
     private static final Logger log = LogManager.getLogger(Employee.class.getName());
 
+    private Database database;
+    private ResultSet resultSet;
+
+
+    public Employee(Database database){
+        this.database = database;
+    }
 
     /**
      * Takes in employees details as parameters,
@@ -28,8 +35,7 @@ public class Employee {
      * @param phone
      * @return
      */
-    public static int addEmployee(String name, String employeeRole, String email, String phone){
-        Database database = new Database();
+    public int addEmployee(String name, String employeeRole, String email, String phone){
         char first;
 
         /* Chaptalize first char */
@@ -46,8 +52,8 @@ public class Employee {
             return -1;
         }
 
-        String employeeDetailsSQL = "INSERT INTO employeeDetails(empID, businessID, name, " +
-                "employeeRole, email, phone) values(?,"
+        String employeeDetailsSQL = "INSERT INTO employeeDetails(businessID, name, " +
+                "employeeRole, email, phone) values("
                 + businessID + "," +
                 "'" + name + "'," +
                 "'" + employeeRole + "'," +
@@ -67,11 +73,9 @@ public class Employee {
     }
 
     /** Add employee to the availability table */
-    private static boolean createEmployeeAvailability(String name) {
-        Database database = new Database();
+    private boolean createEmployeeAvailability(String name) {
         int empID;
 
-        try {
             empID = findEmployee(name);
 
             String employeeAvailablitySQL = "INSERT INTO empAvailability(empID, availability) values(" +
@@ -84,11 +88,7 @@ public class Employee {
             }
             log.debug("Failed to added availability employee, returning to controller");
             return false;
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+
     }
 
     /**
@@ -97,26 +97,28 @@ public class Employee {
      * @param name
      * @return
      */
-    public static int removeEmployee(int empID, String name){
-        Database database = new Database();
+    public boolean removeEmployee(int empID){
         log.debug("Inside removeEmployee Method.");
         String deleteSQL;
 
-        if(name.equals("")){
-            log.debug("User entered only employeeID, removing employee by ID");
-            deleteSQL = "DELETE FROM employeeDetails where empID = " + empID;
-        }
-        else {
-            log.debug("User entered both employeeID and name, removing with both");
-            deleteSQL = "DELETE FROM employeeDetails where empID = " + empID + " AND name = " + "'" + name + "'";
-        }
+        log.debug("User entered only employeeID, removing employee by ID");
+        deleteSQL = "DELETE FROM employeeDetails where empID = " + empID;
 
         if(database.updateDatabase(deleteSQL)){
+            removeEmployeeAvailability(empID);
             log.debug("Successfully removed employee, returning to controller.");
-            return 1;
+            return true;
         }
         log.debug("Failed to removed employee, returning to controller.");
-        return 0;
+        return false;
+    }
+
+    public void removeEmployeeAvailability(int empID){
+        String deleteSQL;
+
+        log.debug("Inside removeEmployeeAvailability Method.");
+        deleteSQL = "DELETE FROM empAvailability where empID = " + empID;
+        database.updateDatabase(deleteSQL);
     }
 
     /**
@@ -126,21 +128,24 @@ public class Employee {
      * @return
      * @throws SQLException
      */
-    public static int findEmployee(String name) throws SQLException {
+    public int findEmployee(String name){
         log.debug("Inside findEmployee Method.");
-        Database database = new Database();
-        ResultSet rs;
         int empID;
         String findEmpSQL = "SELECT empID FROM employeeDetails WHERE name = " + "'" + name + "'";
 
         log.debug("Querying database for emplyeeID with name" + name);
-        rs = database.queryDatabase(findEmpSQL);
+        resultSet = database.queryDatabase(findEmpSQL);
 
-        if(rs.next()){
-            empID = rs.getInt("empID");
-            log.info("Found employeeID: " + empID);
-            log.debug("Successfully found empID, returning to controller.");
-            return empID;
+        try{
+            if(resultSet.next()){
+                empID = resultSet.getInt("empID");
+                log.info("Found employeeID: " + empID);
+                log.debug("Successfully found empID, returning to controller.");
+                return empID;
+            }
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
         }
         log.debug("Failed to find empID, returning to controller.");
         return -1;
@@ -151,7 +156,7 @@ public class Employee {
      * @param phone
      * @return
      */
-    private static boolean phoneValidation(String phone){
+    private boolean phoneValidation(String phone){
         log.debug("Inside phoneValidation Method. Validating phone number: " + phone);
 
         if(phone.matches("^\\({0,1}((0|\\+61)(2|4|3|7|8)){0,1}\\){0,1}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{1}(\\ |-){0,1}[0-9]{3}$")){
@@ -161,5 +166,4 @@ public class Employee {
         log.debug("Invalid phone number, returning false");
         return false;
     }
-
 }

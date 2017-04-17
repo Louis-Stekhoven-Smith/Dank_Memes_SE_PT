@@ -1,5 +1,6 @@
 package core.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -13,13 +14,15 @@ public class RegisterTest {
 
 
     Register testRegister = new Register();
+    private Database database;
 
+    @BeforeEach
+    public void setup(){
+        database = Database.getInstance();
+    }
 
     @Test
     void isNotEmpty() throws Exception {
-        Database database = new Database();
-        database.setupDatabase();
-
         HashMap<String, String> allEmptyHMap = new HashMap<String, String>();
         HashMap<String, String> oneEmptyHMap = new HashMap<String, String>();
         HashMap<String, String> allFullHMap = new HashMap<String, String>();
@@ -61,8 +64,6 @@ public class RegisterTest {
 
     @Test
     void passwordMatches() throws Exception {
-        Database database = new Database();
-        database.setupDatabase();
 
         HashMap<String, String> unmatchingPasswords = new HashMap<String, String>();
         HashMap<String, String> matchingPasswords = new HashMap<String, String>();
@@ -96,8 +97,6 @@ public class RegisterTest {
 
     @Test
     void passwordCriteria() throws Exception {
-        Database database = new Database();
-        database.setupDatabase();
 
         HashMap<String, String> shortPassword = new HashMap<String, String>();
         HashMap<String, String> noNumPassword = new HashMap<String, String>();
@@ -153,8 +152,6 @@ public class RegisterTest {
 
     @Test
     void phoneNoCriteria() throws Exception {
-        Database database = new Database();
-        database.setupDatabase();
 
         HashMap<String, String> correctPhoneNo1 = new HashMap<String, String>();
         HashMap<String, String> correctPhoneNo2 = new HashMap<String, String>();
@@ -188,8 +185,6 @@ public class RegisterTest {
 
     @Test
      void userNameFree() throws Exception {
-        Database database = new Database();
-        database.setupDatabase();
 
         HashMap<String, String> userNameExists = new HashMap<String, String>();
         HashMap<String, String> userNameFree = new HashMap<String, String>();
@@ -224,8 +219,7 @@ public class RegisterTest {
 
     @Test
     void register() throws Exception {
-        Database database = new Database();
-        database.setupDatabase();
+
         HashMap<String, String> registerCustomer = new HashMap<String, String>();
 
         registerCustomer.put("name", "Lady Sovreign");

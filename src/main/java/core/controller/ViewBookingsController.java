@@ -109,7 +109,7 @@ public class ViewBookingsController {
      */
     public ObservableList<ViewBookings> getBookings() {
         log.debug("Finding all of the bookings");
-        Database database = new Database();
+        Database database = Database.getInstance();
 
         ObservableList<ViewBookings> bookings = FXCollections.observableArrayList();
 

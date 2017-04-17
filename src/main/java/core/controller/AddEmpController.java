@@ -1,5 +1,6 @@
 package core.controller;
 
+import core.model.Database;
 import core.model.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 
 /**
  * Created by harry on 8/04/2017.
@@ -22,6 +24,8 @@ import java.io.IOException;
 public class AddEmpController {
 
     private static final Logger log = LogManager.getLogger(AddEmpController.class.getName());
+
+    private Employee employee = new Employee(Database.getInstance());
     //Add Employee Fields
     @FXML
     private TextField txtAddName;
@@ -44,7 +48,7 @@ public class AddEmpController {
         int result;
 
         log.debug("Calling addEmployee Method, leaving controller...");
-        result = Employee.addEmployee(empName, empRole, email, phone);
+        result = employee.addEmployee(empName, empRole, email, phone);
         log.debug("Returned to controller");
 
         if(empName.equals("") || empRole.equals("") || email.equals("") || phone.equals("")){

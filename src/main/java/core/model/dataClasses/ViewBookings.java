@@ -47,7 +47,7 @@ public class ViewBookings {
      */
     public String getCustName(int id){
         log.debug("Inside getCustName method");
-        Database database = new Database();
+        Database database = Database.getInstance();
         String getCustNameSQL = "SELECT name FROM customerDetails WHERE custID = " + id;
         String custName;
 
@@ -69,7 +69,7 @@ public class ViewBookings {
      * @return
      */
     public String getEmpName(int id){
-        Database database = new Database();
+        Database database = Database.getInstance();
         log.debug("Inside getEmpName method");
         String getEmpNameSQL = "SELECT name FROM employeeDetails WHERE empID = " + id;
         String empName;

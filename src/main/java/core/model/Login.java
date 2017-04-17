@@ -17,11 +17,16 @@ public class Login {
      * Returns -1    if authentication failed
      * Returns 2 if users is a business owner
      * Returns 1 if user is a customer */
-    private static final Logger log = LogManager.getLogger(Login.class.getName());
+    private final Logger log = LogManager.getLogger(Login.class.getName());
+    private Database database;
 
-    public static int validateAttempt(String inputUsername, String inputPassword){
+    public Login(Database database){
+        this.database = database;
+    }
+
+    public int validateAttempt(String inputUsername, String inputPassword){
         ResultSet rs;
-        final String CUSTOMER = "1", OWNER = "2";
+        final int CUSTOMER = 1, OWNER = 2;
         log.debug("Inside validateAttempt Method");
         log.info("Validating login attempt for userName: " + inputUsername + " with password: " + inputPassword);
 
@@ -34,12 +39,12 @@ public class Login {
             if(!(rs.next())) {
                 return -1;
             }
-            if(isType(rs, CUSTOMER)){
+            if(isType(rs) == CUSTOMER){
                 log.debug("Successful customer login, logged in as: " + inputUsername);
                 log.debug("Returning to Controller");
                 return 1;
             }
-            if(isType(rs, OWNER)){
+            if(isType(rs) == OWNER){
                 log.debug("Successful owner login, logged in as: " + inputUsername);
                 log.debug("Returning to Controller");
                 return 2;
@@ -52,17 +57,16 @@ public class Login {
         return -1;
     }
 
-    private static ResultSet getResultSet(String inputUsername, String inputPassword) {
+    private ResultSet getResultSet(String inputUsername, String inputPassword) {
         String loginSQL;
         ResultSet rs;
-        Database database = new Database();
         loginSQL = "SELECT userName, password, type FROM userLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
         log.debug("Querying database for username and password tuple");
         rs = database.queryDatabase(loginSQL);
         return rs;
     }
 
-    private static boolean isType(ResultSet rs, String customer) throws SQLException {
-        return rs.getString("type").equals(customer);
+    private int isType(ResultSet rs) throws SQLException {
+        return rs.getInt("type");
     }
 }

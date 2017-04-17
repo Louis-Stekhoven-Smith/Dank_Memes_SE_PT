@@ -112,7 +112,7 @@ public class EmployeesAvailabilityController {
      * @return ObservableList<EmpAvailability>
      */
     public ObservableList<EmpAvailability> getEmpAvailability() {
-        Database database = new Database();
+        Database database = Database.getInstance();
 
         ObservableList<EmpAvailability>  empAvailabilities = FXCollections.observableArrayList();
 

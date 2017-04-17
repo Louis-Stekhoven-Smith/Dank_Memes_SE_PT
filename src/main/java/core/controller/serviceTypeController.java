@@ -37,7 +37,7 @@ public class serviceTypeController {
     public void loadRoles() throws SQLException, IOException {
         ResultSet rs;
         String role;
-        Database database = new Database();
+        Database database = Database.getInstance();
         String findEmpSQL = "SELECT DISTINCT employeeRole FROM employeeDetails";
         rs = database.queryDatabase(findEmpSQL);
         String[] myArray = new String[4];

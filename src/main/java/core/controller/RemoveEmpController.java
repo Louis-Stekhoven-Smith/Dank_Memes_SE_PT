@@ -1,5 +1,6 @@
 package core.controller;
 
+import core.model.Database;
 import core.model.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -23,6 +25,9 @@ import java.sql.SQLException;
 public class RemoveEmpController {
 
     private static final Logger log = LogManager.getLogger(RemoveEmpController.class.getName());
+
+    private Employee employee = new Employee(Database.getInstance());
+
     //Remove Employee Fields
     @FXML
     private TextField txtEmpID;
@@ -38,7 +43,6 @@ public class RemoveEmpController {
 
         log.debug("Find employee button clicked");
 
-        Employee employee = new Employee();
         String empName = txtEmpName.getText();
         int empID;
 
@@ -61,7 +65,7 @@ public class RemoveEmpController {
     public void btnRemoveEmp() throws IOException {
         log.debug("Remove employee button clicked");
         String empName = txtEmpName.getText();
-        int result;
+        Boolean result;
         if (empName.equals("") && txtEmpID.getText().equals("")) {
             lblRemoveError.setText("Please find employee!");
             return;
@@ -72,10 +76,10 @@ public class RemoveEmpController {
         }
         int empID = Integer.parseInt(txtEmpID.getText());
         log.debug("Remove employee button clicked, leaving controller...");
-        result = Employee.removeEmployee(empID, empName);
+        result = employee.removeEmployee(empID);
         log.debug("Returned to controller");
 
-        if(result == 1){
+        if(result){
             lblRemoveError.setTextFill(Color.web("#ffffff"));
             lblRemoveError.setText("Employee Removed!");
             lblFindEmp.setText("");

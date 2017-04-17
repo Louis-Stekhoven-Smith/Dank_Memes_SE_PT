@@ -126,6 +126,8 @@ class EmployeeTest {
 
         assertTrue(employee.removeEmployee(1));
     }
-    /* TODO add integration tests to test SQL statements are vaild */
-    /*TODO add test for exception */
+
+    /*TODO*/
+    /*if possible add  SQL statements are valid unit test
+     * else use integration tests to test SQL statements are valid */
 }

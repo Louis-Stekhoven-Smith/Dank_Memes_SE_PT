@@ -21,9 +21,8 @@ public class Employee {
     private ResultSet resultSet;
 
 
-    public Employee(Database database, ResultSet res){
+    public Employee(Database database){
         this.database = database;
-        this.resultSet =  res;
     }
 
     /**

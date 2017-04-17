@@ -1,6 +1,5 @@
 package core.model;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -41,7 +40,7 @@ class EmployeeTest {
 
     @BeforeEach
     public void setup() throws Exception{
-        employee = new Employee(mockDatabase, mockResultSetFull);
+        employee = new Employee(mockDatabase);
         name = "Harry Potter";
         role = "Apprentice Barber";
         email = "potter@wizard.com";

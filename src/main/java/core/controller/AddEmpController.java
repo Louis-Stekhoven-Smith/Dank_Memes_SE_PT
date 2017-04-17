@@ -24,8 +24,8 @@ import java.sql.ResultSet;
 public class AddEmpController {
 
     private static final Logger log = LogManager.getLogger(AddEmpController.class.getName());
-    private ResultSet resultSet;
-    private Employee employee = new Employee(Database.getInstance(), resultSet);
+
+    private Employee employee = new Employee(Database.getInstance());
     //Add Employee Fields
     @FXML
     private TextField txtAddName;

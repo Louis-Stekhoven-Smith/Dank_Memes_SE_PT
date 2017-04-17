@@ -27,8 +27,7 @@ import java.sql.SQLException;
 public class AvailabilityController {
 
     private static final Logger log = LogManager.getLogger(AvailabilityController.class.getName());
-    private ResultSet resultSet;
-    private Employee employee = new Employee(Database.getInstance(), resultSet);
+    private Employee employee = new Employee(Database.getInstance());
 
     @FXML
     private Button btnSaveTimes;

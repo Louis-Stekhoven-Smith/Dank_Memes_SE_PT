@@ -1,4 +1,5 @@
 package core.controller;
+import core.model.Database;
 import core.model.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,7 +51,7 @@ public class Controller {
         log.debug("Login button clicked, attempting to login");
         String inputUsername = txtUsername.getText();
         String inputPassword = txtPassword.getText();
-        Login login = new Login();
+        Login login = new Login(Database.getInstance());
         log.debug("Calling method validateAttempt, leaving controller...");
         int result = login.validateAttempt(inputUsername,inputPassword);
         log.debug("Returned to controller");

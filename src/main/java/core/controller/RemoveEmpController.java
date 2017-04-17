@@ -26,8 +26,7 @@ public class RemoveEmpController {
 
     private static final Logger log = LogManager.getLogger(RemoveEmpController.class.getName());
 
-    private ResultSet resultSet;
-    private Employee employee = new Employee(Database.getInstance(), resultSet);
+    private Employee employee = new Employee(Database.getInstance());
 
     //Remove Employee Fields
     @FXML

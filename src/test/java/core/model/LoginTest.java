@@ -2,6 +2,7 @@ package core.model;
 
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,37 +51,47 @@ class LoginTest {
         when(mockResultEmpty.getInt(anyString())).thenReturn(-1);
     }
 
+    @DisplayName("Confirm an invalid username and password is caught")
     @Test
     void invalidLoginAttempt(){
         String regex ="(.*" +invalidUserName+ ".*" +invalidPassword+ ".*)|" +
                 "(.*"+invalidPassword+".*"+invalidUserName+".*)";
 
         when(mockDatabase.queryDatabase(matches(regex))).thenReturn(mockResultEmpty);
-        assertEquals(failedAttempt, login.validateAttempt(invalidUserName, invalidPassword));}
+        assertEquals(failedAttempt, login.validateAttempt(invalidUserName, invalidPassword));
+    }
 
+    @DisplayName("Confirm an invalid username is caught")
     @Test
     void validUsernameOnly(){
         when(mockDatabase.queryDatabase(contains(invalidPassword))).thenReturn(mockResultEmpty);
-        assertEquals(failedAttempt,login.validateAttempt(validUserName, invalidPassword));}
+        assertEquals(failedAttempt,login.validateAttempt(validUserName, invalidPassword));
+    }
 
+    @DisplayName("Confirm an invalid password is caught")
     @Test
     void validPasswordOnly(){
         when(mockDatabase.queryDatabase(contains(invalidUserName))).thenReturn(mockResultEmpty);
-        assertEquals(failedAttempt,  login.validateAttempt(invalidUserName, validPassword));}
+        assertEquals(failedAttempt,  login.validateAttempt(invalidUserName, validPassword));
+    }
 
+    @DisplayName("Confirm correct customer login details result in successful validation")
     @Test
     void customerLoggedIn() throws Exception{
         setupForPositiveMatch(validUserName,validPassword);
         when(mockResultFull.getInt(anyString())).thenReturn(CUSTOMER);
         assertEquals(CUSTOMER,login.validateAttempt(validUserName,validPassword));
     }
+
+    @DisplayName("Confirm correct owner login details result in successful validation")
     @Test
     void ownerLoggedIn() throws Exception{
         setupForPositiveMatch("homy","Homy1234");
         when(mockResultFull.getInt(anyString())).thenReturn(OWNER);
         assertEquals(OWNER,login.validateAttempt("homy","Homy1234"));
-
     }
+
+    @DisplayName("Confirm user name used to log in inst case sensitive")
     @Test
     void usernameNotCaseSensitive() throws Exception{
         setupForPositiveMatch("homy","Homy1234");

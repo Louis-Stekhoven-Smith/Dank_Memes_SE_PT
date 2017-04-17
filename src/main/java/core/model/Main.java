@@ -31,11 +31,11 @@ public class Main extends Application{
     public static void main(String[] args) {
 
         log.debug("Beginning Program");
-        Database database = new Database();
+
         /* to do driver */
-        if(database.setupDatabase()){
-            launch(args);
-        }
+        Database.getInstance();
+        launch(args);
+
 
 
 

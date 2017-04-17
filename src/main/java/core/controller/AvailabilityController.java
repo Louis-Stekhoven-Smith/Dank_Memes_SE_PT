@@ -95,7 +95,7 @@ public class AvailabilityController {
     private static final int EXISTS = 1;
     private String dayAvailability = "";
     private int empID = -1;
-    private Database database = new Database();
+    private Database database = Database.getInstance();
     private Availability availability = new Availability(database);
 
     /**

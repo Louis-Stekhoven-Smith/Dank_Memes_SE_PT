@@ -1,5 +1,6 @@
 package core.model;
 
+import core.interfaces.IDatabase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,19 +15,38 @@ import java.sql.*;
  database does exist and setting up the tables for insertion.
  It also has a method for querying the database, inserting into
  the data base and updating entries in the database. */
-public class Database {
+public class Database implements IDatabase {
+
+    private static Database instance;
+
     private Connection con;
-    private boolean hasData = false;
     private String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
     private String DB_DRIVER = "org.sqlite.JDBC";
 
     private final Logger log = LogManager.getLogger(Database.class.getName());
 
+    private Database() {
+        try{
+            con = DriverManager.getConnection(DB_CONNECTION);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+        }
+        setupDatabase();
+    }
+
+    public static Database getInstance(){
+        return SingletonHolder.instance;
+    }
+
+    private static final class SingletonHolder {
+        static final Database instance = new Database();
+    }
     /**
      * Connects to the database and creates tables if they do not exist
      * @return
      */
-    public boolean setupDatabase(){
+    private boolean setupDatabase(){
         log.debug("Inside setupDatabase Method.");
 
         try{
@@ -37,20 +57,15 @@ public class Database {
             return false;
         }
         try{
-            con = DriverManager.getConnection(DB_CONNECTION);
-
-            if(!hasData){
-                hasData = true;
-                Statement state = con.createStatement();
-
-                log.debug("Creating tables if they do not exist");
-                createCustomerDetTable(state);
-                createLoginTable(state);
-                createBusinessDetailsTable(state);
-                createEmpAvailability(state);
-                createBookingsTable(state);
-                createEmployeeDetTable(state);
-            }
+            Statement state = con.createStatement();
+            log.debug("Creating tables if they do not exist");
+            createCustomerDetTable(state);
+            createLoginTable(state);
+            createBusinessDetailsTable(state);
+            createEmpAvailability(state);
+            createBookingsTable(state);
+            createEmployeeDetTable(state);
+            state.close();
         }
         catch (SQLException e){
             log.error("Failed to create tables: " + e.getMessage());
@@ -105,6 +120,7 @@ public class Database {
                     " PRIMARY KEY(businessID), " +
                     " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             businessDetails.execute(sqlbusinessDetails);
+            businessDetails.close();
         }
     }
 
@@ -123,6 +139,7 @@ public class Database {
                     " type VARCHAR(40)," +
                     " PRIMARY KEY(loginID))";
             custLogin.execute(sqlCustLogin);
+            custLogin.close();
         }
     }
 
@@ -143,6 +160,7 @@ public class Database {
                     " PRIMARY KEY (custID), " +
                     " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             custDetails.execute(sqlCustDetails);
+            custDetails.close();
         }
     }
 
@@ -165,9 +183,9 @@ public class Database {
                     " FOREIGN KEY (businessID) REFERENCES businessDetails (BusinessID), " +
                     " FOREIGN KEY (empID) REFERENCES employeeDetails (empID))";
             bookingTable.execute(bookingSQL);
+            bookingTable.close();
         }
     }
-
 
     private void createEmpAvailability(Statement state)throws SQLException{
         log.debug("Inside createEmpAvailability");
@@ -181,38 +199,41 @@ public class Database {
                     " PRIMARY KEY (empID)" +
                     " FOREIGN KEY (empID) References employeeDetails(empID))";
             empAvailability.execute(sqlempAvailability);
+            empAvailability.close();
         }
 
     }
 
-
     /** Takes in sqlString and returns the result as a ResultSet object */
     public ResultSet queryDatabase(String sqlString){
         log.debug("Inside queryDatabase");
-        Connection connection;
+
         ResultSet res = null;
         try{
             log.debug("Querying the database with input string: " + sqlString);
+
             /*do not use the global connection here can not guarantee it will be initialised */
-            connection = DriverManager.getConnection(DB_CONNECTION);
-            Statement state = connection.createStatement();
+
+            Statement state = con.createStatement();
 
             res = state.executeQuery(sqlString);
+
         } catch (SQLException e){
             log.error("Error querying the database: " + e.getMessage());
         }
         log.debug("Returning to calling Method");
+
         return res;
     }
 
     /** Takes in an sqlstring updates, removes or inserts into the database depending on string type */
     public Boolean updateDatabase(String sqlString){
         log.debug("Inside updateDatabase Method");
-        Connection connection;
+
         try{
             /*do not use the global connection here can not guarantee it will be initialised */
-            connection = DriverManager.getConnection(DB_CONNECTION);
-            Statement state = connection.createStatement();
+
+            Statement state = con.createStatement();
 
             //Execute insert statement
             log.debug("Updating the database with input string: " + sqlString);
@@ -220,6 +241,7 @@ public class Database {
             log.info("The database has been modified successfully");
             log.debug("Returning to calling Method with true");
             return true;
+
         } catch (SQLException e){
             log.error("Error updating the database: " + e.getMessage());
             log.debug("Returning to calling Method with false");

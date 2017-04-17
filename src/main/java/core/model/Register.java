@@ -152,7 +152,7 @@ public class Register {
      */
     private boolean userNameFree(HashMap custDetailsHMap){
         log.debug("Inside userNameFree Method.");
-        Database database = new Database();
+        Database database = Database.getInstance();
         //Setup with datebase
         ResultSet rs;
         //Create SQL Query
@@ -182,7 +182,7 @@ public class Register {
      */
     private boolean writeNewCustomer(HashMap custDetailsHMap){
         log.debug("Inside writeNewCustomer Method.");
-        Database database = new Database();
+        Database database = Database.getInstance();
         //The SQLite statements for inserting a new customers details
         String custLoginSQL = "INSERT INTO userLogin(loginID, userName, password, type) values(?," +
                                 "'" + custDetailsHMap.get("userName") + "'" + "," +

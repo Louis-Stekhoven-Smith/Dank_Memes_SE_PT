@@ -17,6 +17,17 @@ public class Employee {
 
     private static final Logger log = LogManager.getLogger(Employee.class.getName());
 
+    private static Database database;
+
+    /*
+    public Employee(Database database){
+        this.database = database;
+    }
+    */
+
+    public Employee(){
+
+    }
 
     /**
      * Takes in employees details as parameters,
@@ -29,7 +40,6 @@ public class Employee {
      * @return
      */
     public static int addEmployee(String name, String employeeRole, String email, String phone){
-        Database database = new Database();
         char first;
 
         /* Chaptalize first char */
@@ -68,7 +78,6 @@ public class Employee {
 
     /** Add employee to the availability table */
     private static boolean createEmployeeAvailability(String name) {
-        Database database = new Database();
         int empID;
 
         try {
@@ -98,7 +107,6 @@ public class Employee {
      * @return
      */
     public static int removeEmployee(int empID, String name){
-        Database database = new Database();
         log.debug("Inside removeEmployee Method.");
         String deleteSQL;
 
@@ -128,7 +136,6 @@ public class Employee {
      */
     public static int findEmployee(String name) throws SQLException {
         log.debug("Inside findEmployee Method.");
-        Database database = new Database();
         ResultSet rs;
         int empID;
         String findEmpSQL = "SELECT empID FROM employeeDetails WHERE name = " + "'" + name + "'";

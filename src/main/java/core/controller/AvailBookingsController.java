@@ -81,7 +81,7 @@ public class AvailBookingsController {
 
     /** shows available employee times based on the date and the service chosen by retrieving data from the database */
     public void displayTimes(String chosenType, String finalDate) throws SQLException {
-        Database database = new Database();
+        Database database = Database.getInstance();
         System.out.println("Load " + chosenType + " employee & times...");
 
         ResultSet count;
@@ -139,7 +139,7 @@ public class AvailBookingsController {
     public void singleCountDisplayTimes(String chosenType, String finalDate) throws SQLException {
         ResultSet rs;
         String name;
-        Database database = new Database();
+        Database database = Database.getInstance();
         String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
         rs = database.queryDatabase(findEmpNameSQL);
         String[] myArray = new String[1];

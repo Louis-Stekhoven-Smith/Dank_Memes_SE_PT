@@ -13,13 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class EmployeeTest {
 
-    Employee testEmployee = new Employee();
+    private static Employee employee;
 
     @BeforeAll
     public static void setUpDB(){
-
-        Database database = new Database();
-        database.setupDatabase();
+        Database.getInstance();
+        employee = new Employee(Database.getInstance());
     }
 
     @Test
@@ -30,7 +29,7 @@ class EmployeeTest {
         String phone = "1234567891";
         int result;
 
-        result = testEmployee.addEmployee(name, role, email, phone);
+        result = Employee.addEmployee(name, role, email, phone);
         assertEquals(result, -1);
     }
 
@@ -74,27 +73,26 @@ class EmployeeTest {
     @Test
     void findInvalidEmployee() throws SQLException {
         String name = "Wrong employee";
-        int empID = testEmployee.findEmployee(name);
+        int empID = Employee.findEmployee(name);
 
         assertTrue(empID == -1);
     }
 
     @Test
     void removeEmployeeTest() throws SQLException {
-        Database database = new Database();
         String name = "Harry Potter";
         String role = "Apprentice Barber";
         String email = "potter@wizard.com";
         String phone = "0466666666";
-        testEmployee.addEmployee(name, role, email, phone);
+        employee.addEmployee(name, role, email, phone);
         ResultSet rs;
         String sqlRemoveTest = "SELECT name FROM employeeDetails WHERE name = " + "'" + name + "'";
-        int empID = testEmployee.findEmployee(name);
+        int empID = Employee.findEmployee(name);
 
-        testEmployee.removeEmployee(empID, name);
+        employee.removeEmployee(empID, name);
 
         //Check if employee is in db
-        rs = database.queryDatabase(sqlRemoveTest);
+        rs = Database.getInstance().queryDatabase(sqlRemoveTest);
 
         assertFalse(rs.next());
     }

@@ -1,9 +1,11 @@
 package core.model;
 
-import org.junit.jupiter.api.*;
+
 import org.junit.jupiter.api.extension.ExtendWith;
-
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
@@ -57,7 +59,7 @@ class AvailabilityTest {
                 "Should have returned false");
     }
 
-    @DisplayName("Confirm adding availability fails string contains letters")
+    @DisplayName("Confirm adding availability successive writes")
     @Test
     void addAvailabilitySuccessSuccessiveWrites(){
         when(mockDatabase.updateDatabase(anyString())).thenReturn(true);

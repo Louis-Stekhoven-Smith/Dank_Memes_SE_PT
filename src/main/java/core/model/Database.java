@@ -83,13 +83,12 @@ public class Database implements IDatabase {
             log.debug("employeeDetails table does not exist. Creating now...");
             Statement empDetails = con.createStatement();
             String sqlEmpDetails = "CREATE TABLE employeeDetails " +
-                    "(empID INTEGER not NULL, " +
+                    "(empID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     " businessID INTEGER not NULL, " +
                     " name VARCHAR(40), " +
                     " employeeRole VARCHAR(40), " +
                     " email VARCHAR(40), " +
                     " phone VARCHAR(40), " +
-                    " PRIMARY KEY (empID), " +
                     " FOREIGN KEY (businessID) REFERENCES businessDetails (businessID))";
             empDetails.execute(sqlEmpDetails);
 

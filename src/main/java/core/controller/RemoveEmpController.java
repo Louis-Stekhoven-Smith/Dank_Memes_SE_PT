@@ -72,7 +72,7 @@ public class RemoveEmpController {
         }
         int empID = Integer.parseInt(txtEmpID.getText());
         log.debug("Remove employee button clicked, leaving controller...");
-        result = Employee.removeEmployee(empID, empName);
+        result = Employee.removeEmployee(empID);
         log.debug("Returned to controller");
 
         if(result == 1){

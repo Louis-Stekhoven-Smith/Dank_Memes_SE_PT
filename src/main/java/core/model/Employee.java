@@ -17,7 +17,7 @@ public class Employee {
 
     private static final Logger log = LogManager.getLogger(Employee.class.getName());
 
-    private static Database database;
+    private static Database database = Database.getInstance();
 
     /*
     public Employee(Database database){
@@ -25,9 +25,6 @@ public class Employee {
     }
     */
 
-    public Employee(){
-
-    }
 
     /**
      * Takes in employees details as parameters,
@@ -56,8 +53,8 @@ public class Employee {
             return -1;
         }
 
-        String employeeDetailsSQL = "INSERT INTO employeeDetails(empID, businessID, name, " +
-                "employeeRole, email, phone) values(?,"
+        String employeeDetailsSQL = "INSERT INTO employeeDetails(businessID, name, " +
+                "employeeRole, email, phone) values("
                 + businessID + "," +
                 "'" + name + "'," +
                 "'" + employeeRole + "'," +
@@ -106,25 +103,29 @@ public class Employee {
      * @param name
      * @return
      */
-    public static int removeEmployee(int empID, String name){
+    public static int removeEmployee(int empID){
         log.debug("Inside removeEmployee Method.");
         String deleteSQL;
 
-        if(name.equals("")){
-            log.debug("User entered only employeeID, removing employee by ID");
-            deleteSQL = "DELETE FROM employeeDetails where empID = " + empID;
-        }
-        else {
-            log.debug("User entered both employeeID and name, removing with both");
-            deleteSQL = "DELETE FROM employeeDetails where empID = " + empID + " AND name = " + "'" + name + "'";
-        }
+        log.debug("User entered only employeeID, removing employee by ID");
+        deleteSQL = "DELETE FROM employeeDetails where empID = " + empID;
 
         if(database.updateDatabase(deleteSQL)){
+            removeEmployeeAvailability(empID);
             log.debug("Successfully removed employee, returning to controller.");
             return 1;
         }
         log.debug("Failed to removed employee, returning to controller.");
         return 0;
+    }
+
+    public static void removeEmployeeAvailability(int empID){
+        String deleteSQL;
+
+        log.debug("Inside removeEmployeeAvailability Method.");
+        deleteSQL = "DELETE FROM empAvailability where empID = " + empID;
+        System.out.println("test");
+        database.updateDatabase(deleteSQL);
     }
 
     /**

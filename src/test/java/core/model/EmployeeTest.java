@@ -18,7 +18,7 @@ class EmployeeTest {
     @BeforeAll
     public static void setUpDB(){
         Database.getInstance();
-        employee = new Employee(Database.getInstance());
+        employee = new Employee();
     }
 
     @Test
@@ -80,16 +80,19 @@ class EmployeeTest {
 
     @Test
     void removeEmployeeTest() throws SQLException {
-        String name = "Harry Potter";
+        String name = "Hello";
         String role = "Apprentice Barber";
         String email = "potter@wizard.com";
         String phone = "0466666666";
-        employee.addEmployee(name, role, email, phone);
+
+        System.out.println(employee.addEmployee(name, role, email, phone));
+
         ResultSet rs;
         String sqlRemoveTest = "SELECT name FROM employeeDetails WHERE name = " + "'" + name + "'";
         int empID = Employee.findEmployee(name);
+        System.out.println(empID);
 
-        employee.removeEmployee(empID, name);
+        System.out.println(employee.removeEmployee(empID));
 
         //Check if employee is in db
         rs = Database.getInstance().queryDatabase(sqlRemoveTest);

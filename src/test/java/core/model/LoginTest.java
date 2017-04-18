@@ -31,6 +31,7 @@ class LoginTest {
     @Mock
     ResultSet mockResultFull;
 
+    /*valid user names are stored as all lower case */
     private String validUserName = "oldboismokey";
     private String validPassword = "Pass1234";
     private String invalidUserName ="Fake";
@@ -44,8 +45,6 @@ class LoginTest {
     public void setup() throws Exception{
         login = new Login(mockDatabase);
 
-        /*Assume success unless invalid details are sent in queryDatabase */
-        when(mockDatabase.queryDatabase(anyString())).thenReturn(mockResultFull);
         when(mockResultFull.next()).thenReturn(true);
         when(mockResultEmpty.next()).thenReturn(false);
         when(mockResultEmpty.getInt(anyString())).thenReturn(-1);
@@ -53,25 +52,22 @@ class LoginTest {
 
     @DisplayName("Confirm an invalid username and password is caught")
     @Test
-    void invalidLoginAttempt(){
-        String regex ="(.*" +invalidUserName+ ".*" +invalidPassword+ ".*)|" +
-                "(.*"+invalidPassword+".*"+invalidUserName+".*)";
-
-        when(mockDatabase.queryDatabase(matches(regex))).thenReturn(mockResultEmpty);
+    void invalidLoginAttempt() throws Exception{
+        setupForNegativeMatch(validUserName,validPassword);
         assertEquals(failedAttempt, login.validateAttempt(invalidUserName, invalidPassword));
     }
 
     @DisplayName("Confirm an invalid username is caught")
     @Test
-    void validUsernameOnly(){
-        when(mockDatabase.queryDatabase(contains(invalidPassword))).thenReturn(mockResultEmpty);
+    void validUsernameOnly() throws Exception{
+        setupForNegativeMatch(validUserName,validPassword);
         assertEquals(failedAttempt,login.validateAttempt(validUserName, invalidPassword));
     }
 
     @DisplayName("Confirm an invalid password is caught")
     @Test
-    void validPasswordOnly(){
-        when(mockDatabase.queryDatabase(contains(invalidUserName))).thenReturn(mockResultEmpty);
+    void validPasswordOnly() throws Exception{
+        setupForNegativeMatch(validUserName,validPassword);
         assertEquals(failedAttempt,  login.validateAttempt(invalidUserName, validPassword));
     }
 
@@ -79,7 +75,7 @@ class LoginTest {
     @Test
     void customerLoggedIn() throws Exception{
         setupForPositiveMatch(validUserName,validPassword);
-        when(mockResultFull.getInt(anyString())).thenReturn(CUSTOMER);
+        when(mockResultFull.getInt("type")).thenReturn(CUSTOMER);
         assertEquals(CUSTOMER,login.validateAttempt(validUserName,validPassword));
     }
 
@@ -108,10 +104,22 @@ class LoginTest {
      * @throws Exception
      */
     private void setupForPositiveMatch(String validUserName, String validPassword) throws Exception{
-        String regex ="(.*" +validUserName+ ".*" +validPassword+ ".*)|" +
-                "(.*"+validPassword+".*"+validUserName+".*)";
+        String regex = regexMatchFor(validUserName,validPassword);
          /*Assume failure unless valid details are sent to mockDatabase */
         when(mockDatabase.queryDatabase(anyString())).thenReturn(mockResultEmpty);
         when(mockDatabase.queryDatabase(matches(regex))).thenReturn(mockResultFull);
+    }
+
+    private void setupForNegativeMatch(String validUserName, String validPassword) throws Exception {
+        String regex = regexMatchFor(validUserName,validPassword);
+        /*Assume success unless invalid details are sent in queryDatabase */
+        when(mockDatabase.queryDatabase(anyString())).thenReturn(mockResultFull);
+        when(mockDatabase.queryDatabase(matches(regex))).thenReturn(mockResultEmpty);
+
+    }
+
+    private String regexMatchFor(String validUserName,String validPassword){
+        return  "(.*" +validUserName+ ".*" +validPassword+ ".*)|" +
+                "(.*"+validPassword+".*"+validUserName+".*)";
     }
 }

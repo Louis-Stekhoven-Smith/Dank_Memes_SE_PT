@@ -94,9 +94,7 @@ public class Database implements IDatabase {
 
             /*TODO*/
              /*Just for testing remove for production !
-             * need to move this somewhere better
-             * Add drop tables to the reset and move back into setup connection if you want database reset each
-             * time application is run
+             * need to add a check if database is already set move this out of this method
              */
             resetDatabase();
         }
@@ -211,8 +209,6 @@ public class Database implements IDatabase {
         try{
             log.debug("Querying the database with input string: " + sqlString);
 
-            /*do not use the global connection here can not guarantee it will be initialised */
-
             Statement state = con.createStatement();
 
             res = state.executeQuery(sqlString);
@@ -230,8 +226,6 @@ public class Database implements IDatabase {
         log.debug("Inside updateDatabase Method");
 
         try{
-            /*do not use the global connection here can not guarantee it will be initialised */
-
             Statement state = con.createStatement();
 
             //Execute insert statement

@@ -17,7 +17,8 @@ import org.mockito.Mock;
  * Created by louie on 31/03/2017.
  */
 
-/* mockito v2 doesn't support extendsWith out of the box*/
+/* mockito v2 doesn't support extendsWith out of the box
+* planned support ticked for v3*/
 @ExtendWith(MockitoExtension.class)
 @Tag("AvailabilityTests")
 class AvailabilityTest {

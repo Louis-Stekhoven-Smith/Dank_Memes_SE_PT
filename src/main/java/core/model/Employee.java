@@ -38,7 +38,7 @@ public class Employee {
     public int addEmployee(String name, String employeeRole, String email, String phone){
         char first;
 
-        /* Chaptalize first char */
+        /* Capitalize first char */
         first = Character.toUpperCase(name.charAt(0));
         name = first + name.substring(1);
 
@@ -59,7 +59,6 @@ public class Employee {
                 "'" + employeeRole + "'," +
                 "'" + email + "'," +
                 "'" + phone  +"')";
-
         if(database.updateDatabase(employeeDetailsSQL)){
             log.debug("Successfully added employee");
             if(createEmployeeAvailability(name)){
@@ -75,20 +74,12 @@ public class Employee {
     /** Add employee to the availability table */
     private boolean createEmployeeAvailability(String name) {
         int empID;
+        empID = findEmployee(name);
 
-            empID = findEmployee(name);
-
-            String employeeAvailablitySQL = "INSERT INTO empAvailability(empID, availability) values(" +
-                    "'" + empID + "'" + "," +
-                    "'000,000,000,000,000,000,000')";
-
-            if (database.updateDatabase(employeeAvailablitySQL)) {
-                log.debug("Successfully added employee availability, returning to controller");
-                return true;
-            }
-            log.debug("Failed to added availability employee, returning to controller");
-            return false;
-
+        String employeeAvailablitySQL = "INSERT INTO empAvailability(empID, availability) values(" +
+                "'" + empID + "'" + "," +
+                "'000,000,000,000,000,000,000')";
+        return (database.updateDatabase(employeeAvailablitySQL));
     }
 
     /**

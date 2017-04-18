@@ -10,7 +10,6 @@ import org.mockito.Mock;
 
 import java.sql.ResultSet;
 
-import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.ArgumentMatchers.matches;
 import static org.mockito.ArgumentMatchers.anyString;
 

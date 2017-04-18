@@ -131,34 +131,36 @@ class EmployeeTest {
     }
 
 
-    /*Assume failure unless valid details are sent to mockDatabase */
+    /** Set up a test so that we can test for a positive/success */
     private void setupForPositiveMatch(String name, String role, String email, String phone) throws Exception{
-        String regex = regexMatchFor(name,role,email,phone);
+        String regex = ".*" +name+ ".*" +role+ ".*" +
+                ".*"+email+".*"+phone+".*";
+
+        /*setting the default response as a fail */
         when(mockDatabase.updateDatabase(anyString())).thenReturn(false);
         when(mockDatabase.queryDatabase(anyString())).thenReturn(mockResultEmpty);
 
+        /* change to success if expected inputs are found */
         when(mockDatabase.updateDatabase(matches(regex))).thenReturn(true);
         when(mockDatabase.updateDatabase(matches(".*000,000,000,000,000,000,000.*"))).thenReturn(true);
         when(mockDatabase.queryDatabase(matches(regex))).thenReturn(mockResultFull);
     }
 
-    /*Assume failure unless valid details are sent to mockDatabase */
+    /** Set up a test so that we can test for a negative/failure */
     private void setupForNegativeMatch(String name, String role, String email, String phone) throws Exception {
-        String regex = regexMatchFor(name,role,email,phone);
+        String regex = ".*" +name+ ".*" +role+ ".*" +
+                ".*"+email+".*"+phone+".*";
+
+        /*setting the default response as a success as we are testing if we correctly get an error back  */
         when(mockDatabase.updateDatabase(anyString())).thenReturn(true);
         when(mockDatabase.queryDatabase(anyString())).thenReturn(mockResultFull);
 
+        /*change to error if we correctly find the bad data that was entered */
         when(mockDatabase.updateDatabase(matches(regex))).thenReturn(false);
         when(mockDatabase.queryDatabase(matches(regex))).thenReturn(mockResultEmpty);
-
     }
-
-    private String regexMatchFor(String name,String role, String email, String phone ){
-        return  ".*" +name+ ".*" +role+ ".*" +
-                ".*"+email+".*"+phone+".*";
-    }
+}
 
     /*TODO*/
     /*if possible add  SQL statements are valid unit test
      * else use integration tests to test SQL statements are valid */
-}

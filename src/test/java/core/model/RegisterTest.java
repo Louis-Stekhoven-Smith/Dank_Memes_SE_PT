@@ -1,31 +1,44 @@
 package core.model;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.matches;
+import static org.mockito.ArgumentMatchers.anyString;
+
+import static org.mockito.Mockito.when;
+
+import java.sql.ResultSet;
 import java.util.HashMap;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by harry on 11/03/2017.
  */
+@ExtendWith(MockitoExtension.class)
+@Tag("RegisterTest")
 public class RegisterTest {
 
+    @Mock
+    Database mockDataBase;
+    @Mock
+    ResultSet mockResultEmpty;
+    @Mock
+    ResultSet mockResultFull;
 
-    Register testRegister = new Register();
-    private Database database;
+    private Register testRegister;
+
+    HashMap<String, String> allEmptyHMap = new HashMap<String, String>();
+    HashMap<String, String> allFullHMap = new HashMap<String, String>();
 
     @BeforeEach
-    public void setup(){
-        database = Database.getInstance();
-    }
+    public void setup() throws Exception{
 
-    @Test
-    void isNotEmpty() throws Exception {
-        HashMap<String, String> allEmptyHMap = new HashMap<String, String>();
-        HashMap<String, String> oneEmptyHMap = new HashMap<String, String>();
-        HashMap<String, String> allFullHMap = new HashMap<String, String>();
+        testRegister = new Register(mockDataBase);
 
         allEmptyHMap.put("name", "");
         allEmptyHMap.put("userName", "");
@@ -34,207 +47,161 @@ public class RegisterTest {
         allEmptyHMap.put("address", "");
         allEmptyHMap.put("phoneNo", "");
 
-        oneEmptyHMap.put("name", "test");
-        oneEmptyHMap.put("userName", "test");
-        oneEmptyHMap.put("password1", "test");
-        oneEmptyHMap.put("password2", "test2");
-        oneEmptyHMap.put("address", "test");
-        oneEmptyHMap.put("phoneNo", "");
+        allFullHMap.put("name", "CoolBean");
+        allFullHMap.put("userName", "YesThatsMyRealName");
+        allFullHMap.put("password1", "CoolBeansharry1yup");
+        allFullHMap.put("password2", "CoolBeansharry1yup");
+        allFullHMap.put("address", "0423457368");
+        allFullHMap.put("phoneNo", "0423457368");
 
-        allFullHMap.put("name", "test");
-        allFullHMap.put("userName", "test");
-        allFullHMap.put("password1", "test");
-        allFullHMap.put("password2", "test2");
-        allFullHMap.put("address", "test");
-        allFullHMap.put("phoneNo", "test");
-
-        //Return of 0 means that a feild was empty
-
-        //Testing for a return of 0 with all set to empty
-        assertEquals(Register.attemptOutcome.EMPTY_FIELDS, testRegister.registerAttempt(allEmptyHMap));
-
-        //Testing for a return of 0 with 5 set to empty and 1 set to filled
-        assertEquals(Register.attemptOutcome.EMPTY_FIELDS, testRegister.registerAttempt(oneEmptyHMap));
+        when(mockResultEmpty.next()).thenReturn(false);
+        when(mockResultFull.next()).thenReturn(true);
 
 
-        /*  Return of 1 means the fields weren't empty but failed the next test (password matching) this is expected
-            Testing for a return of 1 with all set to filled. */
-        assertEquals(Register.attemptOutcome.PASSWORDS_DIFFERENT,testRegister.registerAttempt(allFullHMap));
+    }
+    @Test
+    void isNotEmptyDetectsEmpty() throws Exception {
+        assertFalse(testRegister.isNotEmpty(allEmptyHMap));
     }
 
     @Test
-    void passwordMatches() throws Exception {
-
-        HashMap<String, String> unmatchingPasswords = new HashMap<String, String>();
-        HashMap<String, String> matchingPasswords = new HashMap<String, String>();
-
-
-        unmatchingPasswords.put("name", "test");
-        unmatchingPasswords.put("userName", "test");
-        unmatchingPasswords.put("password1", "harry1");
-        unmatchingPasswords.put("password2", "harry12");
-        unmatchingPasswords.put("address", "test");
-        unmatchingPasswords.put("phoneNo", "test");
-
-        matchingPasswords.put("name", "test");
-        matchingPasswords.put("userName", "test");
-        matchingPasswords.put("password1", "harry12");
-        matchingPasswords.put("password2", "harry12");
-        matchingPasswords.put("address", "test");
-        matchingPasswords.put("phoneNo", "test");
-
-
-        /*  Return of 1 means passwords dont match
-            return of 2 means passwords match but fails password criteria*/
-
-        //Testing for false with the unmatching passwords
-
-        assertEquals(Register.attemptOutcome.PASSWORDS_DIFFERENT, testRegister.registerAttempt(unmatchingPasswords));
-
-        //Testing for true with both passwords matching
-        assertEquals(Register.attemptOutcome.PASSWORD_UNSATISFIED, testRegister.registerAttempt(matchingPasswords));
+    void isNotEmptyReturnsTrueIfNotEmpty() throws Exception {
+        assertTrue(testRegister.isNotEmpty(allFullHMap));
     }
 
     @Test
-    void passwordCriteria() throws Exception {
-
-        HashMap<String, String> shortPassword = new HashMap<String, String>();
-        HashMap<String, String> noNumPassword = new HashMap<String, String>();
-        HashMap<String, String> noCapsPassword = new HashMap<String, String>();
-        HashMap<String, String> noLowerPassword = new HashMap<String, String>();
-        HashMap<String, String> correctPassword = new HashMap<String, String>();
-
-
-        shortPassword.put("name", "test");
-        shortPassword.put("userName", "OldBoiSmokey");
-        shortPassword.put("password1", "harry12");
-        shortPassword.put("password2", "harry12");
-        shortPassword.put("address", "test");
-        shortPassword.put("phoneNo", "test");
-
-        noNumPassword.put("name", "test");
-        noNumPassword.put("userName", "OldBoiSmokey");
-        noNumPassword.put("password1", "wEstcoast");
-        noNumPassword.put("password2", "wEstcoast");
-        noNumPassword.put("address", "test");
-        noNumPassword.put("phoneNo", "test");
-
-        noCapsPassword.put("name", "test");
-        noCapsPassword.put("userName", "OldBoiSmokey");
-        noCapsPassword.put("password1", "eastly123");
-        noCapsPassword.put("password2", "eastly123");
-        noCapsPassword.put("address", "test");
-        noCapsPassword.put("phoneNo", "test");
-
-        noLowerPassword.put("name", "test");
-        noLowerPassword.put("userName", "OldBoiSmokey");
-        noLowerPassword.put("password1", "EASTLY123");
-        noLowerPassword.put("password2", "EASTLY123");
-        noLowerPassword.put("address", "test");
-        noLowerPassword.put("phoneNo", "test");
-
-        correctPassword.put("name", "test");
-        correctPassword.put("userName", "OldBoiSmokey");
-        correctPassword.put("password1", "H123abcZ");
-        correctPassword.put("password2", "H123abcZ");
-        correctPassword.put("address", "test");
-        correctPassword.put("phoneNo", "test");
-
-        //return of 2 means fails password criteria check, 3 means password passed.
-
-        assertEquals(Register.attemptOutcome.PASSWORD_UNSATISFIED, testRegister.registerAttempt(shortPassword));
-        assertEquals(Register.attemptOutcome.PASSWORD_UNSATISFIED, testRegister.registerAttempt(noNumPassword));
-        assertEquals(Register.attemptOutcome.PASSWORD_UNSATISFIED, testRegister.registerAttempt(noCapsPassword));
-        assertEquals(Register.attemptOutcome.PASSWORD_UNSATISFIED, testRegister.registerAttempt(noLowerPassword));
-        assertEquals(Register.attemptOutcome.PHONENO_FAIL, testRegister.registerAttempt(correctPassword));
-    }
-
-
-    @Test
-    void phoneNoCriteria() throws Exception {
-
-        HashMap<String, String> correctPhoneNo1 = new HashMap<String, String>();
-        HashMap<String, String> correctPhoneNo2 = new HashMap<String, String>();
-        HashMap<String, String> incorrectPhoneNo = new HashMap<String, String>();
-
-        correctPhoneNo1.put("name", "test");
-        correctPhoneNo1.put("userName", "oldboismokey");
-        correctPhoneNo1.put("password1", "H123abcZ");
-        correctPhoneNo1.put("password2", "H123abcZ");
-        correctPhoneNo1.put("address", "test");
-        correctPhoneNo1.put("phoneNo", "0400123456");
-
-        correctPhoneNo2.put("name", "test");
-        correctPhoneNo2.put("userName", "oldboismokey");
-        correctPhoneNo2.put("password1", "H123abcZ");
-        correctPhoneNo2.put("password2", "H123abcZ");
-        correctPhoneNo2.put("address", "test");
-        correctPhoneNo2.put("phoneNo", "+61400123456");
-
-        incorrectPhoneNo.put("name", "test");
-        incorrectPhoneNo.put("userName", "oldboismokey");
-        incorrectPhoneNo.put("password1", "H123abcZ");
-        incorrectPhoneNo.put("password2", "H123abcZ");
-        incorrectPhoneNo.put("address", "test");
-        incorrectPhoneNo.put("phoneNo", "1234567890");
-
-        assertEquals(Register.attemptOutcome.USERNAME_TAKEN, testRegister.registerAttempt(correctPhoneNo1));
-        assertEquals(Register.attemptOutcome.USERNAME_TAKEN, testRegister.registerAttempt(correctPhoneNo2));
-        assertEquals(Register.attemptOutcome.PHONENO_FAIL, testRegister.registerAttempt(incorrectPhoneNo));
+    void isNotEmptyDetectsIfOneIsEmpty() throws Exception {
+        allFullHMap.put("name","");
+        assertFalse(testRegister.isNotEmpty(allFullHMap));
     }
 
     @Test
-     void userNameFree() throws Exception {
+    void passwordsDoNotMatch() throws Exception {
+        allFullHMap.put("password1", "CoolBeansharry1");
+        allFullHMap.put("password2", "Coolbeansharry1");
+        assertFalse(testRegister.passwordMatches(allFullHMap));
+    }
 
-        HashMap<String, String> userNameExists = new HashMap<String, String>();
-        HashMap<String, String> userNameFree = new HashMap<String, String>();
+    @Test
+    void passwordMatch() throws Exception {
+        allFullHMap.put("password1", "CoolBeansharry1");
+        allFullHMap.put("password2", "CoolBeansharry1");
 
-        userNameExists.put("name", "test");
-        userNameExists.put("userName", "oldboismokey");
-        userNameExists.put("password1", "H123abcZ");
-        userNameExists.put("password2", "H123abcZ");
-        userNameExists.put("address", "test");
-        userNameExists.put("phoneNo", "0400123456");
+        assertTrue(testRegister.passwordMatches(allFullHMap));
+    }
 
-        userNameFree.put("name", "test");
-        userNameFree.put("userName", "nottaken");
-        userNameFree.put("password1", "H123abcZ");
-        userNameFree.put("password2", "H123abcZ");
-        userNameFree.put("address", "test");
-        userNameFree.put("phoneNo", "0400123456");
+    @Test
+    void passwordCriteriaTooShort() throws Exception {
 
-        //Testing for a return of 3 meaning the username exists
-        assertEquals(Register.attemptOutcome.USERNAME_TAKEN, testRegister.registerAttempt(userNameExists));
-
-        //Testing for a return of 5 meaning the username is free
-        assertEquals(Register.attemptOutcome.SUCCESS, testRegister.registerAttempt(userNameFree));
-        String deleteSQL = "DELETE FROM customerDetails WHERE userName = 'nottaken'";
-        String deleteSQL1 = "DELETE FROM userLogin WHERE userName = 'nottaken'";
-
-
-        database.updateDatabase(deleteSQL);
-        database.updateDatabase(deleteSQL1);
+        allFullHMap.put("password1", "CoolBea1");
+        allFullHMap.put("password2", "CoolBea1");
+        assertFalse(testRegister.passwordCriteria(allFullHMap));
 
     }
 
     @Test
-    void register() throws Exception {
+    void passwordCriteriaNoNumber() throws Exception {
+        allFullHMap.put("password1", "CoolBeansharry");
+        allFullHMap.put("password2", "CoolBeansharry");
+        assertFalse(testRegister.passwordCriteria(allFullHMap));
 
-        HashMap<String, String> registerCustomer = new HashMap<String, String>();
+    }
 
-        registerCustomer.put("name", "Lady Sovreign");
-        registerCustomer.put("userName", "YoungLasGrilled");
-        registerCustomer.put("password1", "H123abcZ");
-        registerCustomer.put("password2", "H123abcZ");
-        registerCustomer.put("address", "123madeup St");
-        registerCustomer.put("phoneNo", "+61488777666");
+    @Test
+    void passwordCriteriaNoNumberNoCaps() throws Exception {
+        allFullHMap.put("password1", "coolbeansharry1");
+        allFullHMap.put("password2", "coolbeansharry1");
+        assertFalse(testRegister.passwordCriteria(allFullHMap));
+    }
 
-        assertEquals(Register.attemptOutcome.SUCCESS, testRegister.registerAttempt(registerCustomer));
+    @Test
+    void passwordCriteriaNoNumberNoLower() throws Exception {
+        allFullHMap.put("password1", "COOLBEANSHARRY1");
+        allFullHMap.put("password2", "COOLBEANSHARRY1");
+        assertFalse(testRegister.passwordCriteria(allFullHMap));
+    }
 
-        String deleteSQL3 = "DELETE FROM customerDetails WHERE userName = " + "'YoungLasGrilled'";
-        String deleteSQL4 = "DELETE FROM userLogin WHERE userName = " + "'YoungLasGrilled'";
-        database.updateDatabase(deleteSQL3);
-        database.updateDatabase(deleteSQL4);
+    @Test
+    void passwordCriteriaCorrectPassword() throws Exception {
+        assertTrue(testRegister.passwordCriteria(allFullHMap));
+    }
+
+    @Test
+    void phoneNoCriteria1Success() throws Exception {
+        allFullHMap.put("phoneNo","+61400123456");
+        assertTrue(testRegister.phoneNoIsAus(allFullHMap));
+    }
+
+    @Test
+    void phoneNoCriteria2Success() throws Exception {
+        allFullHMap.put("phoneNo","0400123456");
+        assertTrue(testRegister.phoneNoIsAus(allFullHMap));
+    }
+
+    @Test
+    void phoneNoCriteria3Tooshort() throws Exception {
+        allFullHMap.put("phoneNo","040012345");
+        assertFalse(testRegister.phoneNoIsAus(allFullHMap));
+    }
+
+    @Test
+    void phoneNoCriteria4HasChar() throws Exception {
+        allFullHMap.put("phoneNo","04234573b");
+        assertFalse(testRegister.phoneNoIsAus(allFullHMap));
+    }
+
+    @Test
+    void phoneNoCriteria5ToLong() throws Exception {
+        allFullHMap.put("phoneNo","04234573686");
+        assertFalse(testRegister.phoneNoIsAus(allFullHMap));
+    }
+
+    @Test
+     void userNameFreeTrue() throws Exception {
+        String name = allFullHMap.get("userName");
+        when(mockDataBase.queryDatabase(matches(".*"+name+".*"))).thenReturn(mockResultFull);
+        assertFalse(testRegister.userNameFree(allFullHMap));
+    }
+
+    @Test
+    void userNameFree2False() throws Exception {
+        String name = allFullHMap.get("userName");
+        when(mockDataBase.queryDatabase(matches(".*"+name+".*"))).thenReturn(mockResultEmpty);
+        assertTrue(testRegister.userNameFree(allFullHMap));
+    }
+
+    @Test
+    void writeNewCustomerWriteLoginFail() throws Exception {
+        when(mockDataBase.updateDatabase(anyString())).thenReturn(false);
+        assertFalse(testRegister.writeNewCustomer(allFullHMap));
+    }
+
+    @Test
+    void writeNewCustomerWriteDetailsFail() throws Exception {
+        when(mockDataBase.updateDatabase(anyString())).thenReturn(true).thenReturn(false);
+        when(mockDataBase.queryDatabase(anyString())).thenReturn(mockResultFull);
+        when(mockResultFull.getInt(anyString())).thenReturn(1);
+
+        assertFalse(testRegister.writeNewCustomer(allFullHMap));
+
+    }
+
+    @Test
+    void writeNewCustomerWroteLoginButCanNotFindNewCustomersID() throws Exception {
+        when(mockDataBase.updateDatabase(anyString())).thenReturn(true);
+        when(mockDataBase.queryDatabase(anyString())).thenReturn(mockResultEmpty);
+
+        assertFalse(testRegister.writeNewCustomer(allFullHMap));
+
+    }
+
+    @Test
+    void writeNewCustomerSuccess() throws Exception {
+        when(mockDataBase.updateDatabase(anyString())).thenReturn(true);
+        when(mockDataBase.queryDatabase(anyString())).thenReturn(mockResultFull);
+        when(mockResultFull.getInt(anyString())).thenReturn(1);
+
+        assertTrue(testRegister.writeNewCustomer(allFullHMap));
 
     }
 

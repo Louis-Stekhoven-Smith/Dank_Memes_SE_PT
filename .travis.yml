@@ -1,0 +1,8 @@
+language: java
+
+jdk:
+  - oraclejdk8
+  
+notifications:
+  email: false
+  slack: the-dank-memes:kQhud597wHWJVcLrnk5k0GhU

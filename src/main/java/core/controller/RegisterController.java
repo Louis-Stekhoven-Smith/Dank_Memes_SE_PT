@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -47,7 +46,6 @@ public class RegisterController {
         log.debug("Register button clicked, attempting to register new customer");
         HashMap<String, String> customerDetails = new HashMap<>();
         Register reg = new Register(Database.getInstance());
-        Boolean noError = true;
 
         customerDetails.put("name", txtNameReg.getText());
         customerDetails.put("userName", txtUsernameReg.getText());
@@ -57,37 +55,37 @@ public class RegisterController {
         customerDetails.put("phoneNo", txtContactReg.getText());
 
         if (!reg.isNotEmpty(customerDetails)){
-            noError = false;
             log.info("Failed register attempt: Empty fields exist.");
             lblErrors.setText("Empty fields exist!");
         }
-        if (!reg.passwordCriteria(customerDetails)) {
-            noError = false;
+
+        else if(!reg.nameValidation(customerDetails)){
+            log.info("Failed register attempt: Failed name validation");
+            lblErrors.setText("Name must only contain Letters and spaces");
+        }
+        else if (!reg.passwordCriteria(customerDetails)) {
 
             log.info("Failed register attempt: Failed password criteria.");
             lblErrors.setText("Password: 8+ chars, 1 upper, 1 lower, 1 digit");
         }
-        if (!reg.passwordMatches(customerDetails)) {
-            noError = false;
+        else if (!reg.passwordMatches(customerDetails)) {
             log.info("Failed register attempt: Password different.");
             lblErrors.setText("Passwords do not match!");
         }
-        if (!reg.userNameFree(customerDetails)){
-            noError = false;
+        else if (!reg.userNameFree(customerDetails)){
             log.info("Failed register attempt: Username taken.");
             lblErrors.setText("Username is taken!");
         }
-        if (!reg.phoneNoIsAus(customerDetails)) {
-            noError = false;
+        else if (!reg.phoneNoIsAus(customerDetails)) {
             log.info("Failed register attempt: Incorrect phone number.");
             lblErrors.setText("Invalid Phone Number!");
         }
-        if (!reg.writeNewCustomer(customerDetails)) {
-            noError = false;
+
+        else if (!reg.writeNewCustomer(customerDetails)) {
             log.info("Failed register attempt: Failed to write to database.");
             lblErrors.setText("Failed to write!");
         }
-        if (noError) {
+        else {
             log.info("Successful register attempt.");
             lblErrors.setText("");
             btnBackClicked(event);

@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by harry on 18/03/2017.
@@ -35,7 +37,7 @@ public class Employee {
      * @param phone
      * @return
      */
-    public int addEmployee(String name, String employeeRole, String email, String phone){
+    public int addEmployee(String name, String employeeRole, String address, String email, String phone){
         char first;
 
         /* Capitalize first char */
@@ -47,16 +49,26 @@ public class Employee {
 
         int businessID = 1;
 
-        if(!phoneValidation(phone)){
-            log.debug("Failed to add employee by phone validation, returning to controller");
+        if(!nameValidation(name)){
+            log.debug("Failed to add employee because of failed name validation, returning to controller");
             return -1;
         }
+        if(!emailValidation(email)){
+            log.debug("Failed to add employee because of failed email validation, returning to controller");
+            return -2;
+        }
+        if(!phoneValidation(phone)){
+            log.debug("Failed to add employee by phone validation, returning to controller");
+            return -3;
+        }
+
 
         String employeeDetailsSQL = "INSERT INTO employeeDetails(businessID, name, " +
-                "employeeRole, email, phone) values("
+                "employeeRole, address, email, phone) values("
                 + businessID + "," +
                 "'" + name + "'," +
                 "'" + employeeRole + "'," +
+                "'" + address + "'," +
                 "'" + email + "'," +
                 "'" + phone  +"')";
         if(database.updateDatabase(employeeDetailsSQL)){
@@ -85,7 +97,6 @@ public class Employee {
     /**
      * Creates an sqlstring with the parameters and removes employee from the empDetails table
      * @param empID
-     * @param name
      * @return
      */
     public boolean removeEmployee(int empID){
@@ -124,7 +135,7 @@ public class Employee {
         int empID;
         String findEmpSQL = "SELECT empID FROM employeeDetails WHERE name = " + "'" + name + "'";
 
-        log.debug("Querying database for emplyeeID with name" + name);
+        log.debug("Querying database for employeeID with name" + name);
         resultSet = database.queryDatabase(findEmpSQL);
 
         try{
@@ -157,4 +168,21 @@ public class Employee {
         log.debug("Invalid phone number, returning false");
         return false;
     }
+
+    private boolean nameValidation(String name){
+        log.debug("Inside nameValidation method.");
+        if(name.matches("[a-zA-z ]+")){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean emailValidation(String email){
+        log.debug("Inside emailValidation Method.");
+        Pattern emailValid = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailValid.matcher(email);
+        return matcher.find();
+    }
+
+
 }

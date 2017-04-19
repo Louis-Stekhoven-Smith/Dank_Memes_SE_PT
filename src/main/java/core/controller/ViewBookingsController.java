@@ -92,8 +92,6 @@ public class ViewBookingsController {
 
             @Override
             protected void updateItem(String item, boolean empty) {
-                System.out.println(item);
-                super.updateItem(item, empty);
                 Text text = new Text(item);
                 text.setStyle("-fx-text-alignment: center;");
                 text.setWrappingWidth(62);

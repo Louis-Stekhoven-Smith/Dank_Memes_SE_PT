@@ -62,6 +62,7 @@ public class Database implements IDatabase {
             createCustomerDetTable(state);
             createLoginTable(state);
             createBusinessDetailsTable(state);
+            createAvailableServicesTable(state);
             createEmpAvailability(state);
             createBookingsTable(state);
             createEmployeeDetTable(state);
@@ -87,6 +88,7 @@ public class Database implements IDatabase {
                     " businessID INTEGER not NULL, " +
                     " name VARCHAR(40), " +
                     " employeeRole VARCHAR(40), " +
+                    " address VARCHAR(100), " +
                     " email VARCHAR(40), " +
                     " phone VARCHAR(40), " +
                     " FOREIGN KEY (businessID) REFERENCES businessDetails (businessID))";
@@ -118,6 +120,25 @@ public class Database implements IDatabase {
                     " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             businessDetails.execute(sqlbusinessDetails);
             businessDetails.close();
+        }
+    }
+
+    private void createAvailableServicesTable(Statement state) throws SQLException {
+        log.debug("Inside createAvailableServicesTable");
+        ResultSet rs;
+        rs = state.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='availableServices'");
+        if(!rs.next()){
+            log.debug("availableServices table does not exist. Creating now...");
+            Statement availableServices = con.createStatement();
+            String sqlAvailableServices = "CREATE TABLE availableServices " +
+                    "(serviceID INTEGER not NULL, " +
+                    " businessID INTEGER not NULL, " +
+                    " serviceName VARCHAR (40), " +
+                    " serviceLength INTEGER not NULL, " +
+                    " PRIMARY KEY(serviceID), " +
+                    " FOREIGN KEY (businessID) REFERENCES businessDetails (businessID))";
+            availableServices.execute(sqlAvailableServices);
+            availableServices.close();
         }
     }
 
@@ -279,34 +300,61 @@ public class Database implements IDatabase {
         updateDatabase(cust2LoginSQL);
         updateDatabase(bussinessOwnerSQL);
 
-        String emp1SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+        String service1SQL = "INSERT INTO availableServices(serviceID, businessID, serviceName, serviceLength) values(?, " +
+                                "'" + 1 + "'," +
+                                "'" + "Female cut" + "'," +
+                                "'" + 60 + "')";
+        String service2SQL = "INSERT INTO availableServices(serviceID, businessID, serviceName, serviceLength) values(?, " +
+                                "'" + 1 + "'," +
+                                "'" + "Male cut" + "'," +
+                                "'" + 30 + "')";
+        String service3SQL = "INSERT INTO availableServices(serviceID, businessID, serviceName, serviceLength) values(?, " +
+                                "'" + 1 + "'," +
+                                "'" + "Massage wash" + "'," +
+                                "'" + 15 + "')";
+        String service4SQL = "INSERT INTO availableServices(serviceID, businessID, serviceName, serviceLength) values(?, " +
+                                "'" + 1 + "'," +
+                                "'" + "Blow" + "'," +
+                                "'" + 60 + "')";
+
+        updateDatabase(service1SQL);
+        updateDatabase(service2SQL);
+        updateDatabase(service3SQL);
+        updateDatabase(service4SQL);
+
+        String emp1SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, address, email, phone) values(?, " +
                             "'" + 1 + "'," +
                             "'" + "Sally" + "'," +
                             "'" + "Female cut" + "'," +
+                            "'" + "123 Service Street, Melbourne" + "'," +
                             "'" + "sally@saloon.com" + "'," +
                             "'" + "0412345929" + "')";
-        String emp2SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+        String emp2SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, address, email, phone) values(?, " +
                             "'" + 1 + "'," +
                             "'" + "Bob" + "'," +
                             "'" + "Male cut" + "'," +
+                            "'" + "123 sample Street, Melbourne" + "'," +
                             "'" + "bob@saloon.com" + "'," +
                             "'" + "0499283771" + "')";
-        String emp3SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+        String emp3SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, address, email, phone) values(?, " +
                             "'" + 1 + "'," +
                             "'" + "Katrina" + "'," +
                             "'" + "Blow" + "'," +
+                            "'" + "123 handy Street, Melbourne" + "'," +
                             "'" + "katrina@saloon.com" + "'," +
                             "'" + "0438223141" + "')";
-        String emp4SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+        String emp4SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, address, email, phone) values(?, " +
                             "'" + 1 + "'," +
                             "'" + "Nick" + "'," +
                             "'" + "Massage wash" + "'," +
+                            "'" + "123 lazy Street, Melbourne" + "'," +
                             "'" + "nick@saloon.com" + "'," +
                             "'" + "0462116661" + "')";
-        String emp5SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, email, phone) values(?, " +
+        String emp5SQL = "INSERT INTO employeeDetails(empID, businessID, name, employeeRole, address, email, phone) values(?, " +
                             "'" + 1 + "'," +
                             "'" + "Rachel" + "'," +
                             "'" + "Female cut" + "'," +
+                            "'" + "123 bored Street, Melbourne" + "'," +
                             "'" + "rachel@saloon.com" + "'," +
                             "'" + "0429883772" + "')";
 

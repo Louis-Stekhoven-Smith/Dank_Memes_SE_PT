@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.matches;
-import static org.mockito.ArgumentMatchers.anyString;
-
-import static org.mockito.Mockito.when;
-
 import java.sql.ResultSet;
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.matches;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by harry on 11/03/2017.
@@ -77,6 +77,20 @@ public class RegisterTest {
         assertFalse(testRegister.isNotEmpty(allFullHMap));
     }
 
+    @DisplayName("Confirm error if name is invalid")
+    @Test
+    void invalidName() throws Exception {
+        allFullHMap.put("name", "test1234");
+        assertFalse(testRegister.nameValidation(allFullHMap));
+    }
+
+    @DisplayName("Confirm success if name is valid")
+    @Test
+    void validName() throws Exception {
+        allFullHMap.put("name", "test name");
+        assertTrue(testRegister.nameValidation(allFullHMap));
+    }
+
     @DisplayName("Confirm error given if passwords don't match")
     @Test
     void passwordsDoNotMatch() throws Exception {
@@ -98,8 +112,8 @@ public class RegisterTest {
     @Test
     void passwordCriteriaTooShort() throws Exception {
 
-        allFullHMap.put("password1", "CoolBea1");
-        allFullHMap.put("password2", "CoolBea1");
+        allFullHMap.put("password1", "CoolBe1");
+        allFullHMap.put("password2", "CoolBe1");
         assertFalse(testRegister.passwordCriteria(allFullHMap));
 
     }

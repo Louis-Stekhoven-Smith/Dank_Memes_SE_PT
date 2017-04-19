@@ -2,12 +2,15 @@ package core.controller;
 
 import core.model.Database;
 import core.model.Employee;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -27,23 +30,45 @@ public class RemoveEmpController {
     private static final Logger log = LogManager.getLogger(RemoveEmpController.class.getName());
 
     private Employee employee = new Employee(Database.getInstance());
+    private Database database = Database.getInstance();
 
     //Remove Employee Fields
     @FXML
     private TextField txtEmpID;
     @FXML
-    private TextField txtEmpName;
+    private ComboBox<String> comboName;
     @FXML
     private Label lblFindEmp;
     @FXML
     private Label lblRemoveError;
 
     @FXML
+    public void initialize(){
+        log.debug("Initializing the roles combo box");
+        ResultSet rs;
+        ObservableList<String> employees = FXCollections.observableArrayList();
+
+        //Get businessID function here
+        String servicesSQL = "SELECT name FROM employeeDetails WHERE businessID = 1";
+        rs = database.queryDatabase(servicesSQL);
+
+        try {
+            while(rs.next()){
+                employees.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        comboName.setItems(employees);
+    }
+
+    @FXML
     public void btnFindEmp() throws IOException, SQLException {
 
         log.debug("Find employee button clicked");
 
-        String empName = txtEmpName.getText();
+        String empName = comboName.getValue();
         int empID;
 
         log.debug("Calling find employee method, leaving controller...");
@@ -64,7 +89,7 @@ public class RemoveEmpController {
     @FXML
     public void btnRemoveEmp() throws IOException {
         log.debug("Remove employee button clicked");
-        String empName = txtEmpName.getText();
+        String empName = comboName.getValue();
         Boolean result;
         if (empName.equals("") && txtEmpID.getText().equals("")) {
             lblRemoveError.setText("Please find employee!");
@@ -83,7 +108,7 @@ public class RemoveEmpController {
             lblRemoveError.setTextFill(Color.web("#ffffff"));
             lblRemoveError.setText("Employee Removed!");
             lblFindEmp.setText("");
-            txtEmpName.setText("");
+            comboName.valueProperty().set(null);
             txtEmpID.setText("");
         } else {
             lblRemoveError.setText("Failed to remove employee!");

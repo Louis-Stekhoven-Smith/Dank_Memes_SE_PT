@@ -2,12 +2,15 @@ package core.controller;
 
 import core.model.Database;
 import core.model.Employee;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -17,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Created by harry on 8/04/2017.
@@ -25,30 +29,55 @@ public class AddEmpController {
 
     private static final Logger log = LogManager.getLogger(AddEmpController.class.getName());
 
+    private Database database = Database.getInstance();
     private Employee employee = new Employee(Database.getInstance());
     //Add Employee Fields
     @FXML
     private TextField txtAddName;
     @FXML
-    private TextField txtAddRole;
+    private ComboBox<String> comboRoles;
     @FXML
     private TextField txtAddEmail;
     @FXML
     private TextField txtAddPhone;
     @FXML
+    private TextField txtAddAddress;
+    @FXML
     private Label lblEmpAdded;
+
+    @FXML
+    public void initialize(){
+        log.debug("Initializing the roles combo box");
+        ResultSet rs;
+        ObservableList<String> services = FXCollections.observableArrayList();
+
+        //Get businessID function here
+        String servicesSQL = "SELECT serviceName FROM availableServices WHERE businessID = 1";
+        rs = database.queryDatabase(servicesSQL);
+
+        try {
+            while(rs.next()){
+                services.add(rs.getString("serviceName"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        comboRoles.setItems(services);
+    }
 
     @FXML
     public void btnAddEmp() throws IOException {
         log.debug("Add employee button clicked");
         String empName = txtAddName.getText();
-        String empRole = txtAddRole.getText();
+        String empRole = comboRoles.getValue();
+        String address = txtAddAddress.getText();
         String email = txtAddEmail.getText();
         String phone = txtAddPhone.getText();
         int result;
 
         log.debug("Calling addEmployee Method, leaving controller...");
-        result = employee.addEmployee(empName, empRole, email, phone);
+        result = employee.addEmployee(empName, empRole, address, email, phone);
         log.debug("Returned to controller");
 
         if(empName.equals("") || empRole.equals("") || email.equals("") || phone.equals("")){
@@ -56,6 +85,16 @@ public class AddEmpController {
             lblEmpAdded.setText("Please enter all of the fields");
         }
         else if(result == -1){
+            lblEmpAdded.setTextFill(Color.web("#ff0000"));
+            lblEmpAdded.setText("Name must only contain letters & spaces!");
+            txtAddName.setText("");
+        }
+        else if(result == -2){
+            lblEmpAdded.setTextFill(Color.web("#ff0000"));
+            lblEmpAdded.setText("Invalid Email!");
+            txtAddEmail.setText("");
+        }
+        else if(result == -3){
             lblEmpAdded.setTextFill(Color.web("#ff0000"));
             lblEmpAdded.setText("Invalid phone number!");
             txtAddPhone.setText("");
@@ -69,7 +108,6 @@ public class AddEmpController {
             txtAddName.setText("");
             txtAddEmail.setText("");
             txtAddPhone.setText("");
-            txtAddRole.setText("");
         }
 
         /* TODO Get business ID function and validation */

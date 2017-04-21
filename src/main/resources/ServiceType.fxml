@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.serviceTypeController">
    <stylesheets>
-      <URL value="@../java/css/navigationButtons.css" />
+      <URL value="@/css/navigationButtons.css" />
    </stylesheets>
    <children>
       <Label layoutX="123.0" layoutY="37.0" text="Service Type:" textFill="WHITE">

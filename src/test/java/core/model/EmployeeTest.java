@@ -145,14 +145,14 @@ class EmployeeTest {
     @DisplayName("Confirm successfully add employee")
     @Test
     void addEmployee() throws Exception{
-        setupForPositiveMatch(name,role,email, phone);
+        setupForPositiveMatch(name,role,address,email, phone);
         assertEquals(SUCCEEDED_ADDING_EMP, employee.addEmployee(name, role, address, email, phone));
     }
 
     @DisplayName("Confirm error returned if the database was unable to update")
     @Test
     void addEmployeeFailedToUpdateDatabase() throws Exception{
-        setupForNegativeMatch(name,role,email, phone);
+        setupForNegativeMatch(name,role,address,email, phone);
 
         assertEquals(DATABASE_FAILED_TO_ADD,employee.addEmployee(name, role, address, email, phone));
     }
@@ -173,7 +173,7 @@ class EmployeeTest {
     @Test
     void findInvalidEmployee() throws Exception{
         String name = "Wrong employee";
-        setupForNegativeMatch(name,role,email, phone);
+        setupForNegativeMatch(name,role,address,email, phone);
 
         assertEquals(DATABASE_FAILED_TO_ADD, employee.findEmployee(name));
     }
@@ -181,7 +181,7 @@ class EmployeeTest {
     @DisplayName("Confirm successfully removes employee")
     @Test
     void removeEmployeeTest() throws Exception{
-        setupForPositiveMatch(name,role,email, phone);
+        setupForPositiveMatch(name,role,address,email, phone);
         when(mockDatabase.updateDatabase(contains("1"))).thenReturn(true);
 
         assertTrue(employee.removeEmployee(1));
@@ -189,9 +189,9 @@ class EmployeeTest {
 
 
     /** Set up a test so that we can test for a positive/success */
-    private void setupForPositiveMatch(String name, String role, String email, String phone) throws Exception{
+    private void setupForPositiveMatch(String name, String role, String address, String email, String phone) throws Exception{
         String regex = ".*" +name+ ".*" +role+ ".*" +
-                ".*"+email+".*"+phone+".*";
+                ".*"+address+".*"+".*"+email+".*"+phone+".*";
 
         /*setting the default response as a fail */
         when(mockDatabase.updateDatabase(anyString())).thenReturn(false);
@@ -204,9 +204,9 @@ class EmployeeTest {
     }
 
     /** Set up a test so that we can test for a negative/failure */
-    private void setupForNegativeMatch(String name, String role, String email, String phone) throws Exception {
+    private void setupForNegativeMatch(String name, String role, String address, String email, String phone) throws Exception {
         String regex = ".*" +name+ ".*" +role+ ".*" +
-                ".*"+email+".*"+phone+".*";
+                ".*"+address+".*"+".*"+email+".*"+phone+".*";
 
         /*setting the default response as a success as we are testing if we correctly get an error back  */
         when(mockDatabase.updateDatabase(anyString())).thenReturn(true);

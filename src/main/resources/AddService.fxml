@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AddServiceController">
+    <stylesheets>
+        <URL value="@/css/navigationButtons.css" />
+    </stylesheets>
+    <children>
+        <Pane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');">
+            <children>
+                <Label fx:id="txtLabel" alignment="CENTER" layoutX="25.0" layoutY="79.0" prefHeight="94.0" prefWidth="333.0" text="Add new service" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                    <font>
+                        <Font size="28.0" />
+                    </font></Label>
+                <Label alignment="CENTER" layoutX="139.0" layoutY="564.0" text="©DankMemes" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Calibri Light" size="18.0" />
+                    </font></Label>
+                <Button fx:id="btnBackToBusinessHome" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackToBusinessHome" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: None; -fx-background-image: url(http://i63.tinypic.com/2dirdci.png);" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                    <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                    </styleClass>
+                </Button>
+                <Button fx:id="btnAddNewService" alignment="CENTER" layoutX="134.0" layoutY="442.0" mnemonicParsing="false" onAction="#btnAddNewService" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add service" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                    <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                    </styleClass>
+                </Button>
+                <Label layoutX="55.0" layoutY="208.0" text="Name:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="55.0" layoutY="300.0" text="Length" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtAddName" layoutX="131.0" layoutY="208.0" prefHeight="25.0" prefWidth="195.0" />
+                <Label fx:id="lblAddError" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="387.0" prefHeight="27.0" prefWidth="354.0" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            <Slider fx:id="sliderLengthTime" blockIncrement="15.0" layoutX="133.0" layoutY="307.0" majorTickUnit="15.0" max="90.0" minorTickCount="0" prefHeight="14.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            </children>
+        </Pane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

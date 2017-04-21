@@ -19,6 +19,7 @@ public class Login {
      * Returns 1 if user is a customer */
     private final Logger log = LogManager.getLogger(Login.class.getName());
     private Database database;
+    private Business business;
 
     public Login(Database database){
         this.database = database;

@@ -44,8 +44,8 @@ public class BusinessHomeController {
 
     @FXML
     public void btnGotoViewBookings(ActionEvent event) throws IOException {
-        log.debug("Go to fxml bookings button clicked");
-        log.debug("Loading fxml bookings page...");
+        log.debug("Go to view bookings button clicked");
+        log.debug("Loading view bookings page...");
         Parent bookings_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/ViewBookings.fxml"));
         Scene bookings_scene = new Scene(bookings_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -75,6 +75,30 @@ public class BusinessHomeController {
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
         primaryStage.setScene(Login_scene);
+        primaryStage.show();
+    }
+
+    @FXML
+    public void btnGotoAddService(ActionEvent event) throws IOException {
+        log.debug("Goto add service page button clicked");
+        log.debug("Loading add new service page...");
+        Parent addService_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/AddService.fxml"));
+        Scene addService_scene = new Scene (addService_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(addService_scene);
+        primaryStage.show();
+    }
+
+    @FXML
+    public void btnGotoRemoveBooking(ActionEvent event) throws IOException {
+        log.debug("Goto remove booking page button clicked");
+        log.debug("Loading remove booking page...");
+        Parent removeBooking_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/BusinessRemoveBooking.fxml"));
+        Scene removeBooking_scene = new Scene (removeBooking_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(removeBooking_scene);
         primaryStage.show();
     }
 

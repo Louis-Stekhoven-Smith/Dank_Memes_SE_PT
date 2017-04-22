@@ -1,55 +1,57 @@
-2017-04-23 06:33:12.399 [main] DEBUG core.model.Main - Beginning Program
-2017-04-23 06:33:12.402 [main] DEBUG core.model.Database - Inside setupDatabase Method.
-2017-04-23 06:33:12.641 [main] DEBUG core.model.Database - Creating tables if they do not exist
-2017-04-23 06:33:12.641 [main] DEBUG core.model.Database - Inside createCustomerDetTable
-2017-04-23 06:33:12.643 [main] DEBUG core.model.Database - Inside createLoginTable
-2017-04-23 06:33:12.643 [main] DEBUG core.model.Database - Inside createBusinessDetailsTable
-2017-04-23 06:33:12.643 [main] DEBUG core.model.Database - Inside createEmpAvailability
-2017-04-23 06:33:12.643 [main] DEBUG core.model.Database - Inside createBookingsTable
-2017-04-23 06:33:12.644 [main] DEBUG core.model.Database - Inside createEmployeeDetTable
-2017-04-23 06:33:18.522 [JavaFX Application Thread] DEBUG core.controller.Controller - Login button clicked, attempting to login
-2017-04-23 06:33:18.524 [JavaFX Application Thread] DEBUG core.controller.Controller - Calling method validateAttempt, leaving controller...
-2017-04-23 06:33:18.524 [JavaFX Application Thread] DEBUG core.model.Login - Inside validateAttempt Method
-2017-04-23 06:33:18.524 [JavaFX Application Thread] INFO  core.model.Login - Validating login attempt for userName: oldboismokey with password: Pass1234
-2017-04-23 06:33:18.524 [JavaFX Application Thread] DEBUG core.model.Login - Querying database for username and password tuple
-2017-04-23 06:33:18.524 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:18.524 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT userName, password, type FROM userLogin WHERE userName ='oldboismokey' AND password ='Pass1234'
-2017-04-23 06:33:18.525 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:18.525 [JavaFX Application Thread] DEBUG core.model.Login - Successful customer login, logged in as: oldboismokey
-2017-04-23 06:33:18.525 [JavaFX Application Thread] DEBUG core.model.Login - Returning to Controller
-2017-04-23 06:33:18.525 [JavaFX Application Thread] DEBUG core.controller.Controller - Returned to controller
-2017-04-23 06:33:18.525 [JavaFX Application Thread] DEBUG core.controller.Controller - Customer Logged in as: oldboismokey
-2017-04-23 06:33:18.525 [JavaFX Application Thread] DEBUG core.controller.Controller - Loading customer page...
-2017-04-23 06:33:20.838 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:20.838 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT DISTINCT employeeRole FROM employeeDetails
-2017-04-23 06:33:20.839 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:24.349 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:24.349 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT count(*) AS total FROM employeeDetails WHERE employeeRole='Female cut'
-2017-04-23 06:33:24.350 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:24.350 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:24.350 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT name FROM employeeDetails WHERE employeeRole='Female cut'
-2017-04-23 06:33:24.350 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:24.350 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:24.350 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT empID from employeeDetails WHERE employeeRole='Female cut'
-2017-04-23 06:33:24.350 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:24.351 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:24.351 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT availability from empAvailability WHERE empID='1'
-2017-04-23 06:33:24.351 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:24.351 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:24.351 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT availability from empAvailability WHERE empID='5'
-2017-04-23 06:33:24.351 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:25.521 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:25.521 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT DISTINCT employeeRole FROM employeeDetails
-2017-04-23 06:33:25.521 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:31.540 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:31.540 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT count(*) AS total FROM employeeDetails WHERE employeeRole='Male cut'
-2017-04-23 06:33:31.540 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:31.540 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:31.540 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT name FROM employeeDetails WHERE employeeRole='Male cut'
-2017-04-23 06:33:31.540 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:31.540 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:31.541 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT empID from employeeDetails WHERE employeeRole='Male cut'
-2017-04-23 06:33:31.541 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
-2017-04-23 06:33:31.541 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
-2017-04-23 06:33:31.541 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT availability from empAvailability WHERE empID='2'
-2017-04-23 06:33:31.541 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-23 07:07:30.422 [main] DEBUG core.model.Main - Beginning Program
+2017-04-23 07:07:30.426 [main] DEBUG core.model.Database - Inside setupDatabase Method.
+2017-04-23 07:07:30.717 [main] DEBUG core.model.Database - Creating tables if they do not exist
+2017-04-23 07:07:30.717 [main] DEBUG core.model.Database - Inside createCustomerDetTable
+2017-04-23 07:07:30.718 [main] DEBUG core.model.Database - Inside createLoginTable
+2017-04-23 07:07:30.719 [main] DEBUG core.model.Database - Inside createBusinessDetailsTable
+2017-04-23 07:07:30.719 [main] DEBUG core.model.Database - Inside createEmpAvailability
+2017-04-23 07:07:30.719 [main] DEBUG core.model.Database - Inside createBookingsTable
+2017-04-23 07:07:30.719 [main] DEBUG core.model.Database - Inside createEmployeeDetTable
+2017-04-23 07:07:37.039 [JavaFX Application Thread] DEBUG core.controller.Controller - Login button clicked, attempting to login
+2017-04-23 07:07:37.040 [JavaFX Application Thread] DEBUG core.controller.Controller - Calling method validateAttempt, leaving controller...
+2017-04-23 07:07:37.040 [JavaFX Application Thread] DEBUG core.model.Login - Inside validateAttempt Method
+2017-04-23 07:07:37.040 [JavaFX Application Thread] INFO  core.model.Login - Validating login attempt for userName: olsboismokey with password: Pass1234
+2017-04-23 07:07:37.040 [JavaFX Application Thread] DEBUG core.model.Login - Querying database for username and password tuple
+2017-04-23 07:07:37.040 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-23 07:07:37.041 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT userName, password, type FROM userLogin WHERE userName ='olsboismokey' AND password ='Pass1234'
+2017-04-23 07:07:37.041 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-23 07:07:37.042 [JavaFX Application Thread] DEBUG core.controller.Controller - Returned to controller
+2017-04-23 07:07:37.042 [JavaFX Application Thread] DEBUG core.controller.Controller - Failed login attempt
+2017-04-23 07:07:44.080 [JavaFX Application Thread] DEBUG core.controller.Controller - Login button clicked, attempting to login
+2017-04-23 07:07:44.080 [JavaFX Application Thread] DEBUG core.controller.Controller - Calling method validateAttempt, leaving controller...
+2017-04-23 07:07:44.080 [JavaFX Application Thread] DEBUG core.model.Login - Inside validateAttempt Method
+2017-04-23 07:07:44.081 [JavaFX Application Thread] INFO  core.model.Login - Validating login attempt for userName: olsboismokey with password: Pass1234
+2017-04-23 07:07:44.081 [JavaFX Application Thread] DEBUG core.model.Login - Querying database for username and password tuple
+2017-04-23 07:07:44.081 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-23 07:07:44.081 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT userName, password, type FROM userLogin WHERE userName ='olsboismokey' AND password ='Pass1234'
+2017-04-23 07:07:44.081 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-23 07:07:44.081 [JavaFX Application Thread] DEBUG core.controller.Controller - Returned to controller
+2017-04-23 07:07:44.081 [JavaFX Application Thread] DEBUG core.controller.Controller - Failed login attempt
+2017-04-23 07:07:47.730 [JavaFX Application Thread] DEBUG core.controller.Controller - Login button clicked, attempting to login
+2017-04-23 07:07:47.730 [JavaFX Application Thread] DEBUG core.controller.Controller - Calling method validateAttempt, leaving controller...
+2017-04-23 07:07:47.730 [JavaFX Application Thread] DEBUG core.model.Login - Inside validateAttempt Method
+2017-04-23 07:07:47.730 [JavaFX Application Thread] INFO  core.model.Login - Validating login attempt for userName: oldboismokey with password: Pass1234
+2017-04-23 07:07:47.730 [JavaFX Application Thread] DEBUG core.model.Login - Querying database for username and password tuple
+2017-04-23 07:07:47.730 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-23 07:07:47.730 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT userName, password, type FROM userLogin WHERE userName ='oldboismokey' AND password ='Pass1234'
+2017-04-23 07:07:47.731 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-23 07:07:47.731 [JavaFX Application Thread] DEBUG core.model.Login - Successful customer login, logged in as: oldboismokey
+2017-04-23 07:07:47.731 [JavaFX Application Thread] DEBUG core.model.Login - Returning to Controller
+2017-04-23 07:07:47.731 [JavaFX Application Thread] DEBUG core.controller.Controller - Returned to controller
+2017-04-23 07:07:47.731 [JavaFX Application Thread] DEBUG core.controller.Controller - Customer Logged in as: oldboismokey
+2017-04-23 07:07:47.731 [JavaFX Application Thread] DEBUG core.controller.Controller - Loading customer page...
+2017-04-23 07:07:50.730 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-23 07:07:50.731 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT DISTINCT employeeRole FROM employeeDetails
+2017-04-23 07:07:50.731 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-23 07:07:58.238 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-23 07:07:58.238 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT count(*) AS total FROM employeeDetails WHERE employeeRole='Male cut'
+2017-04-23 07:07:58.239 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-23 07:07:58.239 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-23 07:07:58.239 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT name FROM employeeDetails WHERE employeeRole='Male cut'
+2017-04-23 07:07:58.239 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-23 07:07:58.239 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-23 07:07:58.239 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT empID from employeeDetails WHERE employeeRole='Male cut'
+2017-04-23 07:07:58.240 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method
+2017-04-23 07:07:58.240 [JavaFX Application Thread] DEBUG core.model.Database - Inside queryDatabase
+2017-04-23 07:07:58.240 [JavaFX Application Thread] DEBUG core.model.Database - Querying the database with input string: SELECT availability from empAvailability WHERE empID='2'
+2017-04-23 07:07:58.240 [JavaFX Application Thread] DEBUG core.model.Database - Returning to calling Method

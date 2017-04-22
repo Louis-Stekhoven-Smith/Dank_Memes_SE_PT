@@ -3,6 +3,10 @@ language: java
 jdk:
   - oraclejdk8
   
+addons:
+    code_climate:
+        repo_token: ec1a0ebe2c9d5b4a22cc8f9cdc51da632897b0f846b3b597a41dc61cd25e041e
+  
 notifications:
   email: false
   slack: the-dank-memes:kQhud597wHWJVcLrnk5k0GhU

@@ -249,6 +249,10 @@ public class AvailBookingsController {
                     availabilityTimes = values[i];
                     setTimeLabels1(availabilityTimes, myArray);
                 }
+                lblName1.setVisible(true);
+                btnMorning1.setVisible(true);
+                btnMidday1.setVisible(true);
+                btnEvening1.setVisible(true);
         } else if (counter == 2){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -259,6 +263,14 @@ public class AvailBookingsController {
                     setTimeLabels1(availabilityTimes, myArray);
                     setTimeLabels2(availabilityTimes2, myArray);
                 }
+                lblName1.setVisible(true);
+                btnMorning1.setVisible(true);
+                btnMidday1.setVisible(true);
+                btnEvening1.setVisible(true);
+                lblName2.setVisible(true);
+                btnMorning2.setVisible(true);
+                btnMidday2.setVisible(true);
+                btnEvening2.setVisible(true);
         }
     }
 
@@ -302,7 +314,7 @@ public class AvailBookingsController {
             btnMidday1.setText("Available");
             btnEvening1.setText("N/A");
         } else {
-            System.out.println("fail2");
+            System.out.println("fail1");
         }
     }
 
@@ -342,7 +354,7 @@ public class AvailBookingsController {
             btnMidday2.setText("Available");
             btnEvening2.setText("N/A");
         } else {
-            System.out.println("fail3");
+            System.out.println("fail2");
         }
     }
 

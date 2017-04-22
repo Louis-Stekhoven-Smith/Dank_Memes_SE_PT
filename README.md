@@ -1,3 +1,7 @@
+[![Code Climate](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT/badges/gpa.svg)](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT)
+[![Test Coverage](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT/badges/coverage.svg)](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT/coverage)
+[![Issue Count](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT/badges/issue_count.svg)](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT)
+
 # Dank_Memes_SE_PT
 
 An RMIT Software Engineering Assignment

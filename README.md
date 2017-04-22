@@ -1,7 +1,5 @@
 [![Build Status](https://travis-ci.org/LouisKnuckles/Dank_Memes_SE_PT.svg?branch=master)](https://travis-ci.org/LouisKnuckles/Dank_Memes_SE_PT)
-[![Code Climate](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT/badges/gpa.svg)](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT)
-[![Test Coverage](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT/badges/coverage.svg)](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT/coverage)
-[![Issue Count](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT/badges/issue_count.svg)](https://codeclimate.com/github/LouisKnuckles/Dank_Memes_SE_PT)
+[![codebeat badge](https://codebeat.co/badges/5720ce46-f919-44a6-a0f4-accd66704e9e)](https://codebeat.co/projects/github-com-louisknuckles-dank_memes_se_pt-master)
 
 # Dank_Memes_SE_PT
 

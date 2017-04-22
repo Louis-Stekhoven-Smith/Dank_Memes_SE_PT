@@ -23,6 +23,7 @@ import java.time.chrono.ChronoLocalDate;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -249,10 +250,7 @@ public class AvailBookingsController {
                     availabilityTimes = values[i];
                     setTimeLabels1(availabilityTimes, myArray);
                 }
-                lblName1.setVisible(true);
-                btnMorning1.setVisible(true);
-                btnMidday1.setVisible(true);
-                btnEvening1.setVisible(true);
+
         } else if (counter == 2){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -263,14 +261,6 @@ public class AvailBookingsController {
                     setTimeLabels1(availabilityTimes, myArray);
                     setTimeLabels2(availabilityTimes2, myArray);
                 }
-                lblName1.setVisible(true);
-                btnMorning1.setVisible(true);
-                btnMidday1.setVisible(true);
-                btnEvening1.setVisible(true);
-                lblName2.setVisible(true);
-                btnMorning2.setVisible(true);
-                btnMidday2.setVisible(true);
-                btnEvening2.setVisible(true);
         } else if (counter == 3){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -284,18 +274,6 @@ public class AvailBookingsController {
                     setTimeLabels2(availabilityTimes2, myArray);
                     setTimeLabels3(availabilityTimes3, myArray);
                 }
-                lblName1.setVisible(true);
-                btnMorning1.setVisible(true);
-                btnMidday1.setVisible(true);
-                btnEvening1.setVisible(true);
-                lblName2.setVisible(true);
-                btnMorning2.setVisible(true);
-                btnMidday2.setVisible(true);
-                btnEvening2.setVisible(true);
-                lblName3.setVisible(true);
-                btnMorning3.setVisible(true);
-                btnMidday3.setVisible(true);
-                btnEvening3.setVisible(true);
         } else if (counter == 4){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -312,22 +290,6 @@ public class AvailBookingsController {
                     setTimeLabels3(availabilityTimes3, myArray);
                     setTimeLabels4(availabilityTimes4, myArray);
                 }
-            lblName1.setVisible(true);
-            btnMorning1.setVisible(true);
-            btnMidday1.setVisible(true);
-            btnEvening1.setVisible(true);
-            lblName2.setVisible(true);
-            btnMorning2.setVisible(true);
-            btnMidday2.setVisible(true);
-            btnEvening2.setVisible(true);
-            lblName3.setVisible(true);
-            btnMorning3.setVisible(true);
-            btnMidday3.setVisible(true);
-            btnEvening3.setVisible(true);
-            lblName4.setVisible(true);
-            btnMorning4.setVisible(true);
-            btnMidday4.setVisible(true);
-            btnEvening4.setVisible(true);
         } else if (counter == 5){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -347,26 +309,6 @@ public class AvailBookingsController {
                     setTimeLabels4(availabilityTimes4, myArray);
                     setTimeLabels5(availabilityTimes5, myArray);
                 }
-            lblName1.setVisible(true);
-            btnMorning1.setVisible(true);
-            btnMidday1.setVisible(true);
-            btnEvening1.setVisible(true);
-            lblName2.setVisible(true);
-            btnMorning2.setVisible(true);
-            btnMidday2.setVisible(true);
-            btnEvening2.setVisible(true);
-            lblName3.setVisible(true);
-            btnMorning3.setVisible(true);
-            btnMidday3.setVisible(true);
-            btnEvening3.setVisible(true);
-            lblName4.setVisible(true);
-            btnMorning4.setVisible(true);
-            btnMidday4.setVisible(true);
-            btnEvening4.setVisible(true);
-            lblName5.setVisible(true);
-            btnMorning5.setVisible(true);
-            btnMidday5.setVisible(true);
-            btnEvening5.setVisible(true);
         } else if (counter == 6){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -389,30 +331,6 @@ public class AvailBookingsController {
                     setTimeLabels5(availabilityTimes5, myArray);
                     setTimeLabels6(availabilityTimes6, myArray);
                 }
-            lblName1.setVisible(true);
-            btnMorning1.setVisible(true);
-            btnMidday1.setVisible(true);
-            btnEvening1.setVisible(true);
-            lblName2.setVisible(true);
-            btnMorning2.setVisible(true);
-            btnMidday2.setVisible(true);
-            btnEvening2.setVisible(true);
-            lblName3.setVisible(true);
-            btnMorning3.setVisible(true);
-            btnMidday3.setVisible(true);
-            btnEvening3.setVisible(true);
-            lblName4.setVisible(true);
-            btnMorning4.setVisible(true);
-            btnMidday4.setVisible(true);
-            btnEvening4.setVisible(true);
-            lblName5.setVisible(true);
-            btnMorning5.setVisible(true);
-            btnMidday5.setVisible(true);
-            btnEvening5.setVisible(true);
-            lblName6.setVisible(true);
-            btnMorning6.setVisible(true);
-            btnMidday6.setVisible(true);
-            btnEvening6.setVisible(true);
         } else if (counter == 7){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -438,34 +356,6 @@ public class AvailBookingsController {
                     setTimeLabels6(availabilityTimes6, myArray);
                     setTimeLabels7(availabilityTimes7, myArray);
                 }
-            lblName1.setVisible(true);
-            btnMorning1.setVisible(true);
-            btnMidday1.setVisible(true);
-            btnEvening1.setVisible(true);
-            lblName2.setVisible(true);
-            btnMorning2.setVisible(true);
-            btnMidday2.setVisible(true);
-            btnEvening2.setVisible(true);
-            lblName3.setVisible(true);
-            btnMorning3.setVisible(true);
-            btnMidday3.setVisible(true);
-            btnEvening3.setVisible(true);
-            lblName4.setVisible(true);
-            btnMorning4.setVisible(true);
-            btnMidday4.setVisible(true);
-            btnEvening4.setVisible(true);
-            lblName5.setVisible(true);
-            btnMorning5.setVisible(true);
-            btnMidday5.setVisible(true);
-            btnEvening5.setVisible(true);
-            lblName6.setVisible(true);
-            btnMorning6.setVisible(true);
-            btnMidday6.setVisible(true);
-            btnEvening6.setVisible(true);
-            lblName7.setVisible(true);
-            btnMorning7.setVisible(true);
-            btnMidday7.setVisible(true);
-            btnEvening7.setVisible(true);
         } else if (counter == 8){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -494,38 +384,6 @@ public class AvailBookingsController {
                     setTimeLabels7(availabilityTimes7, myArray);
                     setTimeLabels8(availabilityTimes8, myArray);
                 }
-            lblName1.setVisible(true);
-            btnMorning1.setVisible(true);
-            btnMidday1.setVisible(true);
-            btnEvening1.setVisible(true);
-            lblName2.setVisible(true);
-            btnMorning2.setVisible(true);
-            btnMidday2.setVisible(true);
-            btnEvening2.setVisible(true);
-            lblName3.setVisible(true);
-            btnMorning3.setVisible(true);
-            btnMidday3.setVisible(true);
-            btnEvening3.setVisible(true);
-            lblName4.setVisible(true);
-            btnMorning4.setVisible(true);
-            btnMidday4.setVisible(true);
-            btnEvening4.setVisible(true);
-            lblName5.setVisible(true);
-            btnMorning5.setVisible(true);
-            btnMidday5.setVisible(true);
-            btnEvening5.setVisible(true);
-            lblName6.setVisible(true);
-            btnMorning6.setVisible(true);
-            btnMidday6.setVisible(true);
-            btnEvening6.setVisible(true);
-            lblName7.setVisible(true);
-            btnMorning7.setVisible(true);
-            btnMidday7.setVisible(true);
-            btnEvening7.setVisible(true);
-            lblName8.setVisible(true);
-            btnMorning8.setVisible(true);
-            btnMidday8.setVisible(true);
-            btnEvening8.setVisible(true);
         } else if (counter == 9){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -557,42 +415,6 @@ public class AvailBookingsController {
                     setTimeLabels8(availabilityTimes8, myArray);
                     setTimeLabels9(availabilityTimes9, myArray);
                 }
-            lblName1.setVisible(true);
-            btnMorning1.setVisible(true);
-            btnMidday1.setVisible(true);
-            btnEvening1.setVisible(true);
-            lblName2.setVisible(true);
-            btnMorning2.setVisible(true);
-            btnMidday2.setVisible(true);
-            btnEvening2.setVisible(true);
-            lblName3.setVisible(true);
-            btnMorning3.setVisible(true);
-            btnMidday3.setVisible(true);
-            btnEvening3.setVisible(true);
-            lblName4.setVisible(true);
-            btnMorning4.setVisible(true);
-            btnMidday4.setVisible(true);
-            btnEvening4.setVisible(true);
-            lblName5.setVisible(true);
-            btnMorning5.setVisible(true);
-            btnMidday5.setVisible(true);
-            btnEvening5.setVisible(true);
-            lblName6.setVisible(true);
-            btnMorning6.setVisible(true);
-            btnMidday6.setVisible(true);
-            btnEvening6.setVisible(true);
-            lblName7.setVisible(true);
-            btnMorning7.setVisible(true);
-            btnMidday7.setVisible(true);
-            btnEvening7.setVisible(true);
-            lblName8.setVisible(true);
-            btnMorning8.setVisible(true);
-            btnMidday8.setVisible(true);
-            btnEvening8.setVisible(true);
-            lblName9.setVisible(true);
-            btnMorning9.setVisible(true);
-            btnMidday9.setVisible(true);
-            btnEvening9.setVisible(true);
         } else if (counter == 10){
             String[] values = availabilityArray[0].split(",");
             String[] values2 = availabilityArray[1].split(",");
@@ -627,46 +449,6 @@ public class AvailBookingsController {
                     setTimeLabels9(availabilityTimes9, myArray);
                     setTimeLabels10(availabilityTimes10, myArray);
                 }
-            lblName1.setVisible(true);
-            btnMorning1.setVisible(true);
-            btnMidday1.setVisible(true);
-            btnEvening1.setVisible(true);
-            lblName2.setVisible(true);
-            btnMorning2.setVisible(true);
-            btnMidday2.setVisible(true);
-            btnEvening2.setVisible(true);
-            lblName3.setVisible(true);
-            btnMorning3.setVisible(true);
-            btnMidday3.setVisible(true);
-            btnEvening3.setVisible(true);
-            lblName4.setVisible(true);
-            btnMorning4.setVisible(true);
-            btnMidday4.setVisible(true);
-            btnEvening4.setVisible(true);
-            lblName5.setVisible(true);
-            btnMorning5.setVisible(true);
-            btnMidday5.setVisible(true);
-            btnEvening5.setVisible(true);
-            lblName6.setVisible(true);
-            btnMorning6.setVisible(true);
-            btnMidday6.setVisible(true);
-            btnEvening6.setVisible(true);
-            lblName7.setVisible(true);
-            btnMorning7.setVisible(true);
-            btnMidday7.setVisible(true);
-            btnEvening7.setVisible(true);
-            lblName8.setVisible(true);
-            btnMorning8.setVisible(true);
-            btnMidday8.setVisible(true);
-            btnEvening8.setVisible(true);
-            lblName9.setVisible(true);
-            btnMorning9.setVisible(true);
-            btnMidday9.setVisible(true);
-            btnEvening9.setVisible(true);
-            lblName10.setVisible(true);
-            btnMorning10.setVisible(true);
-            btnMidday10.setVisible(true);
-            btnEvening10.setVisible(true);
         }
     }
 
@@ -676,393 +458,350 @@ public class AvailBookingsController {
 
     /**sets the time buttons to available or N/A depending on availability*/
     public void setTimeLabels1(String availabilityTimes, String[] myArray){
+        String timeArray[] = availabilityTimes.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName1.setText(myArray[0]);
+        lblName1.setVisible(true);
+        btnMorning1.setVisible(true);
+        btnMidday1.setVisible(true);
+        btnEvening1.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")){
+            btnMorning1.setDisable(true);
+            btnMorning1.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")){
+            btnMorning1.setDisable(false);
+            btnMorning1.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")){
+            btnMidday1.setDisable(true);
+            btnMidday1.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")){
+            btnMidday1.setDisable(false);
+            btnMidday1.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")){
+            btnEvening1.setDisable(true);
+            btnEvening1.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")){
+            btnEvening1.setDisable(false);
+            btnEvening1.setText("Available");
+        }
+
+            /*
         if (availabilityTimes.equals("000")){
-            btnMorning1.setText("N/A");
-            btnMidday1.setText("N/A");
-            btnEvening1.setText("N/A");
+            btnMorning1.setVisible(true); btnMorning1.setDisable(true);
+            btnMidday1.setVisible(true); btnMidday1.setDisable(true);
+            btnEvening1.setVisible(true); btnEvening1.setDisable(true);
         } else if (availabilityTimes.equals("001")){
-            btnMorning1.setText("N/A");
-            btnMidday1.setText("N/A");
-            btnEvening1.setText("Available");
+            btnMorning1.setVisible(true); btnMorning1.setDisable(true);
+            btnMidday1.setVisible(true); btnMidday1.setDisable(true);
+            btnEvening1.setVisible(true); btnEvening1.setDisable(false); btnEvening1.setText("Availabile");
         } else if (availabilityTimes.equals("011")){
-            btnMorning1.setText("N/A");
-            btnMidday1.setText("Available");
-            btnEvening1.setText("Available");
+            btnMorning1.setVisible(true); btnMorning1.setDisable(true);
+            btnMidday1.setVisible(true); btnMidday1.setDisable(false); btnMidday1.setText("Availabile");
+            btnEvening1.setVisible(true); btnEvening1.setDisable(false); btnEvening1.setText("Availabile");
         } else if (availabilityTimes.equals("111")){
-            btnMorning1.setText("Available");
-            btnMidday1.setText("Available");
-            btnEvening1.setText("Available");
+            btnMorning1.setVisible(true); btnMorning1.setDisable(false); btnMorning1.setText("Availabile");
+            btnMidday1.setVisible(true); btnMidday1.setDisable(false); btnMidday1.setText("Availabile");
+            btnEvening1.setVisible(true); btnEvening1.setDisable(false); btnEvening1.setText("Availabile");
         } else if (availabilityTimes.equals("110")){
-            btnMorning1.setText("Available");
-            btnMidday1.setText("Available");
-            btnEvening1.setText("N/A");
+            btnMorning1.setVisible(true); btnMorning1.setDisable(false); btnMorning1.setText("Availabile");
+            btnMidday1.setVisible(true); btnMidday1.setDisable(false); btnMidday1.setText("Availabile");
+            btnEvening1.setVisible(true); btnEvening1.setDisable(true);
         } else if (availabilityTimes.equals("100")){
-            btnMorning1.setText("Available");
-            btnMidday1.setText("N/A");
-            btnEvening1.setText("N/A");
+            btnMorning1.setVisible(true); btnMorning1.setDisable(false); btnMorning1.setText("Availabile");
+            btnMidday1.setVisible(true); btnMidday1.setDisable(true);
+            btnEvening1.setVisible(true); btnEvening1.setDisable(true);
         } else if (availabilityTimes.equals("101")){
-            btnMorning1.setText("Available");
-            btnMidday1.setText("N/A");
-            btnEvening1.setText("Available");
+            btnMorning1.setVisible(true); btnMorning1.setDisable(false); btnMorning1.setText("Availabile");
+            btnMidday1.setVisible(true); btnMidday1.setDisable(true);
+            btnEvening1.setVisible(true); btnEvening1.setDisable(false); btnEvening1.setText("Availabile");
         } else if (availabilityTimes.equals("010")){
-            btnMorning1.setText("N/A");
-            btnMidday1.setText("Available");
-            btnEvening1.setText("N/A");
+            btnMorning1.setVisible(true); btnMorning1.setDisable(true);
+            btnMidday1.setVisible(true); btnMidday1.setDisable(false); btnMidday1.setText("Availabile");
+            btnEvening1.setVisible(true); btnEvening1.setDisable(true);
         } else {
             System.out.println("fail1");
-        }
+        }*/
     }
 
     /**sets the time buttons to available or N/A depending on availability*/
-    public void setTimeLabels2(String availabilityTimes2, String[]myArray){
+    public void setTimeLabels2(String availabilityTimes2, String[]myArray) {
+        String timeArray[] = availabilityTimes2.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName2.setText(myArray[1]);
-        if (availabilityTimes2.equals("000")){
-            btnMorning2.setText("N/A");
-            btnMidday2.setText("N/A");
-            btnEvening2.setText("N/A");
-        } else if (availabilityTimes2.equals("001")){
-            btnMorning2.setText("N/A");
-            btnMidday2.setText("N/A");
-            btnEvening2.setText("Available");
-        } else if (availabilityTimes2.equals("011")){
-            btnMorning2.setText("N/A");
+        lblName2.setVisible(true);
+        btnMorning2.setVisible(true);
+        btnMidday2.setVisible(true);
+        btnEvening2.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")) {
+            btnMorning2.setDisable(true);
+            btnMorning2.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")) {
+            btnMorning2.setDisable(false);
+            btnMorning2.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")) {
+            btnMidday2.setDisable(true);
+            btnMidday2.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")) {
+            btnMidday2.setDisable(false);
             btnMidday2.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")) {
+            btnEvening2.setDisable(true);
+            btnEvening2.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")) {
+            btnEvening2.setDisable(false);
             btnEvening2.setText("Available");
-        } else if (availabilityTimes2.equals("111")){
-            btnMorning2.setText("Available");
-            btnMidday2.setText("Available");
-            btnEvening2.setText("Available");
-        } else if (availabilityTimes2.equals("110")){
-            btnMorning2.setText("Available");
-            btnMidday2.setText("Available");
-            btnEvening2.setText("N/A");
-        } else if (availabilityTimes2.equals("100")){
-            btnMorning2.setText("Available");
-            btnMidday2.setText("N/A");
-            btnEvening2.setText("N/A");
-        } else if (availabilityTimes2.equals("101")){
-            btnMorning2.setText("Available");
-            btnMidday2.setText("N/A");
-            btnEvening2.setText("Available");
-        } else if (availabilityTimes2.equals("010")){
-            btnMorning2.setText("N/A");
-            btnMidday2.setText("Available");
-            btnEvening2.setText("N/A");
-        } else {
-            System.out.println("fail2");
         }
     }
 
     public void setTimeLabels3(String availabilityTimes3, String[]myArray){
+        String timeArray[] = availabilityTimes3.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName3.setText(myArray[2]);
-        if (availabilityTimes3.equals("000")){
-            btnMorning3.setText("N/A");
-            btnMidday3.setText("N/A");
-            btnEvening3.setText("N/A");
-        } else if (availabilityTimes3.equals("001")){
-            btnMorning3.setText("N/A");
-            btnMidday3.setText("N/A");
-            btnEvening3.setText("Available");
-        } else if (availabilityTimes3.equals("011")){
-            btnMorning3.setText("N/A");
+        lblName3.setVisible(true);
+        btnMorning3.setVisible(true);
+        btnMidday3.setVisible(true);
+        btnEvening3.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")) {
+            btnMorning3.setDisable(true);
+            btnMorning3.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")) {
+            btnMorning3.setDisable(false);
+            btnMorning3.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")) {
+            btnMidday3.setDisable(true);
+            btnMidday3.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")) {
+            btnMidday3.setDisable(false);
             btnMidday3.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")) {
+            btnEvening3.setDisable(true);
+            btnEvening3.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")) {
+            btnEvening3.setDisable(false);
             btnEvening3.setText("Available");
-        } else if (availabilityTimes3.equals("111")){
-            btnMorning3.setText("Available");
-            btnMidday3.setText("Available");
-            btnEvening3.setText("Available");
-        } else if (availabilityTimes3.equals("110")){
-            btnMorning3.setText("Available");
-            btnMidday3.setText("Available");
-            btnEvening3.setText("N/A");
-        } else if (availabilityTimes3.equals("100")){
-            btnMorning3.setText("Available");
-            btnMidday3.setText("N/A");
-            btnEvening3.setText("N/A");
-        } else if (availabilityTimes3.equals("101")){
-            btnMorning3.setText("Available");
-            btnMidday3.setText("N/A");
-            btnEvening3.setText("Available");
-        } else if (availabilityTimes3.equals("010")){
-            btnMorning3.setText("N/A");
-            btnMidday3.setText("Available");
-            btnEvening3.setText("N/A");
-        } else {
-            System.out.println("fail3");
         }
     }
 
     public void setTimeLabels4(String availabilityTimes4, String[]myArray){
+        String timeArray[] = availabilityTimes4.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName4.setText(myArray[3]);
-        if (availabilityTimes4.equals("000")){
-            btnMorning4.setText("N/A");
-            btnMidday4.setText("N/A");
-            btnEvening4.setText("N/A");
-        } else if (availabilityTimes4.equals("001")){
-            btnMorning4.setText("N/A");
-            btnMidday4.setText("N/A");
-            btnEvening4.setText("Available");
-        } else if (availabilityTimes4.equals("011")){
-            btnMorning4.setText("N/A");
+        lblName4.setVisible(true);
+        btnMorning4.setVisible(true);
+        btnMidday4.setVisible(true);
+        btnEvening4.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")) {
+            btnMorning4.setDisable(true);
+            btnMorning4.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")) {
+            btnMorning4.setDisable(false);
+            btnMorning4.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")) {
+            btnMidday4.setDisable(true);
+            btnMidday4.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")) {
+            btnMidday4.setDisable(false);
             btnMidday4.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")) {
+            btnEvening4.setDisable(true);
+            btnEvening4.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")) {
+            btnEvening4.setDisable(false);
             btnEvening4.setText("Available");
-        } else if (availabilityTimes4.equals("111")){
-            btnMorning4.setText("Available");
-            btnMidday4.setText("Available");
-            btnEvening4.setText("Available");
-        } else if (availabilityTimes4.equals("110")){
-            btnMorning4.setText("Available");
-            btnMidday4.setText("Available");
-            btnEvening4.setText("N/A");
-        } else if (availabilityTimes4.equals("100")){
-            btnMorning4.setText("Available");
-            btnMidday4.setText("N/A");
-            btnEvening4.setText("N/A");
-        } else if (availabilityTimes4.equals("101")){
-            btnMorning4.setText("Available");
-            btnMidday4.setText("N/A");
-            btnEvening4.setText("Available");
-        } else if (availabilityTimes4.equals("010")){
-            btnMorning4.setText("N/A");
-            btnMidday4.setText("Available");
-            btnEvening4.setText("N/A");
-        } else {
-            System.out.println("fail4");
         }
     }
 
     public void setTimeLabels5(String availabilityTimes5, String[]myArray){
+        String timeArray[] = availabilityTimes5.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName5.setText(myArray[4]);
-        if (availabilityTimes5.equals("000")){
-            btnMorning5.setText("N/A");
-            btnMidday5.setText("N/A");
-            btnEvening5.setText("N/A");
-        } else if (availabilityTimes5.equals("001")){
-            btnMorning5.setText("N/A");
-            btnMidday5.setText("N/A");
-            btnEvening5.setText("Available");
-        } else if (availabilityTimes5.equals("011")){
-            btnMorning5.setText("N/A");
+        lblName5.setVisible(true);
+        btnMorning5.setVisible(true);
+        btnMidday5.setVisible(true);
+        btnEvening5.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")) {
+            btnMorning5.setDisable(true);
+            btnMorning5.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")) {
+            btnMorning5.setDisable(false);
+            btnMorning5.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")) {
+            btnMidday5.setDisable(true);
+            btnMidday5.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")) {
+            btnMidday5.setDisable(false);
             btnMidday5.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")) {
+            btnEvening5.setDisable(true);
+            btnEvening5.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")) {
+            btnEvening5.setDisable(false);
             btnEvening5.setText("Available");
-        } else if (availabilityTimes5.equals("111")){
-            btnMorning5.setText("Available");
-            btnMidday5.setText("Available");
-            btnEvening5.setText("Available");
-        } else if (availabilityTimes5.equals("110")){
-            btnMorning5.setText("Available");
-            btnMidday5.setText("Available");
-            btnEvening5.setText("N/A");
-        } else if (availabilityTimes5.equals("100")){
-            btnMorning5.setText("Available");
-            btnMidday5.setText("N/A");
-            btnEvening5.setText("N/A");
-        } else if (availabilityTimes5.equals("101")){
-            btnMorning5.setText("Available");
-            btnMidday5.setText("N/A");
-            btnEvening5.setText("Available");
-        } else if (availabilityTimes5.equals("010")){
-            btnMorning5.setText("N/A");
-            btnMidday5.setText("Available");
-            btnEvening5.setText("N/A");
-        } else {
-            System.out.println("fail5");
         }
     }
 
     public void setTimeLabels6(String availabilityTimes6, String[]myArray){
+        String timeArray[] = availabilityTimes6.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName6.setText(myArray[5]);
-        if (availabilityTimes6.equals("000")){
-            btnMorning6.setText("N/A");
-            btnMidday6.setText("N/A");
-            btnEvening6.setText("N/A");
-        } else if (availabilityTimes6.equals("001")){
-            btnMorning6.setText("N/A");
-            btnMidday6.setText("N/A");
-            btnEvening6.setText("Available");
-        } else if (availabilityTimes6.equals("011")){
-            btnMorning6.setText("N/A");
+        lblName6.setVisible(true);
+        btnMorning6.setVisible(true);
+        btnMidday6.setVisible(true);
+        btnEvening6.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")) {
+            btnMorning6.setDisable(true);
+            btnMorning6.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")) {
+            btnMorning6.setDisable(false);
+            btnMorning6.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")) {
+            btnMidday6.setDisable(true);
+            btnMidday6.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")) {
+            btnMidday6.setDisable(false);
             btnMidday6.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")) {
+            btnEvening6.setDisable(true);
+            btnEvening6.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")) {
+            btnEvening6.setDisable(false);
             btnEvening6.setText("Available");
-        } else if (availabilityTimes6.equals("111")){
-            btnMorning6.setText("Available");
-            btnMidday6.setText("Available");
-            btnEvening6.setText("Available");
-        } else if (availabilityTimes6.equals("110")){
-            btnMorning6.setText("Available");
-            btnMidday6.setText("Available");
-            btnEvening6.setText("N/A");
-        } else if (availabilityTimes6.equals("100")){
-            btnMorning6.setText("Available");
-            btnMidday6.setText("N/A");
-            btnEvening6.setText("N/A");
-        } else if (availabilityTimes6.equals("101")){
-            btnMorning6.setText("Available");
-            btnMidday6.setText("N/A");
-            btnEvening6.setText("Available");
-        } else if (availabilityTimes6.equals("010")){
-            btnMorning6.setText("N/A");
-            btnMidday6.setText("Available");
-            btnEvening6.setText("N/A");
-        } else {
-            System.out.println("fail6");
         }
     }
 
     public void setTimeLabels7(String availabilityTimes7, String[]myArray){
+        String timeArray[] = availabilityTimes7.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName7.setText(myArray[6]);
-        if (availabilityTimes7.equals("000")){
-            btnMorning7.setText("N/A");
-            btnMidday7.setText("N/A");
-            btnEvening7.setText("N/A");
-        } else if (availabilityTimes7.equals("001")){
-            btnMorning7.setText("N/A");
-            btnMidday7.setText("N/A");
-            btnEvening7.setText("Available");
-        } else if (availabilityTimes7.equals("011")){
-            btnMorning7.setText("N/A");
+        lblName7.setVisible(true);
+        btnMorning7.setVisible(true);
+        btnMidday7.setVisible(true);
+        btnEvening7.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")) {
+            btnMorning7.setDisable(true);
+            btnMorning7.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")) {
+            btnMorning7.setDisable(false);
+            btnMorning7.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")) {
+            btnMidday7.setDisable(true);
+            btnMidday7.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")) {
+            btnMidday7.setDisable(false);
             btnMidday7.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")) {
+            btnEvening7.setDisable(true);
+            btnEvening7.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")) {
+            btnEvening7.setDisable(false);
             btnEvening7.setText("Available");
-        } else if (availabilityTimes7.equals("111")){
-            btnMorning7.setText("Available");
-            btnMidday7.setText("Available");
-            btnEvening7.setText("Available");
-        } else if (availabilityTimes7.equals("110")){
-            btnMorning7.setText("Available");
-            btnMidday7.setText("Available");
-            btnEvening7.setText("N/A");
-        } else if (availabilityTimes7.equals("100")){
-            btnMorning7.setText("Available");
-            btnMidday7.setText("N/A");
-            btnEvening7.setText("N/A");
-        } else if (availabilityTimes7.equals("101")){
-            btnMorning7.setText("Available");
-            btnMidday7.setText("N/A");
-            btnEvening7.setText("Available");
-        } else if (availabilityTimes7.equals("010")){
-            btnMorning7.setText("N/A");
-            btnMidday7.setText("Available");
-            btnEvening7.setText("N/A");
-        } else {
-            System.out.println("fail7");
         }
     }
 
     public void setTimeLabels8(String availabilityTimes8, String[]myArray){
+        String timeArray[] = availabilityTimes8.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName8.setText(myArray[7]);
-        if (availabilityTimes8.equals("000")){
-            btnMorning8.setText("N/A");
-            btnMidday8.setText("N/A");
-            btnEvening8.setText("N/A");
-        } else if (availabilityTimes8.equals("001")){
-            btnMorning8.setText("N/A");
-            btnMidday8.setText("N/A");
-            btnEvening8.setText("Available");
-        } else if (availabilityTimes8.equals("011")){
-            btnMorning8.setText("N/A");
+        lblName8.setVisible(true);
+        btnMorning8.setVisible(true);
+        btnMidday8.setVisible(true);
+        btnEvening8.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")) {
+            btnMorning8.setDisable(true);
+            btnMorning8.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")) {
+            btnMorning8.setDisable(false);
+            btnMorning8.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")) {
+            btnMidday8.setDisable(true);
+            btnMidday8.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")) {
+            btnMidday8.setDisable(false);
             btnMidday8.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")) {
+            btnEvening8.setDisable(true);
+            btnEvening8.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")) {
+            btnEvening8.setDisable(false);
             btnEvening8.setText("Available");
-        } else if (availabilityTimes8.equals("111")){
-            btnMorning8.setText("Available");
-            btnMidday8.setText("Available");
-            btnEvening8.setText("Available");
-        } else if (availabilityTimes8.equals("110")){
-            btnMorning8.setText("Available");
-            btnMidday8.setText("Available");
-            btnEvening8.setText("N/A");
-        } else if (availabilityTimes8.equals("100")){
-            btnMorning8.setText("Available");
-            btnMidday8.setText("N/A");
-            btnEvening8.setText("N/A");
-        } else if (availabilityTimes8.equals("101")){
-            btnMorning8.setText("Available");
-            btnMidday8.setText("N/A");
-            btnEvening8.setText("Available");
-        } else if (availabilityTimes8.equals("010")){
-            btnMorning8.setText("N/A");
-            btnMidday8.setText("Available");
-            btnEvening8.setText("N/A");
-        } else {
-            System.out.println("fail8");
         }
     }
 
     public void setTimeLabels9(String availabilityTimes9, String[]myArray){
+        String timeArray[] = availabilityTimes9.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName9.setText(myArray[8]);
-        if (availabilityTimes9.equals("000")){
-            btnMorning9.setText("N/A");
-            btnMidday9.setText("N/A");
-            btnEvening9.setText("N/A");
-        } else if (availabilityTimes9.equals("001")){
-            btnMorning9.setText("N/A");
-            btnMidday9.setText("N/A");
-            btnEvening9.setText("Available");
-        } else if (availabilityTimes9.equals("011")){
-            btnMorning9.setText("N/A");
+        lblName9.setVisible(true);
+        btnMorning9.setVisible(true);
+        btnMidday9.setVisible(true);
+        btnEvening9.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")) {
+            btnMorning9.setDisable(true);
+            btnMorning9.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")) {
+            btnMorning9.setDisable(false);
+            btnMorning9.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")) {
+            btnMidday9.setDisable(true);
+            btnMidday9.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")) {
+            btnMidday9.setDisable(false);
             btnMidday9.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")) {
+            btnEvening9.setDisable(true);
+            btnEvening9.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")) {
+            btnEvening9.setDisable(false);
             btnEvening9.setText("Available");
-        } else if (availabilityTimes9.equals("111")){
-            btnMorning9.setText("Available");
-            btnMidday9.setText("Available");
-            btnEvening9.setText("Available");
-        } else if (availabilityTimes9.equals("110")){
-            btnMorning9.setText("Available");
-            btnMidday9.setText("Available");
-            btnEvening9.setText("N/A");
-        } else if (availabilityTimes9.equals("100")){
-            btnMorning9.setText("Available");
-            btnMidday9.setText("N/A");
-            btnEvening9.setText("N/A");
-        } else if (availabilityTimes9.equals("101")){
-            btnMorning9.setText("Available");
-            btnMidday9.setText("N/A");
-            btnEvening9.setText("Available");
-        } else if (availabilityTimes9.equals("010")){
-            btnMorning9.setText("N/A");
-            btnMidday9.setText("Available");
-            btnEvening9.setText("N/A");
-        } else {
-            System.out.println("fail9");
         }
     }
 
     public void setTimeLabels10(String availabilityTimes10, String[]myArray){
+        String timeArray[] = availabilityTimes10.split("(?!^)");
+        System.out.println(Arrays.toString(timeArray));
         lblName10.setText(myArray[9]);
-        if (availabilityTimes10.equals("000")){
-            btnMorning10.setText("N/A");
-            btnMidday10.setText("N/A");
-            btnEvening10.setText("N/A");
-        } else if (availabilityTimes10.equals("001")){
-            btnMorning10.setText("N/A");
-            btnMidday10.setText("N/A");
-            btnEvening10.setText("Available");
-        } else if (availabilityTimes10.equals("011")){
-            btnMorning10.setText("N/A");
+        lblName10.setVisible(true);
+        btnMorning10.setVisible(true);
+        btnMidday10.setVisible(true);
+        btnEvening10.setVisible(true);
+        if (Objects.equals(timeArray[0], "0")) {
+            btnMorning10.setDisable(true);
+            btnMorning10.setText("Booked");
+        } else if (Objects.equals(timeArray[0], "1")) {
+            btnMorning10.setDisable(false);
+            btnMorning10.setText("Availabile");
+        }
+        if (Objects.equals(timeArray[1], "0")) {
+            btnMidday10.setDisable(true);
+            btnMidday10.setText("Booked");
+        } else if (Objects.equals(timeArray[1], "1")) {
+            btnMidday10.setDisable(false);
             btnMidday10.setText("Available");
+        }
+        if (Objects.equals(timeArray[2], "0")) {
+            btnEvening10.setDisable(true);
+            btnEvening10.setText("Booked");
+        } else if (Objects.equals(timeArray[2], "1")) {
+            btnEvening10.setDisable(false);
             btnEvening10.setText("Available");
-        } else if (availabilityTimes10.equals("111")){
-            btnMorning10.setText("Available");
-            btnMidday10.setText("Available");
-            btnEvening10.setText("Available");
-        } else if (availabilityTimes10.equals("110")){
-            btnMorning10.setText("Available");
-            btnMidday10.setText("Available");
-            btnEvening10.setText("N/A");
-        } else if (availabilityTimes10.equals("100")){
-            btnMorning10.setText("Available");
-            btnMidday10.setText("N/A");
-            btnEvening10.setText("N/A");
-        } else if (availabilityTimes10.equals("101")){
-            btnMorning10.setText("Available");
-            btnMidday10.setText("N/A");
-            btnEvening10.setText("Available");
-        } else if (availabilityTimes10.equals("010")){
-            btnMorning10.setText("N/A");
-            btnMidday10.setText("Available");
-            btnEvening10.setText("N/A");
-        } else {
-            System.out.println("fail10");
         }
     }
 

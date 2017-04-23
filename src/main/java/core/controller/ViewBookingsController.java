@@ -28,7 +28,7 @@ import java.sql.ResultSet;
  */
 
 /**
- * Controller for ViewBookings. This controller handles the javaFX used to
+ * MainController for ViewBookings. This controller handles the javaFX used to
  * create a table and set data in the table which displays the booking information.
  * works in conjunction with viewBookings class and viewBookings.fxml
  */

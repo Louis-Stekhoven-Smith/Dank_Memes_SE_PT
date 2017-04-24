@@ -1,5 +1,6 @@
 package core.controller;
 
+import core.model.Booking;
 import core.model.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -179,7 +180,7 @@ public class AvailBookingsController {
     }
 
     /** shows available employee times based on the date and the service chosen by retrieving data from the database */
-    public void employeeCount(String chosenType, String finalDate) throws SQLException {
+    public String employeeCount(String chosenType, String finalDate) throws SQLException {
         System.out.println("Load " + chosenType + " employee & times...");
         ResultSet count;
         int counter;
@@ -188,6 +189,7 @@ public class AvailBookingsController {
         counter = count.getInt("total");
         System.out.println("TOTAL COUNT OF THIS ROLE " + counter);
         retrieveAvailabilityData(chosenType, finalDate, counter);
+        return chosenType;
     }
 
 
@@ -486,43 +488,6 @@ public class AvailBookingsController {
             btnEvening1.setDisable(false);
             btnEvening1.setText("Available");
         }
-
-            /*
-        if (availabilityTimes.equals("000")){
-            btnMorning1.setVisible(true); btnMorning1.setDisable(true);
-            btnMidday1.setVisible(true); btnMidday1.setDisable(true);
-            btnEvening1.setVisible(true); btnEvening1.setDisable(true);
-        } else if (availabilityTimes.equals("001")){
-            btnMorning1.setVisible(true); btnMorning1.setDisable(true);
-            btnMidday1.setVisible(true); btnMidday1.setDisable(true);
-            btnEvening1.setVisible(true); btnEvening1.setDisable(false); btnEvening1.setText("Availabile");
-        } else if (availabilityTimes.equals("011")){
-            btnMorning1.setVisible(true); btnMorning1.setDisable(true);
-            btnMidday1.setVisible(true); btnMidday1.setDisable(false); btnMidday1.setText("Availabile");
-            btnEvening1.setVisible(true); btnEvening1.setDisable(false); btnEvening1.setText("Availabile");
-        } else if (availabilityTimes.equals("111")){
-            btnMorning1.setVisible(true); btnMorning1.setDisable(false); btnMorning1.setText("Availabile");
-            btnMidday1.setVisible(true); btnMidday1.setDisable(false); btnMidday1.setText("Availabile");
-            btnEvening1.setVisible(true); btnEvening1.setDisable(false); btnEvening1.setText("Availabile");
-        } else if (availabilityTimes.equals("110")){
-            btnMorning1.setVisible(true); btnMorning1.setDisable(false); btnMorning1.setText("Availabile");
-            btnMidday1.setVisible(true); btnMidday1.setDisable(false); btnMidday1.setText("Availabile");
-            btnEvening1.setVisible(true); btnEvening1.setDisable(true);
-        } else if (availabilityTimes.equals("100")){
-            btnMorning1.setVisible(true); btnMorning1.setDisable(false); btnMorning1.setText("Availabile");
-            btnMidday1.setVisible(true); btnMidday1.setDisable(true);
-            btnEvening1.setVisible(true); btnEvening1.setDisable(true);
-        } else if (availabilityTimes.equals("101")){
-            btnMorning1.setVisible(true); btnMorning1.setDisable(false); btnMorning1.setText("Availabile");
-            btnMidday1.setVisible(true); btnMidday1.setDisable(true);
-            btnEvening1.setVisible(true); btnEvening1.setDisable(false); btnEvening1.setText("Availabile");
-        } else if (availabilityTimes.equals("010")){
-            btnMorning1.setVisible(true); btnMorning1.setDisable(true);
-            btnMidday1.setVisible(true); btnMidday1.setDisable(false); btnMidday1.setText("Availabile");
-            btnEvening1.setVisible(true); btnEvening1.setDisable(true);
-        } else {
-            System.out.println("fail1");
-        }*/
     }
 
     /**sets the time buttons to available or N/A depending on availability*/
@@ -803,6 +768,26 @@ public class AvailBookingsController {
             btnEvening10.setDisable(false);
             btnEvening10.setText("Available");
         }
+    }
+
+    public void btnEve1Clicked (javafx.event.ActionEvent event) throws IOException{
+        LocalDate ld = dpBookingDate.getValue();
+        Date date = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        String bookingTime = ("Evening");
+        String bookingDate = new SimpleDateFormat("dd/MM/yy").format(date);
+        String bookingType = lblCurrentService.getText();
+
+        int result;
+        result = Booking.addBooking(bookingTime,bookingDate,bookingType);
+
+        if (result == 1){
+            System.out.println("Booking Success");
+
+        } else {
+            System.out.println("Booking Failed!");
+        }
+
     }
 
     /**goes back to services page */

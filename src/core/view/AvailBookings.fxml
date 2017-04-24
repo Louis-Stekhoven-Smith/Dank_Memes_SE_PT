@@ -48,7 +48,7 @@
                           <String fx:value="btnStyle1Hover" />
                       </styleClass>
                   </Button>
-                  <Button fx:id="btnEvening1" layoutX="460.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Booked" textFill="#1565c0" visible="false">
+                  <Button fx:id="btnEvening1" layoutX="460.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnEve1Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Booked" textFill="#1565c0" visible="false">
                      <font>
                         <Font size="16.0" />
                      </font>

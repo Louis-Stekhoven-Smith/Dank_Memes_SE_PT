@@ -1,4 +1,4 @@
-package core.model;
+package core.model.dataClasses;
 
 /**
  * Created by louie on 2/04/2017.
@@ -7,13 +7,10 @@ public class Business {
 
     int businessID;
     private String businessName;
-    private String owner;
     private String logo;
-    private Database database;
 
-    public Business(int businessID, Database database) {
+    public Business(int businessID, String businessName, String logo) {
         this. businessID = businessID;
-        this.database = database;
     }
         /*TODO*/
         /* possibly add employees */
@@ -23,17 +20,23 @@ public class Business {
         return businessID;
     }
 
+    public void setBusinessID(int businessID) {
+        this.businessID = businessID;
+    }
+
     public String getBusinessName() {
         return businessName;
     }
 
-    public String getOwner() {
-        return owner;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
     public String getLogo() {
         return logo;
     }
 
-
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 }

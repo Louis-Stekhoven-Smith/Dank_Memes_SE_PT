@@ -18,9 +18,9 @@ import java.io.IOException;
 /**
  * Created by Konn on 13/03/2017.
  */
-public class Controller {
+public class MainController {
 
-    private static final Logger log = LogManager.getLogger(Controller.class.getName());
+    private static final Logger log = LogManager.getLogger(MainController.class.getName());
 
     //Login and register customer fields
     @FXML

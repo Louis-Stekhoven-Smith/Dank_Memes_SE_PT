@@ -26,6 +26,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
+import static core.model.Booking.custID;
+
 
 /**
  * Created by Konn on 4/04/2017.
@@ -158,7 +160,15 @@ public class AvailBookingsController {
     @FXML
     private Label lblCurrentService;
 
-    @FXML
+    public static String futureBookingID;
+    public static String employeesName;
+    public static String businessesName;
+    public static String yourName;
+    public static String bookingType;
+    public static String bookingDate;
+    public static String bookingTime;
+
+
     public void initialize(){
         System.out.println("AvailBookingsController PAGE SHOW SHOWING!");
         lblCurrentService.setText(serviceTypeController.type);
@@ -770,23 +780,59 @@ public class AvailBookingsController {
         }
     }
 
-    public void btnEve1Clicked (javafx.event.ActionEvent event) throws IOException{
+    public void btnEve1Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
         LocalDate ld = dpBookingDate.getValue();
         Date date = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        String bookingTime = ("Evening");
-        String bookingDate = new SimpleDateFormat("dd/MM/yy").format(date);
-        String bookingType = lblCurrentService.getText();
-
-        int result;
-        result = Booking.addBooking(bookingTime,bookingDate,bookingType);
-
-        if (result == 1){
-            System.out.println("Booking Success");
-
-        } else {
-            System.out.println("Booking Failed!");
+        ResultSet rs;
+        String name;
+        String findyourNameDSQL = "SELECT name from customerDetails WHERE custID=" + "'" + Booking.custID + "'";
+        rs = Database.queryDatabase(findyourNameDSQL);
+        String[] myArray = new String[1];
+        for (int i = 0; i < myArray.length; i++) {
+            rs.next();
+            name = rs.getString("name");
+            myArray[i] = name;
         }
+
+        ResultSet rs1;
+        String businessName;
+        String findbusinessNameDSQL = "SELECT businessName from businessDetails WHERE businessID=" + "'" + Booking.businessID + "'";
+        rs1 = Database.queryDatabase(findbusinessNameDSQL);
+        String[] myArray2 = new String[1];
+        for (int i = 0; i < myArray.length; i++) {
+            rs1.next();
+            businessName = rs1.getString("businessName");
+            myArray2[i] = businessName;
+        }
+
+        ResultSet rs2;
+        int bookingID;
+        String findbookingIDSQL = "SELECT MAX(bookingID) AS bookingID from bookingDetails";
+        rs2 = Database.queryDatabase(findbookingIDSQL);
+        int[] myArray3 = new int[1];
+        for (int i = 0; i < myArray.length; i++) {
+            rs2.next();
+            bookingID = rs2.getInt("bookingID");
+            myArray3[i] = bookingID;
+        }
+
+        futureBookingID = String.valueOf(myArray3[0]+1);
+        employeesName = lblName1.getText();
+        businessesName = myArray2[0];
+        yourName = myArray[0];
+        bookingTime = ("Evening");
+        bookingDate = new SimpleDateFormat("dd/MM/yy").format(date);
+        bookingType = lblCurrentService.getText();
+
+
+
+
+        Parent bookingConfirmation_parent = FXMLLoader.load(getClass().getResource("../view/BookingConfirmation.fxml"));
+        Scene bookingConfirmation_scene = new Scene(bookingConfirmation_parent);
+        Stage secondaryStage = new Stage();
+        secondaryStage.setScene(bookingConfirmation_scene);
+        secondaryStage.show();
 
     }
 

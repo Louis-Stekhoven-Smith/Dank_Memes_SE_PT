@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="core.view.BookingConfirmation"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.BookingConfirmationController">
+   <children>
+      <Label layoutX="84.0" layoutY="75.0" text="Booking ID:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="112.0" text="Business Name:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="183.0" text="Your Name:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="152.0" text="Employee Name:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="78.0" layoutY="248.0" text="Booking Time:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="283.0" text="Booking Date:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="216.0" text="Booking Type">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="213.0" layoutY="28.0" text="Booking Confirmation">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnConfirm" layoutX="172.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnConfirmPressed" prefHeight="45.0" prefWidth="82.0" text="Confirm" />
+      <Button fx:id="btnCancel" layoutX="301.0" layoutY="337.0" mnemonicParsing="false" text="Cancel" />
+      <Label fx:id="lblBookingID" layoutX="287.0" layoutY="79.0" text="Label" />
+      <Label fx:id="lblBusinessName" layoutX="286.0" layoutY="116.0" text="Label" />
+      <Label fx:id="lblEmployeeName" layoutX="286.0" layoutY="156.0" text="Label" />
+      <Label fx:id="lblYourName" layoutX="286.0" layoutY="187.0" text="Label" />
+      <Label fx:id="lblBookingType" layoutX="286.0" layoutY="220.0" text="Label" />
+      <Label fx:id="lblBookingTime" layoutX="286.0" layoutY="252.0" text="Label" />
+      <Label fx:id="lblBookingDate" layoutX="286.0" layoutY="287.0" text="Label" />
+   </children>
 </AnchorPane>

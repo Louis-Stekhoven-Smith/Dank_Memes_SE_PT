@@ -1,7 +1,6 @@
 package core.controller;
 
 import core.model.AddService;
-import core.model.Business;
 import core.model.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,6 +48,7 @@ public class AddServiceController {
             log.debug("Service added.");
             lblAddError.setTextFill(Color.web("#ffffff"));
             lblAddError.setText("Successfully added service!");
+            txtAddName.setText("");
         }
         else if(result == -1){
             log.debug("Failed to add service: invalid name entered");

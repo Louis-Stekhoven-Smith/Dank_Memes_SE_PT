@@ -63,7 +63,7 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-            <Slider fx:id="sliderLengthTime" blockIncrement="15.0" layoutX="133.0" layoutY="307.0" majorTickUnit="15.0" max="90.0" minorTickCount="0" prefHeight="14.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            <Slider fx:id="sliderLengthTime" blockIncrement="15.0" layoutX="133.0" layoutY="307.0" majorTickUnit="15.0" max="90.0" min="15.0" minorTickCount="0" prefHeight="14.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
             </children>
         </Pane>
     </children>

@@ -42,12 +42,12 @@ public class Login {
             }
             if(isType(rs) == CUSTOMER){
                 log.debug("Successful customer login, logged in as: " + inputUsername);
-                log.debug("Returning to Controller");
+                log.debug("Returning to MainController");
                 return 1;
             }
             if(isType(rs) == OWNER){
                 log.debug("Successful owner login, logged in as: " + inputUsername);
-                log.debug("Returning to Controller");
+                log.debug("Returning to MainController");
                 return 2;
                 }
         }catch (SQLException e){

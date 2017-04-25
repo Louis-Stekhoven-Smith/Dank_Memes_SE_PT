@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import java.net.URL?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,10 +13,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.RemoveEmpController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.RemoveEmpController">
     <stylesheets>
-        <URL value="@/css/navigationButtons.css" />
+        <URL value="@../java/css/navigationButtons.css" />
     </stylesheets>
     <children>
         <Pane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');">
@@ -68,6 +71,7 @@
                     </font>
                 </Label>
                 <TextField fx:id="txtEmpID" layoutX="115.0" layoutY="349.0" onAction="#btnRemoveEmp" prefHeight="25.0" prefWidth="195.0" />
+                <TextField fx:id="txtEmpName" layoutX="118.0" layoutY="159.0" onAction="#btnFindEmp" prefHeight="25.0" prefWidth="195.0" />
             <Label fx:id="txtLabel1" alignment="CENTER" layoutX="25.0" layoutY="78.0" prefHeight="94.0" prefWidth="333.0" text="Find employee by name" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />
@@ -88,7 +92,6 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboName" layoutX="115.0" layoutY="160.0" prefHeight="25.0" prefWidth="195.0" />
             </children>
         </Pane>
     </children>

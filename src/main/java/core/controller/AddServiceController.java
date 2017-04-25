@@ -1,5 +1,6 @@
 package core.controller;
 
+import core.model.AddService;
 import core.model.Business;
 import core.model.Database;
 import javafx.event.ActionEvent;
@@ -25,7 +26,7 @@ public class AddServiceController {
 
     private static final Logger log = LogManager.getLogger(AddEmpController.class.getName());
 
-    private Business business = new Business(Database.getInstance());
+    private AddService addService = new AddService(Database.getInstance());
 
     @FXML
     private Slider sliderLengthTime;
@@ -43,7 +44,7 @@ public class AddServiceController {
         String name = txtAddName.getText();
         double lengthD = sliderLengthTime.getValue();
         int length = (int) lengthD;
-        int result  = business.addNewService(name,length);
+        int result  = addService.addNewService(name,length);
         if(result == 1){
             log.debug("Service added.");
             lblAddError.setTextFill(Color.web("#ffffff"));

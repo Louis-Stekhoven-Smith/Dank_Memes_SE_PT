@@ -91,17 +91,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnGotoAddService" alignment="TOP_CENTER" layoutX="38.0" layoutY="450.0" mnemonicParsing="false" onAction="#btnGotoAddService" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add new service" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="btnStyle1Pressed" />
-                  <String fx:value="btnStyle1RegularState" />
-                  <String fx:value="btnStyle1Hover" />
-               </styleClass>
-            </Button>
-            <Button fx:id="btnGotoRemoveBooking" alignment="TOP_CENTER" layoutX="230.0" layoutY="450.0" mnemonicParsing="false" onAction="#btnGotoRemoveBooking" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Remove booking" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+            <Button fx:id="btnGotoAddService" alignment="TOP_CENTER" layoutX="135.0" layoutY="450.0" mnemonicParsing="false" onAction="#btnGotoAddService" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add new service" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>

@@ -36,6 +36,7 @@ public class AddServiceController {
     @FXML
     private TextField txtAddName;
 
+    /**Adds new service to the database*/
     @FXML
     public void btnAddNewService (ActionEvent e) {
         log.debug("Add service button clicked!");

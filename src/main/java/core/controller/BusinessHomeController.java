@@ -90,17 +90,4 @@ public class BusinessHomeController {
         primaryStage.show();
     }
 
-    @FXML
-    public void btnGotoRemoveBooking(ActionEvent event) throws IOException {
-        log.debug("Goto remove booking page button clicked");
-        log.debug("Loading remove booking page...");
-        Parent removeBooking_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/BusinessRemoveBooking.fxml"));
-        Scene removeBooking_scene = new Scene (removeBooking_parent);
-        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        primaryStage.close();
-        primaryStage.setScene(removeBooking_scene);
-        primaryStage.show();
-    }
-
-
 }

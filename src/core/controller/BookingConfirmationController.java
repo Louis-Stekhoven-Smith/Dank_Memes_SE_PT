@@ -76,4 +76,9 @@ public class BookingConfirmationController {
         }
 
     }
+
+    public void btnCancelPressed(javafx.event.ActionEvent event) throws IOException{
+        Stage stage = (Stage) btnConfirm.getScene().getWindow();
+        stage.close();
+    }
 }

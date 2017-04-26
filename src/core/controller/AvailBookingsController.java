@@ -167,6 +167,7 @@ public class AvailBookingsController {
     public static String bookingType;
     public static String bookingDate;
     public static String bookingTime;
+    public static int employeesIDfromName;
 
 
     public void initialize(){
@@ -780,7 +781,7 @@ public class AvailBookingsController {
         }
     }
 
-    public void btnEve1Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+    public void getBookingData() throws IOException, SQLException{
         LocalDate ld = dpBookingDate.getValue();
         Date date = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
@@ -817,24 +818,211 @@ public class AvailBookingsController {
             myArray3[i] = bookingID;
         }
 
+        ResultSet rs3;
+        int employeesID;
+        String findEmployeesIDSQL = "SELECT empID from employeeDetails WHERE name=" + "'" + employeesName + "'";
+        rs3 = Database.queryDatabase(findEmployeesIDSQL);
+        int[] myArray4 = new int[1];
+        for (int i = 0; i < myArray.length; i++) {
+            rs3.next();
+            employeesID = rs3.getInt("empID");
+            myArray4[i] = employeesID;
+        }
+
+        employeesIDfromName = myArray4[0];
         futureBookingID = String.valueOf(myArray3[0]+1);
-        employeesName = lblName1.getText();
         businessesName = myArray2[0];
         yourName = myArray[0];
-        bookingTime = ("Evening");
         bookingDate = new SimpleDateFormat("dd/MM/yy").format(date);
         bookingType = lblCurrentService.getText();
-
-
-
 
         Parent bookingConfirmation_parent = FXMLLoader.load(getClass().getResource("../view/BookingConfirmation.fxml"));
         Scene bookingConfirmation_scene = new Scene(bookingConfirmation_parent);
         Stage secondaryStage = new Stage();
         secondaryStage.setScene(bookingConfirmation_scene);
         secondaryStage.show();
-
     }
+
+
+    public void btnMor1Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName1.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+
+    public void btnMid1Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName1.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+
+    public void btnEve1Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName1.getText();
+        bookingTime = ("Evening");
+        getBookingData();
+    }
+
+    public void btnMor2Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName2.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+
+    public void btnMid2Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName2.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+
+    public void btnEve2Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName2.getText();
+        bookingTime = ("Evening");
+        getBookingData();
+    }
+
+    public void btnMor3Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName3.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+
+    public void btnMid3Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName3.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+
+    public void btnEve3Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName3.getText();
+        bookingTime = ("Evening");
+        getBookingData();
+    }
+
+    public void btnMor4Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName4.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+    public void btnMid4Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName4.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+    public void btnEve4Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName4.getText();
+        bookingTime = ("Evening");
+        getBookingData();
+    }
+
+    public void btnMor5Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName5.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+
+    public void btnMid5Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName1.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+
+    public void btnEve5Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName5.getText();
+        bookingTime = ("Evening");
+        getBookingData();
+    }
+
+    public void btnMor6Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName6.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+
+    public void btnMid6Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName6.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+    public void btnEve6Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName6.getText();
+        bookingTime = ("Evening");
+        getBookingData();
+    }
+
+    public void btnMor7Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName7.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+
+    public void btnMid7Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName7.getText();
+        bookingTime = ("Mid");
+        getBookingData();
+    }
+
+    public void btnEve7Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName7.getText();
+        bookingTime = ("Evening");
+        getBookingData();
+    }
+
+    public void btnMor8Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName8.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+
+    public void btnMid8Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName8.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+
+    public void btnEve8Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName8.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+
+    public void btnMor9Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName9.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+
+    public void btnMid9Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName9.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+
+    public void btnEve9Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName9.getText();
+        bookingTime = ("Evening");
+        getBookingData();
+    }
+
+    public void btnMor10Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName10.getText();
+        bookingTime = ("Morning");
+        getBookingData();
+    }
+
+    public void btnMid10Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName10.getText();
+        bookingTime = ("Midday");
+        getBookingData();
+    }
+
+    public void btnEve10Clicked (javafx.event.ActionEvent event) throws IOException, SQLException{
+        employeesName = lblName10.getText();
+        bookingTime = ("Evening");
+        getBookingData();
+    }
+
+
+
 
     /**goes back to services page */
     public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{

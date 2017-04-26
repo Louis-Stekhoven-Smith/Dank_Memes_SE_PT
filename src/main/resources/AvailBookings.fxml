@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="380.0" prefWidth="600.0" style="-fx-background-image: url('http://i.imgur.com/ijde5mN.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AvailBookingsController">
+<AnchorPane prefHeight="380.0" prefWidth="600.0" style="-fx-background-color: #2196f3;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AvailBookingsController">
    <stylesheets>
       <URL value="@../java/css/navigationButtons.css" />
    </stylesheets>
@@ -158,7 +158,7 @@
                           <String fx:value="btnStyle1Hover" />
                       </styleClass>
                   </Button>
-                   <Label fx:id="lblName5" layoutX="55.0" layoutY="330.0" text="Name 5" textFill="#1565c0" visible="false" >
+                   <Label fx:id="lblName5" layoutX="55.0" layoutY="330.0" text="Name 5" textFill="#1565c0" visible="false">
                        <font>
                            <Font name="System Bold" size="18.0" />
                        </font>
@@ -373,25 +373,25 @@
         </content>
       </ScrollPane>
       <DatePicker fx:id="dpBookingDate" layoutX="286.0" layoutY="51.0" onAction="#showDate" prefHeight="33.0" prefWidth="179.0" />
-      <Label layoutX="170.0" layoutY="140.0" text="Morning" textFill="#1565c0">
+      <Label layoutX="170.0" layoutY="140.0" text="Morning" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label layoutX="315.0" layoutY="140.0" text="Midday" textFill="#1565c0">
+      <Label layoutX="315.0" layoutY="140.0" text="Midday" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="460.0" layoutY="140.0" text="Evening" textFill="#1565c0">
+      <Label layoutX="460.0" layoutY="140.0" text="Evening" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label layoutX="169.0" layoutY="54.0" text="Choose Date" textFill="#2196f3">
+      <Label layoutX="169.0" layoutY="54.0" text="Choose Date" textFill="#fdfdfd">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblCurrentService" layoutX="462.0" layoutY="11.0" text="Current Service">
+      <Label fx:id="lblCurrentService" layoutX="462.0" layoutY="11.0" text="Current Service" textFill="WHITE">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>
@@ -405,7 +405,7 @@
             <String fx:value="btnStyle1RegularState" />
             <String fx:value="btnStyle1Hover" />
          </styleClass></Button>
-      <Label layoutX="403.0" layoutY="11.0" text="Service:">
+      <Label layoutX="403.0" layoutY="11.0" text="Service:" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>

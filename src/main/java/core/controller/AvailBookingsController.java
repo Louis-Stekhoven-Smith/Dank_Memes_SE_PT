@@ -13,26 +13,23 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.chrono.ChronoLocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-
-import static core.model.Booking.custID;
 
 
 /**
  * Created by Konn on 4/04/2017.
  */
 public class AvailBookingsController {
+
+    private Database database = Database.getInstance();
 
     @FXML
     private DatePicker dpBookingDate;
@@ -196,7 +193,7 @@ public class AvailBookingsController {
         ResultSet count;
         int counter;
         String findRoleTypeCount = "SELECT count(*) AS total FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-        count = Database.queryDatabase(findRoleTypeCount);
+        count = database.queryDatabase(findRoleTypeCount);
         counter = count.getInt("total");
         System.out.println("TOTAL COUNT OF THIS ROLE " + counter);
         retrieveAvailabilityData(chosenType, finalDate, counter);
@@ -210,7 +207,7 @@ public class AvailBookingsController {
         ResultSet rs;
         String name;
         String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-        rs = Database.queryDatabase(findEmpNameSQL);
+        rs = database.queryDatabase(findEmpNameSQL);
         String[] myArray = new String[counter];
         for (int i = 0; i < myArray.length; i++) {
             rs.next();
@@ -220,7 +217,7 @@ public class AvailBookingsController {
         ResultSet rs1;
         String empID;
         String findempIDSQL = "SELECT empID from employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
-        rs1 = Database.queryDatabase(findempIDSQL);
+        rs1 = database.queryDatabase(findempIDSQL);
         String[] myArray2 = new String[counter];
         ;
         for (int i = 0; i < myArray2.length; i++) {
@@ -236,7 +233,7 @@ public class AvailBookingsController {
         ;
         for (int i = 0; i < availabilityArray.length; i++) {
             String findAvailabilitySQL = "SELECT availability from empAvailability WHERE empID=" + "'" + myArray2[i] + "'";
-            rs2 = Database.queryDatabase(findAvailabilitySQL);
+            rs2 = database.queryDatabase(findAvailabilitySQL);
             rs2.next();
             availability = rs2.getString("availability");
             availabilityArray[i] = availability;
@@ -788,7 +785,7 @@ public class AvailBookingsController {
         ResultSet rs;
         String name;
         String findyourNameDSQL = "SELECT name from customerDetails WHERE custID=" + "'" + Booking.custID + "'";
-        rs = Database.queryDatabase(findyourNameDSQL);
+        rs = database.queryDatabase(findyourNameDSQL);
         String[] myArray = new String[1];
         for (int i = 0; i < myArray.length; i++) {
             rs.next();
@@ -799,7 +796,7 @@ public class AvailBookingsController {
         ResultSet rs1;
         String businessName;
         String findbusinessNameDSQL = "SELECT businessName from businessDetails WHERE businessID=" + "'" + Booking.businessID + "'";
-        rs1 = Database.queryDatabase(findbusinessNameDSQL);
+        rs1 = database.queryDatabase(findbusinessNameDSQL);
         String[] myArray2 = new String[1];
         for (int i = 0; i < myArray.length; i++) {
             rs1.next();
@@ -810,7 +807,7 @@ public class AvailBookingsController {
         ResultSet rs2;
         int bookingID;
         String findbookingIDSQL = "SELECT MAX(bookingID) AS bookingID from bookingDetails";
-        rs2 = Database.queryDatabase(findbookingIDSQL);
+        rs2 = database.queryDatabase(findbookingIDSQL);
         int[] myArray3 = new int[1];
         for (int i = 0; i < myArray.length; i++) {
             rs2.next();
@@ -821,7 +818,7 @@ public class AvailBookingsController {
         ResultSet rs3;
         int employeesID;
         String findEmployeesIDSQL = "SELECT empID from employeeDetails WHERE name=" + "'" + employeesName + "'";
-        rs3 = Database.queryDatabase(findEmployeesIDSQL);
+        rs3 = database.queryDatabase(findEmployeesIDSQL);
         int[] myArray4 = new int[1];
         for (int i = 0; i < myArray.length; i++) {
             rs3.next();
@@ -836,7 +833,7 @@ public class AvailBookingsController {
         bookingDate = new SimpleDateFormat("dd/MM/yy").format(date);
         bookingType = lblCurrentService.getText();
 
-        Parent bookingConfirmation_parent = FXMLLoader.load(getClass().getResource("../view/BookingConfirmation.fxml"));
+        Parent bookingConfirmation_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/BookingConfirmation.fxml"));
         Scene bookingConfirmation_scene = new Scene(bookingConfirmation_parent);
         Stage secondaryStage = new Stage();
         secondaryStage.setScene(bookingConfirmation_scene);
@@ -1026,7 +1023,7 @@ public class AvailBookingsController {
 
     /**goes back to services page */
     public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{
-        Parent viewBookings_parent = FXMLLoader.load(getClass().getResource("../view/ServiceType.fxml"));
+        Parent viewBookings_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/ServiceType.fxml"));
         Scene viewBookings_scene = new Scene(viewBookings_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();

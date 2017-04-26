@@ -312,7 +312,7 @@ public class Database implements IDatabase {
 
 
         String employeeAvailablitySQL = "INSERT INTO empAvailability(empID, availability) values(?," +
-                "'000,000,000,000,000,000,000')";
+                "'110,010,100,100,100,110,111')";
 
         updateDatabase(emp1SQL);
         updateDatabase(employeeAvailablitySQL);

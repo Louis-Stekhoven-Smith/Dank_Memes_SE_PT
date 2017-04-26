@@ -7,11 +7,14 @@ import core.controller.AvailBookingsController;
  */
 public class Booking {
 
+    private Database database;
     public static int custID = 1;
     public static int businessID = 1;
     public static int bookingID = 1;
 
-    public static int addBooking(String bookingTime, String bookingDate, String bookingType){
+    public Booking(Database database){this.database = database;}
+
+    public int addBooking(String bookingTime, String bookingDate, String bookingType){
 
 
 
@@ -25,7 +28,7 @@ public class Booking {
                 "'" + bookingType  +"')";
 
 
-        if(Database.updateDatabase(bookingDetailsSQL)){
+        if(database.updateDatabase(bookingDetailsSQL)){
             return 1;
             }
             return 0;

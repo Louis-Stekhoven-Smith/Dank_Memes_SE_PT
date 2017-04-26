@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.MainController">
+   <stylesheets>
+      <URL value="@../java/css/navigationButtons.css" />
+   </stylesheets>
+   <children>
+      <Pane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');">
+         <children>
+            <TextField id="Username" fx:id="txtUsername" layoutX="142.0" layoutY="280.0" prefHeight="50.0" prefWidth="206.0">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
+            <PasswordField fx:id="txtPassword" layoutX="143.0" layoutY="356.0" onAction="#btnLoginClicked" prefHeight="50.0" prefWidth="206.0">
+               <font>
+                  <Font size="18.0" />
+               </font></PasswordField>
+            <Button fx:id="LoginButton" layoutX="240.0" layoutY="430.0" mnemonicParsing="false" onAction="#btnLoginClicked" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="LOGIN" textAlignment="CENTER" textFill="#1565c0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="btnStyle1Pressed" />
+                  <String fx:value="btnStyle1RegularState" />
+                  <String fx:value="btnStyle1Hover" />
+               </styleClass></Button>
+            <Button fx:id="btnSignUp" alignment="CENTER" layoutX="141.0" layoutY="430.0" mnemonicParsing="false" onAction="#btnSignUpClicked" prefHeight="40.0" prefWidth="86.0" style="-fx-background-color: none;" styleClass="btnStyle2Pressed" text="SIGN UP" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></Button>
+            <Label fx:id="txtLabel" alignment="CENTER" layoutX="26.0" layoutY="38.0" prefHeight="94.0" prefWidth="333.0" text="Appointment Booking System" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="28.0" />
+               </font></Label>
+            <ImageView fitHeight="94.0" fitWidth="94.0" layoutX="154.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="http://i347.photobucket.com/albums/p471/phi_nguyen8/Calendaricon_zpssnonwchp.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="140.0" layoutY="564.0" text="©DankMemes" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="18.0" />
+               </font></Label>
+            <Label fx:id="lblLoginError" layoutX="64.0" layoutY="253.0" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtLabel1" alignment="CENTER" layoutX="7.0" layoutY="285.0" prefHeight="40.0" prefWidth="125.0" text="User Name:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtLabel11" alignment="CENTER" layoutX="7.0" layoutY="361.0" prefHeight="40.0" prefWidth="125.0" text="Password:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

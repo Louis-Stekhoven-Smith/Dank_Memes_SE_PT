@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AddEmpController">
+    <stylesheets>
+        <URL value="@../java/css/navigationButtons.css" />
+    </stylesheets>
+    <children>
+        <Pane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');">
+            <children>
+                <Label fx:id="txtLabel" alignment="CENTER" layoutX="25.0" layoutY="31.0" prefHeight="94.0" prefWidth="333.0" text="Add Employee" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                    <font>
+                        <Font size="28.0" />
+                    </font></Label>
+                <Label alignment="CENTER" layoutX="139.0" layoutY="564.0" text="©DankMemes" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Calibri Light" size="18.0" />
+                    </font></Label>
+                <Label fx:id="lblLoginError" layoutX="64.0" layoutY="253.0" textFill="RED">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnBackToBusinessHome" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackToBusinessHome" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: None; -fx-background-image: url(http://i63.tinypic.com/2dirdci.png);" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+               <styleClass>
+                  <String fx:value="btnStyle1Pressed" />
+                  <String fx:value="btnStyle1RegularState" />
+                  <String fx:value="btnStyle1Hover" />
+               </styleClass>
+                </Button>
+                <Button fx:id="btnAddEmp" alignment="CENTER" layoutX="135.0" layoutY="423.0" mnemonicParsing="false" onAction="#btnAddEmp" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add Employee" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+               <styleClass>
+                  <String fx:value="btnStyle1Pressed" />
+                  <String fx:value="btnStyle1RegularState" />
+                  <String fx:value="btnStyle1Hover" />
+               </styleClass>
+                </Button>
+            <Label layoutX="50.0" layoutY="170.0" text="Name:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="230.0" text="Role:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="290.0" text="Email:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="350.0" text="Phone:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAddName" layoutX="126.0" layoutY="170.0" prefHeight="25.0" prefWidth="195.0" />
+            <TextField fx:id="txtAddRole" layoutX="126.0" layoutY="230.0" prefHeight="25.0" prefWidth="195.0" />
+            <TextField fx:id="txtAddEmail" layoutX="126.0" layoutY="290.0" prefHeight="25.0" prefWidth="195.0" />
+            <TextField fx:id="txtAddPhone" layoutX="126.0" layoutY="350.0" onAction="#btnAddEmp" prefHeight="25.0" prefWidth="195.0" />
+            <Label fx:id="lblEmpAdded" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="403.0" prefHeight="20.0" prefWidth="195.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            </children>
+        </Pane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

@@ -59,11 +59,10 @@ public class AddEmpController {
             while(rs.next()){
                 services.add(rs.getString("serviceName"));
             }
+            comboRoles.setItems(services);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        comboRoles.setItems(services);
     }
 
     @FXML

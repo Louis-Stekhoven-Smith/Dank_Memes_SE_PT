@@ -88,10 +88,11 @@ public class RemoveEmpController {
 
     @FXML
     public void btnRemoveEmp() throws IOException {
+        int empID;
         log.debug("Remove employee button clicked");
         String empName = comboName.getValue();
         Boolean result;
-        if (empName.equals("") && txtEmpID.getText().equals("")) {
+        if (empName == null && txtEmpID.getText().equals("")) {
             lblRemoveError.setText("Please find employee!");
             return;
         }
@@ -99,7 +100,13 @@ public class RemoveEmpController {
             lblRemoveError.setText("Please enter an employee ID!");
             return;
         }
-        int empID = Integer.parseInt(txtEmpID.getText());
+        if(!txtEmpID.getText().matches("[-+]?\\d*\\.?\\d+")){
+            lblRemoveError.setText("Non numeric employee ID!");
+            return;
+        }
+        empID = Integer.parseInt(txtEmpID.getText());
+
+
         log.debug("Remove employee button clicked, leaving controller...");
         result = employee.removeEmployee(empID);
         log.debug("Returned to controller");

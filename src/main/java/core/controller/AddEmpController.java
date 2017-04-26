@@ -75,15 +75,17 @@ public class AddEmpController {
         String phone = txtAddPhone.getText();
         int result;
 
+        if(empName.equals("") || empRole.equals("") || email.equals("") || phone.equals("")){
+            lblEmpAdded.setTextFill(Color.web("#ff0000"));
+            lblEmpAdded.setText("Please enter all of the fields");
+            return;
+        }
+
         log.debug("Calling addEmployee Method, leaving controller...");
         result = employee.addEmployee(empName, empRole, address, email, phone);
         log.debug("Returned to controller");
 
-        if(empName.equals("") || empRole.equals("") || email.equals("") || phone.equals("")){
-            lblEmpAdded.setTextFill(Color.web("#ff0000"));
-            lblEmpAdded.setText("Please enter all of the fields");
-        }
-        else if(result == -1){
+        if(result == -1){
             lblEmpAdded.setTextFill(Color.web("#ff0000"));
             lblEmpAdded.setText("Name must only contain letters & spaces!");
             txtAddName.setText("");

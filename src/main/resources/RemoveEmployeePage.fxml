@@ -27,11 +27,6 @@
                     <font>
                         <Font name="Calibri Light" size="18.0" />
                     </font></Label>
-                <Label fx:id="lblLoginError" alignment="CENTER" contentDisplay="CENTER" layoutX="177.0" layoutY="396.0" textFill="RED">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
                 <Button fx:id="btnRemoveBack" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackToBusinessHome" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: none; -fx-background-image: url(http://i63.tinypic.com/2dirdci.png);" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
@@ -83,7 +78,7 @@
                   <String fx:value="btnStyle1Hover" />
                </styleClass>
             </Button>
-            <Label fx:id="lblRemoveError" layoutX="129.0" layoutY="399.0" textFill="RED">
+            <Label fx:id="lblRemoveError" layoutX="19.0" layoutY="386.0" prefHeight="20.0" prefWidth="348.0" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>

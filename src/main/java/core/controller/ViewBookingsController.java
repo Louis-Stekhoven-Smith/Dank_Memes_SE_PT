@@ -35,6 +35,7 @@ import java.sql.ResultSet;
 public class ViewBookingsController {
 
     private static final Logger log = LogManager.getLogger(ViewBookingsController.class.getName());
+    private Database database = Database.getInstance();
 
     @FXML
     private javafx.scene.control.TableView<ViewBookings> bookingsTable;
@@ -92,8 +93,6 @@ public class ViewBookingsController {
 
             @Override
             protected void updateItem(String item, boolean empty) {
-                System.out.println(item);
-                super.updateItem(item, empty);
                 Text text = new Text(item);
                 text.setStyle("-fx-text-alignment: center;");
                 text.setWrappingWidth(62);
@@ -109,7 +108,6 @@ public class ViewBookingsController {
      */
     public ObservableList<ViewBookings> getBookings() {
         log.debug("Finding all of the bookings");
-        Database database = Database.getInstance();
 
         ObservableList<ViewBookings> bookings = FXCollections.observableArrayList();
 
@@ -143,6 +141,21 @@ public class ViewBookingsController {
         return bookings;
     }
 
+    /**Removes booking from database */
+    @FXML
+    public void btnRemoveBooking(ActionEvent event) throws IOException {
+        log.debug("Removing booking from database");
+        //Get first column of selected row
+        ViewBookings getID = bookingsTable.getItems().get(bookingsTable.getSelectionModel().getSelectedIndex());
+        String id = getID.getBookingID();
+        String removeBookingSQL = "DELETE FROM bookingDetails WHERE bookingID = " + id;
+        if(id != null){
+            database.updateDatabase(removeBookingSQL);
+        }
+        //Reload table
+        initialize();
+
+    }
     /** Takes user back to BusinessHome screen */
     @FXML
     public void btnBackToBusinessScreen(ActionEvent event) throws IOException {

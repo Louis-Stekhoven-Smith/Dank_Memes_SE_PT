@@ -5,13 +5,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mock;
-import static org.mockito.ArgumentMatchers.contains;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.matches;
-import static org.mockito.Mockito.when;
+
 import java.sql.ResultSet;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.when;
 
 
 /**
@@ -34,16 +35,18 @@ class EmployeeTest {
     private Employee employee;
     private String name;
     private String role;
+    private String address;
     private String email;
     private String phone;
     private int result;
-    private int FAILED_TO_ADD_EMP = -1, SUCCEEDED_ADDING_EDP = 1, DATABASE_FAILED_TO_ADD = 0;
+    private int FAILED_PHONE = -3, FAILED_EMAIL = -2, FAILED_NAME = -1, SUCCEEDED_ADDING_EMP = 1, DATABASE_FAILED_TO_ADD = 0;
 
     @BeforeEach
     public void setup() throws Exception{
         employee = new Employee(mockDatabase);
         name = "Harry Potter";
         role = "Apprentice Barber";
+        address = "12 example street, Melbourne";
         email = "potter@wizard.com";
         phone = "0423457368";
 
@@ -53,51 +56,105 @@ class EmployeeTest {
         when(mockResultEmpty.next()).thenReturn(false);
     }
 
+    @DisplayName("Confirm email validation picks up no @ symbol")
+    @Test
+    void invalidEmail1(){
+        email = "harrygmail.com";
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(FAILED_EMAIL, result);
+
+    }
+
+    @DisplayName("Confirm email validation picks up no . separator after @ symbol")
+    @Test
+    void invalidEmail2(){
+        email = "harry@gmailcom";
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(FAILED_EMAIL, result);
+
+    }
+
+    @DisplayName("Confirm email validation picks up no @ symbol")
+    @Test
+    void validEmail(){
+        email = "harry@gmail.com";
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(SUCCEEDED_ADDING_EMP, result);
+
+    }
+
+    @DisplayName("Confirm name validation picks up invalid digits")
+    @Test
+    void invalidName(){
+        name = "test1234";
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(FAILED_NAME, result);
+
+    }
+
+    @DisplayName("Confirm name validation picks up on symbols")
+    @Test
+    void invalidName2(){
+        name = "test@!()";
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(FAILED_NAME, result);
+
+    }
+
+    @DisplayName("Confirm valid name")
+    @Test
+    void validName(){
+        name = "test";
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(SUCCEEDED_ADDING_EMP, result);
+
+    }
+
     @DisplayName("Confirm phone validation picks up length to short")
     @Test
     void invalidPhoneTest1(){
         phone = "043457368";
-        result = employee.addEmployee(name, role, email, phone);
-        assertEquals(FAILED_TO_ADD_EMP ,result);
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(FAILED_PHONE ,result);
     }
 
     @DisplayName("Confirm phone validation picks up length to long")
     @Test
     void invalidPhoneTest2(){
         phone = "04345736891";
-        result = employee.addEmployee(name, role, email, phone);
-        assertEquals(FAILED_TO_ADD_EMP ,result);
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(FAILED_PHONE ,result);
     }
 
     @DisplayName("Confirm phone validation picks up char in string")
     @Test
     void invalidPhoneTest3(){
         phone = "043457368A";
-        result = employee.addEmployee(name, role, email, phone);
-        assertEquals(FAILED_TO_ADD_EMP ,result);
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(FAILED_PHONE ,result);
     }
 
     @DisplayName("Confirm phone validation correctly validates acceptable number")
     @Test
     void invalidPhoneTest4(){
         phone = "0423457368";
-        result = employee.addEmployee(name, role, email, phone);
-        assertEquals(SUCCEEDED_ADDING_EDP,result);
+        result = employee.addEmployee(name, role, address, email, phone);
+        assertEquals(SUCCEEDED_ADDING_EMP,result);
     }
 
     @DisplayName("Confirm successfully add employee")
     @Test
     void addEmployee() throws Exception{
-        setupForPositiveMatch(name,role,email, phone);
-        assertEquals(SUCCEEDED_ADDING_EDP, employee.addEmployee(name, role, email, phone));
+        setupForPositiveMatch(name,role,address,email, phone);
+        assertEquals(SUCCEEDED_ADDING_EMP, employee.addEmployee(name, role, address, email, phone));
     }
 
     @DisplayName("Confirm error returned if the database was unable to update")
     @Test
     void addEmployeeFailedToUpdateDatabase() throws Exception{
-        setupForNegativeMatch(name,role,email, phone);
+        setupForNegativeMatch(name,role,address,email, phone);
 
-        assertEquals(DATABASE_FAILED_TO_ADD,employee.addEmployee(name, role, email, phone));
+        assertEquals(DATABASE_FAILED_TO_ADD,employee.addEmployee(name, role, address, email, phone));
     }
 
     @DisplayName("Confirm successfully finds employee")
@@ -116,7 +173,7 @@ class EmployeeTest {
     @Test
     void findInvalidEmployee() throws Exception{
         String name = "Wrong employee";
-        setupForNegativeMatch(name,role,email, phone);
+        setupForNegativeMatch(name,role,address,email, phone);
 
         assertEquals(DATABASE_FAILED_TO_ADD, employee.findEmployee(name));
     }
@@ -124,7 +181,7 @@ class EmployeeTest {
     @DisplayName("Confirm successfully removes employee")
     @Test
     void removeEmployeeTest() throws Exception{
-        setupForPositiveMatch(name,role,email, phone);
+        setupForPositiveMatch(name,role,address,email, phone);
         when(mockDatabase.updateDatabase(contains("1"))).thenReturn(true);
 
         assertTrue(employee.removeEmployee(1));
@@ -132,9 +189,9 @@ class EmployeeTest {
 
 
     /** Set up a test so that we can test for a positive/success */
-    private void setupForPositiveMatch(String name, String role, String email, String phone) throws Exception{
+    private void setupForPositiveMatch(String name, String role, String address, String email, String phone) throws Exception{
         String regex = ".*" +name+ ".*" +role+ ".*" +
-                ".*"+email+".*"+phone+".*";
+                ".*"+address+".*"+".*"+email+".*"+phone+".*";
 
         /*setting the default response as a fail */
         when(mockDatabase.updateDatabase(anyString())).thenReturn(false);
@@ -147,9 +204,9 @@ class EmployeeTest {
     }
 
     /** Set up a test so that we can test for a negative/failure */
-    private void setupForNegativeMatch(String name, String role, String email, String phone) throws Exception {
+    private void setupForNegativeMatch(String name, String role, String address, String email, String phone) throws Exception {
         String regex = ".*" +name+ ".*" +role+ ".*" +
-                ".*"+email+".*"+phone+".*";
+                ".*"+address+".*"+".*"+email+".*"+phone+".*";
 
         /*setting the default response as a success as we are testing if we correctly get an error back  */
         when(mockDatabase.updateDatabase(anyString())).thenReturn(true);

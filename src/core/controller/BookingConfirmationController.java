@@ -1,5 +1,6 @@
 package core.controller;
 
+import com.sun.org.apache.bcel.internal.generic.POP;
 import core.model.Booking;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -70,6 +72,15 @@ public class BookingConfirmationController {
             Stage stage = (Stage) btnConfirm.getScene().getWindow();
             stage.close();
 
+            Parent BookingSuccess_parent = FXMLLoader.load(getClass().getResource("../view/BookingSuccess.fxml"));
+            Scene BookingSuccess_scene = new Scene (BookingSuccess_parent);
+            Stage PopUpStage = new Stage();
+            PopUpStage.setScene(BookingSuccess_scene);
+            PauseTransition delay = new PauseTransition(Duration.seconds(1.2));
+            delay.setOnFinished(e -> PopUpStage.close());
+            PopUpStage.initStyle(StageStyle.UNDECORATED);
+            PopUpStage.show();
+            delay.play();
 
         } else {
             System.out.println("Booking Failed!");

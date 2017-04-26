@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -98,6 +99,7 @@ public class RegisterController {
         PopUpStage.setScene(RegisterSuccess_scene);
         PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
         delay.setOnFinished(e -> PopUpStage.close());
+        PopUpStage.initStyle(StageStyle.UNDECORATED);
         PopUpStage.show();
         delay.play();
 

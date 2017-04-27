@@ -1,7 +1,7 @@
 package core.controller;
 
-import core.model.Booking;
 import core.model.Database;
+import core.model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +30,7 @@ import java.util.Objects;
 public class AvailBookingsController {
 
     private Database database = Database.getInstance();
+    private Session session = Session.getInstance();
 
     @FXML
     private DatePicker dpBookingDate;
@@ -206,7 +207,8 @@ public class AvailBookingsController {
         System.out.println("COUNTER INT VALUE IS = "+counter);
         ResultSet rs;
         String name;
-        String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'";
+        String findEmpNameSQL = "SELECT name FROM employeeDetails WHERE employeeRole=" + "'" + chosenType + "'" +
+                     "AND businessID = "+ session.getBusinessSelected();
         rs = database.queryDatabase(findEmpNameSQL);
         String[] myArray = new String[counter];
         for (int i = 0; i < myArray.length; i++) {
@@ -784,7 +786,7 @@ public class AvailBookingsController {
 
         ResultSet rs;
         String name;
-        String findyourNameDSQL = "SELECT name from customerDetails WHERE custID=" + "'" + Booking.custID + "'";
+        String findyourNameDSQL = "SELECT name from customerDetails WHERE custID=" + session.getLoggedInUserId();
         rs = database.queryDatabase(findyourNameDSQL);
         String[] myArray = new String[1];
         for (int i = 0; i < myArray.length; i++) {
@@ -795,7 +797,7 @@ public class AvailBookingsController {
 
         ResultSet rs1;
         String businessName;
-        String findbusinessNameDSQL = "SELECT businessName from businessDetails WHERE businessID=" + "'" + Booking.businessID + "'";
+        String findbusinessNameDSQL = "SELECT businessName from businessDetails WHERE businessID=" + session.getBusinessSelected();
         rs1 = database.queryDatabase(findbusinessNameDSQL);
         String[] myArray2 = new String[1];
         for (int i = 0; i < myArray.length; i++) {

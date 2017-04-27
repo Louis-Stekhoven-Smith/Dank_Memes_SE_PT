@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="380.0" prefWidth="600.0" style="-fx-background-color: #2196f3;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AvailBookingsController">
    <stylesheets>
-      <URL value="@../java/css/navigationButtons.css" />
+      <URL value="@css/navigationButtons.css" />
    </stylesheets>
    <children>
       <ScrollPane hbarPolicy="NEVER" layoutY="180.0" prefHeight="200.0" prefWidth="602.0">

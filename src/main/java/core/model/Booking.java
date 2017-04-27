@@ -8,15 +8,10 @@ import core.controller.AvailBookingsController;
 public class Booking {
 
     private Database database;
-    public static int custID = 1;
-    public static int businessID = 1;
-    public static int bookingID = 1;
 
     public Booking(Database database){this.database = database;}
 
-    public int addBooking(String bookingTime, String bookingDate, String bookingType){
-
-
+    public int addBooking(int custID,String bookingTime, String bookingDate, String bookingType,int businessID){
 
         String bookingDetailsSQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values("
                 + AvailBookingsController.futureBookingID +"," +

@@ -14,7 +14,7 @@
 
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.RemoveEmpController">
     <stylesheets>
-        <URL value="@../java/css/navigationButtons.css" />
+        <URL value="@css/navigationButtons.css" />
     </stylesheets>
     <children>
         <Pane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');">

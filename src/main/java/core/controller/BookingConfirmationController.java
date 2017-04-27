@@ -2,6 +2,7 @@ package core.controller;
 
 import core.model.Booking;
 import core.model.Database;
+import core.model.Session;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,12 +61,13 @@ public class BookingConfirmationController {
     }
 
     public void btnConfirmPressed(javafx.event.ActionEvent event) throws IOException {
+        Session session = Session.getInstance();
         String bookingTime = lblBookingTime.getText();
         String bookingDate = lblBookingDate.getText();
         String bookingType = lblBookingType.getText();
 
         int result;
-        result = booking.addBooking(bookingTime,bookingDate,bookingType);
+        result = booking.addBooking(session.getLoggedInUserId(),bookingTime,bookingDate,bookingType, session.getBusinessSelected());
 
         if (result == 1){
             System.out.println("Booking Success");

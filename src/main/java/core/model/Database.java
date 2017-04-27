@@ -1,10 +1,15 @@
 package core.model;
 
 import core.interfaces.IDatabase;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.io.FileReader;
 import java.sql.*;
+import java.util.Scanner;
+
 
 /**
  * Created by harry on 18/03/2017.
@@ -16,8 +21,6 @@ import java.sql.*;
  It also has a method for querying the database, inserting into
  the data base and updating entries in the database. */
 public class Database implements IDatabase {
-
-    private static Database instance;
 
     private Connection con;
     private String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
@@ -66,11 +69,69 @@ public class Database implements IDatabase {
             createEmpAvailability(state);
             createBookingsTable(state);
             createEmployeeDetTable(state);
+            updateBusiness();
             state.close();
         }
         catch (SQLException e){
             log.error("Failed to create tables: " + e.getMessage());
             return false;
+        }
+        return true;
+    }
+
+    private boolean updateBusiness(){
+        String businessSQL, businessName, ownerName, email, ownerSQL,
+                userName, userPassword,businessRecord[], type;
+        ResultSet rs;
+        int loginID, i ;
+
+        Scanner scan;
+        try {
+            scan = new Scanner(new File("config.txt"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        /*TODO Need to put a check here to see if business already exist in the data base
+        at the moment just adds every time the app is run
+         */
+        while (scan.hasNext()) {
+                businessRecord = scan.nextLine().split(",");
+            if(!businessRecord[0].contains("#")) {
+                businessName = businessRecord[0];
+                ownerName = businessRecord[1];
+                email = businessRecord[2];
+                userName = businessRecord[3];
+                userPassword = businessRecord[4];
+                type = businessRecord[5];
+
+                ownerSQL = "INSERT INTO userLogin(loginID, userName, password, type) values(?," +
+                        "'" + userName + "'" + "," +
+                        "'" + userPassword + "'" + "," +
+                        "'" + type + "'" + ")";
+
+                updateDatabase(ownerSQL);
+
+                rs = queryDatabase("SELECT loginID FROM userLogin WHERE userName = '" + userName + "'");
+
+                try {
+                    loginID = rs.getInt("loginID");
+
+                    businessSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email) values(?," +
+                            "'" + loginID + "'," +
+                            "'" + businessName + "'," +
+                            "'" + ownerName + "'," +
+                            "'" + email + "')";
+
+                    updateDatabase(businessSQL);
+
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            }
         }
         return true;
     }
@@ -294,7 +355,7 @@ public class Database implements IDatabase {
         String bussinessOwnerSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email) values(?," +
                 "'" + 2 + "'," +
                 "'" + "Dank Memes" + "'," +
-                "'" + "Jeff Goodman" + "'," +
+                "'" + "Homy Goodman" + "'," +
                 "'" + "dankmemes@saloons.com" + "')";
 
         updateDatabase(cust2LoginSQL);

@@ -2,101 +2,49 @@ package core.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.util.Scanner;
-
 
 /**
  * Created by louie on 11/03/2017.
  */
 public class Session {
-/*
-    private String name, username, address, contactNumber;
-    private Booking bookings[];
+
+    private String username;
+    private int loggedInUserDd,type;
+
+    private int businessSelected;
+
     private static final Logger log = LogManager.getLogger(Session.class.getName());
 
-    public Session(String username){
-        log.debug("Inside Session class, creating new session with user: " + username);
+    private Session(){}
+
+    public static Session getInstance(){
+        return SingletonHolder.instance;
+    }
+
+    private static final class SingletonHolder {
+        static final Session instance = new Session();
+    }
+
+    public void load(String username, int id, int type) {
+        log.debug("Inside loadMethod.");
         this.username = username;
-        if(!loadUserDetails()){
-            System.out.println("user not found");
-        }
+        this.loggedInUserDd = id;
+        this.type = type;
     }
+    /** setters and getters **/
 
-
-    public Boolean saveBookings(){
-
-        return null;
+    public int getLoggedInUserId() {
+        return loggedInUserDd;
     }
-/*
-    /** Helpers */
-/*
-    private void loadBookings(){
+    public int getBusinessSelected() {
+        return businessSelected;
     }
-
-    private Booking loadBooking(){
-        return null;
+    public void setBusinessSelected(int businessSelected) {
+        this.businessSelected = businessSelected;
     }
-*/
-    /** find customers details and load into session */
-    /*
-    private Boolean loadUserDetails() {
-        log.debug("Inside loadUserDetails Method.");
-
-        Scanner scan;
-        int thisRecord = 1;
-        String[] customerDetails;
-
-        try {
-            scan = new Scanner(new File("customerDetails.txt"));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-        while (scan.hasNext()) {
-            customerDetails = scan.nextLine().split(",");
-            if (username.equals(customerDetails[thisRecord])) {
-
-                name = customerDetails[0];
-                address = customerDetails[2];
-                contactNumber = customerDetails[3];
-
-                scan.close();
-                return true;
-            }
-        }
-        scan.close();
-        return false;
-    }
-*/
-    /** Mutators */
-    /*
-    public Boolean addBooking(){
-        return null;
-    }
-
-    public Boolean removeBooking(){
-        return null;
-    }
-*/
-    /** getters **/
-    /*
-    public String getName(){
-        return name;
-    }
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
-    public String getAddress(){
-        return address;
-    }
-    public String getContactNumber (){
-        return contactNumber;
-    }
 
-    public Booking[] getBooking(){
-        return null;
-    }
-    */
+
 }

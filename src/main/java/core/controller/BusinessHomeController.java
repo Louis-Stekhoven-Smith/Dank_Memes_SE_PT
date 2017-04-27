@@ -1,5 +1,7 @@
 package core.controller;
 
+import core.model.Database;
+import core.model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Created by harry on 8/04/2017.
@@ -32,14 +36,29 @@ public class BusinessHomeController {
 
     @FXML
     public void btnGotoAddEmp(ActionEvent event) throws IOException {
+        ResultSet res;
+        Session session = Session.getInstance();
+        Database database = Database.getInstance();
         log.debug("Go to add employee button clicked");
         log.debug("Loading add employee page...");
-        Parent addEmployee_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/AddEmployeePage.fxml"));
-        Scene addEmployee_scene = new Scene(addEmployee_parent);
-        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        primaryStage.close();
-        primaryStage.setScene(addEmployee_scene);
-        primaryStage.show();
+        res = database.queryDatabase("SELECT businessID FROM availableServices WHERE businessID = "+ session.getLoggedInUserId());
+        try {
+            if(res.next()){
+                Parent addEmployee_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/AddEmployeePage.fxml"));
+                Scene addEmployee_scene = new Scene(addEmployee_parent);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.close();
+                primaryStage.setScene(addEmployee_scene);
+                primaryStage.show();
+            }
+        } catch (SQLException e) {
+            /*TODO
+                    Display an error message advising the user needs to create at least one service type before
+                    they can add employees
+                 */
+
+            e.printStackTrace();
+        }
     }
 
     @FXML

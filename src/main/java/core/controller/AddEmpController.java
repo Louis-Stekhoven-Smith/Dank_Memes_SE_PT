@@ -4,6 +4,7 @@ import core.model.Database;
 import core.model.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import core.model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,9 +29,9 @@ import java.sql.SQLException;
 public class AddEmpController {
 
     private static final Logger log = LogManager.getLogger(AddEmpController.class.getName());
-
     private Database database = Database.getInstance();
-    private Employee employee = new Employee(Database.getInstance());
+    private Session session = Session.getInstance();
+    private Employee employee = new Employee(database, session);
     //Add Employee Fields
     @FXML
     private TextField txtAddName;
@@ -52,7 +53,8 @@ public class AddEmpController {
         ObservableList<String> services = FXCollections.observableArrayList();
 
         //Get businessID function here
-        String servicesSQL = "SELECT serviceName FROM availableServices WHERE businessID = 1";
+
+        String servicesSQL = "SELECT serviceName FROM availableServices WHERE businessID = "+ session.getLoggedInUserId();
         rs = database.queryDatabase(servicesSQL);
 
         try {

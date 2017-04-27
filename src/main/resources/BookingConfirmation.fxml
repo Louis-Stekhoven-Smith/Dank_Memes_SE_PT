@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(http://i.imgur.com/kU5eo0O.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.BookingConfirmationController">
     <stylesheets>
-        <URL value="@../java/css/navigationButtons.css" />
+        <URL value="@css/navigationButtons.css" />
     </stylesheets>
     <children>
         <Label layoutX="144.0" layoutY="62.0" text="Booking No:">

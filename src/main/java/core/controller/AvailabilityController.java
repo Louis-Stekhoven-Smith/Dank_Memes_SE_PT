@@ -3,6 +3,7 @@ package core.controller;
 import core.model.Availability;
 import core.model.Database;
 import core.model.Employee;
+import core.model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +28,7 @@ import java.sql.SQLException;
 public class AvailabilityController {
 
     private static final Logger log = LogManager.getLogger(AvailabilityController.class.getName());
-    private Employee employee = new Employee(Database.getInstance());
+    private Employee employee = new Employee(Database.getInstance(), Session.getInstance());
 
     @FXML
     private Button btnSaveTimes;

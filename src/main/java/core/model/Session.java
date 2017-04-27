@@ -18,7 +18,9 @@ public class Session {
     public Session(String username){
         log.debug("Inside Session class, creating new session with user: " + username);
         this.username = username;
-        loadUserDetails();
+        if(!loadUserDetails()){
+            System.out.println("user not found");
+        }
     }
 
 
@@ -42,7 +44,7 @@ public class Session {
         log.debug("Inside loadUserDetails Method.");
 
         Scanner scan;
-        int thisRecord = 0;
+        int thisRecord = 1;
         String[] customerDetails;
 
         try {
@@ -56,7 +58,7 @@ public class Session {
             customerDetails = scan.nextLine().split(",");
             if (username.equals(customerDetails[thisRecord])) {
 
-                name = customerDetails[1];
+                name = customerDetails[0];
                 address = customerDetails[2];
                 contactNumber = customerDetails[3];
 

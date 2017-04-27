@@ -22,7 +22,7 @@ import java.sql.ResultSet;
 /**
  * Created by louie on 4/04/2017.
  */
-public class EmployeesAvailabilityController {
+public class AllAvailabilityController {
 
     @FXML
     private javafx.scene.control.TableView<EmpAvailability> table;
@@ -90,12 +90,11 @@ public class EmployeesAvailabilityController {
      * @return ObservableList<EmpAvailability>
      */
     public ObservableList<EmpAvailability> getEmpAvailability() {
-        Database database = Database.getInstance();
-
-        ObservableList<EmpAvailability>  empAvailabilities = FXCollections.observableArrayList();
-
         ResultSet rs;
-        String empsAvailability, name, getEmpAvailability;
+        String empAvailability, empName, getEmpAvailability;
+
+        Database database = Database.getInstance();
+        ObservableList<EmpAvailability>  empAvailabilities = FXCollections.observableArrayList();
 
         getEmpAvailability = "SELECT employeeDetails.name, empAvailability.availability FROM employeeDetails, empAvailability" +
                 " WHERE employeeDetails.empID = empAvailability.empID ";
@@ -104,9 +103,10 @@ public class EmployeesAvailabilityController {
 
         try {
             while (rs.next()) {
-                name = rs.getString("name");
-                empsAvailability = rs.getString("availability");
-                empAvailabilities.add(new EmpAvailability(name, empsAvailability));
+                empName = rs.getString("name");
+                empAvailability = rs.getString("availability");
+
+                empAvailabilities.add(new EmpAvailability(empName, empAvailability));
             }
         }
         catch (Exception e){

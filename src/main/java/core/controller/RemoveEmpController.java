@@ -48,8 +48,8 @@ public class RemoveEmpController {
         ResultSet rs;
         ObservableList<String> employees = FXCollections.observableArrayList();
 
-        //Get businessID function here
-        String servicesSQL = "SELECT name FROM employeeDetails WHERE businessID = 1";
+
+        String servicesSQL = "SELECT name FROM employeeDetails WHERE businessID = " + Session.getInstance().getLoggedInUserId();
         rs = database.queryDatabase(servicesSQL);
 
         try {

@@ -1,6 +1,7 @@
 package core.controller;
 
 import core.model.Database;
+import core.model.Session;
 import core.model.dataClasses.EmpAvailability;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -112,15 +113,17 @@ public class EmployeesAvailabilityController {
      * @return ObservableList<EmpAvailability>
      */
     public ObservableList<EmpAvailability> getEmpAvailability() {
-        Database database = Database.getInstance();
-
-        ObservableList<EmpAvailability>  empAvailabilities = FXCollections.observableArrayList();
-
         ResultSet rs;
         String empsAvailability, name, getEmpAvailability;
+        Database database = Database.getInstance();
+        Session session = Session.getInstance();
+        ObservableList<EmpAvailability>  empAvailabilities = FXCollections.observableArrayList();
+
+        session.getLoggedInUserId();
 
         getEmpAvailability = "SELECT employeeDetails.name, empAvailability.availability FROM employeeDetails, empAvailability" +
-                " WHERE employeeDetails.empID = empAvailability.empID ";
+                " WHERE employeeDetails.empID = empAvailability.empID " +
+                " AND employeeDetails.businessID = " + session.getLoggedInUserId();
 
         rs = database.queryDatabase(getEmpAvailability);
 

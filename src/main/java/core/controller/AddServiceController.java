@@ -2,6 +2,7 @@ package core.controller;
 
 import core.model.AddService;
 import core.model.Database;
+import core.model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ public class AddServiceController {
 
     private static final Logger log = LogManager.getLogger(AddEmpController.class.getName());
 
-    private AddService addService = new AddService(Database.getInstance());
+    private AddService addService = new AddService(Database.getInstance(), Session.getInstance());
 
     @FXML
     private Slider sliderLengthTime;

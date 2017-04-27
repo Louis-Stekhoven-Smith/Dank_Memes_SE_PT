@@ -36,7 +36,7 @@ public class Login {
         inputUsername = inputUsername.toLowerCase();
 
         rs = getResultSet(inputUsername, inputPassword);
-
+        System.out.println(rs);
         try{
             /* incorrect login details */
             if(!(rs.next())) {
@@ -44,7 +44,7 @@ public class Login {
             }
             if(getSet(rs) == CUSTOMER){
                 loginID =  rs.getInt("loginID");
-                session.load(inputUsername,rs.getInt(loginID),CUSTOMER);
+                session.load(inputUsername,loginID,CUSTOMER);
                 log.debug("Successful customer login, logged in as: " + inputUsername);
                 log.debug("Returning to MainController");
                 return 1;

@@ -19,14 +19,16 @@ public class Login {
      * Returns 1 if user is a customer */
     private final Logger log = LogManager.getLogger(Login.class.getName());
     private Database database;
-    private Business business;
+    private Session session;
 
-    public Login(Database database){
+    public Login(Database database, Session session){
         this.database = database;
+        this.session = session;
     }
 
     public int validateAttempt(String inputUsername, String inputPassword){
         ResultSet rs;
+        int loginID;
         final int CUSTOMER = 1, OWNER = 2;
         log.debug("Inside validateAttempt Method");
         log.info("Validating login attempt for userName: " + inputUsername + " with password: " + inputPassword);
@@ -40,12 +42,16 @@ public class Login {
             if(!(rs.next())) {
                 return -1;
             }
-            if(isType(rs) == CUSTOMER){
+            if(getSet(rs) == CUSTOMER){
+                loginID =  rs.getInt("loginID");
+                session.load(inputUsername,rs.getInt(loginID),CUSTOMER);
                 log.debug("Successful customer login, logged in as: " + inputUsername);
                 log.debug("Returning to MainController");
                 return 1;
             }
-            if(isType(rs) == OWNER){
+            if(getSet(rs) == OWNER){
+                loginID =  rs.getInt("loginID");
+                session.load(inputUsername,rs.getInt(loginID),CUSTOMER);
                 log.debug("Successful owner login, logged in as: " + inputUsername);
                 log.debug("Returning to MainController");
                 return 2;
@@ -61,13 +67,13 @@ public class Login {
     private ResultSet getResultSet(String inputUsername, String inputPassword) {
         String loginSQL;
         ResultSet rs;
-        loginSQL = "SELECT userName, password, type FROM userLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
+        loginSQL = "SELECT userName, password, type, loginID FROM userLogin WHERE userName =" + "'" + inputUsername + "'" + " AND password =" + "'" + inputPassword + "'";
         log.debug("Querying database for username and password tuple");
         rs = database.queryDatabase(loginSQL);
         return rs;
     }
 
-    private int isType(ResultSet rs) throws SQLException {
+    private int getSet(ResultSet rs) throws SQLException {
         return rs.getInt("type");
     }
 }

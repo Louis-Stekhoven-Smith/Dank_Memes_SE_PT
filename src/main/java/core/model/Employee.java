@@ -21,10 +21,12 @@ public class Employee {
 
     private Database database;
     private ResultSet resultSet;
+    private Session session;
 
 
-    public Employee(Database database){
+    public Employee(Database database,Session session){
         this.database = database;
+        this.session = session;
     }
 
     /**
@@ -39,6 +41,7 @@ public class Employee {
      */
     public int addEmployee(String name, String employeeRole, String address, String email, String phone){
         char first;
+        int businessID;
 
         /* Capitalize first char */
         first = Character.toUpperCase(name.charAt(0));
@@ -47,7 +50,7 @@ public class Employee {
         log.debug("Inside addEmployee Method.");
         log.info("Adding employee details: " + name + " " + employeeRole + " " + email + " " + phone);
 
-        int businessID = 1;
+        businessID = session.getLoggedInUserId();
 
         if(!nameValidation(name)){
             log.debug("Failed to add employee because of failed name validation, returning to controller");
@@ -80,7 +83,6 @@ public class Employee {
         }
         log.debug("Failed to added employee");
         return 0;
-
     }
 
     /** Add employee to the availability table */

@@ -23,12 +23,10 @@ import static org.mockito.Mockito.when;
 @Tag("LoginTests")
 class LoginTest {
 
-    @Mock
-    Database mockDatabase;
-    @Mock
-    ResultSet mockResultEmpty;
-    @Mock
-    ResultSet mockResultFull;
+    @Mock Database mockDatabase;
+    @Mock Session mockSession;
+    @Mock ResultSet mockResultEmpty;
+    @Mock ResultSet mockResultFull;
 
     /*valid user names are stored as all lower case */
     private String validUserName = "oldboismokey";
@@ -42,7 +40,7 @@ class LoginTest {
 
     @BeforeEach
     public void setup() throws Exception{
-        login = new Login(mockDatabase);
+        login = new Login(mockDatabase,mockSession);
 
         when(mockResultFull.next()).thenReturn(true);
         when(mockResultEmpty.next()).thenReturn(false);

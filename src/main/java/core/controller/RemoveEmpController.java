@@ -2,6 +2,7 @@ package core.controller;
 
 import core.model.Database;
 import core.model.Employee;
+import core.model.Session;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,9 +29,8 @@ import java.sql.SQLException;
 public class RemoveEmpController {
 
     private static final Logger log = LogManager.getLogger(RemoveEmpController.class.getName());
-
-    private Employee employee = new Employee(Database.getInstance());
     private Database database = Database.getInstance();
+    private Employee employee = new Employee(database, Session.getInstance());
 
     //Remove Employee Fields
     @FXML

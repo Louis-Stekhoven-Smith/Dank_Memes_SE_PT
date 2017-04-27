@@ -17,8 +17,6 @@ import java.sql.*;
  the data base and updating entries in the database. */
 public class Database implements IDatabase {
 
-    private static Database instance;
-
     private Connection con;
     private String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
     private String DB_DRIVER = "org.sqlite.JDBC";
@@ -294,7 +292,7 @@ public class Database implements IDatabase {
         String bussinessOwnerSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email) values(?," +
                 "'" + 2 + "'," +
                 "'" + "Dank Memes" + "'," +
-                "'" + "Jeff Goodman" + "'," +
+                "'" + "Homy Goodman" + "'," +
                 "'" + "dankmemes@saloons.com" + "')";
 
         updateDatabase(cust2LoginSQL);

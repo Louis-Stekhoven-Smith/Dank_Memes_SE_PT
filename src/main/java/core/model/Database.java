@@ -93,8 +93,10 @@ public class Database implements IDatabase {
             return false;
         }
 
+        /*TODO Need to put a check here to see if business already exist in the data base
+        at the moment just adds every time the app is run
+         */
         while (scan.hasNext()) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 businessRecord = scan.nextLine().split(",");
             if(!businessRecord[0].contains("#")) {
                 businessName = businessRecord[0];

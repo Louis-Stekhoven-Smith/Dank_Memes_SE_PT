@@ -51,6 +51,14 @@ public class Register {
      * @param custDetailsHMap
      * @return
      */
+
+    public boolean nameValidation (HashMap custDetailsHMap){
+        String name = (String) custDetailsHMap.get("name");
+        if(name.matches("[a-zA-z ]+")){
+            return true;
+        }
+        return false;
+    }
     public boolean passwordMatches(HashMap custDetailsHMap){
         log.debug("Inside passwordMatches Method.");
 
@@ -78,7 +86,7 @@ public class Register {
         boolean hasUppercase = !password.equals(password.toLowerCase());
         boolean hasLowercase = !password.equals(password.toUpperCase());
 
-        if((password.length() < 9) || !hasLowercase || !hasUppercase || !password.matches(".*\\d+.*")) {
+        if((password.length() < 8) || !hasLowercase || !hasUppercase || !password.matches(".*\\d+.*")) {
             log.debug("Password unsatisfactory, returning false");
             return false;
         }

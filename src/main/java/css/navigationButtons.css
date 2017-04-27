@@ -17,3 +17,7 @@
 .btnStyle2Pressed:pressed{
     -fx-effect: innershadow( gaussian , rgba(0,0,0,0.3) , 3,0,0,2);
 }
+
+.default{
+    -fx-background-color: #f1f1f1;
+}

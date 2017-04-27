@@ -23,29 +23,24 @@ import java.sql.ResultSet;
 /**
  * Created by louie on 4/04/2017.
  */
-public class EmployeesAvailabilityController {
+public class AllAvailabilityController {
 
     @FXML
     private javafx.scene.control.TableView<EmpAvailability> table;
-
     @FXML
     private TableColumn NameCol;
-
     @FXML
     private TableColumn MonCol;
     @FXML
     private TableColumn TueCol;
     @FXML
     private TableColumn WedCol;
-
     @FXML
     private TableColumn ThurCol;
     @FXML
     private TableColumn FriCol;
-
     @FXML
     private TableColumn SatCol;
-
     @FXML
     private TableColumn SunCol;
 
@@ -62,31 +57,14 @@ public class EmployeesAvailabilityController {
         SatCol.setCellValueFactory(new PropertyValueFactory<>("saturday"));
         SunCol.setCellValueFactory(new PropertyValueFactory<>("sunday"));
 
-
-        NameCol.setCellFactory(param -> {
-            return getTableCell();
-        });
-        MonCol.setCellFactory(param -> {
-            return getTableCell();
-        });
-        TueCol.setCellFactory(param -> {
-            return getTableCell();
-        });
-        WedCol.setCellFactory(param -> {
-            return getTableCell();
-        });
-        ThurCol.setCellFactory(param -> {
-            return getTableCell();
-        });
-        FriCol.setCellFactory(param -> {
-            return getTableCell();
-        });
-        SatCol.setCellFactory(param -> {
-            return getTableCell();
-        });
-        SunCol.setCellFactory(param -> {
-            return getTableCell();
-        });
+        NameCol.setCellFactory(param -> getTableCell());
+        MonCol.setCellFactory(param -> getTableCell());
+        TueCol.setCellFactory(param -> getTableCell());
+        WedCol.setCellFactory(param -> getTableCell());
+        ThurCol.setCellFactory(param -> getTableCell());
+        FriCol.setCellFactory(param -> getTableCell());
+        SatCol.setCellFactory(param -> getTableCell());
+        SunCol.setCellFactory(param -> getTableCell());
 
         table.setItems(getEmpAvailability());
     }

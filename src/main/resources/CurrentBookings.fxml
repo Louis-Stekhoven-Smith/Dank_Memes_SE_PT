@@ -29,55 +29,76 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnBooking4" layoutX="92.0" layoutY="368.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 4" textFill="#1565c0" visible="false">
+      <ComboBox fx:id="bookingsCombo" layoutX="117.0" layoutY="103.0" onAction="#comboChanged" prefWidth="150.0" />
+      <Label fx:id="lblBookingDate" layoutX="259.0" layoutY="443.0" text="Label" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
-         <styleClass>
-            <String fx:value="btnStyle1Pressed" />
-            <String fx:value="btnStyle1RegularState" />
-            <String fx:value="btnStyle1Hover" />
-         </styleClass>
-      </Button>
-      <Button fx:id="btnBooking3" layoutX="92.0" layoutY="288.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 3" textFill="#1565c0" visible="false">
+      </Label>
+      <Label fx:id="lblBookingTime" layoutX="259.0" layoutY="408.0" text="Label" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
-         <styleClass>
-            <String fx:value="btnStyle1Pressed" />
-            <String fx:value="btnStyle1RegularState" />
-            <String fx:value="btnStyle1Hover" />
-         </styleClass>
-      </Button>
-      <Button fx:id="btnBooking2" layoutX="92.0" layoutY="208.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 2" textFill="#1565c0" visible="false">
+      </Label>
+      <Label fx:id="lblBookingType" layoutX="259.0" layoutY="373.0" text="Label" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
-         <styleClass>
-            <String fx:value="btnStyle1Pressed" />
-            <String fx:value="btnStyle1RegularState" />
-            <String fx:value="btnStyle1Hover" />
-         </styleClass>
-      </Button>
-      <Button fx:id="btnBooking1" layoutX="92.0" layoutY="128.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 1" textFill="#1565c0" visible="false">
+      </Label>
+      <Label fx:id="lblYourName" layoutX="259.0" layoutY="338.0" text="Label" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
-         <styleClass>
-            <String fx:value="btnStyle1Pressed" />
-            <String fx:value="btnStyle1RegularState" />
-            <String fx:value="btnStyle1Hover" />
-         </styleClass>
-      </Button>
-      <Button fx:id="btnBooking5" layoutX="92.0" layoutY="448.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 5" textFill="#1565c0" visible="false">
+      </Label>
+      <Label fx:id="lblEmployeeName" layoutX="259.0" layoutY="303.0" text="Label" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
-         <styleClass>
-            <String fx:value="btnStyle1Pressed" />
-            <String fx:value="btnStyle1RegularState" />
-            <String fx:value="btnStyle1Hover" />
-         </styleClass>
-      </Button>
+      </Label>
+      <Label fx:id="lblBusinessName" layoutX="259.0" layoutY="268.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblBookingID" layoutX="259.0" layoutY="233.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="373.0" text="Booking Type" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="443.0" text="Booking Date:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="408.0" text="Booking Time:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="303.0" text="Employee Name:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="338.0" text="Your Name:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="268.0" text="Business Name:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="233.0" text="Booking No:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

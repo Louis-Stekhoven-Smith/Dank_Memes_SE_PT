@@ -1,6 +1,7 @@
 package core.controller;
 
 import core.model.Database;
+import core.model.Session;
 import core.model.dataClasses.ViewBookings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -112,8 +113,9 @@ public class ViewBookingsController {
         ObservableList<ViewBookings> bookings = FXCollections.observableArrayList();
 
         ResultSet rs;
-        int businessID = 1, custID, empID, bookingID;
+        int businessID, custID, empID, bookingID;
         String getBookingSQL, type, date, time;
+        businessID = Session.getInstance().getLoggedInUserId();
 
         getBookingSQL = "SELECT bookingID, custID, empID, bookingType, bookingDate, bookingTime FROM bookingDetails WHERE businessID = " + businessID;
 

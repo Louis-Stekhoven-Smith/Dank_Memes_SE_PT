@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class AddServiceTest {
     @Mock
     private Database mockDatabase;
-
+    @Mock private Session mockSession;
     @Mock
     private ResultSet mockResultFull;
 
@@ -38,7 +38,7 @@ public class AddServiceTest {
 
     @BeforeEach
     public void setup() throws Exception{
-        addService = new AddService(mockDatabase);
+        addService = new AddService(mockDatabase,mockSession);
         length = 15;
         name = "test";
         when(mockDatabase.updateDatabase(anyString())).thenReturn(true);

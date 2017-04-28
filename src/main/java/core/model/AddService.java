@@ -13,13 +13,16 @@ public class AddService {
 
     private ResultSet rs;
     private Database database;
+    private Session session;
     private static final Logger log = LogManager.getLogger(AddService.class.getName());
 
-    public AddService(Database database){this.database = database;}
+    public AddService(Database database, Session session){this.database = database; this.session = session;}
 
     /**Method for adding a new service to the database*/
     public int addNewService(String name, int length){
         log.debug("Adding new service to database");
+        int bussinessID;
+        bussinessID = session.getLoggedInUserId();
         //get businessID function here
 
         //Validating name is alphabetic
@@ -37,7 +40,7 @@ public class AddService {
         }
 
         String addServiceSQL = "INSERT into availableServices(serviceID, businessID, serviceName, serviceLength) values(?, " +
-                "'" + 1 + "'," +
+                "'" + bussinessID + "'," +
                 "'" + name + "'," +
                 "'" + length + "')";
 

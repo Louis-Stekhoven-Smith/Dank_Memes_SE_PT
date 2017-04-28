@@ -1,0 +1,6 @@
+#This is the config used to register a business with the app.
+#######
+Cool Business,Dude,aemailaddress@cool.com,dude,Dude1234,2
+#######
+Another business,Shawty,hotmail@hotmail.com,shawty,Shawty1234,2
+#######

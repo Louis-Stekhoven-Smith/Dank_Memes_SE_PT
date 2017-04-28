@@ -6,14 +6,14 @@ package core.model;
 public class Booking {
 
     private Database database;
-    public static int custID = 1;
-    public static int businessID = 1;
+    private Session session = Session.getInstance();
 
     public Booking(Database database){this.database = database;}
 
     public int addBooking(String bookingTime, String bookingDate, String bookingType, int empID){
 
-
+        int businessID = session.getBusinessSelected();
+        int custID = session.getLoggedInUserId();
 
         String bookingDetailsSQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values(?,"
                 + custID + "," +

@@ -1,7 +1,7 @@
 package core.controller;
 
-import core.model.Booking;
 import core.model.Database;
+import core.model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,7 +40,7 @@ public class AvailBookingsController {
 
     private static final Logger log = LogManager.getLogger(AvailBookingsController.class.getName());
     private Database database = Database.getInstance();
-    ChooseBusinessController chooseBusinessController = new ChooseBusinessController();
+    private Session session = Session.getInstance();
     private ResultSet rs;
 
     @FXML
@@ -96,20 +96,18 @@ public class AvailBookingsController {
     public void initialize() {
         log.debug("AvailBookingsController PAGE SHOW SHOWING!");
 
-        businessID = chooseBusinessController.getBusinessID();
+        businessID = session.getBusinessSelected();
+        yourName = session.getUsername();
 
         lblCurrentService.setText(serviceTypeController.type);
         bookingType = serviceTypeController.type;
 
         //Change this to session instead of booking
-        String findyourNameDSQL = "SELECT name from customerDetails WHERE custID=" + "'" + Booking.custID + "'";
         String futureBookingIDSQL = "SELECT MAX(bookingID) AS highID FROM bookingDetails";
         rs = database.queryDatabase(futureBookingIDSQL);
 
         try{
             futureBookingID = rs.getInt("highID") + 1;
-            rs = database.queryDatabase(findyourNameDSQL);
-            yourName = rs.getString("name");
         }catch (SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }

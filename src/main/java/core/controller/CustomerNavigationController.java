@@ -26,20 +26,29 @@ public class CustomerNavigationController {
     private Button btnBack;
 
     public void btnCustNav1Pressed (ActionEvent event) throws IOException {
-        Parent LoginSuccess_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/ChooseBusiness.fxml"));
-        Scene LoginSuccess_scene = new Scene (LoginSuccess_parent);
+        Parent CustNav1_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/ChooseBusiness.fxml"));
+        Scene CustNav1_scene = new Scene (CustNav1_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
-        primaryStage.setScene(LoginSuccess_scene);
+        primaryStage.setScene(CustNav1_scene);
+        primaryStage.show();
+    }
+
+    public void btnCustNav2Pressed (ActionEvent event) throws IOException {
+        Parent CustNav2_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/CurrentBookings.fxml"));
+        Scene CustNav2_scene = new Scene (CustNav2_parent);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(CustNav2_scene);
         primaryStage.show();
     }
 
     public void btnBackPressed (ActionEvent event) throws IOException {
-        Parent LoginSuccess_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/LoginPage.fxml"));
-        Scene LoginSuccess_scene = new Scene (LoginSuccess_parent);
+        Parent Back_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/LoginPage.fxml"));
+        Scene Back_scene = new Scene (Back_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
-        primaryStage.setScene(LoginSuccess_scene);
+        primaryStage.setScene(Back_scene);
         primaryStage.show();
     }
 

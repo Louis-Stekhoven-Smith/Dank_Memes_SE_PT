@@ -369,7 +369,7 @@ public class AvailBookingsController {
     /** Takes user back to BusinessHome screen */
     @FXML
     public void btnBackPressed(ActionEvent event) throws IOException {
-        Parent removeEmp_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/BusinessHome.fxml"));
+        Parent removeEmp_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/serviceType.fxml"));
         Scene removeEmp_scene = new Scene((removeEmp_parent));
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();

@@ -51,8 +51,9 @@ public class serviceTypeController {
         while(rs.next()){
             i++;
         }
+        rs = database.queryDatabase(findEmpSQL);
         String[] myArray = new String[i - 1];
-        for (int j=0; j<myArray.length;i++) {
+        for (int j=0; j<myArray.length;j++) {
             rs.next();
             role = rs.getString("employeeRole");
             myArray[j]=role;

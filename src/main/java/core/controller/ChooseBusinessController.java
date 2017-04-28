@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -15,20 +14,20 @@ import java.io.IOException;
  */
 public class ChooseBusinessController {
 
-    int businessChoice = 0;
+    private static int businessID;
 
     //loads services page once business is selected
     @FXML
     public int btnBusinessClicked(javafx.event.ActionEvent event) throws IOException {
-        businessChoice = 1;
-        System.out.println("Business "+businessChoice+" chosen");
+        businessID = 1;
+        System.out.println("Business "+businessID+" chosen");
         Parent viewBookings_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/ServiceType.fxml"));
         Scene viewBookings_scene = new Scene(viewBookings_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
         primaryStage.setScene(viewBookings_scene);
         primaryStage.show();
-        return businessChoice;
+        return businessID;
     }
 
     //goes back to main menu
@@ -40,4 +39,6 @@ public class ChooseBusinessController {
         primaryStage.setScene(viewBookings_scene);
         primaryStage.show();
     }
+
+    public int getBusinessID(){return businessID;}
 }

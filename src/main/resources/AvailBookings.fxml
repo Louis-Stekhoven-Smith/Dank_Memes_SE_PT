@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -28,96 +29,6 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnMorning1" layoutX="170.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnMor1Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Booked" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnMidday1" layoutX="315.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnMid1Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Booked" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnEvening1" layoutX="460.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnEve1Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="Booked" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnMorning2" layoutX="170.0" layoutY="100.0" mnemonicParsing="false" onAction="#btnMor2Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor2" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnMidday2" layoutX="315.0" layoutY="100.0" mnemonicParsing="false" onAction="#btnMid2Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid2" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnEvening2" layoutX="460.0" layoutY="100.0" mnemonicParsing="false" onAction="#btnEve2Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve2" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnMorning3" layoutX="170.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnMor3Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor3" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnMidday3" layoutX="315.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnMid3Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid3" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnEvening3" layoutX="460.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnEve3Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve3" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
                   <Label fx:id="lblName3" layoutX="55.0" layoutY="180.0" text="Name 3" textFill="#1565c0" visible="false">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -128,261 +39,160 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnEvening4" layoutX="460.0" layoutY="250.0" mnemonicParsing="false" onAction="#btnEve4Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve4" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnMidday4" layoutX="315.0" layoutY="250.0" mnemonicParsing="false" onAction="#btnMid4Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid4" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
-                  <Button fx:id="btnMorning4" layoutX="170.0" layoutY="250.0" mnemonicParsing="false" onAction="#btnMor4Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor4" textFill="#1565c0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                      <styleClass>
-                          <String fx:value="btnStyle1Pressed" />
-                          <String fx:value="btnStyle1RegularState" />
-                          <String fx:value="btnStyle1Hover" />
-                      </styleClass>
-                  </Button>
                    <Label fx:id="lblName5" layoutX="55.0" layoutY="330.0" text="Name 5" textFill="#1565c0" visible="false">
                        <font>
                            <Font name="System Bold" size="18.0" />
                        </font>
                    </Label>
-                   <Button fx:id="btnEvening5" layoutX="460.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnEve5Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve5" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMidday5" layoutX="315.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnMid5Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid5" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMorning5" layoutX="170.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnMor5Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor5" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
                    <Label fx:id="lblName6" layoutX="55.0" layoutY="405.0" text="Name 6" textFill="#1565c0" visible="false">
                        <font>
                            <Font name="System Bold" size="18.0" />
                        </font>
                    </Label>
-                   <Button fx:id="btnEvening6" layoutX="460.0" layoutY="400.0" mnemonicParsing="false" onAction="#btnEve6Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve6" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMidday6" layoutX="315.0" layoutY="400.0" mnemonicParsing="false" onAction="#btnMid6Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid6" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMorning6" layoutX="170.0" layoutY="400.0" mnemonicParsing="false" onAction="#btnMor6Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor6" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
                    <Label fx:id="lblName7" layoutX="55.0" layoutY="480.0" text="Name 7" textFill="#1565c0" visible="false">
                        <font>
                            <Font name="System Bold" size="18.0" />
                        </font>
                    </Label>
-                   <Button fx:id="btnEvening7" layoutX="460.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnEve7Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve7" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMidday7" layoutX="315.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnMid7Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid7" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMorning7" layoutX="170.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnMor7Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor7" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
                    <Label fx:id="lblName8" layoutX="55.0" layoutY="555.0" text="Name 8" textFill="#1565c0" visible="false">
                        <font>
                            <Font name="System Bold" size="18.0" />
                        </font>
                    </Label>
-                   <Button fx:id="btnEvening8" layoutX="460.0" layoutY="550.0" mnemonicParsing="false" onAction="#btnEve8Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve8" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMidday8" layoutX="315.0" layoutY="550.0" mnemonicParsing="false" onAction="#btnMid8Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid8" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMorning8" layoutX="170.0" layoutY="550.0" mnemonicParsing="false" onAction="#btnMor8Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor8" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
                    <Label fx:id="lblName9" layoutX="55.0" layoutY="630.0" text="Name 9" textFill="#1565c0" visible="false">
                        <font>
                            <Font name="System Bold" size="18.0" />
                        </font>
                    </Label>
-                   <Button fx:id="btnEvening9" layoutX="460.0" layoutY="625.0" mnemonicParsing="false" onAction="#btnEve9Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve9" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMidday9" layoutX="315.0" layoutY="625.0" mnemonicParsing="false" onAction="#btnMid9Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid9" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMorning9" layoutX="170.0" layoutY="625.0" mnemonicParsing="false" onAction="#btnMor9Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor9" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
                    <Label fx:id="lblName10" layoutX="55.0" layoutY="705.0" text="Name 10" textFill="#1565c0" visible="false">
                        <font>
                            <Font name="System Bold" size="18.0" />
                        </font>
                    </Label>
-                   <Button fx:id="btnEvening10" layoutX="460.0" layoutY="700.0" mnemonicParsing="false" onAction="#btnEve10Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="eve10" textFill="#1565c0" visible="false">
+                  <ListView fx:id="listView1" layoutX="208.0" layoutY="9.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView2" layoutX="208.0" layoutY="84.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView3" layoutX="208.0" layoutY="159.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView4" layoutX="208.0" layoutY="244.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView5" layoutX="208.0" layoutY="319.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView6" layoutX="208.0" layoutY="394.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView7" layoutX="220.0" layoutY="469.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView8" layoutX="208.0" layoutY="544.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView9" layoutX="208.0" layoutY="619.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView10" layoutX="208.0" layoutY="694.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                   <Button fx:id="book1" layoutX="461.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
                        <font>
-                           <Font size="16.0" />
+                           <Font size="14.0" />
                        </font>
                        <styleClass>
                            <String fx:value="btnStyle1Pressed" />
                            <String fx:value="btnStyle1RegularState" />
                            <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMidday10" layoutX="315.0" layoutY="700.0" mnemonicParsing="false" onAction="#btnMid10Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mid10" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
-                   <Button fx:id="btnMorning10" layoutX="170.0" layoutY="700.0" mnemonicParsing="false" onAction="#btnMor10Clicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" text="mor10" textFill="#1565c0" visible="false">
-                       <font>
-                           <Font size="16.0" />
-                       </font>
-                       <styleClass>
-                           <String fx:value="btnStyle1Pressed" />
-                           <String fx:value="btnStyle1RegularState" />
-                           <String fx:value="btnStyle1Hover" />
-                       </styleClass>
-                   </Button>
+                       </styleClass></Button>
+                  <Button fx:id="book2" layoutX="461.0" layoutY="99.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book3" layoutX="461.0" layoutY="174.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book4" layoutX="461.0" layoutY="249.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book5" layoutX="461.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book6" layoutX="461.0" layoutY="399.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book7" layoutX="461.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book8" layoutX="461.0" layoutY="549.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book9" layoutX="461.0" layoutY="624.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book9" layoutX="461.0" layoutY="699.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
-      <DatePicker fx:id="dpBookingDate" layoutX="286.0" layoutY="51.0" onAction="#showDate" prefHeight="33.0" prefWidth="179.0" />
-      <Label layoutX="170.0" layoutY="140.0" text="Morning" textFill="WHITE">
+      <DatePicker fx:id="dpBookingDate" layoutX="286.0" layoutY="51.0" onAction="#getEmployees" prefHeight="33.0" prefWidth="179.0" />
+      <Label layoutX="54.0" layoutY="140.0" text="Employee" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label layoutX="315.0" layoutY="140.0" text="Midday" textFill="WHITE">
+      <Label layoutX="243.0" layoutY="140.0" text="Available Times" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="460.0" layoutY="140.0" text="Evening" textFill="WHITE">
+      <Label layoutX="480.0" layoutY="140.0" text="Book" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>

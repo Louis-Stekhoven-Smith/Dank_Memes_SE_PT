@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -20,6 +22,9 @@ import java.io.IOException;
  */
 public class BookingConfirmationController {
     Booking booking = new Booking(Database.getInstance());
+    AvailBookingsController availBookingsController = new AvailBookingsController();
+
+    private static final Logger log = LogManager.getLogger(BookingConfirmationController.class.getName());
 
     @FXML
     private Label lblBookingID;
@@ -49,13 +54,14 @@ public class BookingConfirmationController {
     private Button btnCancel;
 
     public void initialize(){
-        lblBookingID.setText(AvailBookingsController.futureBookingID);
-        lblBusinessName.setText(AvailBookingsController.businessesName);
-        lblEmployeeName.setText(AvailBookingsController.employeesName);
-        lblYourName.setText(AvailBookingsController.yourName);
-        lblBookingTime.setText(AvailBookingsController.bookingTime);
-        lblBookingDate.setText(AvailBookingsController.bookingDate);
-        lblBookingType.setText(AvailBookingsController.bookingType);
+
+        lblBookingID.setText(Integer.toString(availBookingsController.getFutureBookingID()));
+        lblBusinessName.setText(availBookingsController.getBusinessesName());
+        lblEmployeeName.setText(availBookingsController.getEmpName());
+        lblYourName.setText(availBookingsController.getCustName());
+        lblBookingTime.setText(availBookingsController.getTime());
+        lblBookingDate.setText(availBookingsController.getDate());
+        lblBookingType.setText(availBookingsController.getType());
 
     }
 
@@ -63,12 +69,14 @@ public class BookingConfirmationController {
         String bookingTime = lblBookingTime.getText();
         String bookingDate = lblBookingDate.getText();
         String bookingType = lblBookingType.getText();
+        int empID = availBookingsController.getEmpID();
 
         int result;
-        result = booking.addBooking(bookingTime,bookingDate,bookingType);
+
+        result = booking.addBooking(bookingTime,bookingDate,bookingType,empID);
 
         if (result == 1){
-            System.out.println("Booking Success");
+            log.debug("Booking Success");
             Stage stage = (Stage) btnConfirm.getScene().getWindow();
             stage.close();
 
@@ -83,7 +91,7 @@ public class BookingConfirmationController {
             delay.play();
 
         } else {
-            System.out.println("Booking Failed!");
+            log.debug("Booking Failed!");
         }
 
     }

@@ -1,7 +1,5 @@
 package core.model;
 
-import core.controller.AvailBookingsController;
-
 /**
  * Created by louie on 12/03/2017.
  */
@@ -10,19 +8,17 @@ public class Booking {
     private Database database;
     public static int custID = 1;
     public static int businessID = 1;
-    public static int bookingID = 1;
 
     public Booking(Database database){this.database = database;}
 
-    public int addBooking(String bookingTime, String bookingDate, String bookingType){
+    public int addBooking(String bookingTime, String bookingDate, String bookingType, int empID){
 
 
 
-        String bookingDetailsSQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values("
-                + AvailBookingsController.futureBookingID +"," +
+        String bookingDetailsSQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values(?,"
                 + custID + "," +
                 + businessID + "," +
-                + AvailBookingsController.employeesIDfromName + "," +
+                + empID + "," +
                 "'" + bookingTime + "'," +
                 "'" + bookingDate + "'," +
                 "'" + bookingType  +"')";

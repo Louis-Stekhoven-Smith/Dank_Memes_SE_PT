@@ -26,6 +26,21 @@ public class CurrentBookingsController {
     @FXML
     private Button btnBack;
 
+    @FXML
+    private Button btnBooking1;
+
+    @FXML
+    private Button btnBooking2;
+
+    @FXML
+    private Button btnBooking3;
+
+    @FXML
+    private Button btnBooking4;
+
+    @FXML
+    private Button btnBooking5;
+
     public static int userLoggedID = 1;
 
     private Database database = Database.getInstance();
@@ -62,7 +77,47 @@ public class CurrentBookingsController {
             System.out.println(Arrays.toString(newArray[i]));
         }
 
+        if (counter == 1){
+            btnBooking1.setVisible(true);
+            btnBooking1.setText("Booking No. "+ newArray[0][0]);
+        } else if (counter == 2){
+            btnBooking1.setVisible(true);
+            btnBooking2.setVisible(true);
+            btnBooking1.setText("Booking No. "+ newArray[0][0]);
+            btnBooking2.setText("Booking No. "+ newArray[1][0]);
+        } else if (counter == 3){
+            btnBooking1.setVisible(true);
+            btnBooking2.setVisible(true);
+            btnBooking3.setVisible(true);
+            btnBooking1.setText("Booking No. "+ newArray[0][0]);
+            btnBooking2.setText("Booking No. "+ newArray[1][0]);
+            btnBooking3.setText("Booking No. "+ newArray[2][0]);
+        } else if (counter == 4){
+            btnBooking1.setVisible(true);
+            btnBooking2.setVisible(true);
+            btnBooking3.setVisible(true);
+            btnBooking4.setVisible(true);
+            btnBooking1.setText("Booking No. "+ newArray[0][0]);
+            btnBooking2.setText("Booking No. "+ newArray[1][0]);
+            btnBooking3.setText("Booking No. "+ newArray[2][0]);
+            btnBooking4.setText("Booking No. "+ newArray[3][0]);
+        } else if (counter == 5){
+            btnBooking1.setVisible(true);
+            btnBooking2.setVisible(true);
+            btnBooking3.setVisible(true);
+            btnBooking4.setVisible(true);
+            btnBooking5.setVisible(true);
+            btnBooking1.setText("Booking No. "+ newArray[0][0]);
+            btnBooking2.setText("Booking No. "+ newArray[1][0]);
+            btnBooking3.setText("Booking No. "+ newArray[2][0]);
+            btnBooking4.setText("Booking No. "+ newArray[3][0]);
+            btnBooking5.setText("Booking No. "+ newArray[4][0]);
+        }
     }
+
+
+    
+
 
     public void btnBackPressed (ActionEvent event) throws IOException {
         Parent Back_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/CustomerNavigation.fxml"));

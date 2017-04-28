@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="core.controller.CurrentBookingsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.CurrentBookingsController">
+    <stylesheets>
+        <URL value="@../java/css/navigationButtons.css" />
+    </stylesheets>
+    <children>
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackPressed" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: none; -fx-background-image: url(http://i63.tinypic.com/2dirdci.png);">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass>
+      </Button>
+      <Label layoutX="100.0" layoutY="39.0" text="Current Bookings" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBooking4" layoutX="92.0" layoutY="368.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 4" textFill="#1565c0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass>
+      </Button>
+      <Button fx:id="btnBooking3" layoutX="92.0" layoutY="288.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 3" textFill="#1565c0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass>
+      </Button>
+      <Button fx:id="btnBooking2" layoutX="92.0" layoutY="208.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 2" textFill="#1565c0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass>
+      </Button>
+      <Button fx:id="btnBooking1" layoutX="92.0" layoutY="128.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 1" textFill="#1565c0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass>
+      </Button>
+      <Button fx:id="btnBooking5" layoutX="92.0" layoutY="448.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="booking 5" textFill="#1565c0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass>
+      </Button>
+   </children>
 </AnchorPane>

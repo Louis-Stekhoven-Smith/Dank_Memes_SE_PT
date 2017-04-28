@@ -116,6 +116,7 @@ public class AvailBookingsController {
     //Get employees which are are available for the date selected
     @FXML
     public void getEmployees(ActionEvent event){
+        clearListView();
         int[] empIDs;
         String [] empAvailability;
         String dayAvailability;
@@ -230,14 +231,19 @@ public class AvailBookingsController {
         }
 
         //Set up time variables
-        String startTime = "09:00";
+        String startTime = "08:00";
+        String startMorn = "07:59";
+        String endMorn = "11:59";
+        String endNoon = "16:59";
         String endTime = "21:01";
         SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-        Date start = null;
-        Date end = null;
+        Date start = null; Date beginMorn = null; Date morn = null;Date noon = null;Date end = null;
 
         try {
             start = df.parse(startTime);
+            beginMorn = df.parse(startMorn);
+            morn = df.parse(endMorn);
+            noon = df.parse(endNoon);
             end = df.parse(endTime);
         } catch (ParseException e) {
             log.error("Error passing time: " + e.getMessage());
@@ -249,16 +255,16 @@ public class AvailBookingsController {
         while(cal.getTime().before(end)){
             String time = df.format(cal.getTime());
             //if emp is unavailable for morning shift, skip morning times and start at afternoon times
-            if(dayAvailability.charAt(0) == '0' && time.equals("09:00")){
+            if(dayAvailability.charAt(0) == '0' && cal.getTime().after(beginMorn) && cal.getTime().before(morn)){
                 cal.add(Calendar.HOUR, 4);
                 continue;
             }
-            if(dayAvailability.charAt(1) == '0' && time.equals("13:00")){
-                cal.add(Calendar.HOUR, 4);
+            if(dayAvailability.charAt(1) == '0' && cal.getTime().after(morn) && cal.getTime().before(noon)){
+                cal.add(Calendar.HOUR, 5);
                 continue;
             }
             System.out.println(time);
-            if(dayAvailability.charAt(2) == '0' && time.equals("17:00")){
+            if(dayAvailability.charAt(2) == '0' && cal.getTime().after(noon)){
                 return;
             }
             //if slot is not already booked
@@ -293,6 +299,20 @@ public class AvailBookingsController {
             log.error("SQL ERROR: " + e.getMessage());
         }
         return true;
+    }
+
+    //If another date is selected, clear the list for fresh update
+    public void clearListView(){
+        listView1.getItems().clear();
+        listView2.getItems().clear();
+        listView3.getItems().clear();
+        listView4.getItems().clear();
+        listView5.getItems().clear();
+        listView6.getItems().clear();
+        listView7.getItems().clear();
+        listView8.getItems().clear();
+        listView9.getItems().clear();
+        listView10.getItems().clear();
     }
 
     //set empname and time and go to confirmation page

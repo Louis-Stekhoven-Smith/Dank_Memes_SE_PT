@@ -1,5 +1,10 @@
 package core.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.DayOfWeek;
 
 /**
@@ -9,10 +14,13 @@ public class Booking {
 
     private Database database;
     private Session session = Session.getInstance();
+    private ResultSet rs;
+    private static final Logger log = LogManager.getLogger(Booking.class.getName());
 
     public Booking(Database database){this.database = database;}
 
     public int addBooking(String bookingTime, String bookingDate, String bookingType, int empID){
+        log.debug("Adding new booking");
 
         int businessID = session.getBusinessSelected();
         int custID = session.getLoggedInUserId();
@@ -27,15 +35,16 @@ public class Booking {
 
 
         if(database.updateDatabase(bookingDetailsSQL)){
+            log.debug("Booking success");
             return 1;
             }
-
+        log.debug("Booking failure");
         return 0;
     }
 
     //Check if employee if available for that day
     public boolean checkAvailability(String day){
-
+        
         if(day.charAt(0) == '1' || day.charAt(1) == '1' || day.charAt(2) == '1'){
             return true;
         }
@@ -58,5 +67,19 @@ public class Booking {
             case SUNDAY: day = days[6]; break;
         }
         return day;
+    }
+
+    //check employee does not already have a booking for that time
+    public boolean availableSlot(String time, int empID){
+        String checkSlot = "SELECT bookingTime FROM bookingDetails WHERE bookingTime =" + "'" + time + "'" + "AND empID =" + empID;
+        rs = database.queryDatabase(checkSlot);
+        try{
+            if(rs.next()){
+                return false;
+            }
+        }catch(SQLException e){
+            log.error("SQL ERROR: " + e.getMessage());
+        }
+        return true;
     }
 }

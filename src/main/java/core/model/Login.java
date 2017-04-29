@@ -29,6 +29,7 @@ public class Login {
     public int validateAttempt(String inputUsername, String inputPassword){
         ResultSet rs;
         int loginID;
+        int userID;
         final int CUSTOMER = 1, OWNER = 2;
         log.debug("Inside validateAttempt Method");
         log.info("Validating login attempt for userName: " + inputUsername + " with password: " + inputPassword);
@@ -44,18 +45,25 @@ public class Login {
             }
             if(getSet(rs) == CUSTOMER){
                 loginID =  rs.getInt("loginID");
-                session.load(inputUsername,loginID,CUSTOMER);
+                String getCustID = "SELECT custID FROM customerDetails WHERE loginID =" + loginID;
+                rs = database.queryDatabase(getCustID);
+                userID = rs.getInt("custID");
+
+                session.load(inputUsername,userID,CUSTOMER);
                 log.debug("Successful customer login, logged in as: " + inputUsername);
                 log.debug("Returning to MainController");
                 return 1;
             }
             if(getSet(rs) == OWNER){
                 loginID =  rs.getInt("loginID");
-                session.load(inputUsername,rs.getInt(loginID),CUSTOMER);
+                String getBusID = "SELECT businessID FROM businessDetails WHERE loginID =" + loginID;
+                rs = database.queryDatabase(getBusID);
+                userID = rs.getInt("businessID");
+                session.load(inputUsername, userID,OWNER);
                 log.debug("Successful owner login, logged in as: " + inputUsername);
                 log.debug("Returning to MainController");
                 return 2;
-                }
+            }
         }catch (SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }

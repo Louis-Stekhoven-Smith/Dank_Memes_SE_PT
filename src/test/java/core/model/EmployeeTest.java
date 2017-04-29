@@ -23,14 +23,10 @@ import static org.mockito.Mockito.when;
 @Tag("EmployeeTests")
 class EmployeeTest {
 
-    @Mock
-    private Database mockDatabase;
-
-    @Mock
-    private ResultSet mockResultFull;
-
-    @Mock
-    private ResultSet mockResultEmpty;
+    @Mock private Database mockDatabase;
+    @Mock private Session mockSession;
+    @Mock private ResultSet mockResultFull;
+    @Mock private ResultSet mockResultEmpty;
 
     private Employee employee;
     private String name;
@@ -43,7 +39,7 @@ class EmployeeTest {
 
     @BeforeEach
     public void setup() throws Exception{
-        employee = new Employee(mockDatabase);
+        employee = new Employee(mockDatabase,mockSession);
         name = "Harry Potter";
         role = "Apprentice Barber";
         address = "12 example street, Melbourne";
@@ -217,7 +213,3 @@ class EmployeeTest {
         when(mockDatabase.queryDatabase(matches(regex))).thenReturn(mockResultEmpty);
     }
 }
-
-    /*TODO*/
-    /*if possible add  SQL statements are valid unit test
-     * else use integration tests to test SQL statements are valid */

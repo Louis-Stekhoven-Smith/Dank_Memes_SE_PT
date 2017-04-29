@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.*;
 
+import java.io.File;
+
 
 /**
  * Created by louie on 10/03/2017.
@@ -24,13 +26,16 @@ public class Main extends Application{
             primaryStage.show();
         }
         catch(Exception e){
-            System.out.println(e.getMessage()+ "   !!!!!!!!!!!!!!");
+            System.out.println(e.getMessage());
         }
     }
 
     public static void main(String[] args) {
 
         log.debug("Beginning Program");
+
+        File file = new File(".");
+        for(String fileNames : file.list()) System.out.println(fileNames);
 
         /* to do driver */
         Database.getInstance();

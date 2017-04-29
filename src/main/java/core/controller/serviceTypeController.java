@@ -1,6 +1,7 @@
 package core.controller;
 
 import core.model.Database;
+import core.model.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -38,22 +39,43 @@ public class serviceTypeController {
         ResultSet rs;
         String role;
         Database database = Database.getInstance();
-        String findEmpSQL = "SELECT DISTINCT employeeRole FROM employeeDetails";
+        /*TODO* Should change this SQL query to call  availabileServices table and remove employeeRole from customerDetails */
+        String findEmpSQL = "SELECT employeeRole FROM employeeDetails WHERE businessID = " + Session.getInstance().getBusinessSelected();
         rs = database.queryDatabase(findEmpSQL);
-        String[] myArray = new String[4];
-        for (int i=0; i<myArray.length;i++) {
+
+        /*TODO This might cause issues havent read through all of your code
+        you had hardcoded the array to size 4 causeing it to crash when a bussiness had less
+        then four service types
+         */
+        int i = 0;
+        while(rs.next()){
+            i++;
+        }
+        rs = database.queryDatabase(findEmpSQL);
+        String[] myArray = new String[i - 1];
+        for (int j=0; j<myArray.length;j++) {
             rs.next();
             role = rs.getString("employeeRole");
-            myArray[i]=role;
+            myArray[j]=role;
             System.out.println(role);
         } fillButtons(myArray);
     }
 
     public void fillButtons(String[] myArray) throws IOException{
-        btnService1.setText(myArray[0]);
-        btnService2.setText(myArray[1]);
-        btnService3.setText(myArray[2]);
-        btnService4.setText(myArray[3]);
+
+        int length = myArray.length;
+        if(length > 0){
+            btnService1.setText(myArray[0]);
+        }
+        if(length > 1){
+            btnService2.setText(myArray[1]);
+        }
+        if(length > 2){
+            btnService3.setText(myArray[2]);
+        }
+        if(length > 3){
+            btnService4.setText(myArray[3]);
+        }
     }
 
     @FXML

@@ -122,14 +122,14 @@ public class AvailBookingsController {
         int[] empIDs;
         String [] empAvailability;
         String dayAvailability;
-        int noOfAvailEmps = 1, noOfEmps = 0, counter = 0;;
+        int noOfAvailEmps = 1, noOfEmps = 0, counter = 0;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LL/yyyy");
         LocalDate bookingDateFormat = dpBookingDate.getValue();
         bookingDate = bookingDateFormat.format(formatter);
         DayOfWeek day = bookingDateFormat.getDayOfWeek();
 
-        String getEmpsSQL = "SELECT empID FROM employeeDetails WHERE employeeRole =" + "'" + serviceTypeController.type + "'";
+        String getEmpsSQL = "SELECT empID FROM employeeDetails WHERE employeeRole =" + "'" + serviceTypeController.type + "' AND businessID =" + businessID;
         rs = database.queryDatabase(getEmpsSQL);
 
         try{
@@ -243,7 +243,7 @@ public class AvailBookingsController {
                 return;
             }
             //if slot is not already booked
-            if(availableSlot(time, empID)){
+            if(booking.availableSlot(time, empID)){
                 switch(listNo){
                     case 1: listView1.getItems().add(time); listView1.setVisible(true); break;
                     case 2: listView2.getItems().add(time); listView2.setVisible(true); break;
@@ -260,20 +260,6 @@ public class AvailBookingsController {
             cal.add(Calendar.MINUTE, length);
         }
 
-    }
-
-    //check employee does not already have a booking for that time
-    public boolean availableSlot(String time, int empID){
-        String checkSlot = "SELECT bookingTime FROM bookingDetails WHERE bookingTime =" + "'" + time + "'" + "AND empID =" + empID;
-        rs = database.queryDatabase(checkSlot);
-        try{
-            if(rs.next()){
-                return false;
-            }
-        }catch(SQLException e){
-            log.error("SQL ERROR: " + e.getMessage());
-        }
-        return true;
     }
 
     //If another date is selected, clear the list for fresh update

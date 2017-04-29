@@ -19,10 +19,7 @@ public class Booking {
 
     public Booking(Database database){this.database = database;}
 
-    public int addBooking(String bookingTime, String bookingDate, String bookingType, int empID){
-
-        int businessID = session.getBusinessSelected();
-        int custID = session.getLoggedInUserId();
+    public int addBooking(String bookingTime, String bookingDate, String bookingType, int empID, int businessID, int custID){
 
         String bookingDetailsSQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values(?,"
                 + custID + "," +

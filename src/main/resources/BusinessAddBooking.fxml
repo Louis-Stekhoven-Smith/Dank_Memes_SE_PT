@@ -28,11 +28,6 @@
                     <font>
                         <Font name="Calibri Light" size="18.0" />
                     </font></Label>
-                <Label fx:id="lblLoginError" layoutX="64.0" layoutY="253.0" textFill="RED">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
                 <Button fx:id="btnBackToBusinessHome" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBack" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: None; -fx-background-image: url(http://i63.tinypic.com/2dirdci.png);" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
@@ -43,7 +38,7 @@
                   <String fx:value="btnStyle1Hover" />
                </styleClass>
                 </Button>
-                <Button fx:id="btnAddBooking" alignment="CENTER" layoutX="134.0" layoutY="470.0" mnemonicParsing="false" onAction="#btnAddBooking" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add Booking" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
+                <Button fx:id="btnAddNewBooking" alignment="CENTER" layoutX="134.0" layoutY="489.0" mnemonicParsing="false" onAction="#btnAddBooking" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Add Booking" textAlignment="CENTER" textFill="#1565c0" wrapText="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -74,9 +69,9 @@
                </font>
             </Label>
             <TextField fx:id="txtCustName" layoutX="174.0" layoutY="147.0" prefHeight="25.0" prefWidth="155.0" />
-            <Label fx:id="lblEmpAdded" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="435.0" prefHeight="20.0" prefWidth="358.0" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="lblError" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="435.0" prefHeight="20.0" prefWidth="358.0" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label layoutX="104.0" layoutY="387.0" text="Time:" textFill="WHITE">

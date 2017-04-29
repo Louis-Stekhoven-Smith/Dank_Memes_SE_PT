@@ -9,8 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +25,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Scanner;
 
 /**
  * Created by harry on 29/04/2017.
@@ -43,12 +42,16 @@ public class BusinessBookingController {
     private String bookingType;
     private String bookingDate;
     private String bookingTime;
+    private String custName;
     private String dayAvailability;
+    private int custID;
 
     @FXML ComboBox<String> comboRoles;
     @FXML DatePicker dpDate;
     @FXML ComboBox<String> comboEmps;
     @FXML ComboBox<String> comboTimes;
+    @FXML TextField txtCustName;
+    @FXML Label lblError;
 
 
     public void initialize(){
@@ -119,7 +122,7 @@ public class BusinessBookingController {
                 dayAvailability = booking.getDayAvailability(day, empAvailability[i]);
                 rs = database.queryDatabase(getEmpNameSQL);
                 if(booking.checkAvailability(dayAvailability)){
-                    comboEmps.getItems().add("ID: "+ empIDs[i] + ": " + rs.getString("name"));
+                    comboEmps.getItems().add(rs.getString("name"));
                 }
             }
         } catch (SQLException e){
@@ -128,7 +131,13 @@ public class BusinessBookingController {
     }
 
     public void loadTimes(){
-        empID = new Scanner(comboEmps.getValue()).useDelimiter("\\D+").nextInt();
+        String getEmpID = "SELECT empID FROM employeeDetails WHERE name ='" + comboEmps.getValue() + "' AND businessID =" + businessID;
+        rs = database.queryDatabase(getEmpID);
+        try{
+            empID = rs.getInt("empID");
+        }catch(SQLException e){
+            log.error("SQL ERROR: " + e.getMessage());
+        }
         comboTimes.getItems().clear();
         String getServiceLength = "SELECT serviceLength FROM availableServices WHERE serviceName =" + "'" + comboRoles.getValue() + "'";
         rs = database.queryDatabase(getServiceLength);
@@ -189,7 +198,65 @@ public class BusinessBookingController {
 
     @FXML
     public void btnAddBooking(ActionEvent event) throws IOException {
+        if(txtCustName.getText() == null || comboRoles.getValue() == null || comboTimes.getValue() == null || comboEmps.getValue() == null || dpDate.getValue() == null){
+            lblError.setTextFill(Color.web("#ff0000"));
+            lblError.setText("Please enter all fields!");
+            return;
+        }
+        custName = txtCustName.getText();
+        bookingTime = comboTimes.getValue();
+        if(!custName.matches("[a-zA-z ]+")){
+            lblError.setTextFill(Color.web("#ff0000"));
+            lblError.setText("Invalid Name!");
+            txtCustName.setText("");
+            return;
+        }
 
+        String checkCustExists = "SELECT custID FROM customerDetails WHERE name = '" + custName + "'";
+        rs = database.queryDatabase(checkCustExists);
+        try{
+            if(rs.next()){
+                custID = rs.getInt("custID");
+                if(booking.addBooking(bookingTime, bookingDate, bookingType, empID, businessID, custID) == 1){
+                    lblError.setTextFill(Color.web("ffffff"));
+                    lblError.setText("Booking Success!");
+                    comboEmps.getItems().clear();
+                    comboRoles.setValue("");
+                    comboTimes.getItems().clear();
+                    txtCustName.setText("");
+                    dpDate.setValue(null);
+                    return;
+                }
+                else{
+                    lblError.setTextFill(Color.web("ff0000"));
+                    lblError.setText("Booking Failure!");
+                    return;
+                }
+            }
+            else{
+                String addBasicCustomer = "INSERT into customerDetails (custID, loginID, name, userName, address, phoneNo) values(?, " + custID + ",'" + custName +
+                         "', 'none'" + ", 'none'" + ", 'none')";
+                String getCustID = "SELECT custID FROM customerDetails WHERE name ='" + custName + "'";
+                database.updateDatabase(addBasicCustomer);
+                rs=database.queryDatabase(getCustID);
+                try{
+                    custID = rs.getInt("custID");
+                }catch(SQLException e){
+                    log.error("SQL ERROR: " + e.getMessage());
+                }
+                booking.addBooking(bookingTime, bookingDate, bookingType, empID, businessID, custID);
+                lblError.setTextFill(Color.web("ffffff"));
+                lblError.setText("Booking Success!");
+                comboEmps.getItems().clear();
+                comboRoles.setValue("");
+                comboTimes.getItems().clear();
+                txtCustName.setText("");
+                dpDate.setValue(null);
+                return;
+            }
+        } catch (SQLException e){
+            log.error("SQL ERROR: " + e.getMessage());
+        }
     }
 
     @FXML

@@ -37,7 +37,7 @@ import java.util.Date;
  * This class controls all of the functionality and logic
  * of reserving a booking
  */
-public class AvailBookingsController {
+public class AvailBookingsController{
 
     private static final Logger log = LogManager.getLogger(AvailBookingsController.class.getName());
     private Database database = Database.getInstance();
@@ -98,13 +98,11 @@ public class AvailBookingsController {
     public void initialize() {
         log.debug("AvailBookingsController PAGE SHOW SHOWING!");
 
-        businessID = session.getBusinessSelected();
         yourName = session.getUsername();
 
         lblCurrentService.setText(serviceTypeController.type);
         bookingType = serviceTypeController.type;
 
-        //Change this to session instead of booking
         String futureBookingIDSQL = "SELECT MAX(bookingID) AS highID FROM bookingDetails";
         rs = database.queryDatabase(futureBookingIDSQL);
 

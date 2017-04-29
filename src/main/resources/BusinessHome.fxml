@@ -51,7 +51,7 @@
                   <String fx:value="btnStyle1Hover" />
                </styleClass>
             </Button>
-            <Button fx:id="btnGotoViewBookings" alignment="TOP_CENTER" layoutX="230.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnGotoViewBookings" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="View summary of bookings" textAlignment="CENTER" textFill="#1565c0" textOverrun="WORD_ELLIPSIS" wrapText="true">
+            <Button fx:id="btnGotoViewBookings" alignment="TOP_CENTER" layoutX="230.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnGotoViewBookings" prefHeight="50.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Manage bookings" textAlignment="CENTER" textFill="#1565c0" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>

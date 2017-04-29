@@ -1,5 +1,6 @@
 package core.controller;
 
+import core.model.Booking;
 import core.model.Database;
 import core.model.Session;
 import javafx.event.ActionEvent;
@@ -41,6 +42,7 @@ public class AvailBookingsController {
     private static final Logger log = LogManager.getLogger(AvailBookingsController.class.getName());
     private Database database = Database.getInstance();
     private Session session = Session.getInstance();
+    Booking booking = new Booking(Database.getInstance());
     private ResultSet rs;
 
     @FXML
@@ -154,8 +156,8 @@ public class AvailBookingsController {
                 String getAvailSQL = "SELECT availability FROM empAvailability WHERE empID =" + empIDs[i];
                 rs = database.queryDatabase(getAvailSQL);
                 empAvailability[i] = rs.getString("availability");
-                dayAvailability = getDayAvailability(day, empAvailability[i]);
-                if(checkAvailability(dayAvailability)){
+                dayAvailability = booking.getDayAvailability(day, empAvailability[i]);
+                if(booking.checkAvailability(dayAvailability)){
                     setLabels(empIDs[i], noOfAvailEmps);
                     setTimes(empIDs[i], dayAvailability, noOfAvailEmps);
                     noOfAvailEmps++;
@@ -164,33 +166,6 @@ public class AvailBookingsController {
         } catch (SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }
-    }
-
-    //Check if employee if available for that day
-    public boolean checkAvailability(String day){
-
-        if(day.charAt(0) == '1' || day.charAt(1) == '1' || day.charAt(2) == '1'){
-            return true;
-        }
-        return false;
-    }
-
-    //Check if emp is available for the specific ay
-    public String getDayAvailability(DayOfWeek dotw, String availability){
-        String[] days;
-        String day = "000";
-        days = availability.split(",");
-
-        switch(dotw){
-            case MONDAY: day = days[0]; break;
-            case TUESDAY: day = days[1]; break;
-            case WEDNESDAY: day = days[2]; break;
-            case THURSDAY: day = days[3]; break;
-            case FRIDAY: day = days[4]; break;
-            case SATURDAY: day = days[5]; break;
-            case SUNDAY: day = days[6]; break;
-        }
-        return day;
     }
 
     //Set the labels visable for each emp

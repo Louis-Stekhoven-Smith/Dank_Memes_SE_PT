@@ -99,6 +99,7 @@ public class AvailBookingsController{
         log.debug("AvailBookingsController PAGE SHOW SHOWING!");
 
         yourName = session.getUsername();
+        businessID = session.getBusinessSelected();
 
         lblCurrentService.setText(serviceTypeController.type);
         bookingType = serviceTypeController.type;

@@ -1,6 +1,5 @@
 package core.controller;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import core.model.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,12 +11,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Konn on 28/04/2017.

@@ -1,7 +1,7 @@
 package core.controller;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import core.model.Database;
+import core.model.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,8 @@ import java.util.Arrays;
  * Created by Konn on 2/04/2017.
  */
 public class serviceTypeController {
+
+    private Session session = Session.getInstance();
 
     @FXML
     private Button btnService1;
@@ -47,16 +50,16 @@ public class serviceTypeController {
     public void loadRoles() throws SQLException, IOException {
         ResultSet count;
         int counter;
-        String findRoleTypeCount = "SELECT count(*) AS total FROM availableServices";
+        String findRoleTypeCount = "SELECT count(*) AS total FROM availableServices WHERE businessID =" + session.getBusinessSelected();
         count = database.queryDatabase(findRoleTypeCount);
         counter = count.getInt("total");
 
         ResultSet rs;
         String role;
         Database database = Database.getInstance();
-        String findEmpSQL = "SELECT DISTINCT serviceName FROM availableServices";
+        String findEmpSQL = "SELECT DISTINCT serviceName FROM availableServices WHERE businessID =" + session.getBusinessSelected();
         rs = database.queryDatabase(findEmpSQL);
-        String[] myArray = new String[4];
+        String[] myArray = new String[counter];
         for (int i=0; i<myArray.length;i++) {
             rs.next();
             role = rs.getString("serviceName");

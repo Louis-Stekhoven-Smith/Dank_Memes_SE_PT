@@ -48,7 +48,7 @@ public class ChooseBusinessController {
 
     //goes back to main menu
     public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{
-        Parent viewBookings_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/LoginPage.fxml"));
+        Parent viewBookings_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/CustomerNavigation.fxml"));
         Scene viewBookings_scene = new Scene(viewBookings_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();

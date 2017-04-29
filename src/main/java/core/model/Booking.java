@@ -20,7 +20,7 @@ public class Booking {
     public Booking(Database database){this.database = database;}
 
     public int addBooking(String bookingTime, String bookingDate, String bookingType, int empID, int businessID, int custID){
-
+        log.debug("Adding new booking");
         String bookingDetailsSQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values(?,"
                 + custID + "," +
                 + businessID + "," +
@@ -31,9 +31,10 @@ public class Booking {
 
 
         if(database.updateDatabase(bookingDetailsSQL)){
+            log.debug("Successfully added booking");
             return 1;
             }
-
+        log.debug("Failed to add booking");
         return 0;
     }
 

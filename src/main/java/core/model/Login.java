@@ -63,7 +63,7 @@ public class Login {
                 log.debug("Successful owner login, logged in as: " + inputUsername);
                 log.debug("Returning to MainController");
                 return 2;
-                }
+            }
         }catch (SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }

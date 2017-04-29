@@ -9,11 +9,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 /**
  * Created by Konn on 2/04/2017.
@@ -40,14 +41,16 @@ public class serviceTypeController {
     public static String[] roleArray;
 
     private Database database = Database.getInstance();
+    private static final Logger log = LogManager.getLogger(serviceTypeController.class.getName());
 
     @FXML
     public void initialize() throws SQLException, IOException {
-        System.out.println("serviceTypeController INITIALLISEDDD!");
+        log.debug("serviceTypeController INITIALLISEDDD!");
         loadRoles();
     }
 
     public void loadRoles() throws SQLException, IOException {
+        log.debug("Loading Roles..");
         ResultSet count;
         int counter;
         String findRoleTypeCount = "SELECT count(*) AS total FROM availableServices WHERE businessID =" + session.getBusinessSelected();
@@ -67,8 +70,6 @@ public class serviceTypeController {
         }
         roleArray = myArray;
         fillButtons(myArray, counter);
-        System.out.println("Counter = " +counter);
-        System.out.println(Arrays.toString(myArray));
     }
 
     public void queryServiceLength(String role) throws IOException, SQLException{
@@ -139,8 +140,7 @@ public class serviceTypeController {
     @FXML
     public String btnService1Clicked(javafx.event.ActionEvent event) throws IOException{
         type = roleArray[0];
-        System.out.println(type);
-        System.out.println("Service " + type + " chosen");
+        log.debug("Service " + type + " chosen");
         loadAvailBookings(event);
         return type;
     }
@@ -148,8 +148,7 @@ public class serviceTypeController {
     @FXML
     public String btnService2Clicked(javafx.event.ActionEvent event) throws IOException{
         type = roleArray[1];
-        System.out.println(type);
-        System.out.println("Service " + type + " chosen");
+        log.debug("Service " + type + " chosen");
         loadAvailBookings(event);
         return type;
     }
@@ -157,8 +156,7 @@ public class serviceTypeController {
     @FXML
     public String btnService3Clicked(javafx.event.ActionEvent event) throws IOException{
         type = roleArray[2];
-        System.out.println(type);
-        System.out.println("Service " + type + " chosen");
+        log.debug("Service " + type + " chosen");
         loadAvailBookings(event);
         return type;
     }
@@ -166,8 +164,7 @@ public class serviceTypeController {
     @FXML
     public String btnService4Clicked(javafx.event.ActionEvent event) throws IOException{
         type = roleArray[3];
-        System.out.println(type);
-        System.out.println("Service " + type + " chosen");
+        log.debug("Service " + type + " chosen");
         loadAvailBookings(event);
         return type;
     }
@@ -175,8 +172,7 @@ public class serviceTypeController {
     @FXML
     public String btnService5Clicked(javafx.event.ActionEvent event) throws IOException{
         type = roleArray[4];
-        System.out.println(type);
-        System.out.println("Service " + type + " chosen");
+        log.debug("Service " + type + " chosen");
         loadAvailBookings(event);
         return type;
     }

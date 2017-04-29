@@ -26,50 +26,21 @@ import java.util.Arrays;
 
 public class CurrentBookingsController {
 
-    @FXML
-    private Button btnBack;
-
-    @FXML
-    private Button btnBooking1;
-
-    @FXML
-    private Button btnBooking2;
-
-    @FXML
-    private Button btnBooking3;
-
-    @FXML
-    private Button btnBooking4;
-
-    @FXML
-    private Button btnBooking5;
-
-    @FXML
-    private Button btnCancel;
-
-    @FXML
-    private Label lblBookingID;
-
-    @FXML
-    private Label lblBusinessName;
-
-    @FXML
-    private Label lblEmployeeName;
-
-    @FXML
-    private Label lblYourName;
-
-    @FXML
-    private Label lblBookingType;
-
-    @FXML
-    private Label lblBookingTime;
-
-    @FXML
-    private Label lblBookingDate;
-
-    @FXML
-    private ComboBox<String> bookingsCombo;
+    @FXML private Button btnBack;
+    @FXML private Button btnBooking1;
+    @FXML private Button btnBooking2;
+    @FXML private Button btnBooking3;
+    @FXML private Button btnBooking4;
+    @FXML private Button btnBooking5;
+    @FXML private Button btnCancel;
+    @FXML private Label lblBookingID;
+    @FXML private Label lblBusinessName;
+    @FXML private Label lblEmployeeName;
+    @FXML private Label lblYourName;
+    @FXML private Label lblBookingType;
+    @FXML private Label lblBookingTime;
+    @FXML private Label lblBookingDate;
+    @FXML private ComboBox<String> bookingsCombo;
 
     public static int userLoggedID = 1;
     public static String currentBooking = "1";

@@ -64,10 +64,12 @@ public class Employee {
             log.debug("Failed to add employee by phone validation, returning to controller");
             return -3;
         }
+        /*
         if(!roleLimitCheck(employeeRole)){
             log.debug("Failed to add employee: too many assigned to one role");
             return -4;
         }
+        */
 
 
         String employeeDetailsSQL = "INSERT INTO employeeDetails(businessID, name, " +
@@ -185,6 +187,7 @@ public class Employee {
         return false;
     }
 
+
     private boolean emailValidation(String email){
         log.debug("Inside emailValidation Method.");
         Pattern emailValid = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -192,6 +195,8 @@ public class Employee {
         return matcher.find();
     }
 
+
+    /* made maven fail
     private boolean roleLimitCheck(String role){
         String checkRoles = "SELECT empID from employeeDetails WHERE employeeRole =" + "'" + role + "' AND businessID =" + session.getLoggedInUserId();
         int count = 0;
@@ -208,6 +213,6 @@ public class Employee {
         }
         return true;
     }
-
+    */
 
 }

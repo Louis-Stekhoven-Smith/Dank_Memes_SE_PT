@@ -35,7 +35,7 @@ class EmployeeTest {
     private String email;
     private String phone;
     private int result;
-    private int FAILED_PHONE = -3, FAILED_EMAIL = -2, FAILED_NAME = -1, SUCCEEDED_ADDING_EMP = 1, DATABASE_FAILED_TO_ADD = 0;
+    private int FAILED_ROLES = -4, FAILED_PHONE = -3, FAILED_EMAIL = -2, FAILED_NAME = -1, SUCCEEDED_ADDING_EMP = 1, DATABASE_FAILED_TO_ADD = 0;
 
     @BeforeEach
     public void setup() throws Exception{
@@ -192,7 +192,6 @@ class EmployeeTest {
         /*setting the default response as a fail */
         when(mockDatabase.updateDatabase(anyString())).thenReturn(false);
         when(mockDatabase.queryDatabase(anyString())).thenReturn(mockResultEmpty);
-
         /* change to success if expected inputs are found */
         when(mockDatabase.updateDatabase(matches(regex))).thenReturn(true);
         when(mockDatabase.updateDatabase(matches(".*000,000,000,000,000,000,000.*"))).thenReturn(true);

@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class ChooseBusinessController {
 
-    int businessChoice = 0;
+    public static int businessChoice = 1;
 
     //loads services page once business is selected
     @FXML

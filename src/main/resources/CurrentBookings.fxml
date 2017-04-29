@@ -29,38 +29,38 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ComboBox fx:id="bookingsCombo" layoutX="117.0" layoutY="103.0" onAction="#comboChanged" prefWidth="150.0" />
-      <Label fx:id="lblBookingDate" layoutX="259.0" layoutY="443.0" text="Label" textFill="WHITE">
+      <ComboBox fx:id="bookingsCombo" layoutX="117.0" layoutY="110.0" onAction="#comboChanged" prefWidth="150.0" />
+      <Label fx:id="lblBookingDate" layoutX="238.0" layoutY="443.0" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblBookingTime" layoutX="259.0" layoutY="408.0" text="Label" textFill="WHITE">
+      <Label fx:id="lblBookingTime" layoutX="238.0" layoutY="408.0" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblBookingType" layoutX="259.0" layoutY="373.0" text="Label" textFill="WHITE">
+      <Label fx:id="lblBookingType" layoutX="238.0" layoutY="373.0" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblYourName" layoutX="259.0" layoutY="338.0" text="Label" textFill="WHITE">
+      <Label fx:id="lblYourName" layoutX="238.0" layoutY="338.0" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblEmployeeName" layoutX="259.0" layoutY="303.0" text="Label" textFill="WHITE">
+      <Label fx:id="lblEmployeeName" layoutX="238.0" layoutY="303.0" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblBusinessName" layoutX="259.0" layoutY="268.0" text="Label" textFill="WHITE">
+      <Label fx:id="lblBusinessName" layoutX="238.0" layoutY="268.0" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblBookingID" layoutX="259.0" layoutY="233.0" text="Label" textFill="WHITE">
+      <Label fx:id="lblBookingID" layoutX="238.0" layoutY="233.0" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>

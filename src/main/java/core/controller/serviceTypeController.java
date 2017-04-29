@@ -1,5 +1,6 @@
 package core.controller;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import core.model.Database;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,10 @@ public class serviceTypeController {
 
     public static String type;
 
+    public static String length;
+
+    public static String[] roleArray;
+
     private Database database = Database.getInstance();
 
     @FXML
@@ -57,50 +62,72 @@ public class serviceTypeController {
             role = rs.getString("serviceName");
             myArray[i]=role;
         }
+        roleArray = myArray;
         fillButtons(myArray, counter);
         System.out.println("Counter = " +counter);
         System.out.println(Arrays.toString(myArray));
     }
 
+    public void queryServiceLength(String role) throws IOException, SQLException{
+        ResultSet rs;
+        String findRoleTypeCount = "SELECT serviceLength FROM availableServices WHERE serviceName=" + "'" + role + "'";
+        rs = database.queryDatabase(findRoleTypeCount);
+        length = rs.getString("serviceLength");
+    }
 
-    public void fillButtons(String[] myArray, int counter) throws IOException{
+    public void fillButtons(String[] myArray, int counter) throws IOException, SQLException{
         if (counter == 0){
 
         } else if (counter == 1){
+            queryServiceLength(myArray[0]);
             btnService1.setVisible(true);
-            btnService1.setText(myArray[0]);
+            btnService1.setText(myArray[0]+" | "+length+" min");
         } else if (counter == 2){
+            queryServiceLength(myArray[0]);
             btnService1.setVisible(true);
-            btnService1.setText(myArray[0]);
+            btnService1.setText(myArray[0]+" | "+length+" min");
+            queryServiceLength(myArray[1]);
             btnService2.setVisible(true);
-            btnService2.setText(myArray[1]);
+            btnService2.setText(myArray[1]+" | "+length+" min");
         } else if (counter == 3){
+            queryServiceLength(myArray[0]);
             btnService1.setVisible(true);
-            btnService1.setText(myArray[0]);
+            btnService1.setText(myArray[0]+" | "+length+" min");
+            queryServiceLength(myArray[1]);
             btnService2.setVisible(true);
-            btnService2.setText(myArray[1]);
+            btnService2.setText(myArray[1]+" | "+length+" min");
+            queryServiceLength(myArray[2]);
             btnService3.setVisible(true);
-            btnService3.setText(myArray[2]);
+            btnService3.setText(myArray[2]+" | "+length+" min");
         } else if (counter == 4){
+            queryServiceLength(myArray[0]);
             btnService1.setVisible(true);
-            btnService1.setText(myArray[0]);
+            btnService1.setText(myArray[0]+" | "+length+" min");
+            queryServiceLength(myArray[1]);
             btnService2.setVisible(true);
-            btnService2.setText(myArray[1]);
+            btnService2.setText(myArray[1]+" | "+length+" min");
+            queryServiceLength(myArray[2]);
             btnService3.setVisible(true);
-            btnService3.setText(myArray[2]);
+            btnService3.setText(myArray[2]+" | "+length+" min");
+            queryServiceLength(myArray[3]);
             btnService4.setVisible(true);
-            btnService4.setText(myArray[3]);
+            btnService4.setText(myArray[3]+" | "+length+" min");
         } else if (counter == 5){
+            queryServiceLength(myArray[0]);
             btnService1.setVisible(true);
-            btnService1.setText(myArray[0]);
+            btnService1.setText(myArray[0]+" | "+length+" min");
+            queryServiceLength(myArray[1]);
             btnService2.setVisible(true);
-            btnService2.setText(myArray[1]);
+            btnService2.setText(myArray[1]+" | "+length+" min");
+            queryServiceLength(myArray[2]);
             btnService3.setVisible(true);
-            btnService3.setText(myArray[2]);
+            btnService3.setText(myArray[2]+" | "+length+" min");
+            queryServiceLength(myArray[3]);
             btnService4.setVisible(true);
-            btnService4.setText(myArray[3]);
+            btnService4.setText(myArray[3]+" | "+length+" min");
+            queryServiceLength(myArray[4]);
             btnService5.setVisible(true);
-            btnService5.setText(myArray[4]);
+            btnService5.setText(myArray[4]+" | "+length+" min");
         } else {
             System.out.println("FAIL");
         }
@@ -108,7 +135,7 @@ public class serviceTypeController {
 
     @FXML
     public String btnService1Clicked(javafx.event.ActionEvent event) throws IOException{
-        type = btnService1.getText();
+        type = roleArray[0];
         System.out.println(type);
         System.out.println("Service " + type + " chosen");
         loadAvailBookings(event);
@@ -117,7 +144,7 @@ public class serviceTypeController {
         //latest: choosing service type and showing corresponding employee+times
     @FXML
     public String btnService2Clicked(javafx.event.ActionEvent event) throws IOException{
-        type = btnService2.getText();
+        type = roleArray[1];
         System.out.println(type);
         System.out.println("Service " + type + " chosen");
         loadAvailBookings(event);
@@ -126,7 +153,7 @@ public class serviceTypeController {
 
     @FXML
     public String btnService3Clicked(javafx.event.ActionEvent event) throws IOException{
-        type = btnService3.getText();
+        type = roleArray[2];
         System.out.println(type);
         System.out.println("Service " + type + " chosen");
         loadAvailBookings(event);
@@ -135,7 +162,7 @@ public class serviceTypeController {
 
     @FXML
     public String btnService4Clicked(javafx.event.ActionEvent event) throws IOException{
-        type = btnService4.getText();
+        type = roleArray[3];
         System.out.println(type);
         System.out.println("Service " + type + " chosen");
         loadAvailBookings(event);
@@ -144,7 +171,7 @@ public class serviceTypeController {
 
     @FXML
     public String btnService5Clicked(javafx.event.ActionEvent event) throws IOException{
-        type = btnService5.getText();
+        type = roleArray[4];
         System.out.println(type);
         System.out.println("Service " + type + " chosen");
         loadAvailBookings(event);

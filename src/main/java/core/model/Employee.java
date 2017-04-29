@@ -64,6 +64,10 @@ public class Employee {
             log.debug("Failed to add employee by phone validation, returning to controller");
             return -3;
         }
+        if(!roleLimitCheck(employeeRole)){
+            log.debug("Failed to add employee: too many assigned to one role");
+            return -4;
+        }
 
 
         String employeeDetailsSQL = "INSERT INTO employeeDetails(businessID, name, " +
@@ -186,6 +190,23 @@ public class Employee {
         Pattern emailValid = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = emailValid.matcher(email);
         return matcher.find();
+    }
+
+    private boolean roleLimitCheck(String role){
+        String checkRoles = "SELECT empID from employeeDetails WHERE employeeRole =" + "'" + role + "' AND businessID =" + session.getLoggedInUserId();
+        int count = 0;
+        resultSet = database.queryDatabase(checkRoles);
+        try{
+            while(resultSet.next()){
+                count++;
+            }
+        }catch (SQLException e){
+            log.error("SQL ERROR: " + e.getMessage());
+        }
+        if(count >= 10){
+            return false;
+        }
+        return true;
     }
 
 

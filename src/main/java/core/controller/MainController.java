@@ -63,7 +63,7 @@ public class MainController {
         else if (result == 1){
             log.debug("Customer Logged in as: " + inputUsername);
             log.debug("Loading customer page...");
-            Parent LoginSuccess_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/ChooseBusiness.fxml"));
+            Parent LoginSuccess_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/CustomerNavigation.fxml"));
             Scene LoginSuccess_scene = new Scene (LoginSuccess_parent);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.close();

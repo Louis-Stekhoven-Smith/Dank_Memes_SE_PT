@@ -1,7 +1,7 @@
 package core.controller;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import core.model.Database;
-import core.model.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 /**
  * Created by Konn on 2/04/2017.
@@ -26,8 +27,16 @@ public class serviceTypeController {
     private Button btnService3;
     @FXML
     private Button btnService4;
+    @FXML
+    private Button btnService5;
 
     public static String type;
+
+    public static String length;
+
+    public static String[] roleArray;
+
+    private Database database = Database.getInstance();
 
     @FXML
     public void initialize() throws SQLException, IOException {
@@ -36,102 +45,146 @@ public class serviceTypeController {
     }
 
     public void loadRoles() throws SQLException, IOException {
+        ResultSet count;
+        int counter;
+        String findRoleTypeCount = "SELECT count(*) AS total FROM availableServices";
+        count = database.queryDatabase(findRoleTypeCount);
+        counter = count.getInt("total");
+
         ResultSet rs;
         String role;
         Database database = Database.getInstance();
-        /*TODO* Should change this SQL query to call  availabileServices table and remove employeeRole from customerDetails */
-        String findEmpSQL = "SELECT employeeRole FROM employeeDetails WHERE businessID = " + Session.getInstance().getBusinessSelected();
+        String findEmpSQL = "SELECT DISTINCT serviceName FROM availableServices";
         rs = database.queryDatabase(findEmpSQL);
-
-        /*TODO This might cause issues havent read through all of your code
-        you had hardcoded the array to size 4 causeing it to crash when a bussiness had less
-        then four service types
-         */
-        int i = 0;
-        while(rs.next()){
-            i++;
-        }
-        rs = database.queryDatabase(findEmpSQL);
-        String[] myArray = new String[i - 1];
-        for (int j=0; j<myArray.length;j++) {
+        String[] myArray = new String[4];
+        for (int i=0; i<myArray.length;i++) {
             rs.next();
-            role = rs.getString("employeeRole");
-            myArray[j]=role;
-            System.out.println(role);
-        } fillButtons(myArray);
+            role = rs.getString("serviceName");
+            myArray[i]=role;
+        }
+        roleArray = myArray;
+        fillButtons(myArray, counter);
+        System.out.println("Counter = " +counter);
+        System.out.println(Arrays.toString(myArray));
     }
 
-    public void fillButtons(String[] myArray) throws IOException{
+    public void queryServiceLength(String role) throws IOException, SQLException{
+        ResultSet rs;
+        String findRoleTypeCount = "SELECT serviceLength FROM availableServices WHERE serviceName=" + "'" + role + "'";
+        rs = database.queryDatabase(findRoleTypeCount);
+        length = rs.getString("serviceLength");
+    }
 
-        int length = myArray.length;
-        if(length > 0){
-            btnService1.setText(myArray[0]);
-        }
-        if(length > 1){
-            btnService2.setText(myArray[1]);
-        }
-        if(length > 2){
-            btnService3.setText(myArray[2]);
-        }
-        if(length > 3){
-            btnService4.setText(myArray[3]);
+    public void fillButtons(String[] myArray, int counter) throws IOException, SQLException{
+        if (counter == 0){
+
+        } else if (counter == 1){
+            queryServiceLength(myArray[0]);
+            btnService1.setVisible(true);
+            btnService1.setText(myArray[0]+" | "+length+" min");
+        } else if (counter == 2){
+            queryServiceLength(myArray[0]);
+            btnService1.setVisible(true);
+            btnService1.setText(myArray[0]+" | "+length+" min");
+            queryServiceLength(myArray[1]);
+            btnService2.setVisible(true);
+            btnService2.setText(myArray[1]+" | "+length+" min");
+        } else if (counter == 3){
+            queryServiceLength(myArray[0]);
+            btnService1.setVisible(true);
+            btnService1.setText(myArray[0]+" | "+length+" min");
+            queryServiceLength(myArray[1]);
+            btnService2.setVisible(true);
+            btnService2.setText(myArray[1]+" | "+length+" min");
+            queryServiceLength(myArray[2]);
+            btnService3.setVisible(true);
+            btnService3.setText(myArray[2]+" | "+length+" min");
+        } else if (counter == 4){
+            queryServiceLength(myArray[0]);
+            btnService1.setVisible(true);
+            btnService1.setText(myArray[0]+" | "+length+" min");
+            queryServiceLength(myArray[1]);
+            btnService2.setVisible(true);
+            btnService2.setText(myArray[1]+" | "+length+" min");
+            queryServiceLength(myArray[2]);
+            btnService3.setVisible(true);
+            btnService3.setText(myArray[2]+" | "+length+" min");
+            queryServiceLength(myArray[3]);
+            btnService4.setVisible(true);
+            btnService4.setText(myArray[3]+" | "+length+" min");
+        } else if (counter == 5){
+            queryServiceLength(myArray[0]);
+            btnService1.setVisible(true);
+            btnService1.setText(myArray[0]+" | "+length+" min");
+            queryServiceLength(myArray[1]);
+            btnService2.setVisible(true);
+            btnService2.setText(myArray[1]+" | "+length+" min");
+            queryServiceLength(myArray[2]);
+            btnService3.setVisible(true);
+            btnService3.setText(myArray[2]+" | "+length+" min");
+            queryServiceLength(myArray[3]);
+            btnService4.setVisible(true);
+            btnService4.setText(myArray[3]+" | "+length+" min");
+            queryServiceLength(myArray[4]);
+            btnService5.setVisible(true);
+            btnService5.setText(myArray[4]+" | "+length+" min");
+        } else {
+            System.out.println("FAIL");
         }
     }
 
     @FXML
     public String btnService1Clicked(javafx.event.ActionEvent event) throws IOException{
-        type = btnService1.getText();
+        type = roleArray[0];
         System.out.println(type);
         System.out.println("Service " + type + " chosen");
-        Parent viewBookings_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/AvailBookings.fxml"));
-        Scene viewBookings_scene = new Scene(viewBookings_parent);
-        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        primaryStage.close();
-        primaryStage.setScene(viewBookings_scene);
-        primaryStage.show();
+        loadAvailBookings(event);
         return type;
     }
         //latest: choosing service type and showing corresponding employee+times
     @FXML
     public String btnService2Clicked(javafx.event.ActionEvent event) throws IOException{
-        type = btnService2.getText();
+        type = roleArray[1];
         System.out.println(type);
         System.out.println("Service " + type + " chosen");
-        Parent viewBookings_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/AvailBookings.fxml"));
-        Scene viewBookings_scene = new Scene(viewBookings_parent);
-        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        primaryStage.close();
-        primaryStage.setScene(viewBookings_scene);
-        primaryStage.show();
+        loadAvailBookings(event);
         return type;
     }
 
     @FXML
     public String btnService3Clicked(javafx.event.ActionEvent event) throws IOException{
-        type = btnService3.getText();
+        type = roleArray[2];
         System.out.println(type);
         System.out.println("Service " + type + " chosen");
-        Parent viewBookings_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/AvailBookings.fxml"));
-        Scene viewBookings_scene = new Scene(viewBookings_parent);
-        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        primaryStage.close();
-        primaryStage.setScene(viewBookings_scene);
-        primaryStage.show();
+        loadAvailBookings(event);
         return type;
     }
 
     @FXML
     public String btnService4Clicked(javafx.event.ActionEvent event) throws IOException{
-        type = btnService4.getText();
+        type = roleArray[3];
         System.out.println(type);
         System.out.println("Service " + type + " chosen");
+        loadAvailBookings(event);
+        return type;
+    }
+
+    @FXML
+    public String btnService5Clicked(javafx.event.ActionEvent event) throws IOException{
+        type = roleArray[4];
+        System.out.println(type);
+        System.out.println("Service " + type + " chosen");
+        loadAvailBookings(event);
+        return type;
+    }
+
+    public void loadAvailBookings(javafx.event.ActionEvent event) throws IOException{
         Parent viewBookings_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/AvailBookings.fxml"));
         Scene viewBookings_scene = new Scene(viewBookings_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.close();
         primaryStage.setScene(viewBookings_scene);
         primaryStage.show();
-        return type;
     }
 
     public void btnBackPressed(javafx.event.ActionEvent event) throws IOException{

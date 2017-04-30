@@ -16,6 +16,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -25,6 +27,7 @@ import java.sql.ResultSet;
  */
 public class AllAvailabilityController {
 
+    private static final Logger log = LogManager.getLogger(AllAvailabilityController.class.getName());
     @FXML
     private javafx.scene.control.TableView<EmpAvailability> table;
     @FXML
@@ -48,6 +51,7 @@ public class AllAvailabilityController {
      * availability */
     public void initialize(){
 
+        log.debug("Initializing AllAvailabilityController");
         NameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         MonCol.setCellValueFactory(new PropertyValueFactory<>("monday"));
         TueCol.setCellValueFactory(new PropertyValueFactory<>("tuesday"));
@@ -91,6 +95,7 @@ public class AllAvailabilityController {
      * @return ObservableList<EmpAvailability>
      */
     public ObservableList<EmpAvailability> getEmpAvailability() {
+        log.debug("Creating table..");
         ResultSet rs;
         String empsAvailability, name, getEmpAvailability;
         Database database = Database.getInstance();
@@ -113,7 +118,7 @@ public class AllAvailabilityController {
             }
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            log.debug(e.getMessage());
             return null;
         }
         return empAvailabilities;

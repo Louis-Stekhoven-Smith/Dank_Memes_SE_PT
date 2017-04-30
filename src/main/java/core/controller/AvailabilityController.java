@@ -19,8 +19,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Created by louie on 31/03/2017.
@@ -237,7 +235,7 @@ public class AvailabilityController {
                 sunMorning.setSelected(true);
                 break;
             default:
-                System.out.println("trying to load shift for unknown day");
+                log.debug("trying to load shift for unknown day");
         }
     }
 
@@ -269,7 +267,7 @@ public class AvailabilityController {
                 sunAfternoon.setSelected(true);
                 break;
             default:
-                System.out.println("trying to load shift for unknown day");
+                log.error("trying to load shift for unknown day");
         }
     }
 
@@ -300,7 +298,7 @@ public class AvailabilityController {
                 sunEvening.setSelected(true);
                 break;
             default:
-                System.out.println("trying to load shift for unknown day");
+                log.error("trying to load shift for unknown day");
         }
     }
 

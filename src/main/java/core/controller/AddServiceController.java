@@ -24,7 +24,7 @@ import java.io.IOException;
  */
 public class AddServiceController {
 
-    private static final Logger log = LogManager.getLogger(AddEmpController.class.getName());
+    private static final Logger log = LogManager.getLogger(AddServiceController.class.getName());
     private AddService addService = new AddService(Database.getInstance(), Session.getInstance());
 
     @FXML

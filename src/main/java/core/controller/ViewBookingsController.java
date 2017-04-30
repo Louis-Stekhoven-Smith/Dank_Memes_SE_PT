@@ -158,6 +158,16 @@ public class ViewBookingsController {
         initialize();
 
     }
+
+    @FXML
+    public void btnAddNewBooking(ActionEvent event) throws IOException {
+        Parent addNewBooking_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/BusinessAddBooking.fxml"));
+        Scene addNewBooking_scene = new Scene((addNewBooking_parent));
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(addNewBooking_scene);
+        primaryStage.show();
+    }
     /** Takes user back to BusinessHome screen */
     @FXML
     public void btnBackToBusinessScreen(ActionEvent event) throws IOException {

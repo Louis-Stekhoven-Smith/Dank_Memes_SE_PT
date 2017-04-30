@@ -102,6 +102,11 @@ public class AddEmpController {
             lblEmpAdded.setText("Invalid phone number!");
             txtAddPhone.setText("");
         }
+        else if(result == -4){
+            lblEmpAdded.setTextFill(Color.web("#ff0000"));
+            lblEmpAdded.setText("Choose another service!");
+            comboRoles.setValue(null);
+        }
         else if(result == 0){
             lblEmpAdded.setTextFill(Color.web("#ff0000"));
             lblEmpAdded.setText("Failed to add employee!");

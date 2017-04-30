@@ -19,12 +19,8 @@ public class Booking {
 
     public Booking(Database database){this.database = database;}
 
-    public int addBooking(String bookingTime, String bookingDate, String bookingType, int empID){
+    public int addBooking(String bookingTime, String bookingDate, String bookingType, int empID, int businessID, int custID){
         log.debug("Adding new booking");
-
-        int businessID = session.getBusinessSelected();
-        int custID = session.getLoggedInUserId();
-
         String bookingDetailsSQL = "INSERT INTO bookingDetails(bookingID, custID, businessID, empID, bookingTime, bookingDate, bookingType) values(?,"
                 + custID + "," +
                 + businessID + "," +
@@ -35,16 +31,16 @@ public class Booking {
 
 
         if(database.updateDatabase(bookingDetailsSQL)){
-            log.debug("Booking success");
+            log.debug("Successfully added booking");
             return 1;
             }
-        log.debug("Booking failure");
+        log.debug("Failed to add booking");
         return 0;
     }
 
     //Check if employee if available for that day
     public boolean checkAvailability(String day){
-        
+
         if(day.charAt(0) == '1' || day.charAt(1) == '1' || day.charAt(2) == '1'){
             return true;
         }

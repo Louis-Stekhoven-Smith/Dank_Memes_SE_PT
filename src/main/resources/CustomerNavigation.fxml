@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="600.0" prefWidth="384.0" style="-fx-background-image: url('http://i347.photobucket.com/albums/p471/phi_nguyen8/appointmentbookingsystemGUIbg_zpsmk6gscbu.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.CustomerNavigationController">
+    <stylesheets>
+        <URL value="@../java/css/navigationButtons.css" />
+    </stylesheets>
+    <children>
+      <Label layoutX="142.0" layoutY="39.0" text="Welcome" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCustNav1" layoutX="92.0" layoutY="128.0" mnemonicParsing="false" onAction="#btnCustNav1Pressed" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="Make Booking" textFill="#1565c0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass>
+      </Button>
+      <Button fx:id="btnCustNav2" layoutX="92.0" layoutY="208.0" mnemonicParsing="false" onAction="#btnCustNav2Pressed" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="View Bookings" textFill="#1565c0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass>
+      </Button>
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackPressed" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: none; -fx-background-image: url(http://i63.tinypic.com/2dirdci.png);">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass>
+      </Button>
+   </children>
+</AnchorPane>

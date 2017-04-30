@@ -37,7 +37,7 @@ import java.util.Date;
  * This class controls all of the functionality and logic
  * of reserving a booking
  */
-public class AvailBookingsController {
+public class AvailBookingsController{
 
     private static final Logger log = LogManager.getLogger(AvailBookingsController.class.getName());
     private Database database = Database.getInstance();
@@ -98,13 +98,12 @@ public class AvailBookingsController {
     public void initialize() {
         log.debug("AvailBookingsController PAGE SHOW SHOWING!");
 
-        businessID = session.getBusinessSelected();
         yourName = session.getUsername();
+        businessID = session.getBusinessSelected();
 
         lblCurrentService.setText(serviceTypeController.type);
         bookingType = serviceTypeController.type;
 
-        //Change this to session instead of booking
         String futureBookingIDSQL = "SELECT MAX(bookingID) AS highID FROM bookingDetails";
         rs = database.queryDatabase(futureBookingIDSQL);
 
@@ -122,14 +121,14 @@ public class AvailBookingsController {
         int[] empIDs;
         String [] empAvailability;
         String dayAvailability;
-        int noOfAvailEmps = 1, noOfEmps = 0, counter = 0;;
+        int noOfAvailEmps = 1, noOfEmps = 0, counter = 0;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LL/yyyy");
         LocalDate bookingDateFormat = dpBookingDate.getValue();
         bookingDate = bookingDateFormat.format(formatter);
         DayOfWeek day = bookingDateFormat.getDayOfWeek();
 
-        String getEmpsSQL = "SELECT empID FROM employeeDetails WHERE employeeRole =" + "'" + serviceTypeController.type + "'";
+        String getEmpsSQL = "SELECT empID FROM employeeDetails WHERE employeeRole =" + "'" + serviceTypeController.type + "' AND businessID =" + businessID;
         rs = database.queryDatabase(getEmpsSQL);
 
         try{

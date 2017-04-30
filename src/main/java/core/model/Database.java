@@ -25,12 +25,13 @@ public class Database implements IDatabase {
     private Connection con;
     private String DB_CONNECTION = "jdbc:sqlite:DankMemes.db";
     private String DB_DRIVER = "org.sqlite.JDBC";
+    private String DB_PASSWORD = "Pass1234";
 
     private final Logger log = LogManager.getLogger(Database.class.getName());
 
     private Database() {
         try{
-            con = DriverManager.getConnection(DB_CONNECTION);
+            con = DriverManager.getConnection(DB_CONNECTION+", "+DB_PASSWORD);
         }
         catch (Exception e){
             log.error(e.getMessage());

@@ -237,7 +237,6 @@ public class AvailBookingsController{
                 cal.add(Calendar.HOUR, 5);
                 continue;
             }
-            System.out.println(time);
             if(dayAvailability.charAt(2) == '0' && cal.getTime().after(noon)){
                 return;
             }

@@ -57,7 +57,7 @@ public class ViewBookings {
             custName = rs.getString("name");
         }
         catch (SQLException e){
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
             return null;
         }
         return custName;
@@ -80,7 +80,7 @@ public class ViewBookings {
 
         }
         catch (SQLException e){
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
             return null;
         }
         return empName;

@@ -1,12 +1,10 @@
 package core.model;
 
 import core.interfaces.IDatabase;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.io.FileReader;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -90,7 +88,7 @@ public class Database implements IDatabase {
         try {
             scan = new Scanner(new File("config.txt"));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
             return false;
         }
 

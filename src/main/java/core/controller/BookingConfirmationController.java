@@ -6,6 +6,7 @@ import core.model.Session;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -98,6 +99,13 @@ public class BookingConfirmationController {
         } else {
             log.debug("Booking Failed!");
         }
+
+        Parent reset_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/AvailBookings.fxml"));
+        Scene reset_scene = new Scene((reset_parent));
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(reset_scene);
+        primaryStage.show();
 
     }
 

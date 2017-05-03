@@ -320,11 +320,14 @@ public class AvailBookingsController{
             log.error("SQL ERROR: " + error.getMessage());
         }
 
-        Parent bookingConfirmation_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/BookingConfirmation.fxml"));
-        Scene bookingConfirmation_scene = new Scene(bookingConfirmation_parent);
-        Stage secondaryStage = new Stage();
-        secondaryStage.setScene(bookingConfirmation_scene);
-        secondaryStage.show();
+        Parent reset_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/BookingConfirmation.fxml"));
+        Scene reset_scene = new Scene((reset_parent));
+        Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        primaryStage.close();
+        primaryStage.setScene(reset_scene);
+        primaryStage.show();
+
+
     }
 
     public int getFutureBookingID(){return futureBookingID;}

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(http://i.imgur.com/kU5eo0O.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.BookingConfirmationController">
+    <stylesheets>
+        <URL value="@css/navigationButtons.css" />
+    </stylesheets>
+    <children>
+        <Label layoutX="144.0" layoutY="62.0" text="Booking No:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="144.0" layoutY="97.0" text="Business Name:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="144.0" layoutY="167.0" text="Your Name:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="144.0" layoutY="132.0" text="Employee Name:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="144.0" layoutY="237.0" text="Booking Time:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="144.0" layoutY="272.0" text="Booking Date:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="144.0" layoutY="202.0" text="Booking Type">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label contentDisplay="CENTER" layoutX="161.0" layoutY="6.0" text="BOOKING CONFIRMATION" textAlignment="CENTER" textFill="#1565c0">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnConfirm" layoutX="184.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnConfirmPressed" prefHeight="40.0" prefWidth="100.0" text="CONFIRM" textFill="#1565c0">
+            <styleClass>
+                <String fx:value="btnStyle1Pressed" />
+                <String fx:value="btnStyle1RegularState" />
+                <String fx:value="btnStyle1Hover" />
+            </styleClass>
+            <font>
+                <Font size="16.0" />
+            </font></Button>
+        <Button fx:id="btnCancel" layoutX="317.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnCancelPressed" prefHeight="40.0" prefWidth="100.0" text="CANCEL" textFill="#1565c0">
+            <font>
+                <Font size="16.0" />
+            </font>
+            <styleClass>
+                <String fx:value="btnStyle1Pressed" />
+                <String fx:value="btnStyle1RegularState" />
+                <String fx:value="btnStyle1Hover" />
+            </styleClass></Button>
+        <Label fx:id="lblBookingID" layoutX="349.0" layoutY="62.0" text="Label">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <Label fx:id="lblBusinessName" layoutX="349.0" layoutY="97.0" text="Label">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <Label fx:id="lblEmployeeName" layoutX="349.0" layoutY="132.0" text="Label">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <Label fx:id="lblYourName" layoutX="349.0" layoutY="167.0" text="Label">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <Label fx:id="lblBookingType" layoutX="349.0" layoutY="202.0" text="Label">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <Label fx:id="lblBookingTime" layoutX="349.0" layoutY="237.0" text="Label">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+        <Label fx:id="lblBookingDate" layoutX="349.0" layoutY="272.0" text="Label">
+            <font>
+                <Font size="16.0" />
+            </font></Label>
+    </children>
+</AnchorPane>

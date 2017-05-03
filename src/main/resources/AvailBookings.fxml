@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="380.0" prefWidth="600.0" style="-fx-background-color: #2196f3;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.controller.AvailBookingsController">
+   <stylesheets>
+      <URL value="@css/navigationButtons.css" />
+   </stylesheets>
+   <children>
+      <ScrollPane hbarPolicy="NEVER" layoutY="180.0" prefHeight="200.0" prefWidth="602.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="785.0" prefWidth="599.0">
+               <children>
+                  <Label fx:id="lblName1" layoutX="55.0" layoutY="30.0" text="Name 1" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblName2" layoutX="55.0" layoutY="105.0" text="Name 2" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblName3" layoutX="55.0" layoutY="180.0" text="Name 3" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblName4" layoutX="55.0" layoutY="255.0" text="Name 4" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                   <Label fx:id="lblName5" layoutX="55.0" layoutY="330.0" text="Name 5" textFill="#1565c0" visible="false">
+                       <font>
+                           <Font name="System Bold" size="18.0" />
+                       </font>
+                   </Label>
+                   <Label fx:id="lblName6" layoutX="55.0" layoutY="405.0" text="Name 6" textFill="#1565c0" visible="false">
+                       <font>
+                           <Font name="System Bold" size="18.0" />
+                       </font>
+                   </Label>
+                   <Label fx:id="lblName7" layoutX="55.0" layoutY="480.0" text="Name 7" textFill="#1565c0" visible="false">
+                       <font>
+                           <Font name="System Bold" size="18.0" />
+                       </font>
+                   </Label>
+                   <Label fx:id="lblName8" layoutX="55.0" layoutY="555.0" text="Name 8" textFill="#1565c0" visible="false">
+                       <font>
+                           <Font name="System Bold" size="18.0" />
+                       </font>
+                   </Label>
+                   <Label fx:id="lblName9" layoutX="55.0" layoutY="630.0" text="Name 9" textFill="#1565c0" visible="false">
+                       <font>
+                           <Font name="System Bold" size="18.0" />
+                       </font>
+                   </Label>
+                   <Label fx:id="lblName10" layoutX="55.0" layoutY="705.0" text="Name 10" textFill="#1565c0" visible="false">
+                       <font>
+                           <Font name="System Bold" size="18.0" />
+                       </font>
+                   </Label>
+                  <ListView fx:id="listView1" layoutX="208.0" layoutY="9.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView2" layoutX="208.0" layoutY="84.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView3" layoutX="208.0" layoutY="159.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView4" layoutX="208.0" layoutY="244.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView5" layoutX="208.0" layoutY="319.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView6" layoutX="208.0" layoutY="394.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView7" layoutX="220.0" layoutY="469.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView8" layoutX="208.0" layoutY="544.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView9" layoutX="208.0" layoutY="619.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                  <ListView fx:id="listView10" layoutX="208.0" layoutY="694.0" prefHeight="70.0" prefWidth="200.0" visible="false" />
+                   <Button fx:id="book1" layoutX="461.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                       <font>
+                           <Font size="14.0" />
+                       </font>
+                       <styleClass>
+                           <String fx:value="btnStyle1Pressed" />
+                           <String fx:value="btnStyle1RegularState" />
+                           <String fx:value="btnStyle1Hover" />
+                       </styleClass></Button>
+                  <Button fx:id="book2" layoutX="461.0" layoutY="99.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book3" layoutX="461.0" layoutY="174.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book4" layoutX="461.0" layoutY="249.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book5" layoutX="461.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book6" layoutX="461.0" layoutY="399.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book7" layoutX="461.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book8" layoutX="461.0" layoutY="549.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book9" layoutX="461.0" layoutY="624.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="book9" layoutX="461.0" layoutY="699.0" mnemonicParsing="false" onAction="#btnBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ffffff;" text="BOOK" textAlignment="CENTER" textFill="#1565c0" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btnStyle1Pressed" />
+                        <String fx:value="btnStyle1RegularState" />
+                        <String fx:value="btnStyle1Hover" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <DatePicker fx:id="dpBookingDate" layoutX="286.0" layoutY="51.0" onAction="#getEmployees" prefHeight="33.0" prefWidth="179.0" />
+      <Label layoutX="54.0" layoutY="140.0" text="Employee" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="243.0" layoutY="140.0" text="Available Times" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="480.0" layoutY="140.0" text="Book" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="169.0" layoutY="54.0" text="Choose Date" textFill="#fdfdfd">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCurrentService" layoutX="462.0" layoutY="11.0" text="Current Service" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackPressed" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: none; -fx-background-image: url(http://i63.tinypic.com/2dirdci.png);">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnStyle1Pressed" />
+            <String fx:value="btnStyle1RegularState" />
+            <String fx:value="btnStyle1Hover" />
+         </styleClass></Button>
+      <Label layoutX="403.0" layoutY="11.0" text="Service:" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

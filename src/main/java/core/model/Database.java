@@ -193,13 +193,6 @@ public class Database implements IDatabase {
                     " businessName VARCHAR(50), " +
                     " ownerName VARCHAR(40), " +
                     " email VARCHAR(40), " +
-                    " mon VARCHAR(1), " +
-                    " tue VARCHAR(1), " +
-                    " wed VARCHAR(1), " +
-                    " thu VARCHAR(1), " +
-                    " fri VARCHAR(1), " +
-                    " sat VARCHAR(1), " +
-                    " sun VARCHAR(1), " +
                     " PRIMARY KEY(businessID), " +
                     " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             businessDetails.execute(sqlbusinessDetails);

@@ -82,7 +82,7 @@ public class Database implements IDatabase {
 
     private boolean updateBusiness(){
         String businessSQL, businessName, ownerName, email, ownerSQL,
-                userName, userPassword,businessRecord[], type;
+                userName, userPassword,businessRecord[], type, mon, tue, wed, thu, fri, sat, sun;
         ResultSet rs;
         int loginID, i ;
 
@@ -106,6 +106,14 @@ public class Database implements IDatabase {
                 userName = businessRecord[3];
                 userPassword = businessRecord[4];
                 type = businessRecord[5];
+                mon = businessRecord[6];
+                tue = businessRecord[7];
+                wed = businessRecord[8];
+                thu = businessRecord[9];
+                fri = businessRecord[10];
+                sat = businessRecord[11];
+                sun = businessRecord[12];
+
 
                 ownerSQL = "INSERT INTO userLogin(loginID, userName, password, type) values(?," +
                         "'" + userName + "'" + "," +
@@ -119,11 +127,18 @@ public class Database implements IDatabase {
                 try {
                     loginID = rs.getInt("loginID");
 
-                    businessSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email) values(?," +
+                    businessSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email, mon, tue, wed, thu, fri, sat, sun) values(?," +
                             "'" + loginID + "'," +
                             "'" + businessName + "'," +
                             "'" + ownerName + "'," +
-                            "'" + email + "')";
+                            "'" + email + "'," +
+                            "'" + mon + "'," +
+                            "'" + tue + "'," +
+                            "'" + wed + "'," +
+                            "'" + thu + "'," +
+                            "'" + fri + "'," +
+                            "'" + sat + "'," +
+                            "'" + sun + "')";
 
                     updateDatabase(businessSQL);
 
@@ -178,6 +193,13 @@ public class Database implements IDatabase {
                     " businessName VARCHAR(50), " +
                     " ownerName VARCHAR(40), " +
                     " email VARCHAR(40), " +
+                    " mon VARCHAR(1), " +
+                    " tue VARCHAR(1), " +
+                    " wed VARCHAR(1), " +
+                    " thu VARCHAR(1), " +
+                    " fri VARCHAR(1), " +
+                    " sat VARCHAR(1), " +
+                    " sun VARCHAR(1), " +
                     " PRIMARY KEY(businessID), " +
                     " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             businessDetails.execute(sqlbusinessDetails);

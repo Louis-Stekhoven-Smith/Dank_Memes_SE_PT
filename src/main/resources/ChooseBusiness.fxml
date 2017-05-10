@@ -19,25 +19,25 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnBusiness1" layoutX="52.0" layoutY="252.0" mnemonicParsing="false" onAction="#btnBusiness1Clicked" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/IfoYbHQ.png);">
+      <Button fx:id="btnBusiness1" layoutX="52.0" layoutY="260.0" mnemonicParsing="false" onAction="#btnBusiness1Clicked" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/IfoYbHQ.png);" visible="false">
          <styleClass>
             <String fx:value="btnStyle1Pressed" />
             <String fx:value="btnStyle1RegularState" />
             <String fx:value="btnStyle1Hover" />
          </styleClass></Button>
-      <Button fx:id="btnBusiness2" layoutX="52.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnBusiness2Clicked" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/R7Q7J72.png);">
+      <Button fx:id="btnBusiness2" layoutX="52.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnBusiness2Clicked" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/R7Q7J72.png);" visible="false">
          <styleClass>
             <String fx:value="btnStyle1Pressed" />
             <String fx:value="btnStyle1RegularState" />
             <String fx:value="btnStyle1Hover" />
          </styleClass></Button>
-      <Button fx:id="btnBusiness3" layoutX="52.0" layoutY="412.0" mnemonicParsing="false" onAction="#btnBusiness3Clicked" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/bKUKnPX.png);">
+      <Button fx:id="btnBusiness3" layoutX="52.0" layoutY="412.0" mnemonicParsing="false" onAction="#btnBusiness3Clicked" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/bKUKnPX.png);" visible="false">
          <styleClass>
             <String fx:value="btnStyle1Pressed" />
             <String fx:value="btnStyle1RegularState" />
             <String fx:value="btnStyle1Hover" />
          </styleClass></Button>
-      <Button fx:id="btnBusiness4" layoutX="53.0" layoutY="492.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/zjjxqag.png);">
+      <Button fx:id="btnBusiness4" layoutX="53.0" layoutY="492.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="280.0" style="-fx-background-image: url(http://i.imgur.com/zjjxqag.png);" visible="false">
          <styleClass>
             <String fx:value="btnStyle1Pressed" />
             <String fx:value="btnStyle1RegularState" />
@@ -53,6 +53,6 @@
             <String fx:value="btnStyle1Hover" />
          </styleClass>
       </Button>
-      <ComboBox fx:id="businessChooser" layoutX="117.0" layoutY="104.0" prefWidth="150.0" />
+      <ComboBox fx:id="businessChooser" layoutX="117.0" layoutY="104.0" onAction="#comboChanged" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -141,7 +141,7 @@ public class AvailabilityController {
         System.out.println(Arrays.toString(times));
 
 
-        for (int i = 0; i<4;i++) {
+        for (int i = 0; i<times.length;i++) {
                  if (times[i] == 1) {
                     getNodeFromGridPane(grid, 1, i+1).setDisable(true);
                 } else if (times[i] == 2) {

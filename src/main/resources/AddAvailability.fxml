@@ -111,34 +111,6 @@
                <font>
                   <Font size="18.0" />
                </font></CheckBox>
-            <Label text="Monday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Label>
-            <Label text="Tuesday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Label>
-            <Label text="Wednesday" textFill="#fcfcfc" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Label>
-            <Label prefHeight="19.0" prefWidth="60.0" text="Thursday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Label>
-            <Label text="Friday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Label>
-            <Label text="Saterday" textFill="#fffefe" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Label>
-            <Label text="Sunday" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Label>
             <CheckBox fx:id="satMorning" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
@@ -166,6 +138,41 @@
             <Label text="8am - 12pm" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Label text="12pm - 5pm" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Label text="5pm - 12pm" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="109.0" text="Monday" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="109.0" text="Tuesday" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="109.0" text="Wednesday" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="109.0" text="Thursday" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="109.0" text="Friday" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="109.0" text="Saturday" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="6">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="109.0" text="Sunday" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="7">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
       <Label fx:id="lblLoginError" alignment="CENTER" contentDisplay="CENTER" layoutX="392.0" layoutY="279.0" prefHeight="33.0" prefWidth="143.0" textFill="#a81010">

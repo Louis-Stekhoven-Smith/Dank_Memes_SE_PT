@@ -140,6 +140,16 @@ public class AvailabilityController {
 
         System.out.println(Arrays.toString(times));
 
+        /*
+        1 = morning
+        2 = midday
+        3 = evening
+        4 = morning, midday
+        5 = midday, evening
+        6 = morning, evening
+        7 = all
+        else none
+        */
 
         for (int i = 0; i<times.length;i++) {
                  if (times[i] == 1) {

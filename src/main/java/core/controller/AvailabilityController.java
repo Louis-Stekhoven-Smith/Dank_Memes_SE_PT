@@ -14,11 +14,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
 
 /**
  * Created by louie on 31/03/2017.
@@ -90,7 +94,8 @@ public class AvailabilityController {
     private CheckBox satEvening;
     @FXML
     private CheckBox sunEvening;
-    
+    @FXML
+    private GridPane grid;
     private static final char AVAILABLE = '1';
     private static final char UNAVAILABLE = '0';
     private static final int EXISTS = 1;
@@ -98,6 +103,90 @@ public class AvailabilityController {
     private int empID = -1;
     private Database database = Database.getInstance();
     private Availability availability = new Availability(database);
+
+    //currently does not take current session businessID but rather hardcoded businessID of int '4'
+    public void initialize() throws IOException, SQLException {
+        Session session = Session.getInstance();
+        int businessID = session.getLoggedInUserId();
+
+        ResultSet time;
+        int[] times = new int[7];
+        String findRoleTypeCount = "SELECT mon FROM businessDetails WHERE businessID =" + businessID;
+        time = database.queryDatabase(findRoleTypeCount);
+        times[0] = time.getInt("mon");
+
+        findRoleTypeCount = "SELECT tue FROM businessDetails WHERE businessID =" + businessID;
+        time = database.queryDatabase(findRoleTypeCount);
+        times[1] = time.getInt("tue");
+
+        findRoleTypeCount = "SELECT wed FROM businessDetails WHERE businessID =" + businessID;
+        time = database.queryDatabase(findRoleTypeCount);
+        times[2] = time.getInt("wed");
+
+        findRoleTypeCount = "SELECT thu FROM businessDetails WHERE businessID =" + businessID;
+        time = database.queryDatabase(findRoleTypeCount);
+        times[3] = time.getInt("thu");
+
+        findRoleTypeCount = "SELECT fri FROM businessDetails WHERE businessID =" + businessID;
+        time = database.queryDatabase(findRoleTypeCount);
+        times[4] = time.getInt("fri");
+
+        findRoleTypeCount = "SELECT sat FROM businessDetails WHERE businessID =" + businessID;
+        time = database.queryDatabase(findRoleTypeCount);
+        times[5] = time.getInt("sat");
+
+        findRoleTypeCount = "SELECT sun FROM businessDetails WHERE businessID =" + businessID;
+        time = database.queryDatabase(findRoleTypeCount);
+        times[6] = time.getInt("sun");
+
+        System.out.println(Arrays.toString(times));
+
+        /*
+        Values disables the following
+        1 = morning
+        2 = midday
+        3 = evening
+        4 = morning, midday
+        5 = midday, evening
+        6 = morning, evening
+        7 = all
+        else none
+        */
+
+        for (int i = 0; i<times.length;i++) {
+                 if (times[i] == 1) {
+                    getNodeFromGridPane(grid, 1, i+1).setDisable(true);
+                } else if (times[i] == 2) {
+                    getNodeFromGridPane(grid, 2, i+1).setDisable(true);
+                } else if (times[i] == 3) {
+                    getNodeFromGridPane(grid, 3, i+1).setDisable(true);
+                } else if (times[i] == 4) {
+                    getNodeFromGridPane(grid, 1, i+1).setDisable(true);
+                    getNodeFromGridPane(grid, 2, i+1).setDisable(true);
+                } else if (times[i] == 5) {
+                    getNodeFromGridPane(grid, 2, i+1).setDisable(true);
+                    getNodeFromGridPane(grid, 3, i+1).setDisable(true);
+                } else if (times[i] == 6) {
+                    getNodeFromGridPane(grid, 1, i+1).setDisable(true);
+                    getNodeFromGridPane(grid, 3, i+1).setDisable(true);
+                } else if (times[i] == 7) {
+                    getNodeFromGridPane(grid, 1, i+1).setDisable(true);
+                    getNodeFromGridPane(grid, 2, i+1).setDisable(true);
+                    getNodeFromGridPane(grid, 3, i+1).setDisable(true);
+                }
+
+            }
+        }
+
+
+    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                return node;
+            }
+        }
+        return null;
+    }
 
     /**
      * Saves availability to the currently selected employee
@@ -235,7 +324,7 @@ public class AvailabilityController {
                 sunMorning.setSelected(true);
                 break;
             default:
-                log.debug("trying to load shift for unknown day");
+                System.out.println("trying to load shift for unknown day");
         }
     }
 
@@ -267,7 +356,7 @@ public class AvailabilityController {
                 sunAfternoon.setSelected(true);
                 break;
             default:
-                log.error("trying to load shift for unknown day");
+                System.out.println("trying to load shift for unknown day");
         }
     }
 
@@ -298,7 +387,7 @@ public class AvailabilityController {
                 sunEvening.setSelected(true);
                 break;
             default:
-                log.error("trying to load shift for unknown day");
+                System.out.println("trying to load shift for unknown day");
         }
     }
 

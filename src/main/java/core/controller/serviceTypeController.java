@@ -133,7 +133,7 @@ public class serviceTypeController {
             btnService5.setVisible(true);
             btnService5.setText(myArray[4]+" | "+length+" min");
         } else {
-            System.out.println("FAIL");
+            log.debug("FAIL");
         }
     }
 

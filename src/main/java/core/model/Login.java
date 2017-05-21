@@ -37,7 +37,6 @@ public class Login {
         inputUsername = inputUsername.toLowerCase();
 
         rs = getResultSet(inputUsername, inputPassword);
-        System.out.println(rs);
         try{
             /* incorrect login details */
             if(!(rs.next())) {

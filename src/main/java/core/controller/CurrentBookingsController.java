@@ -7,10 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -26,13 +27,8 @@ import java.util.Arrays;
 
 public class CurrentBookingsController {
 
-    @FXML private Button btnBack;
-    @FXML private Button btnBooking1;
-    @FXML private Button btnBooking2;
-    @FXML private Button btnBooking3;
-    @FXML private Button btnBooking4;
-    @FXML private Button btnBooking5;
-    @FXML private Button btnCancel;
+    private static final Logger log = LogManager.getLogger(CurrentBookingsController.class.getName());
+
     @FXML private Label lblBookingID;
     @FXML private Label lblBusinessName;
     @FXML private Label lblEmployeeName;
@@ -55,6 +51,7 @@ public class CurrentBookingsController {
     private Database database = Database.getInstance();
 
     public void initialize() throws IOException, SQLException {
+        log.debug("Initializing currentBookingsController");
         ResultSet count;
         int counter;
         String findRoleTypeCount = "SELECT count(*) AS total FROM bookingDetails WHERE custID=1";
@@ -65,6 +62,7 @@ public class CurrentBookingsController {
     }
 
     public void retrieveBookings(int counter) throws IOException, SQLException {
+        log.debug("Retrieving bookings");
         String findbookingsSQL = "SELECT * FROM bookingDetails WHERE custID=" + "'" + userLoggedID + "'";
         ResultSet result = database.queryDatabase(findbookingsSQL);
         ResultSetMetaData rsmd = result.getMetaData();
@@ -77,14 +75,14 @@ public class CurrentBookingsController {
                 row[i] = result.getString(i + 1);
             }
             rs.add(row);
-        } System.out.println(counter);
+        } log.debug(counter);
 
         String[][] newArray = new String[counter][counter];
 
         for (int i=0; i<newArray.length; i++) {
             newArray[i] = rs.get(i);
             bookingsCombo.getItems().addAll(String.valueOf(i+1));
-            System.out.println(Arrays.toString(newArray[i]));
+            log.debug(Arrays.toString(newArray[i]));
         } myArray = newArray;
     }
 

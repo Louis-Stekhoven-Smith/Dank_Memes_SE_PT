@@ -8,6 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 
 /**
@@ -15,6 +18,7 @@ import java.io.IOException;
  */
 
 public class CustomerNavigationController {
+    private static final Logger log = LogManager.getLogger(CustomerNavigationController.class.getName());
 
     @FXML
     private Button btnCustNav1;
@@ -26,6 +30,7 @@ public class CustomerNavigationController {
     private Button btnBack;
 
     public void btnCustNav1Pressed (ActionEvent event) throws IOException {
+        log.debug("Customer selected make booking..");
         Parent CustNav1_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/ChooseBusiness.fxml"));
         Scene CustNav1_scene = new Scene (CustNav1_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -35,6 +40,7 @@ public class CustomerNavigationController {
     }
 
     public void btnCustNav2Pressed (ActionEvent event) throws IOException {
+        log.debug("customer selected view bookings..");
         Parent CustNav2_parent = FXMLLoader.load(getClass().getClassLoader().getResource("resources/CurrentBookings.fxml"));
         Scene CustNav2_scene = new Scene (CustNav2_parent);
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

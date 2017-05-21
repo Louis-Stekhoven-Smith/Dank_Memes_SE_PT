@@ -191,6 +191,13 @@ public class Database implements IDatabase {
                     " businessName VARCHAR(50), " +
                     " ownerName VARCHAR(40), " +
                     " email VARCHAR(40), " +
+                    " mon INTEGER not NULL, " +
+                    " tue INTEGER not NULL, " +
+                    " wed INTEGER not NULL, " +
+                    " thu INTEGER not NULL, " +
+                    " fri INTEGER not NULL, " +
+                    " sat INTEGER not NULL, " +
+                    " sun INTEGER not NULL, " +
                     " PRIMARY KEY(businessID), " +
                     " FOREIGN KEY (loginID) REFERENCES userLogin (loginID))";
             businessDetails.execute(sqlbusinessDetails);
@@ -366,11 +373,18 @@ public class Database implements IDatabase {
                 "'" + "Homy1234" + "'" + "," +
                 "'" + 2 + "'" + ")";
 
-        String bussinessOwnerSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email) values(?," +
+        String bussinessOwnerSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email, mon, tue, wed, thu, fri, sat, sun) values(?," +
                 "'" + 2 + "'," +
                 "'" + "Dank Memes" + "'," +
                 "'" + "Homy Goodman" + "'," +
-                "'" + "dankmemes@saloons.com" + "')";
+                "'" + "dankmemes@saloons.com" + "'," +
+                "'" + 1 + "'," +
+                "'" + 2 + "'," +
+                "'" + 3 + "'," +
+                "'" + 4 + "'," +
+                "'" + 5 + "'," +
+                "'" + 6 + "'," +
+                "'" + 7 + "')";
 
         updateDatabase(cust2LoginSQL);
         updateDatabase(bussinessOwnerSQL);

@@ -1,6 +1,9 @@
 package core.controller;
 
-import core.model.*;
+import core.model.Availability;
+import core.model.Database;
+import core.model.Employee;
+import core.model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +19,10 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.awt.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Created by louie on 31/03/2017.
@@ -106,41 +107,42 @@ public class AvailabilityController {
     //currently does not take current session businessID but rather hardcoded businessID of int '4'
     public void initialize() throws IOException, SQLException {
         Session session = Session.getInstance();
-        session.getLoggedInUserId();
+        int businessID = session.getLoggedInUserId();
 
         ResultSet time;
         int[] times = new int[7];
-        String findRoleTypeCount = "SELECT mon FROM businessDetails WHERE businessID =" + 4;
+        String findRoleTypeCount = "SELECT mon FROM businessDetails WHERE businessID =" + businessID;
         time = database.queryDatabase(findRoleTypeCount);
         times[0] = time.getInt("mon");
 
-        findRoleTypeCount = "SELECT tue FROM businessDetails WHERE businessID =" + 4;
+        findRoleTypeCount = "SELECT tue FROM businessDetails WHERE businessID =" + businessID;
         time = database.queryDatabase(findRoleTypeCount);
         times[1] = time.getInt("tue");
 
-        findRoleTypeCount = "SELECT wed FROM businessDetails WHERE businessID =" + 4;
+        findRoleTypeCount = "SELECT wed FROM businessDetails WHERE businessID =" + businessID;
         time = database.queryDatabase(findRoleTypeCount);
         times[2] = time.getInt("wed");
 
-        findRoleTypeCount = "SELECT thu FROM businessDetails WHERE businessID =" + 4;
+        findRoleTypeCount = "SELECT thu FROM businessDetails WHERE businessID =" + businessID;
         time = database.queryDatabase(findRoleTypeCount);
         times[3] = time.getInt("thu");
 
-        findRoleTypeCount = "SELECT fri FROM businessDetails WHERE businessID =" + 4;
+        findRoleTypeCount = "SELECT fri FROM businessDetails WHERE businessID =" + businessID;
         time = database.queryDatabase(findRoleTypeCount);
         times[4] = time.getInt("fri");
 
-        findRoleTypeCount = "SELECT sat FROM businessDetails WHERE businessID =" + 4;
+        findRoleTypeCount = "SELECT sat FROM businessDetails WHERE businessID =" + businessID;
         time = database.queryDatabase(findRoleTypeCount);
         times[5] = time.getInt("sat");
 
-        findRoleTypeCount = "SELECT sun FROM businessDetails WHERE businessID =" + 4;
+        findRoleTypeCount = "SELECT sun FROM businessDetails WHERE businessID =" + businessID;
         time = database.queryDatabase(findRoleTypeCount);
         times[6] = time.getInt("sun");
 
         System.out.println(Arrays.toString(times));
 
         /*
+        Values disables the following
         1 = morning
         2 = midday
         3 = evening

@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 /**
  * Created by Konn on 31/03/2017.
@@ -68,9 +67,9 @@ public class ChooseBusinessController {
 
         ResultSet businessBG;
         String businessBackground;
-        String findBusinessBG = "SELECT bg FROM businessDetails WHERE businessName = '" + businessChooser.getValue() + "'";
+        String findBusinessBG = "SELECT imageURL FROM businessDetails WHERE businessName = '" + businessChooser.getValue() + "'";
         businessBG = database.queryDatabase(findBusinessBG);
-        businessBackground = businessBG.getString("bg");
+        businessBackground = businessBG.getString("imageURL");
 
 
         btnBusiness1.setStyle("-fx-background-image: url('"+businessBackground+"')");

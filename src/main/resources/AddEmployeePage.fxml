@@ -57,6 +57,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <ComboBox fx:id="comboRoles" layoutX="132.0" layoutY="194.0" prefHeight="25.0" prefWidth="195.0" />
             <Label layoutX="56.0" layoutY="193.0" text="Role:" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -72,6 +73,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Label layoutX="56.0" layoutY="373.0" text="Address:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
             <TextField fx:id="txtAddName" layoutX="132.0" layoutY="133.0" prefHeight="25.0" prefWidth="195.0" />
             <TextField fx:id="txtAddEmail" layoutX="132.0" layoutY="253.0" prefHeight="25.0" prefWidth="195.0" />
             <TextField fx:id="txtAddPhone" layoutX="132.0" layoutY="313.0" onAction="#btnAddEmp" prefHeight="25.0" prefWidth="195.0" />
@@ -80,13 +86,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboRoles" layoutX="132.0" layoutY="194.0" prefHeight="25.0" prefWidth="195.0" />
             <TextField fx:id="txtAddAddress" layoutX="132.0" layoutY="373.0" onAction="#btnAddEmp" prefHeight="25.0" prefWidth="195.0" />
-            <Label layoutX="56.0" layoutY="373.0" text="Address:" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
             </children>
         </Pane>
     </children>

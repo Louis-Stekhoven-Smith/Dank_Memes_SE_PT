@@ -116,6 +116,8 @@ public class AddEmpController {
             txtAddName.setText("");
             txtAddEmail.setText("");
             txtAddPhone.setText("");
+            txtAddAddress.setText("");
+            comboRoles.setValue("");
         }
 
         /* TODO Get business ID function and validation */

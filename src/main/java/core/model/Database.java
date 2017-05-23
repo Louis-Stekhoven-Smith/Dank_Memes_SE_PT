@@ -80,7 +80,8 @@ public class Database implements IDatabase {
 
     private boolean updateBusiness(){
         String businessSQL, businessName, ownerName, email, ownerSQL,
-                userName, userPassword,businessRecord[], type, mon, tue, wed, thu, fri, sat, sun;
+                userName, userPassword,businessRecord[], type, mon, tue, wed, thu, fri, sat, sun, image, SQLCheck;
+        SQLCheck = "SELECT businessName FROM businessDetails";
         ResultSet rs;
         int loginID, i ;
 
@@ -92,10 +93,9 @@ public class Database implements IDatabase {
             return false;
         }
 
-        /*TODO Need to put a check here to see if business already exist in the data base
-        at the moment just adds every time the app is run
-         */
+        outer:
         while (scan.hasNext()) {
+                rs = queryDatabase(SQLCheck);
                 businessRecord = scan.nextLine().split(",");
             if(!businessRecord[0].contains("#")) {
                 businessName = businessRecord[0];
@@ -111,6 +111,17 @@ public class Database implements IDatabase {
                 fri = businessRecord[10];
                 sat = businessRecord[11];
                 sun = businessRecord[12];
+                image = businessRecord[13];
+
+                try{
+                    while(rs.next()){
+                        if(rs.getString("businessName").equals(businessName)){
+                            continue outer;
+                        }
+                    }
+                } catch (SQLException e){
+                    log.error("SQL ERROR: " + e.getMessage());
+                }
 
 
                 ownerSQL = "INSERT INTO userLogin(loginID, userName, password, type) values(?," +
@@ -125,11 +136,12 @@ public class Database implements IDatabase {
                 try {
                     loginID = rs.getInt("loginID");
 
-                    businessSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email, mon, tue, wed, thu, fri, sat, sun) values(?," +
+                    businessSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email, imageURL, mon, tue, wed, thu, fri, sat, sun) values(?," +
                             "'" + loginID + "'," +
                             "'" + businessName + "'," +
                             "'" + ownerName + "'," +
                             "'" + email + "'," +
+                            "'" + image + "'," +
                             "'" + mon + "'," +
                             "'" + tue + "'," +
                             "'" + wed + "'," +
@@ -191,6 +203,7 @@ public class Database implements IDatabase {
                     " businessName VARCHAR(50), " +
                     " ownerName VARCHAR(40), " +
                     " email VARCHAR(40), " +
+                    " imageURL VARCHAR(150), " +
                     " mon INTEGER not NULL, " +
                     " tue INTEGER not NULL, " +
                     " wed INTEGER not NULL, " +
@@ -373,11 +386,12 @@ public class Database implements IDatabase {
                 "'" + "Homy1234" + "'" + "," +
                 "'" + 2 + "'" + ")";
 
-        String bussinessOwnerSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email, mon, tue, wed, thu, fri, sat, sun) values(?," +
+        String bussinessOwnerSQL = "INSERT INTO businessDetails(businessID, loginID, businessName, ownerName, email, imageURL, mon, tue, wed, thu, fri, sat, sun) values(?," +
                 "'" + 2 + "'," +
                 "'" + "Dank Memes" + "'," +
                 "'" + "Homy Goodman" + "'," +
                 "'" + "dankmemes@saloons.com" + "'," +
+                "'" + "http://i.imgur.com/IfoYbHQ.png" + "'," +
                 "'" + 1 + "'," +
                 "'" + 2 + "'," +
                 "'" + 3 + "'," +

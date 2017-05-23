@@ -78,7 +78,7 @@
                   <String fx:value="btnStyle1Hover" />
                </styleClass>
             </Button>
-            <Label fx:id="lblRemoveError" layoutX="19.0" layoutY="386.0" prefHeight="20.0" prefWidth="348.0" textFill="RED">
+            <Label fx:id="lblRemoveError" alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="386.0" prefHeight="20.0" prefWidth="348.0" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>

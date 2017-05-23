@@ -41,17 +41,25 @@ public class Booking {
     //Check if employee if available for that day
     public boolean checkAvailability(String day){
 
+        if(day.length() != 3){
+            return false;
+        }
+
         if(day.charAt(0) == '1' || day.charAt(1) == '1' || day.charAt(2) == '1'){
             return true;
         }
         return false;
     }
 
-    //Check if emp is available for the specific ay
+    //Check if emp is available for the specific day
     public String getDayAvailability(DayOfWeek dotw, String availability){
         String[] days;
         String day = "000";
         days = availability.split(",");
+        System.out.println(days.length);
+        if(days.length != 7){
+            return null;
+        }
 
         switch(dotw){
             case MONDAY: day = days[0]; break;
@@ -67,6 +75,10 @@ public class Booking {
 
     //check employee does not already have a booking for that time
     public boolean availableSlot(String time, int empID){
+        if(time.length() != 5){
+            log.debug("Available slot method: Invalid format of time!");
+            return false;
+        }
         String checkSlot = "SELECT bookingTime FROM bookingDetails WHERE bookingTime =" + "'" + time + "'" + "AND empID =" + empID;
         rs = database.queryDatabase(checkSlot);
         try{

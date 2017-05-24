@@ -38,6 +38,9 @@ public class AddService {
             log.debug("Failed to add service, incorrectly specified length");
             return -3;
         }
+        if(!tooManyServices()){
+            return - 4;
+        }
 
         String addServiceSQL = "INSERT into availableServices(serviceID, businessID, serviceName, serviceLength) values(?, " +
                 "'" + bussinessID + "'," +
@@ -64,6 +67,24 @@ public class AddService {
             }
         } catch(SQLException e){
             log.debug("SQL ERROR: " + e.getMessage());
+        }
+        return true;
+    }
+
+    private boolean tooManyServices(){
+        String sqlCheck = "SELECT serviceName FROM availableServices where businessID = " + session.getLoggedInUserId();
+        rs = database.queryDatabase(sqlCheck);
+        int counter = 0;
+        try {
+            while(rs.next()){
+                System.out.println(counter);
+                counter++;
+            }
+        } catch (SQLException e) {
+            log.error("SQL ERROR: " + e.getMessage());
+        }
+        if(counter > 4){
+            return false;
         }
         return true;
     }

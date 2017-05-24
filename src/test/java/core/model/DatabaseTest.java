@@ -1,23 +1,18 @@
 package core.model;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import java.sql.ResultSet;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
 /**
  * Created by louie on 29/03/2017.
  */
+
 class DatabaseTest {
+
+    private Database database;
 /*
     private ResultSet rs;
 
     @BeforeAll
     public static void setUp() {
-        Database.setupDatabase();
+        database = database.getInstance();
     }
 
     @Test
@@ -43,12 +38,11 @@ class DatabaseTest {
 /*
     @Test
     void updateDatabase() {
-
-        String sqlStringAdd = "INSERT INTO userLogin (loginID, userName, password, type) values(?, 'testUser','testPass',1)";
+        String sqlStringAdd = "INSERT INTO userLogin(loginID, userName, password, type) values(?, 'testUser','testPass',1)";
         String sqlStringRemove = "DELETE FROM userLogin WHERE userName = 'testUser'";
-        assertTrue(Database.updateDatabase(sqlStringAdd));
-        assertTrue(Database.updateDatabase(sqlStringRemove));
+        assertTrue(database.updateDatabase(sqlStringAdd));
+        assertTrue(database.updateDatabase(sqlStringRemove));
 
     }
-    */
+*/
 }

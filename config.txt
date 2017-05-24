@@ -1,6 +1,7 @@
 #This is the config used to register a business with the app.
 #######
-Mi Mechanics,Dude,aemailaddress@cool.com,dude,Dude1234,2,1,2,3,4,5,6,7
+Mi Mechanics,Dude,aemailaddress@cool.com,dude,Dude1234,2,3,3,3,3,3,3,3, http://i.imgur.com/R7Q7J72.png
 #######
-Zero Dividend Funds,Shawty,hotmail@hotmail.com,shawty,Shawty1234,2,7,6,5,4,3,2,1
+Zero Dividend Funds,Shawty,hotmail@hotmail.com,shawty,Shawty1234,2,1,1,1,1,1,1,1, http://i.imgur.com/bKUKnPX.png
 #######
+BuildPunkT, Gregory Punk, punk@gmail.com,buildpunk, Punk1234,2,2,2,2,2,2,2,2, http://i.imgur.com/vN7GViM.png

@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -45,6 +46,7 @@ public class BusinessBookingController {
     private String custName;
     private String dayAvailability;
     private int custID;
+    private DayOfWeek day;
 
     @FXML ComboBox<String> comboRoles;
     @FXML DatePicker dpDate;
@@ -67,6 +69,29 @@ public class BusinessBookingController {
         } catch (SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }
+
+        LocalDate today = LocalDate.now();
+
+        final Callback<DatePicker, DateCell> dayCellFactory =
+                new Callback<DatePicker, DateCell>() {
+                    @Override
+                    public DateCell call(final DatePicker datePicker) {
+                        return new DateCell() {
+                            @Override
+                            public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (item.isBefore(
+                                        today.plusDays(1))
+                                        ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                                }
+                            }
+                        };
+                    }
+                };
+
+        dpDate.setDayCellFactory(dayCellFactory);
     }
 
     public void clearAll(){
@@ -89,7 +114,7 @@ public class BusinessBookingController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LL/yyyy");
         LocalDate bookingDateFormat = dpDate.getValue();
         bookingDate = bookingDateFormat.format(formatter);
-        DayOfWeek day = bookingDateFormat.getDayOfWeek();
+        day = bookingDateFormat.getDayOfWeek();
 
         String getEmpsSQL = "SELECT empID FROM employeeDetails WHERE employeeRole =" + "'" + bookingType + "' AND businessID =" + businessID;
         rs = database.queryDatabase(getEmpsSQL);
@@ -131,10 +156,16 @@ public class BusinessBookingController {
     }
 
     public void loadTimes(){
+        String empAvailability;
         String getEmpID = "SELECT empID FROM employeeDetails WHERE name ='" + comboEmps.getValue() + "' AND businessID =" + businessID;
         rs = database.queryDatabase(getEmpID);
+
         try{
             empID = rs.getInt("empID");
+            String getAvailSQL = "SELECT availability FROM empAvailability WHERE empID =" + empID;
+            rs = database.queryDatabase(getAvailSQL);
+            empAvailability = rs.getString("availability");
+            dayAvailability = booking.getDayAvailability(day, empAvailability);
         }catch(SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }
@@ -148,7 +179,7 @@ public class BusinessBookingController {
         } catch (SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }
-
+    System.out.println(dayAvailability);
         //Set up time variables
         String startTime = "08:00";
         String startMorn = "07:59";

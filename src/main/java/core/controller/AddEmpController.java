@@ -57,11 +57,15 @@ public class AddEmpController {
         String servicesSQL = "SELECT serviceName FROM availableServices WHERE businessID = "+ session.getLoggedInUserId();
         rs = database.queryDatabase(servicesSQL);
 
+
         try {
-            while(rs.next()){
+            if(rs.next()){
                 services.add(rs.getString("serviceName"));
+                while(rs.next()){
+                    services.add(rs.getString("serviceName"));
+                }
+                comboRoles.setItems(services);
             }
-            comboRoles.setItems(services);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -112,10 +116,13 @@ public class AddEmpController {
             lblEmpAdded.setText("Failed to add employee!");
         }
         else if(result == 1){
+            lblEmpAdded.setTextFill(Color.web("#ffffff"));
             lblEmpAdded.setText("Employee has been added!");
             txtAddName.setText("");
             txtAddEmail.setText("");
             txtAddPhone.setText("");
+            txtAddAddress.setText("");
+            comboRoles.setValue("");
         }
 
         /* TODO Get business ID function and validation */

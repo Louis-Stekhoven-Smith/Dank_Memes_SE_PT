@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.org/LouisKnuckles/Dank_Memes_SE_PT.svg?branch=master)](https://travis-ci.org/LouisKnuckles/Dank_Memes_SE_PT)
-[![codebeat badge](https://codebeat.co/badges/5720ce46-f919-44a6-a0f4-accd66704e9e)](https://codebeat.co/projects/github-com-louisknuckles-dank_memes_se_pt-master)
+
+[//]: # ( commented out
+[![codebeat badge](https://codebeat.co/badges/5720ce46-f919-44a6-a0f4-accd66704e9e)](https://codebeat.co/projects/github-com-louisknuckles-dank_memes_se_pt-master))
+
 
 # Dank_Memes_SE_PT
 

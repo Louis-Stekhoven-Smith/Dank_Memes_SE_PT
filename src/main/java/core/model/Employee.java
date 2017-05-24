@@ -141,7 +141,7 @@ public class Employee {
     public int findEmployee(String name){
         log.debug("Inside findEmployee Method.");
         int empID;
-        String findEmpSQL = "SELECT empID FROM employeeDetails WHERE name = " + "'" + name + "'";
+        String findEmpSQL = "SELECT empID FROM employeeDetails WHERE name = " + "'" + name + "' AND businessID = " + session.getLoggedInUserId();
 
         log.debug("Querying database for employeeID with name" + name);
         resultSet = database.queryDatabase(findEmpSQL);

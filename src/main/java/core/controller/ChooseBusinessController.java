@@ -54,7 +54,7 @@ public class ChooseBusinessController {
 
     }
 
-          public void comboChanged() throws IOException, SQLException {
+    public void comboChanged() throws IOException, SQLException {
         btnBusiness1.setVisible(true);
 
         ResultSet business;

@@ -47,7 +47,7 @@ public class BookingTest {
 
     @DisplayName("Invalid format")
     @Test
-    void availableSlotFail(){assertEquals(booking.availableSlot("15:2012", 1), false);}
+    void availableSlotFail(){assertEquals(booking.availableSlot("15:202", 1), false);}
 
     @DisplayName("Test for successful find of booked out time")
     @Test

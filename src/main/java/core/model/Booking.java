@@ -75,6 +75,7 @@ public class Booking {
 
     //check employee does not already have a booking for that time
     public boolean availableSlot(String time, int empID){
+        System.out.println(time.length());
         if(time.length() != 5){
             log.debug("Available slot method: Invalid format of time!");
             return false;

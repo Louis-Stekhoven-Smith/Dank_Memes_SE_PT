@@ -46,6 +46,7 @@ public class BusinessBookingController {
     private String custName;
     private String dayAvailability;
     private int custID;
+    private DayOfWeek day;
 
     @FXML ComboBox<String> comboRoles;
     @FXML DatePicker dpDate;
@@ -113,7 +114,7 @@ public class BusinessBookingController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LL/yyyy");
         LocalDate bookingDateFormat = dpDate.getValue();
         bookingDate = bookingDateFormat.format(formatter);
-        DayOfWeek day = bookingDateFormat.getDayOfWeek();
+        day = bookingDateFormat.getDayOfWeek();
 
         String getEmpsSQL = "SELECT empID FROM employeeDetails WHERE employeeRole =" + "'" + bookingType + "' AND businessID =" + businessID;
         rs = database.queryDatabase(getEmpsSQL);
@@ -155,10 +156,16 @@ public class BusinessBookingController {
     }
 
     public void loadTimes(){
+        String empAvailability;
         String getEmpID = "SELECT empID FROM employeeDetails WHERE name ='" + comboEmps.getValue() + "' AND businessID =" + businessID;
         rs = database.queryDatabase(getEmpID);
+
         try{
             empID = rs.getInt("empID");
+            String getAvailSQL = "SELECT availability FROM empAvailability WHERE empID =" + empID;
+            rs = database.queryDatabase(getAvailSQL);
+            empAvailability = rs.getString("availability");
+            dayAvailability = booking.getDayAvailability(day, empAvailability);
         }catch(SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }
@@ -172,7 +179,7 @@ public class BusinessBookingController {
         } catch (SQLException e){
             log.error("SQL ERROR: " + e.getMessage());
         }
-
+    System.out.println(dayAvailability);
         //Set up time variables
         String startTime = "08:00";
         String startMorn = "07:59";
